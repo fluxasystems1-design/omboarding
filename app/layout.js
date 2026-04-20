@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Seguimiento Proyecto | Fluxa Method",
-  description: "Landing de seguimiento para Jesus Rodriguez",
+  description: "Propuesta comercial y plan de ejecucion de Fluxa Method",
 };
 
 export default function RootLayout({ children }) {
