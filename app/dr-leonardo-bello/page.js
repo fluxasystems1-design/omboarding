@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const timelinePhases = [
   {
@@ -233,6 +233,7 @@ export default function DrLeonardoBelloPage() {
   const [reduceMotion, setReduceMotion] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false });
+  const timelineCarouselRef = useRef(null);
 
   const progressPercent = 0;
 
@@ -249,6 +250,15 @@ export default function DrLeonardoBelloPage() {
 
   const handleMagneticLeave = (event) => {
     event.currentTarget.style.transform = "translate3d(0, 0, 0)";
+  };
+
+  const scrollTimeline = (direction) => {
+    if (!timelineCarouselRef.current) return;
+    const cardWidth = timelineCarouselRef.current.clientWidth * 0.9;
+    timelineCarouselRef.current.scrollBy({
+      left: direction === "right" ? cardWidth : -cardWidth,
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {
@@ -320,7 +330,7 @@ export default function DrLeonardoBelloPage() {
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <section className="mx-auto w-full max-w-6xl px-5 pb-14 pt-16 sm:px-8 md:pb-20 md:pt-24">
+      <section className="mx-auto w-full max-w-6xl px-5 pb-10 pt-10 sm:px-8 md:pb-20 md:pt-24">
         <div data-reveal className="reveal mx-auto max-w-3xl text-center">
           <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
             De las ideas
@@ -334,7 +344,7 @@ export default function DrLeonardoBelloPage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 pt-16 sm:px-8">
+      <section className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 sm:px-8 md:pt-16">
         <div data-reveal className="reveal">
           <div className="mb-9 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.36em] text-zinc-400">Ruta de activacion</p>
@@ -353,6 +363,25 @@ export default function DrLeonardoBelloPage() {
                 />
               </div>
               <p className="mt-2 text-xs uppercase tracking-[0.2em] text-zinc-500">Progreso del plan: {Math.round(progressPercent)}%</p>
+            </div>
+            <div className="mt-4 flex items-center justify-center gap-3 md:hidden">
+              <button
+                type="button"
+                onClick={() => scrollTimeline("left")}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-600 bg-zinc-900/80 text-lg font-bold text-zinc-200"
+                aria-label="Deslizar fases hacia la izquierda"
+              >
+                ←
+              </button>
+              <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Desliza para ver fases</p>
+              <button
+                type="button"
+                onClick={() => scrollTimeline("right")}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-600 bg-zinc-900/80 text-lg font-bold text-zinc-200"
+                aria-label="Deslizar fases hacia la derecha"
+              >
+                →
+              </button>
             </div>
           </div>
 
@@ -382,7 +411,10 @@ export default function DrLeonardoBelloPage() {
                 background: `radial-gradient(340px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255,255,255,0.12), transparent 60%)`,
               }}
             />
-            <div className="mobile-snap-carousel flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:pb-0">
+            <div
+              ref={timelineCarouselRef}
+              className="mobile-snap-carousel flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:pb-0"
+            >
               {timelinePhases.map((phase, index) => (
                 <div
                   key={phase.id}
@@ -533,35 +565,7 @@ export default function DrLeonardoBelloPage() {
             Cada transformacion impacta ventas, captura de datos y eficiencia operativa.
           </p>
 
-          <details className="mt-6 rounded-xl border border-zinc-700 bg-[#111111] p-4 md:hidden">
-            <summary className="cursor-pointer list-none text-sm font-bold uppercase tracking-[0.12em] text-zinc-200">
-              Ver transformaciones 1 a 4
-            </summary>
-            <div className="mt-4 grid gap-3">
-              <div className="grid gap-3">
-                <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
-                  Antes
-                </p>
-                <p className="inline-flex w-fit rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300">
-                  Despues
-                </p>
-              </div>
-              {transformationsCore.map((item, idx) => (
-                <div key={`mobile-core-${item.before}`} className="grid gap-3">
-                  <article className="rounded-xl border border-red-400/25 bg-red-950/15 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-300">Transformacion {idx + 1}</p>
-                    <p className="mt-1 text-sm text-zinc-200">{item.before}</p>
-                  </article>
-                  <article className="rounded-xl border border-emerald-400/25 bg-emerald-950/15 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300">Impacto {idx + 1}</p>
-                    <p className="mt-1 text-sm text-zinc-100">{item.after}</p>
-                  </article>
-                </div>
-              ))}
-            </div>
-          </details>
-
-          <div className="mt-6 hidden gap-3 md:grid">
+          <div className="mt-6 grid gap-3">
             <div className="grid gap-3 md:grid-cols-2">
               <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
                 Antes
@@ -599,35 +603,7 @@ export default function DrLeonardoBelloPage() {
             La segunda capa del sistema convierte audiencia en recurrencia, consultas y conversacion activa.
           </p>
 
-          <details className="mt-6 rounded-xl border border-zinc-700 bg-[#111111] p-4 md:hidden">
-            <summary className="cursor-pointer list-none text-sm font-bold uppercase tracking-[0.12em] text-zinc-200">
-              Ver transformaciones 5 a 7
-            </summary>
-            <div className="mt-4 grid gap-3">
-              <div className="grid gap-3">
-                <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
-                  Antes
-                </p>
-                <p className="inline-flex w-fit rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300">
-                  Despues
-                </p>
-              </div>
-              {transformationsScale.map((item, idx) => (
-                <div key={`mobile-scale-${item.before}`} className="grid gap-3">
-                  <article className="rounded-xl border border-red-400/25 bg-red-950/15 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-300">Transformacion {idx + 5}</p>
-                    <p className="mt-1 text-sm text-zinc-200">{item.before}</p>
-                  </article>
-                  <article className="rounded-xl border border-emerald-400/25 bg-emerald-950/15 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300">Impacto {idx + 5}</p>
-                    <p className="mt-1 text-sm text-zinc-100">{item.after}</p>
-                  </article>
-                </div>
-              ))}
-            </div>
-          </details>
-
-          <div className="mt-6 hidden gap-3 md:grid">
+          <div className="mt-6 grid gap-3">
             <div className="grid gap-3 md:grid-cols-2">
               <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
                 Antes
