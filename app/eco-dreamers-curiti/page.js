@@ -568,7 +568,7 @@ export default function EcoDreamersCuritiPage() {
     );
     revealElements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [reduceMotion]);
+  }, [reduceMotion, selectedPlan]);
 
   useEffect(() => {
     if (reduceMotion) return () => {};
@@ -722,7 +722,7 @@ export default function EcoDreamersCuritiPage() {
             <div className="pointer-events-none absolute -right-8 bottom-10 hidden h-44 w-44 rounded-full bg-indigo-500/15 blur-3xl md:block" style={{ transform: `translateY(${reduceMotion ? 0 : -parallaxOffset * 0.35}px)` }} />
             <div className="spotlight-layer pointer-events-none absolute inset-0 z-0 hidden rounded-3xl md:block" style={{ opacity: spotlight.active ? 1 : 0, background: `radial-gradient(340px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255,255,255,0.12), transparent 60%)` }} />
 
-            <div ref={timelineCarouselRef} className={`mobile-snap-carousel flex gap-4 overflow-x-auto pb-4 md:overflow-visible md:pb-0 ${selectedPlan === "scale" ? "md:grid md:grid-cols-4 md:gap-6" : "md:grid md:grid-cols-3 md:gap-6"}`}>
+            <div ref={timelineCarouselRef} className={`mobile-snap-carousel flex items-start gap-4 overflow-x-auto pb-4 md:overflow-visible md:pb-0 ${selectedPlan === "scale" ? "md:grid md:grid-cols-4 md:gap-6" : "md:grid md:grid-cols-3 md:gap-6"}`}>
               {currentTimelinePhases.map((phase, index) => (
                 <div key={phase.id} data-reveal className="reveal route-card relative z-10 w-[88vw] min-w-[88vw] max-w-md shrink-0 snap-center rounded-2xl border border-zinc-800/80 bg-zinc-950/55 p-4 text-center backdrop-blur-[1px] md:mx-auto md:w-full md:min-w-0 md:max-w-none md:shrink md:snap-none md:p-5" style={{ transitionDelay: `${index * 120}ms` }}>
                   {index !== currentTimelinePhases.length - 1 && <div className="relative mx-auto mt-4 h-12 w-[2px] overflow-hidden rounded-full md:hidden"><span className="timeline-dash-vertical block h-full w-full" /></div>}
