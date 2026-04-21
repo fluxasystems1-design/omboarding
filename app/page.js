@@ -12,6 +12,11 @@ const landings = [
     description: "Propuesta comercial y plan de ejecución",
   },
   {
+    name: "Cuestionario Dr. Leonardo Bello",
+    path: "/dr-leonardo-bello/brief",
+    description: "Brief estratégico de diagnóstico y arranque",
+  },
+  {
     name: "Eco-Dreamers Curití",
     path: "/eco-dreamers-curiti",
     description: "Ecosistema de reservas automáticas",

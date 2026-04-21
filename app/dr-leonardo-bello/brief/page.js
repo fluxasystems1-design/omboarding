@@ -3,48 +3,148 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
-const STEPS = [
-  { id: 1, title: "Marca e identidad" },
-  { id: 2, title: "Suplementos FuncionA+" },
-  { id: 3, title: "Cursos y libros" },
-  { id: 4, title: "Consultas 1:1" },
-  { id: 5, title: "Accesos requeridos" },
-  { id: 6, title: "Para cerrar" },
+const BRIEF_SECTIONS = [
+  {
+    id: 1,
+    title: "Vision general",
+    fields: [
+      { key: "q01", label: "1. Nombre principal de la marca que desea impulsar", type: "text", required: true },
+      {
+        key: "q02",
+        label: "2. ¿Que linea desea crecer primero?",
+        type: "radio",
+        required: true,
+        options: ["Funciona+ suplementos", "Membresia", "Curso digital", "Marca personal general"],
+      },
+      { key: "q03", label: "3. ¿Cual es hoy su principal fuente de ingresos?", type: "textarea", rows: 3, required: true },
+      { key: "q04", label: "4. ¿Que resultado principal le gustaria lograr en los proximos 90 dias?", type: "textarea", rows: 3, required: true },
+      { key: "q05", label: "5. ¿Que meta importante le gustaria alcanzar este ano con la marca?", type: "text", required: true },
+      { key: "q06", label: "6. ¿Que tan urgente le gustaria mover este proyecto?", type: "radio", required: true, options: ["Inmediato", "Este mes", "Proximo trimestre"] },
+    ],
+  },
+  {
+    id: 2,
+    title: "Audiencia y redes",
+    fields: [
+      { key: "q07", label: "7. ¿Cuales son hoy sus redes sociales mas activas?", type: "text", required: true },
+      { key: "q08", label: "8. ¿Cual red siente que mejor le funciona actualmente?", type: "text", required: true },
+      { key: "q09", label: "9. ¿Que tipo de personas mas le compran o consultan hoy?", type: "textarea", rows: 3, required: true },
+      { key: "q10", label: "10. ¿Que tipo de audiencia le gustaria atraer mas?", type: "textarea", rows: 3, required: true },
+    ],
+  },
+  {
+    id: 3,
+    title: "Funciona+ (suplementos)",
+    fields: [
+      { key: "q11", label: "11. ¿Cual suplemento desea impulsar primero?", type: "text", required: true },
+      { key: "q12", label: "12. Beneficio principal de cada suplemento actual", type: "textarea", rows: 3, required: true },
+      { key: "q13", label: "13. Precio actual de cada producto", type: "text", required: true },
+      { key: "q14", label: "14. ¿Cual vende mas hoy?", type: "text", required: true },
+      { key: "q15", label: "15. ¿Cual considera mas rentable hoy?", type: "text", required: true },
+      { key: "q16", label: "16. ¿Tiene inventario disponible actualmente?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q17", label: "17. Tiempo promedio de entrega nacional", type: "text", required: true },
+      { key: "q18", label: "18. ¿Que duda u objecion mas comun pone la gente antes de comprar?", type: "textarea", rows: 3, required: true },
+    ],
+  },
+  {
+    id: 4,
+    title: "Membresia",
+    fields: [
+      { key: "q19", label: "19. ¿Que resultado le gustaria ayudar a conseguir a las personas dentro de la membresia?", type: "textarea", rows: 3, required: true },
+      { key: "q20", label: "20. ¿Que temas incluiria?", type: "textarea", rows: 3, required: true },
+      {
+        key: "q21",
+        label: "21. ¿Como le gustaria manejarla?",
+        type: "radio",
+        required: true,
+        options: ["Comunidad privada", "Clases en vivo", "Biblioteca grabada", "Mixto"],
+      },
+      {
+        key: "q22",
+        label: "22. ¿Le gustaria una membresia de nivel?",
+        type: "radio",
+        required: true,
+        options: ["Accesible", "Intermedia", "Premium"],
+      },
+      { key: "q23", label: "23. ¿Ya hay personas interesadas en entrar?", type: "radio", required: true, options: ["Si", "No"] },
+    ],
+  },
+  {
+    id: 5,
+    title: "Curso digital",
+    fields: [
+      { key: "q24", label: "24. ¿Cual seria el primer curso ideal para lanzar?", type: "text", required: true },
+      { key: "q25", label: "25. ¿Que aprenderia o lograria una persona con ese curso?", type: "textarea", rows: 3, required: true },
+      { key: "q26", label: "26. ¿Ya tiene material grabado o seria desde cero?", type: "text", required: true },
+      {
+        key: "q27",
+        label: "27. ¿Le gustaria que el primer curso sea de nivel?",
+        type: "radio",
+        required: true,
+        options: ["Entrada economica", "Intermedio", "Premium"],
+      },
+      { key: "q28", label: "28. Formato ideal:", type: "radio", required: true, options: ["Grabado", "En vivo", "Mixto"] },
+      { key: "q29", label: "29. ¿Cree que ya tiene personas interesadas en comprarlo?", type: "radio", required: true, options: ["Si", "No"] },
+    ],
+  },
+  {
+    id: 6,
+    title: "Autoridad y contenido",
+    fields: [
+      { key: "q30", label: "30. ¿Que cree que lo diferencia frente a otros profesionales del sector?", type: "textarea", rows: 3, required: true },
+      { key: "q31", label: "31. ¿Que temas domina mas que la mayoria?", type: "textarea", rows: 3, required: true },
+      { key: "q32", label: "32. ¿Tiene testimonios disponibles?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q33", label: "33. ¿Esta dispuesto a grabar contenido semanal?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q34", label: "34. ¿Cuantas horas por semana puede dedicar al proyecto?", type: "text", required: true },
+    ],
+  },
+  {
+    id: 7,
+    title: "Crecimiento y publicidad",
+    fields: [
+      { key: "q35", label: "35. ¿Ha invertido antes en publicidad digital?", type: "radio", required: true, options: ["Si", "No"] },
+      {
+        key: "q36",
+        label: "36. ¿Que rango mensual estaria comodo invirtiendo inicialmente en publicidad?",
+        type: "radio",
+        required: true,
+        options: ["Bajo", "Medio", "Alto"],
+      },
+      { key: "q37", label: "37. ¿Que siente que hoy mas frena el crecimiento del negocio?", type: "textarea", rows: 3, required: true },
+    ],
+  },
+  {
+    id: 8,
+    title: "Activos disponibles",
+    fields: [
+      { key: "q38", label: "38. ¿Tiene logo en alta calidad?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q39", label: "39. ¿Tiene fotos profesionales suyas?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q40", label: "40. ¿Tiene fotos profesionales de productos?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q41", label: "41. ¿Tiene videos grabados reutilizables?", type: "radio", required: true, options: ["Si", "No"] },
+      { key: "q42", label: "42. ¿Tiene base de datos de clientes (WhatsApp o correos)?", type: "radio", required: true, options: ["Si", "No"] },
+    ],
+  },
+  {
+    id: 9,
+    title: "Operacion y comunicacion",
+    fields: [
+      { key: "q43", label: "43. ¿Quien puede apoyarlo internamente con materiales o gestion?", type: "textarea", rows: 3, required: true },
+      { key: "q44", label: "44. Mejor canal de comunicacion", type: "text", required: true },
+      { key: "q45", label: "45. Horarios ideales para reuniones", type: "text", required: true },
+    ],
+  },
+  {
+    id: 10,
+    title: "Prioridades finales",
+    fields: [
+      { key: "q46", label: "46. Si solo resolvemos una cosa primero, ¿cual seria?", type: "textarea", rows: 3, required: true },
+      { key: "q47", label: "47. ¿Que no le gustaria que ocurra con este proyecto?", type: "textarea", rows: 3, required: true },
+      { key: "q48", label: "48. Si este proyecto sale muy bien, ¿que le gustaria haber logrado este ano?", type: "textarea", rows: 4, required: true },
+    ],
+  },
 ];
 
-const ACCESOS_OPTIONS = [
-  "Dominio web (credenciales del registrador)",
-  "Hosting o cuenta Vercel",
-  "Meta Business Suite — acceso administrador",
-  "Cuenta Wompi o Bold (pasarela de pago)",
-  "Email corporativo",
-  "Acceso Instagram como negocio",
-  "Carpeta de imágenes, videos y activos de marca",
-  "Cuenta Hotmart u otra plataforma de cursos",
-];
-
-const initialForm = {
-  colores: "",
-  fuentes: "",
-  tono: "",
-  percepcion: "",
-  suplemento1: "",
-  suplemento2: "",
-  suplemento3: "",
-  descripcionSupl: "",
-  variantesSupl: "",
-  cursos: "",
-  libros: "",
-  precioConsulta: "",
-  duracionConsulta: "",
-  modalidad: "",
-  tieneCalendly: "",
-  linkCalendly: "",
-  accesos: [],
-  accesosFaltantes: "",
-  infoAdicional: "",
-  resultadoEsperado: "",
-};
+const initialForm = Object.fromEntries(BRIEF_SECTIONS.flatMap((section) => section.fields.map((field) => [field.key, ""])));
 
 const inputBase =
   "w-full rounded-lg border bg-[#111111] px-3 py-2.5 text-sm text-white placeholder:text-[#666666] focus:outline-none focus:ring-1 sm:text-base";
@@ -53,46 +153,13 @@ const borderError = "border-red-500 focus:border-red-500 focus:ring-red-500";
 
 function validateStep(step, form) {
   const err = {};
-
-  const req = (key, msg = "Este campo es obligatorio") => {
-    const v = form[key];
-    if (v == null || String(v).trim() === "") err[key] = msg;
-  };
-
-  if (step === 1) {
-    req("colores");
-    req("fuentes");
-    if (!form.tono) err.tono = "Seleccione una opción";
-    req("percepcion");
-  }
-
-  if (step === 2) {
-    req("suplemento1");
-    req("suplemento2");
-    req("suplemento3");
-    req("descripcionSupl");
-  }
-
-  if (step === 3) {
-    req("cursos");
-    req("libros");
-  }
-
-  if (step === 4) {
-    req("precioConsulta");
-    req("duracionConsulta");
-    if (!form.modalidad) err.modalidad = "Seleccione una opción";
-    if (!form.tieneCalendly) err.tieneCalendly = "Seleccione una opción";
-  }
-
-  if (step === 5) {
-    req("accesosFaltantes");
-  }
-
-  if (step === 6) {
-    req("infoAdicional");
-    req("resultadoEsperado");
-  }
+  const section = BRIEF_SECTIONS[step - 1];
+  if (!section) return err;
+  section.fields.forEach((field) => {
+    if (!field.required) return;
+    const value = form[field.key];
+    if (value == null || String(value).trim() === "") err[field.key] = "Este campo es obligatorio";
+  });
 
   return err;
 }
@@ -103,11 +170,13 @@ export default function BriefBelloPage() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const totalSteps = BRIEF_SECTIONS.length;
+  const currentSection = BRIEF_SECTIONS[step - 1];
 
   const progressPct = useMemo(() => {
-    if (step >= 7) return 100;
-    return Math.round((step / 6) * 100);
-  }, [step]);
+    if (step > totalSteps) return 100;
+    return Math.round((step / totalSteps) * 100);
+  }, [step, totalSteps]);
 
   const update = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -115,15 +184,6 @@ export default function BriefBelloPage() {
       const next = { ...prev };
       delete next[key];
       return next;
-    });
-  };
-
-  const toggleAcceso = (label) => {
-    setForm((prev) => {
-      const set = new Set(prev.accesos);
-      if (set.has(label)) set.delete(label);
-      else set.add(label);
-      return { ...prev, accesos: Array.from(set) };
     });
   };
 
@@ -137,7 +197,7 @@ export default function BriefBelloPage() {
       return;
     }
     setErrors({});
-    if (step < 6) setStep((s) => s + 1);
+    if (step < totalSteps) setStep((s) => s + 1);
   };
 
   const goPrev = () => {
@@ -148,7 +208,7 @@ export default function BriefBelloPage() {
 
   const handleSubmit = async () => {
     setSubmitError("");
-    const e = validateStep(6, form);
+    const e = validateStep(totalSteps, form);
     if (Object.keys(e).length > 0) {
       setErrors(e);
       return;
@@ -166,7 +226,7 @@ export default function BriefBelloPage() {
         setSubmitError(data.error || "No se pudo enviar. Intente de nuevo.");
         return;
       }
-      setStep(7);
+      setStep(totalSteps + 1);
     } catch {
       setSubmitError("Error de red. Verifique su conexión.");
     } finally {
@@ -174,7 +234,7 @@ export default function BriefBelloPage() {
     }
   };
 
-  if (step === 7) {
+  if (step === totalSteps + 1) {
     return (
       <main className="min-h-screen bg-black px-4 py-10 text-white sm:px-6">
         <div className="mx-auto flex max-w-lg flex-col items-center text-center">
@@ -239,7 +299,7 @@ export default function BriefBelloPage() {
         <div className="mt-8">
           <div className="mb-2 flex justify-between text-xs text-zinc-400">
             <span>
-              Paso {step} de 6
+              Paso {step} de {totalSteps}
             </span>
             <span>{progressPct}%</span>
           </div>
@@ -249,213 +309,49 @@ export default function BriefBelloPage() {
               style={{ width: `${progressPct}%` }}
             />
           </div>
-          <p className="mt-3 text-center text-sm font-semibold text-zinc-200">{STEPS[step - 1]?.title}</p>
+          <p className="mt-3 text-center text-sm font-semibold text-zinc-200">{currentSection?.title}</p>
         </div>
 
         <div className="mt-8 space-y-5">
-          {step === 1 && (
-            <>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">¿Cuáles son los colores de su marca? (HEX si los tiene, o descríbalos)</label>
-                <textarea
-                  rows={3}
-                  value={form.colores}
-                  onChange={(e) => update("colores", e.target.value)}
-                  className={fieldClass("colores")}
-                  placeholder="Ej: #0B2A4A, blanco, acento dorado…"
-                />
-                {errors.colores && <p className="mt-1 text-xs text-red-400">{errors.colores}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">¿Qué fuentes o tipografías usa actualmente?</label>
-                <input type="text" value={form.fuentes} onChange={(e) => update("fuentes", e.target.value)} className={fieldClass("fuentes")} placeholder="Ej: Inter, system-ui…" />
-                {errors.fuentes && <p className="mt-1 text-xs text-red-400">{errors.fuentes}</p>}
-              </div>
-              <div>
-                <span className="mb-2 block text-sm font-medium text-zinc-200">Tono de comunicación</span>
-                <div className="space-y-2">
-                  {["Formal y académico", "Cercano y educativo", "Motivacional y aspiracional", "Una combinación"].map((opt) => (
-                    <label key={opt} className="flex cursor-pointer items-start gap-3 rounded-lg border border-[#333333] bg-[#111111] px-3 py-2.5 has-[:checked]:border-[#FFD600]">
-                      <input
-                        type="radio"
-                        name="tono"
-                        checked={form.tono === opt}
-                        onChange={() => update("tono", opt)}
-                        className="mt-0.5 h-4 w-4 shrink-0 accent-[#FFD600]"
-                      />
-                      <span className="text-sm text-zinc-200">{opt}</span>
-                    </label>
-                  ))}
-                </div>
-                {errors.tono && <p className="mt-1 text-xs text-red-400">{errors.tono}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">¿Cómo quiere que sus clientes lo perciban al llegar a su web o ver su contenido?</label>
-                <textarea
-                  rows={4}
-                  value={form.percepcion}
-                  onChange={(e) => update("percepcion", e.target.value)}
-                  className={fieldClass("percepcion")}
-                  placeholder="Confianza, autoridad, cercanía…"
-                />
-                {errors.percepcion && <p className="mt-1 text-xs text-red-400">{errors.percepcion}</p>}
-              </div>
-            </>
-          )}
-
-          {step === 2 && (
-            <>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Magnesio: nombre exacto, precio COP y presentación</label>
-                <input type="text" value={form.suplemento1} onChange={(e) => update("suplemento1", e.target.value)} className={fieldClass("suplemento1")} />
-                {errors.suplemento1 && <p className="mt-1 text-xs text-red-400">{errors.suplemento1}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Omega 3: nombre exacto, precio COP y presentación</label>
-                <input type="text" value={form.suplemento2} onChange={(e) => update("suplemento2", e.target.value)} className={fieldClass("suplemento2")} />
-                {errors.suplemento2 && <p className="mt-1 text-xs text-red-400">{errors.suplemento2}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Creatina: nombre exacto, precio COP y presentación</label>
-                <input type="text" value={form.suplemento3} onChange={(e) => update("suplemento3", e.target.value)} className={fieldClass("suplemento3")} />
-                {errors.suplemento3 && <p className="mt-1 text-xs text-red-400">{errors.suplemento3}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Para cada suplemento: para qué sirve, a quién va dirigido y su beneficio principal</label>
-                <textarea rows={5} value={form.descripcionSupl} onChange={(e) => update("descripcionSupl", e.target.value)} className={fieldClass("descripcionSupl")} />
-                {errors.descripcionSupl && <p className="mt-1 text-xs text-red-400">{errors.descripcionSupl}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">¿Hay variantes? (sabores, tamaños) — (opcional)</label>
-                <input
-                  type="text"
-                  value={form.variantesSupl}
-                  onChange={(e) => update("variantesSupl", e.target.value)}
-                  className={`${inputBase} ${errors.variantesSupl ? borderError : borderNormal}`}
-                  placeholder="Si no, escriba No"
-                />
-              </div>
-            </>
-          )}
-
-          {step === 3 && (
-            <>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Liste sus cursos: nombre, precio, plataforma y descripción de una línea cada uno</label>
-                <textarea rows={6} value={form.cursos} onChange={(e) => update("cursos", e.target.value)} className={fieldClass("cursos")} />
-                {errors.cursos && <p className="mt-1 text-xs text-red-400">{errors.cursos}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Liste sus libros: título, link de venta y de qué trata cada uno</label>
-                <textarea rows={6} value={form.libros} onChange={(e) => update("libros", e.target.value)} className={fieldClass("libros")} />
-                {errors.libros && <p className="mt-1 text-xs text-red-400">{errors.libros}</p>}
-              </div>
-            </>
-          )}
-
-          {step === 4 && (
-            <>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Precio de la consulta 1:1 (COP o USD)</label>
-                <input type="text" value={form.precioConsulta} onChange={(e) => update("precioConsulta", e.target.value)} className={fieldClass("precioConsulta")} />
-                {errors.precioConsulta && <p className="mt-1 text-xs text-red-400">{errors.precioConsulta}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Duración de cada sesión (ej: 60 minutos)</label>
-                <input type="text" value={form.duracionConsulta} onChange={(e) => update("duracionConsulta", e.target.value)} className={fieldClass("duracionConsulta")} />
-                {errors.duracionConsulta && <p className="mt-1 text-xs text-red-400">{errors.duracionConsulta}</p>}
-              </div>
-              <div>
-                <span className="mb-2 block text-sm font-medium text-zinc-200">Modalidad</span>
-                <div className="space-y-2">
-                  {["Zoom", "Google Meet", "Presencial", "Varias"].map((opt) => (
-                    <label key={opt} className="flex cursor-pointer items-start gap-3 rounded-lg border border-[#333333] bg-[#111111] px-3 py-2.5 has-[:checked]:border-[#FFD600]">
-                      <input
-                        type="radio"
-                        name="modalidad"
-                        checked={form.modalidad === opt}
-                        onChange={() => update("modalidad", opt)}
-                        className="mt-0.5 h-4 w-4 accent-[#FFD600]"
-                      />
-                      <span className="text-sm text-zinc-200">{opt}</span>
-                    </label>
-                  ))}
-                </div>
-                {errors.modalidad && <p className="mt-1 text-xs text-red-400">{errors.modalidad}</p>}
-              </div>
-              <div>
-                <span className="mb-2 block text-sm font-medium text-zinc-200">Calendly / agenda</span>
-                <div className="space-y-2">
-                  {["Sí, tengo cuenta activa", "No todavía", "Uso otra herramienta"].map((opt) => (
-                    <label key={opt} className="flex cursor-pointer items-start gap-3 rounded-lg border border-[#333333] bg-[#111111] px-3 py-2.5 has-[:checked]:border-[#FFD600]">
-                      <input
-                        type="radio"
-                        name="tieneCalendly"
-                        checked={form.tieneCalendly === opt}
-                        onChange={() => update("tieneCalendly", opt)}
-                        className="mt-0.5 h-4 w-4 accent-[#FFD600]"
-                      />
-                      <span className="text-sm text-zinc-200">{opt}</span>
-                    </label>
-                  ))}
-                </div>
-                {errors.tieneCalendly && <p className="mt-1 text-xs text-red-400">{errors.tieneCalendly}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">Link de Calendly u otra herramienta (opcional)</label>
-                <input
-                  type="text"
-                  value={form.linkCalendly}
-                  onChange={(e) => update("linkCalendly", e.target.value)}
-                  className={`${inputBase} ${errors.linkCalendly ? borderError : borderNormal}`}
-                  placeholder="Si no tiene, escriba No aplica"
-                />
-              </div>
-            </>
-          )}
-
-          {step === 5 && (
-            <>
-              <div>
-                <span className="mb-2 block text-sm font-medium text-zinc-200">Marque los accesos que ya puede compartir</span>
-                <div className="space-y-2">
-                  {ACCESOS_OPTIONS.map((opt) => (
-                    <label key={opt} className="flex cursor-pointer items-start gap-3 rounded-lg border border-[#333333] bg-[#111111] px-3 py-2.5 has-[:checked]:border-[#FFD600]">
-                      <input
-                        type="checkbox"
-                        checked={form.accesos.includes(opt)}
-                        onChange={() => toggleAcceso(opt)}
-                        className="mt-0.5 h-4 w-4 shrink-0 rounded border-[#333333] bg-[#111111] accent-[#FFD600]"
-                      />
-                      <span className="text-sm text-zinc-200">{opt}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">
-                  ¿Algún acceso que NO tiene o necesita ayuda para configurar? (Si todo está listo, escriba: Todo listo)
-                </label>
-                <textarea rows={4} value={form.accesosFaltantes} onChange={(e) => update("accesosFaltantes", e.target.value)} className={fieldClass("accesosFaltantes")} />
-                {errors.accesosFaltantes && <p className="mt-1 text-xs text-red-400">{errors.accesosFaltantes}</p>}
-              </div>
-            </>
-          )}
-
-          {step === 6 && (
-            <>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">¿Hay algo sobre su negocio o audiencia que no hayamos preguntado?</label>
-                <textarea rows={5} value={form.infoAdicional} onChange={(e) => update("infoAdicional", e.target.value)} className={fieldClass("infoAdicional")} />
-                {errors.infoAdicional && <p className="mt-1 text-xs text-red-400">{errors.infoAdicional}</p>}
-              </div>
-              <div>
-                <label className="mb-1.5 block text-sm font-medium text-zinc-200">¿Cuál es el resultado que más le emociona lograr en estos 3 meses?</label>
-                <textarea rows={5} value={form.resultadoEsperado} onChange={(e) => update("resultadoEsperado", e.target.value)} className={fieldClass("resultadoEsperado")} />
-                {errors.resultadoEsperado && <p className="mt-1 text-xs text-red-400">{errors.resultadoEsperado}</p>}
-              </div>
-            </>
-          )}
+          {currentSection?.fields.map((field) => (
+            <div key={field.key}>
+              {field.type === "radio" ? (
+                <>
+                  <span className="mb-2 block text-sm font-medium text-zinc-200">{field.label}</span>
+                  <div className="space-y-2">
+                    {field.options.map((opt) => (
+                      <label key={opt} className="flex cursor-pointer items-start gap-3 rounded-lg border border-[#333333] bg-[#111111] px-3 py-2.5 has-[:checked]:border-[#FFD600]">
+                        <input
+                          type="radio"
+                          name={field.key}
+                          checked={form[field.key] === opt}
+                          onChange={() => update(field.key, opt)}
+                          className="mt-0.5 h-4 w-4 shrink-0 accent-[#FFD600]"
+                        />
+                        <span className="text-sm text-zinc-200">{opt}</span>
+                      </label>
+                    ))}
+                  </div>
+                </>
+              ) : field.type === "textarea" ? (
+                <>
+                  <label className="mb-1.5 block text-sm font-medium text-zinc-200">{field.label}</label>
+                  <textarea
+                    rows={field.rows || 4}
+                    value={form[field.key]}
+                    onChange={(e) => update(field.key, e.target.value)}
+                    className={fieldClass(field.key)}
+                  />
+                </>
+              ) : (
+                <>
+                  <label className="mb-1.5 block text-sm font-medium text-zinc-200">{field.label}</label>
+                  <input type="text" value={form[field.key]} onChange={(e) => update(field.key, e.target.value)} className={fieldClass(field.key)} />
+                </>
+              )}
+              {errors[field.key] && <p className="mt-1 text-xs text-red-400">{errors[field.key]}</p>}
+            </div>
+          ))}
         </div>
 
         {submitError && <p className="mt-6 text-center text-sm text-red-400">{submitError}</p>}
@@ -469,7 +365,7 @@ export default function BriefBelloPage() {
           >
             Anterior
           </button>
-          {step < 6 ? (
+          {step < totalSteps ? (
             <button
               type="button"
               onClick={goNext}
