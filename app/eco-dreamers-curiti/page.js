@@ -53,6 +53,7 @@ const PLAN_CONFIGS = {
       "Sistema UGC completo: 5-10 creadoras activas",
       "Gestion y optimizacion de campanas Meta Ads",
       "CRM o sistema personalizado segun necesidad",
+      "Fase 4 incluida: optimizacion, pauta y escala con datos reales",
     ],
     paymentA: {
       title: "Opcion A - Pago en 2 cuotas",
@@ -86,6 +87,7 @@ const timelinePhasesScale = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["VIP/Deluxe/Compartido", "Plan romantico", "CTA reserva"],
+    scope: "Incluye desarrollo premium completo por fases.",
     build: "Construimos la landing premium con galeria visual y secciones por tipo de cabana.",
     activate: "Publicamos CTA directo al sistema de reservas y pixel de medicion.",
     result: "El prospecto encuentra claridad y reserva sin depender del DM manual.",
@@ -101,6 +103,7 @@ const timelinePhasesScale = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["Calendario activo", "Anticipo Wompi", "Confirmacion auto"],
+    scope: "Incluye reservas online con pago y automatizaciones.",
     build: "Implementamos calendario, seleccion de cabana y flujo de pago de anticipo.",
     activate: "Conectamos confirmacion automatica por WhatsApp y correo.",
     result: "Reservas ordenadas, trazables y activas 24/7.",
@@ -116,6 +119,7 @@ const timelinePhasesScale = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["Historial cliente", "Recordatorios", "Reactivacion"],
+    scope: "Incluye CRM y seguimiento comercial automatizado.",
     build: "Creamos CRM de prospectos con estados y notas por cliente.",
     activate: "Automatizamos mensajes de seguimiento y reactivacion de clientes 60+ dias.",
     result: "Menos fugas comerciales y mayor recurrencia de reservas.",
@@ -131,6 +135,7 @@ const timelinePhasesScale = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["Contenido 90 dias", "Meta Ads activa", "Optimizacion semanal"],
+    scope: "Incluye gestion de pauta y optimizacion para escalar.",
     build: "Diseñamos arquitectura de contenido y campanas por ciudad objetivo.",
     activate: "Ajustamos anuncios segun conversion y sesiones estrategicas.",
     result: "El sistema escala reservas sin esfuerzo manual del equipo.",
@@ -149,6 +154,7 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["Oferta clara", "CTA directo", "Pixel base"],
+    scope: "Alcance esencial: base de captacion (sin CRM avanzado).",
     build: "Disenamos una landing esencial enfocada en captar interesados con claridad.",
     activate: "Configuramos CTA de contacto y medicion basica para iniciar conversion.",
     result: "Eco-Dreamers deja de depender solo del DM desordenado.",
@@ -164,6 +170,7 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["Ruta simple", "Seguimiento inicial", "Conversion base"],
+    scope: "Alcance esencial: embudo simple (sin automatizaciones complejas).",
     build: "Estructuramos el flujo minimo desde contenido o anuncio hacia contacto.",
     activate: "Dejamos mensaje de seguimiento inicial para responder leads mas rapido.",
     result: "Mas orden comercial con menor carga manual en el dia a dia.",
@@ -179,6 +186,7 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     points: ["Cuenta lista", "Publicos base", "Sesion estrategica"],
+    scope: "Alcance esencial: setup inicial (sin gestion semanal incluida).",
     build: "Configuramos cuenta Meta Ads y eventos principales para primeras pruebas.",
     activate: "Realizamos sesion de arranque y guia inicial para ejecucion organica.",
     result: "Plan base operativo, listo para evolucionar a una fase de escala.",
@@ -584,28 +592,33 @@ export default function EcoDreamersCuritiPage() {
     <main className="min-h-screen bg-black text-white">
       <section className="mx-auto w-full max-w-6xl px-5 pb-10 pt-10 sm:px-8 md:pb-20 md:pt-24">
         <div data-reveal className="reveal mx-auto max-w-4xl text-center">
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
+            Toca un plan para ver sus detalles
+          </p>
           <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
             <button
               type="button"
               onClick={() => setSelectedPlan("system")}
+              aria-pressed={selectedPlan === "system"}
               className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 selectedPlan === "system"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
               }`}
             >
-              Fluxa System
+              Plan esencial · $697
             </button>
             <button
               type="button"
               onClick={() => setSelectedPlan("scale")}
+              aria-pressed={selectedPlan === "scale"}
               className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 selectedPlan === "scale"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
               }`}
             >
-              Fluxa Scale
+              Plan completo · $1,597
             </button>
           </div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{currentPlan.chip}</p>
@@ -725,12 +738,13 @@ export default function EcoDreamersCuritiPage() {
                   <p className="text-sm text-zinc-300">{phase.subtitle}</p>
 
                   <div className="mt-3 flex flex-wrap justify-center gap-2">
-                    {phase.points.map((point, chipIndex) => (
-                      <span key={point} data-reveal className="reveal fade-soft rounded-full border border-zinc-600/70 bg-zinc-900/80 px-2.5 py-1 text-[11px] font-medium text-zinc-200" style={{ transitionDelay: `${chipIndex * 80 + index * 100}ms` }}>
+                    {phase.points.map((point) => (
+                      <span key={point} className="rounded-full border border-zinc-600/70 bg-zinc-900/80 px-2.5 py-1 text-[11px] font-medium text-zinc-200">
                         {point}
                       </span>
                     ))}
                   </div>
+                  <p className="mt-3 text-[11px] font-medium leading-relaxed text-zinc-400">{phase.scope}</p>
 
                   <span className={`mt-4 inline-flex rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] ${phase.statusClass}`}>{phase.status}</span>
 
