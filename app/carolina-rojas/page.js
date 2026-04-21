@@ -205,7 +205,7 @@ const deliverablesEcommerce = [
 ];
 
 const projectConditions = [
-  "Duracion del proyecto: 2 meses desde la firma.",
+  "Duracion del proyecto: 3 meses desde la firma.",
   "30 dias de soporte post-entrega incluidos para bugs y ajustes menores.",
   "La tienda, la plataforma del curso, los flujos y todos los activos digitales quedan en propiedad de Carolina.",
   "No hay dependencia de Fluxa Method tras la entrega.",
@@ -424,7 +424,7 @@ export default function CarolinaRojasPage() {
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Inversion total</p>
             </article>
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">2 meses</p>
+              <p className="text-3xl font-extrabold text-white">3 meses</p>
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Duracion</p>
             </article>
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
@@ -681,7 +681,7 @@ export default function CarolinaRojasPage() {
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
-          <h2 className="mb-8 text-3xl font-extrabold tracking-tight sm:text-4xl">05. Plan de ejecucion - 2 meses</h2>
+          <h2 className="mb-8 text-3xl font-extrabold tracking-tight sm:text-4xl">05. Plan de ejecucion - 3 meses</h2>
           <div className="space-y-4">
             {executionPlan.map((phase) => (
               <article key={phase.month} className="rounded-xl border border-zinc-700 bg-[#111111] p-5">
@@ -721,12 +721,12 @@ export default function CarolinaRojasPage() {
                 <div className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
                   <p className="text-sm text-zinc-300">Total del proyecto</p>
                   <p className="mt-1 text-4xl font-extrabold text-emerald-300">$1.597 USD</p>
-                  <p className="text-xs text-zinc-400">Sin intereses · Precio fijo · Duracion 2 meses</p>
+                  <p className="text-xs text-zinc-400">Sin intereses · Precio fijo · Duracion 3 meses</p>
                 </div>
               </div>
             </article>
           </div>
-          <p className="mt-7 text-center text-4xl font-extrabold">$1.597 USD · 2 meses · Sin intereses</p>
+          <p className="mt-7 text-center text-4xl font-extrabold">$1.597 USD · 3 meses · Sin intereses</p>
         </div>
       </section>
 
@@ -812,7 +812,7 @@ export default function CarolinaRojasPage() {
               <p className="inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-blue-300">Inversion</p>
               <p className="mt-4 text-5xl font-extrabold text-blue-300">$1.597 USD</p>
               <p className="mt-4 text-3xl text-zinc-300">
-                2 meses
+                3 meses
                 <br />
                 4 fases
                 <br />

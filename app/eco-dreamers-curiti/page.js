@@ -2,7 +2,79 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const timelinePhases = [
+const PLAN_CONFIGS = {
+  system: {
+    chip: "FLUXA SYSTEM · MAS POPULAR",
+    subtitle: "Plan base para ordenar captacion y empezar a convertir.",
+    ctaText: "Elegir Fluxa System",
+    heroPrice: "$697 USD",
+    heroDuration: "Arranque base",
+    heroModules: "Plan esencial",
+    progressLabel: "Sistema de captacion",
+    included: [
+      "1 landing principal de captacion (diseno + copy + desarrollo)",
+      "Estructura base del embudo de conversion",
+      "Setup inicial de Meta Ads (sin gestion continua)",
+      "Guia de contenido base para publicaciones organicas",
+      "1 sesion estrategica de arranque",
+      "Soporte por WhatsApp durante implementacion inicial",
+    ],
+    paymentA: {
+      title: "Opcion A - Pago en 2 cuotas",
+      rows: [
+        { label: "Cuota 1 - Al firmar", value: "$400 USD" },
+        { label: "Cuota 2 - Maximo 15 dias despues", value: "$297 USD" },
+      ],
+    },
+    paymentB: {
+      title: "Opcion B - Pago unico",
+      rows: [
+        { label: "Pago completo al firmar", value: "$697 USD" },
+      ],
+      footnote: "Arranque operativo inmediato.",
+    },
+    totalLine: "$697 USD · Sin intereses",
+    summaryInvestment: "$697 USD",
+    summaryPayment: "2 cuotas (inicio + 15 dias)",
+  },
+  scale: {
+    chip: "FLUXA SCALE",
+    subtitle: "Tu maquina completa de captacion y conversion.",
+    ctaText: "Elegir Fluxa Scale",
+    heroPrice: "$1,597 USD",
+    heroDuration: "3 meses",
+    heroModules: "4 modulos",
+    progressLabel: "Sistema completo",
+    included: [
+      "Todo lo de Fluxa System a mayor escala",
+      "Landing page profesional + VSL integrado",
+      "Embudo de conversion digital multi-etapa",
+      "Automatizacion avanzada WhatsApp (flujos completos + post-venta)",
+      "Sistema UGC completo: 5-10 creadoras activas",
+      "Gestion y optimizacion de campanas Meta Ads",
+      "CRM o sistema personalizado segun necesidad",
+    ],
+    paymentA: {
+      title: "Opcion A - Pago en 2 cuotas",
+      rows: [
+        { label: "Cuota 1 - Al firmar", value: "$800 USD" },
+        { label: "Cuota 2 - Maximo 15 dias despues", value: "$797 USD" },
+      ],
+    },
+    paymentB: {
+      title: "Opcion B - Pago unico",
+      rows: [
+        { label: "Pago completo al firmar", value: "$1,497 USD" },
+      ],
+      footnote: "Ahorra $100 USD · Arranque inmediato.",
+    },
+    totalLine: "$1,597 USD · 3 meses · Sin intereses",
+    summaryInvestment: "$1,597 USD",
+    summaryPayment: "2 cuotas o pago unico",
+  },
+};
+
+const timelinePhasesScale = [
   {
     id: "fase-1",
     label: "FASE 1",
@@ -62,6 +134,54 @@ const timelinePhases = [
     build: "Diseñamos arquitectura de contenido y campanas por ciudad objetivo.",
     activate: "Ajustamos anuncios segun conversion y sesiones estrategicas.",
     result: "El sistema escala reservas sin esfuerzo manual del equipo.",
+  },
+];
+
+const timelinePhasesSystem = [
+  {
+    id: "fase-1",
+    label: "FASE 1",
+    title: "LANDING BASE DE CAPTACION",
+    subtitle: "Semana 1 · Al confirmar arranque",
+    icon: "🧱",
+    color: "#10B981",
+    glow: "0 0 0 2px rgba(16,185,129,0.5), 0 0 36px rgba(16,185,129,0.58)",
+    status: "POR INICIAR",
+    statusClass: "border-zinc-500/60 text-zinc-300",
+    points: ["Oferta clara", "CTA directo", "Pixel base"],
+    build: "Disenamos una landing esencial enfocada en captar interesados con claridad.",
+    activate: "Configuramos CTA de contacto y medicion basica para iniciar conversion.",
+    result: "Eco-Dreamers deja de depender solo del DM desordenado.",
+  },
+  {
+    id: "fase-2",
+    label: "FASE 2",
+    title: "EMBUDO ESENCIAL",
+    subtitle: "Semana 2",
+    icon: "🧭",
+    color: "#3B82F6",
+    glow: "0 0 0 2px rgba(59,130,246,0.5), 0 0 36px rgba(59,130,246,0.6)",
+    status: "POR INICIAR",
+    statusClass: "border-zinc-500/60 text-zinc-300",
+    points: ["Ruta simple", "Seguimiento inicial", "Conversion base"],
+    build: "Estructuramos el flujo minimo desde contenido o anuncio hacia contacto.",
+    activate: "Dejamos mensaje de seguimiento inicial para responder leads mas rapido.",
+    result: "Mas orden comercial con menor carga manual en el dia a dia.",
+  },
+  {
+    id: "fase-3",
+    label: "FASE 3",
+    title: "SETUP ADS + ARRANQUE",
+    subtitle: "Semana 3",
+    icon: "🚀",
+    color: "#8B5CF6",
+    glow: "0 0 0 2px rgba(139,92,246,0.5), 0 0 36px rgba(139,92,246,0.58)",
+    status: "POR INICIAR",
+    statusClass: "border-zinc-500/60 text-zinc-300",
+    points: ["Cuenta lista", "Publicos base", "Sesion estrategica"],
+    build: "Configuramos cuenta Meta Ads y eventos principales para primeras pruebas.",
+    activate: "Realizamos sesion de arranque y guia inicial para ejecucion organica.",
+    result: "Plan base operativo, listo para evolucionar a una fase de escala.",
   },
 ];
 
@@ -133,7 +253,22 @@ const transformationsScale = [
   },
 ];
 
-const deliverables = [
+const transformationsSystem = [
+  {
+    before:
+      "El contenido trae interaccion, pero no existe una ruta minima clara para convertir interesados.",
+    after:
+      "Landing base + CTA directo para transformar trafico en conversaciones con intencion de reserva.",
+  },
+  {
+    before:
+      "La gestion comercial depende de respuestas manuales sin seguimiento estructurado.",
+    after:
+      "Embudo esencial con mensaje inicial y orden de atencion para no perder oportunidades.",
+  },
+];
+
+const deliverablesScale = [
   {
     title: "Landing de Experiencias",
     color: "text-emerald-300 border-emerald-400/40",
@@ -184,6 +319,44 @@ const deliverables = [
   },
 ];
 
+const deliverablesSystem = [
+  {
+    title: "Landing Base de Captacion",
+    color: "text-emerald-300 border-emerald-400/40",
+    items: [
+      "1 landing principal con estructura de conversion",
+      "Secciones esenciales: oferta, prueba social, CTA y FAQ",
+      "Diseno responsive mobile-first",
+      "Integracion de formulario o boton directo a WhatsApp",
+      "Pixel base instalado para medicion",
+    ],
+  },
+  {
+    title: "Embudo Esencial",
+    color: "text-blue-300 border-blue-400/40",
+    items: [
+      "Ruta simple de captacion: anuncio o contenido -> landing -> contacto",
+      "Mensaje de seguimiento inicial para leads entrantes",
+      "Estructura minima para no depender solo del DM manual",
+      "Sin tienda multi-producto ni checkout avanzado",
+    ],
+  },
+  {
+    title: "Setup Publicitario y Acompanamiento Inicial",
+    color: "text-violet-300 border-violet-400/40",
+    items: [
+      "Configuracion inicial de cuenta Meta Ads",
+      "Evento principal de conversion listo",
+      "Publicos base para primeras pruebas",
+      "Sin gestion semanal de campañas incluida",
+      "1 sesion estrategica de arranque",
+      "Guia de contenido base para iniciar publicacion",
+      "Soporte por WhatsApp en fase de implementacion",
+      "No incluye sistema avanzado de CRM ni automatizaciones complejas",
+    ],
+  },
+];
+
 const projectConditions = [
   "Duracion del proyecto: 3 meses desde la firma del contrato.",
   "30 dias de soporte post-entrega para ajustes menores.",
@@ -229,7 +402,7 @@ const supportPlans = [
   },
 ];
 
-const executiveSummary = {
+const executiveSummaryScale = {
   today: [
     "Reservas por DM.",
     "Sin landing.",
@@ -244,6 +417,23 @@ const executiveSummary = {
     "CRM instalado.",
     "Pauta convirtiendo.",
   ],
+  targetTitle: "Sistema completo activo y orientado a conversion.",
+};
+
+const executiveSummarySystem = {
+  today: [
+    "Reservas por DM.",
+    "Sin landing estructurada.",
+    "Sin ruta comercial clara.",
+    "Sin setup publicitario base.",
+  ],
+  in90: [
+    "Landing base operativa.",
+    "Ruta esencial de captacion funcionando.",
+    "Setup inicial de Meta Ads listo.",
+    "Proceso comercial mas ordenado.",
+  ],
+  targetTitle: "Base de captacion activa y lista para escalar.",
 };
 
 const metrics = [
@@ -253,7 +443,7 @@ const metrics = [
   { label: "Reservas online hoy", value: "0", color: "text-red-300" },
 ];
 
-const executionPlan = [
+const executionPlanScale = [
   {
     month: "Mes 1",
     title: "Instalacion del sistema",
@@ -274,14 +464,46 @@ const executionPlan = [
   },
 ];
 
+const executionPlanSystem = [
+  {
+    month: "Semana 1",
+    title: "Landing y estructura base",
+    points: "Oferta clara · CTA directo · Pixel base",
+    color: "text-emerald-300",
+  },
+  {
+    month: "Semana 2",
+    title: "Embudo esencial",
+    points: "Ruta simple de conversion · Seguimiento inicial",
+    color: "text-blue-300",
+  },
+  {
+    month: "Semana 3",
+    title: "Setup publicitario inicial",
+    points: "Cuenta Meta Ads lista · Publicos base · Sesion de arranque",
+    color: "text-violet-300",
+  },
+];
+
 export default function EcoDreamersCuritiPage() {
+  const [selectedPlan, setSelectedPlan] = useState("scale");
   const [activePhase, setActivePhase] = useState("fase-1");
   const [reduceMotion, setReduceMotion] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false });
   const timelineCarouselRef = useRef(null);
+  const currentPlan = PLAN_CONFIGS[selectedPlan];
+  const currentDeliverables = selectedPlan === "scale" ? deliverablesScale : deliverablesSystem;
+  const currentTimelinePhases = selectedPlan === "scale" ? timelinePhasesScale : timelinePhasesSystem;
+  const currentTransformationsCore = selectedPlan === "scale" ? transformationsCore : transformationsSystem;
+  const currentExecutiveSummary = selectedPlan === "scale" ? executiveSummaryScale : executiveSummarySystem;
+  const currentExecutionPlan = selectedPlan === "scale" ? executionPlanScale : executionPlanSystem;
 
   const progressPercent = 0;
+
+  useEffect(() => {
+    setActivePhase("fase-1");
+  }, [selectedPlan]);
 
   const handleMagneticMove = (event, strength = 10) => {
     if (reduceMotion || window.matchMedia("(pointer: coarse)").matches) return;
@@ -362,6 +584,31 @@ export default function EcoDreamersCuritiPage() {
     <main className="min-h-screen bg-black text-white">
       <section className="mx-auto w-full max-w-6xl px-5 pb-10 pt-10 sm:px-8 md:pb-20 md:pt-24">
         <div data-reveal className="reveal mx-auto max-w-4xl text-center">
+          <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={() => setSelectedPlan("system")}
+              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                selectedPlan === "system"
+                  ? "border-[#FFD600] bg-[#FFD600] text-black"
+                  : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
+              }`}
+            >
+              Fluxa System
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedPlan("scale")}
+              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                selectedPlan === "scale"
+                  ? "border-[#FFD600] bg-[#FFD600] text-black"
+                  : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
+              }`}
+            >
+              Fluxa Scale
+            </button>
+          </div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{currentPlan.chip}</p>
           <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
             Eco-Dreamers{" "}
             <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.45)]">Curiti</span>
@@ -369,21 +616,22 @@ export default function EcoDreamersCuritiPage() {
           <p className="mt-4 text-xl text-zinc-200 sm:text-2xl">
             Sistema digital para convertir <span className="font-extrabold">30,000 seguidores</span> en reservas automaticas.
           </p>
+          <p className="mt-2 text-sm font-semibold text-zinc-300">{currentPlan.subtitle}</p>
           <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:mt-7 sm:text-sm sm:tracking-[0.35em]">
             GLAMPING · PLAN ROMANTICO · JACUZZI · NATURALEZA · CURITI, SANTANDER
           </p>
           <div className="mt-7 grid gap-3 sm:grid-cols-3">
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">$1,597 USD</p>
+              <p className="text-3xl font-extrabold text-white">{currentPlan.heroPrice}</p>
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Inversion total</p>
             </article>
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">3 meses</p>
+              <p className="text-3xl font-extrabold text-white">{currentPlan.heroDuration}</p>
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Duracion</p>
             </article>
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">4 modulos</p>
-              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Sistema completo</p>
+              <p className="text-3xl font-extrabold text-white">{currentPlan.heroModules}</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">{currentPlan.progressLabel}</p>
             </article>
           </div>
           <a
@@ -392,8 +640,30 @@ export default function EcoDreamersCuritiPage() {
             rel="noopener noreferrer"
             className="mt-6 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
           >
-            Aprobar propuesta y avanzar
+            {currentPlan.ctaText}
           </a>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8">
+        <div data-reveal className="reveal rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 sm:p-7">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">Plan activo</p>
+          <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">
+            {selectedPlan === "scale" ? "FLUXA SCALE ($1,597)" : "FLUXA SYSTEM ($697)"}
+          </h2>
+          <p className="mt-2 text-sm text-zinc-300">Informacion clave que cambia automaticamente segun el plan seleccionado.</p>
+          {selectedPlan === "system" ? (
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">
+              Version esencial: menor alcance que Fluxa Scale.
+            </p>
+          ) : null}
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {currentPlan.included.map((item) => (
+              <p key={item} className="rounded-lg border border-zinc-800 bg-black/60 px-3 py-2 text-sm text-zinc-200">
+                • {item}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -403,7 +673,9 @@ export default function EcoDreamersCuritiPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.36em] text-zinc-400">Ruta de activacion</p>
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Plan de ejecucion por fases</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
-              4 fases secuenciales para construir, lanzar, conectar y escalar el sistema.
+              {selectedPlan === "scale"
+                ? "4 fases secuenciales para construir, lanzar, conectar y escalar el sistema."
+                : "3 fases esenciales para activar la base comercial del sistema."}
             </p>
             <p className="mx-auto mt-4 inline-flex rounded-full border border-yellow-400/70 bg-yellow-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-yellow-300">
               Arranque: al confirmar propuesta
@@ -437,11 +709,11 @@ export default function EcoDreamersCuritiPage() {
             <div className="pointer-events-none absolute -right-8 bottom-10 hidden h-44 w-44 rounded-full bg-indigo-500/15 blur-3xl md:block" style={{ transform: `translateY(${reduceMotion ? 0 : -parallaxOffset * 0.35}px)` }} />
             <div className="spotlight-layer pointer-events-none absolute inset-0 z-0 hidden rounded-3xl md:block" style={{ opacity: spotlight.active ? 1 : 0, background: `radial-gradient(340px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255,255,255,0.12), transparent 60%)` }} />
 
-            <div ref={timelineCarouselRef} className="mobile-snap-carousel flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:pb-0">
-              {timelinePhases.map((phase, index) => (
+            <div ref={timelineCarouselRef} className={`mobile-snap-carousel flex gap-4 overflow-x-auto pb-4 md:overflow-visible md:pb-0 ${selectedPlan === "scale" ? "md:grid md:grid-cols-4 md:gap-6" : "md:grid md:grid-cols-3 md:gap-6"}`}>
+              {currentTimelinePhases.map((phase, index) => (
                 <div key={phase.id} data-reveal className="reveal route-card relative z-10 w-[88vw] min-w-[88vw] max-w-md shrink-0 snap-center rounded-2xl border border-zinc-800/80 bg-zinc-950/55 p-4 text-center backdrop-blur-[1px] md:mx-auto md:w-full md:min-w-0 md:max-w-none md:shrink md:snap-none md:p-5" style={{ transitionDelay: `${index * 120}ms` }}>
-                  {index !== timelinePhases.length - 1 && <div className="relative mx-auto mt-4 h-12 w-[2px] overflow-hidden rounded-full md:hidden"><span className="timeline-dash-vertical block h-full w-full" /></div>}
-                  {index !== timelinePhases.length - 1 && <div className="absolute left-[calc(50%+50px)] top-[72px] hidden h-[2px] w-[calc(100%-20px)] overflow-hidden rounded-full md:block"><span className="timeline-dash absolute inset-0 block" /></div>}
+                  {index !== currentTimelinePhases.length - 1 && <div className="relative mx-auto mt-4 h-12 w-[2px] overflow-hidden rounded-full md:hidden"><span className="timeline-dash-vertical block h-full w-full" /></div>}
+                  {index !== currentTimelinePhases.length - 1 && <div className="absolute left-[calc(50%+50px)] top-[72px] hidden h-[2px] w-[calc(100%-20px)] overflow-hidden rounded-full md:block"><span className="timeline-dash absolute inset-0 block" /></div>}
 
                   <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em]" style={{ color: phase.color }}>{phase.label}</p>
                   <button type="button" onClick={() => setActivePhase(phase.id)} onMouseMove={(event) => handleMagneticMove(event, 12)} onMouseLeave={handleMagneticLeave} className="magnetic mx-auto block">
@@ -532,15 +804,21 @@ export default function EcoDreamersCuritiPage() {
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">02. Las transformaciones concretas en 90 dias</h2>
-          <p className="text-sm text-zinc-400 sm:text-base">Cada transformacion impacta reservas, eficiencia operativa y crecimiento sostenible.</p>
+          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            {selectedPlan === "scale" ? "02. Las transformaciones concretas en 90 dias" : "02. Transformaciones clave del plan esencial"}
+          </h2>
+          <p className="text-sm text-zinc-400 sm:text-base">
+            {selectedPlan === "scale"
+              ? "Cada transformacion impacta reservas, eficiencia operativa y crecimiento sostenible."
+              : "Cambios iniciales para ordenar la captacion y preparar la siguiente etapa de crecimiento."}
+          </p>
 
           <div className="mt-6 grid gap-3">
             <div className="grid gap-3 md:grid-cols-2">
               <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">Antes</p>
               <p className="inline-flex w-fit rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 md:justify-self-end">Despues</p>
             </div>
-            {transformationsCore.map((item, idx) => (
+            {currentTransformationsCore.map((item, idx) => (
               <div key={item.before} className="grid gap-3 md:grid-cols-2">
                 <article className="rounded-xl border border-red-400/25 bg-red-950/15 p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-300">Transformacion {idx + 1}</p>
@@ -556,6 +834,7 @@ export default function EcoDreamersCuritiPage() {
         </div>
       </section>
 
+      {selectedPlan === "scale" ? (
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
           <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">02. Transformaciones 4 y 5 - conversion y escalamiento</h2>
@@ -585,16 +864,19 @@ export default function EcoDreamersCuritiPage() {
           </p>
         </div>
       </section>
+      ) : null}
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">03. Que recibe exactamente - entregables y presupuesto</h2>
           <p className="mt-3 text-sm text-zinc-400 sm:text-base">
-            Todo lo que se construye, instala y activa durante los 3 meses dentro de la inversion acordada.
+            {selectedPlan === "scale"
+              ? "Todo lo que se construye, instala y activa durante los 3 meses dentro de la inversion acordada."
+              : "Version esencial del sistema: entregables base para arrancar captacion y conversion con menor alcance."}
           </p>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {deliverables.map((column) => (
+          <div className={`mt-8 grid gap-5 ${selectedPlan === "scale" ? "md:grid-cols-2" : "md:grid-cols-1 lg:grid-cols-3"}`}>
+            {currentDeliverables.map((column) => (
               <article key={column.title} onMouseMove={(event) => handleMagneticMove(event, 8)} onMouseLeave={handleMagneticLeave} className="magnetic rounded-2xl border border-zinc-700 bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:border-yellow-300/70 hover:shadow-[0_0_22px_rgba(255,214,0,0.18)]">
                 <h3 className={`mb-4 border-b pb-3 text-lg font-bold tracking-wide ${column.color}`}>{column.title}</h3>
                 <ul className="space-y-2 text-sm leading-relaxed text-zinc-300 sm:text-[15px]">
@@ -608,7 +890,7 @@ export default function EcoDreamersCuritiPage() {
 
           <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
             <p className="rounded-xl bg-[#0B2A4A] px-5 py-3 text-center text-xl font-extrabold text-white">
-              TOTAL DEL PROYECTO | $1,597 USD
+              TOTAL DEL PROYECTO | {selectedPlan === "scale" ? "$1,597 USD" : "$697 USD"}
             </p>
             <p className="rounded-xl border border-yellow-400/55 bg-yellow-400/10 px-5 py-3 text-center text-sm font-bold text-yellow-200">
               Presupuesto de pauta Meta Ads se paga aparte por Eco-Dreamers.
@@ -622,36 +904,32 @@ export default function EcoDreamersCuritiPage() {
           <h2 className="mb-8 text-3xl font-extrabold tracking-tight sm:text-4xl">06. Forma de pago y condiciones</h2>
           <div className="grid gap-5 lg:grid-cols-2">
             <article onMouseMove={(event) => handleMagneticMove(event, 8)} onMouseLeave={handleMagneticLeave} className="magnetic rounded-2xl border border-blue-400/60 bg-[#111111] p-6">
-              <p className="rounded-xl bg-blue-900/60 px-4 py-2 text-center text-sm font-bold uppercase tracking-[0.12em] text-blue-100">Opcion A - Pago en 3 cuotas</p>
+              <p className="rounded-xl bg-blue-900/60 px-4 py-2 text-center text-sm font-bold uppercase tracking-[0.12em] text-blue-100">{currentPlan.paymentA.title}</p>
               <div className="mt-4 space-y-3">
-                <div className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
-                  <p className="text-sm text-zinc-300">Cuota 1 - Al firmar</p>
-                  <p className="mt-1 text-3xl font-extrabold text-blue-300">$600 USD</p>
-                </div>
-                <div className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
-                  <p className="text-sm text-zinc-300">Cuota 2 - Mes 1</p>
-                  <p className="mt-1 text-3xl font-extrabold text-blue-300">$500 USD</p>
-                </div>
-                <div className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
-                  <p className="text-sm text-zinc-300">Cuota 3 - Mes 2</p>
-                  <p className="mt-1 text-3xl font-extrabold text-blue-300">$497 USD</p>
-                </div>
+                {currentPlan.paymentA.rows.map((row) => (
+                  <div key={row.label} className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
+                    <p className="text-sm text-zinc-300">{row.label}</p>
+                    <p className="mt-1 text-3xl font-extrabold text-blue-300">{row.value}</p>
+                  </div>
+                ))}
               </div>
             </article>
 
             <article onMouseMove={(event) => handleMagneticMove(event, 8)} onMouseLeave={handleMagneticLeave} className="magnetic rounded-2xl border border-emerald-400/60 bg-[#111111] p-6">
-              <p className="rounded-xl bg-emerald-900/60 px-4 py-2 text-center text-sm font-bold uppercase tracking-[0.12em] text-emerald-100">Opcion B - Pago unico</p>
+              <p className="rounded-xl bg-emerald-900/60 px-4 py-2 text-center text-sm font-bold uppercase tracking-[0.12em] text-emerald-100">{currentPlan.paymentB.title}</p>
               <div className="mt-4 space-y-3">
-                <div className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
-                  <p className="text-sm text-zinc-300">Pago completo al firmar</p>
-                  <p className="mt-1 text-4xl font-extrabold text-emerald-300">$1,497 USD</p>
-                  <p className="text-sm font-semibold text-emerald-200">Ahorra $100 USD</p>
-                  <p className="text-xs text-zinc-400">El proyecto arranca de inmediato</p>
-                </div>
+                {currentPlan.paymentB.rows.map((row, idx) => (
+                  <div key={row.label} className="rounded-xl border border-zinc-700 bg-zinc-900/65 p-4">
+                    <p className="text-sm text-zinc-300">{row.label}</p>
+                    <p className={`mt-1 font-extrabold text-emerald-300 ${idx === 0 ? "text-4xl" : "text-3xl"}`}>{row.value}</p>
+                    {idx === 0 && currentPlan.paymentB.footnote ? <p className="text-sm font-semibold text-emerald-200">{currentPlan.paymentB.footnote}</p> : null}
+                    {idx === 0 && selectedPlan === "scale" ? <p className="text-xs text-zinc-400">El proyecto arranca de inmediato</p> : null}
+                  </div>
+                ))}
               </div>
             </article>
           </div>
-          <p className="mt-7 text-center text-4xl font-extrabold">$1,597 USD · 3 meses · Sin intereses</p>
+          <p className="mt-7 text-center text-4xl font-extrabold">{currentPlan.totalLine}</p>
         </div>
       </section>
 
@@ -694,17 +972,19 @@ export default function EcoDreamersCuritiPage() {
               <p className="inline-flex rounded-full bg-red-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-red-300">Hoy</p>
               <h3 className="mt-4 text-2xl font-extrabold leading-tight">Reservas por DM sin sistema.</h3>
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                {executiveSummary.today.map((item) => (
+                {currentExecutiveSummary.today.map((item) => (
                   <li key={item} className="flex gap-2"><span className="text-red-400">●</span><span>{item}</span></li>
                 ))}
               </ul>
             </article>
 
             <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6">
-              <p className="inline-flex rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-emerald-300">En 90 dias</p>
-              <h3 className="mt-4 text-2xl font-extrabold leading-tight">Sistema completo activo y orientado a conversion.</h3>
+              <p className="inline-flex rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-emerald-300">
+                {selectedPlan === "scale" ? "En 90 dias" : "En el arranque"}
+              </p>
+              <h3 className="mt-4 text-2xl font-extrabold leading-tight">{currentExecutiveSummary.targetTitle}</h3>
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                {executiveSummary.in90.map((item) => (
+                {currentExecutiveSummary.in90.map((item) => (
                   <li key={item} className="flex gap-2"><span className="text-emerald-400">●</span><span>{item}</span></li>
                 ))}
               </ul>
@@ -712,18 +992,18 @@ export default function EcoDreamersCuritiPage() {
 
             <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6 text-center">
               <p className="inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-blue-300">Inversion</p>
-              <p className="mt-4 text-5xl font-extrabold text-blue-300">$1,597 USD</p>
+              <p className="mt-4 text-5xl font-extrabold text-blue-300">{currentPlan.summaryInvestment}</p>
               <p className="mt-4 text-3xl text-zinc-300">
-                3 meses
+                {selectedPlan === "scale" ? "3 meses" : "Arranque base"}
                 <br />
-                4 modulos
+                {selectedPlan === "scale" ? "4 modulos" : "Sistema captacion"}
                 <br />
                 activos propios
                 <br />
-                soporte post-entrega
+                {selectedPlan === "scale" ? "soporte post-entrega" : "soporte inicial"}
               </p>
               <p className="mx-auto mt-5 inline-flex rounded-full border border-blue-300/40 bg-blue-500/10 px-4 py-2 text-sm font-bold text-blue-200">
-                3 cuotas o pago unico
+                {currentPlan.summaryPayment}
               </p>
             </article>
           </div>
@@ -734,7 +1014,7 @@ export default function EcoDreamersCuritiPage() {
         <div data-reveal className="reveal">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-blue-300">Plan de ejecucion</p>
           <div className="mt-5 rounded-xl border border-zinc-700 bg-[#111111] p-3">
-            {executionPlan.map((row) => (
+            {currentExecutionPlan.map((row) => (
               <article key={row.month} className="grid gap-2 border-b border-zinc-800 p-4 last:border-b-0 sm:grid-cols-[100px_1fr] sm:items-start">
                 <p className={`text-sm font-bold uppercase tracking-[0.16em] ${row.color}`}>{row.month}</p>
                 <div>
