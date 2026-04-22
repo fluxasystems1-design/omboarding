@@ -12,6 +12,11 @@ const landings = [
     description: "Propuesta comercial y plan de ejecución",
   },
   {
+    name: "Roadmap Dr. Leonardo Bello",
+    path: "/roadmap-doctor-bello",
+    description: "Kickoff estratégico y mapa ejecutivo del proyecto",
+  },
+  {
     name: "Cuestionario Dr. Leonardo Bello",
     path: "/dr-leonardo-bello/brief",
     description: "Brief estratégico de diagnóstico y arranque",
