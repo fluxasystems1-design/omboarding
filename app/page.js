@@ -31,6 +31,11 @@ const landings = [
     path: "/carolina-rojas",
     description: "Ecosistema digital para monetizar audiencia",
   },
+  {
+    name: "Brief Anak Karina Lozano",
+    path: "/anak-karina-lozano/brief",
+    description: "Brief femenino de marca, bienestar y crecimiento",
+  },
 ];
 
 export default function Home() {
