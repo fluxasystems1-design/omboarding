@@ -41,6 +41,11 @@ const landings = [
     path: "/anak-karina-lozano/brief",
     description: "Brief femenino de marca, bienestar y crecimiento",
   },
+  {
+    name: "Jean",
+    path: "/jean",
+    description: "Dos empresas, un ecosistema digital en 90 días",
+  },
 ];
 
 export default function Home() {

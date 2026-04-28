@@ -4,76 +4,118 @@ import { useEffect, useRef, useState } from "react";
 
 const PLAN_CONFIGS = {
   system: {
-    chip: "FLUXA SYSTEM · MAS POPULAR",
-    subtitle: "Plan base para ordenar captacion y empezar a convertir.",
-    ctaText: "Elegir Fluxa System",
+    chip: "FLUXA SYSTEM · GROWTH SYSTEM",
+    subtitle:
+      "Estructura digital profesional capaz de captar clientes potenciales, generar conversaciones y convertir tráfico en huéspedes.",
+    ctaText: "Elegir Plan Esencial",
     heroPrice: "$697 USD",
-    heroDuration: "Arranque base",
-    heroModules: "Plan esencial",
-    progressLabel: "Sistema de captacion",
+    heroDuration: "2 meses",
+    heroModules: "Captación",
+    progressLabel: "Reservas y leads",
     included: [
-      "1 landing principal de captacion (diseno + copy + desarrollo)",
-      "Estructura base del embudo de conversion",
-      "Setup inicial de Meta Ads (sin gestion continua)",
-      "Guia de contenido base para publicaciones organicas",
-      "1 sesion estrategica de arranque",
-      "Soporte por WhatsApp durante implementacion inicial",
+      "Landing optimizada + WhatsApp Business + formularios de leads",
+      "Métricas, Meta Pixel y automatización básica de seguimiento",
+      "Optimización inicial de conversión y diseño orientado a reservas",
+      "30 días de soporte post-entrega",
     ],
     paymentA: {
-      title: "Opcion A - Pago en 2 cuotas",
+      title: "Pago en 2 cuotas",
       rows: [
-        { label: "Cuota 1 - Al firmar", value: "$400 USD" },
-        { label: "Cuota 2 - Maximo 15 dias despues", value: "$297 USD" },
+        { label: "Cuota 1 al firmar", value: "$350 USD" },
+        { label: "Cuota 2 al mes 2", value: "$347 USD" },
       ],
     },
     paymentB: {
-      title: "Opcion B - Pago unico",
-      rows: [
-        { label: "Pago completo al firmar", value: "$697 USD" },
-      ],
-      footnote: "Arranque operativo inmediato.",
+      title: "Pago único (opcional)",
+      rows: [{ label: "Pago completo al firmar", value: "$697 USD" }],
+      footnote: "Sin intereses · Arranque inmediato.",
     },
     totalLine: "$697 USD · Sin intereses",
     summaryInvestment: "$697 USD",
-    summaryPayment: "2 cuotas (inicio + 15 dias)",
+    summaryPayment: "2 cuotas (inicio + mes 2)",
   },
   scale: {
-    chip: "FLUXA SCALE",
-    subtitle: "Tu maquina completa de captacion y conversion.",
-    ctaText: "Elegir Fluxa Scale",
+    chip: "FLUXA SYSTEM · ESCALAMIENTO & AUTOMATIZACIÓN",
+    subtitle:
+      "Ecosistema digital que genera reservas de forma predecible, automatiza procesos comerciales y posiciona el glamping como experiencia premium.",
+    ctaText: "Elegir Plan Completo",
     heroPrice: "$1,597 USD",
     heroDuration: "3 meses",
-    heroModules: "4 modulos",
+    heroModules: "4 módulos",
     progressLabel: "Sistema completo",
     included: [
-      "Todo lo de Fluxa System a mayor escala",
-      "Landing page profesional + VSL integrado",
-      "Embudo de conversion digital multi-etapa",
-      "Automatizacion avanzada WhatsApp (flujos completos + post-venta)",
-      "Sistema UGC completo: 5-10 creadoras activas",
-      "Gestion y optimizacion de campanas Meta Ads",
-      "CRM o sistema personalizado segun necesidad",
-      "Fase 4 incluida: optimizacion, pauta y escala con datos reales",
+      "Todo el Plan Esencial + CRM, automatizaciones avanzadas y embudos completos",
+      "Remarketing, recuperación de leads y dashboard de métricas de reservas",
+      "Arquitectura de escalamiento y secuencias automáticas de seguimiento",
+      "Optimización avanzada de experiencia y acompañamiento en pauta",
     ],
     paymentA: {
-      title: "Opcion A - Pago en 2 cuotas",
+      title: "Pago en 3 cuotas",
       rows: [
-        { label: "Cuota 1 - Al firmar", value: "$800 USD" },
-        { label: "Cuota 2 - Maximo 15 dias despues", value: "$797 USD" },
+        { label: "Cuota 1 al firmar", value: "$600 USD" },
+        { label: "Cuota 2 al mes 2", value: "$500 USD" },
+        { label: "Cuota 3 al mes 3", value: "$497 USD" },
       ],
     },
     paymentB: {
-      title: "Opcion B - Pago unico",
-      rows: [
-        { label: "Pago completo al firmar", value: "$1,497 USD" },
-      ],
+      title: "Pago único",
+      rows: [{ label: "Pago completo al firmar", value: "$1,497 USD" }],
       footnote: "Ahorra $100 USD · Arranque inmediato.",
     },
-    totalLine: "$1,597 USD · 3 meses · Sin intereses",
+    totalLine: "$1,597 USD · Sin intereses",
     summaryInvestment: "$1,597 USD",
-    summaryPayment: "2 cuotas o pago unico",
+    summaryPayment: "3 cuotas o pago único",
   },
 };
+
+const EXTRAS_TAB = {
+  chip: "PROGRAMA DE EDUCACIÓN",
+  title: "Aprende a manejar tu glamping digitalmente en 4 semanas",
+  subtitle:
+    "Capacitación práctica en pauta y creación de contenido para que el equipo maneje el sistema sin depender de nadie.",
+};
+
+const EDUCATION_PROGRAM_WA =
+  "https://wa.me/573116425337?text=" +
+  encodeURIComponent("Hola, quiero el programa de educación");
+
+const educationModuleCards = [
+  {
+    title: "Educación en Pauta — Meta Ads",
+    badge: "4 SEMANAS",
+    items: [
+      "Cómo crear campañas efectivas",
+      "Segmentación correcta",
+      "Optimización de presupuesto",
+      "Lectura de métricas",
+      "Escalamiento de campañas",
+      "Creativos que convierten",
+    ],
+  },
+  {
+    title: "Educación en Creación de Contenido",
+    badge: "4 SEMANAS",
+    items: [
+      "Planeación estratégica",
+      "Ideas de contenido turístico",
+      "Guiones para reels",
+      "Calendario de publicaciones",
+      "Dirección creativa",
+      "Contenido enfocado en reservas",
+    ],
+  },
+];
+
+const educationProgramDisclaimer =
+  "Este programa es educación práctica — el equipo del glamping aprende a ejecutar. No incluye gestión activa de campañas ni producción de contenido por parte de Fluxa.";
+
+const nextSteps = [
+  { n: 1, title: "Definir el plan elegido" },
+  { n: 2, title: "Firma y primer pago" },
+  { n: 3, title: "Brief de branding y accesos" },
+  { n: 4, title: "Planeación estratégica inicial (kick-off)" },
+  { n: 5, title: "Inicio de implementación" },
+];
 
 const timelinePhasesScale = [
   {
@@ -194,174 +236,107 @@ const timelinePhasesSystem = [
 ];
 
 const currentSituation = {
-  startPointTitle: "Tienen audiencia activa e instalaciones premium, pero sin sistema comercial escalable.",
+  sectionTitle: "Tu glamping ya tiene la experiencia. El problema es que depende completamente de las temporadas y el voz a voz.",
+  sectionSubtitle:
+    "Sin sistema de reservas automatizado, fidelización y pauta activa, cada temporada baja empieza desde cero.",
   startPointItems: [
-    "Las reservas dependen del WhatsApp manual.",
-    "Sin sistema de reservas online.",
-    "Sin calendario de disponibilidad visible.",
-    "Sin captura de anticipo automatica.",
-    "Sin CRM para seguimiento de prospectos.",
-    "Sin embudo que nutra antes de la reserva.",
+    "Las reservas dependen de temporadas y recomendaciones",
+    "Sin landing optimizada para convertir visitas en reservas",
+    "Sin sistema de seguimiento de prospectos interesados",
+    "Sin fidelización — el huésped que vino no recibe seguimiento",
+    "Sin pauta activa que llene el calendario en temporada baja",
   ],
   frictionItems: [
     {
-      title: "Reservas perdidas",
-      description: "Prospectos preguntan por DM y no reciben respuesta inmediata; reservan en otro lugar.",
+      title: "Sin sistema de reservas",
+      description:
+        "El prospecto ve el contenido en Instagram, pregunta por DM y muchas veces no recibe respuesta a tiempo.",
     },
     {
-      title: "Carga operativa manual",
-      description: "El equipo responde mensajes manualmente en lugar de enfocarse en la experiencia del huesped.",
+      title: "Temporadas vacías",
+      description:
+        "Sin pauta activa ni embudos, en temporada baja el glamping no tiene cómo atraer huéspedes.",
     },
     {
-      title: "Sin datos de conversion",
-      description: "No saben cuantos prospectos llegan a reserva real ni donde se pierde el interes.",
+      title: "Sin recompra",
+      description:
+        "El huésped que tuvo una experiencia increíble no recibe ningún seguimiento para volver o referir amigos.",
     },
     {
-      title: "Pauta sin destino",
-      description: "Los anuncios llevan a Instagram, no a una landing optimizada para convertir visitas en reservas.",
+      title: "Competencia creciente",
+      description:
+        "Más glampings abren cada mes en la región. Sin sistema digital premium, el posicionamiento se diluye.",
     },
   ],
   conclusion:
-    "Ya existe el negocio, el contenido y la audiencia. Lo que falta es el sistema que convierte esa audiencia en reservas pagadas sin friccion manual.",
+    "El glamping ya tiene la experiencia. Falta el sistema que llene el calendario todos los meses del año.",
 };
 
-const transformationsCore = [
+const transformationsAll = [
   {
-    before:
-      "El prospecto llega al perfil, pregunta por DM y muchas veces no recibe respuesta a tiempo.",
+    before: "El prospecto pregunta por DM y se pierde.",
     after:
-      "Landing profesional con toda la informacion, precios claros y boton de reserva disponible 24/7.",
+      "Landing optimizada con botón de reserva activo 24/7 y formulario de captación automático.",
   },
   {
-    before:
-      "Las reservas llegan por WhatsApp sin sistema, se pierden o se olvidan.",
-    after:
-      "Sistema de reservas online con calendario, seleccion de cabana y pago automatico de anticipo.",
+    before: "Sin seguimiento — el lead interesado se enfría.",
+    after: "CRM con seguimiento automático y recuperación de leads que no reservaron.",
   },
   {
-    before:
-      "No saben cuantos prospectos tienen activos ni quienes son clientes recurrentes.",
-    after:
-      "CRM con historial, estado de reserva, recordatorios y reactivacion automatica.",
-  },
-];
-
-const transformationsScale = [
-  {
-    before:
-      "El contenido de Instagram genera likes pero no tiene un sistema que lo convierta en reservas.",
-    after:
-      "Arquitectura de contenido 90 dias con pilares definidos que dirigen a la landing.",
+    before: "En temporada baja el glamping no tiene cómo atraer.",
+    after: "Campañas Meta Ads activas que llenan el calendario sin depender de temporadas.",
   },
   {
-    before:
-      "Los anuncios de pauta llevan a Instagram sin una pagina de conversion optimizada para cerrar.",
-    after:
-      "Campañas Meta Ads con landing dedicada, apuntando a parejas en Bogota, Bucaramanga y Cucuta.",
+    before: "El huésped que viene no vuelve a saber del glamping.",
+    after: "Secuencias automáticas post-estadía para fidelizar y generar reservas recurrentes.",
+  },
+  {
+    before: "Sin métricas — no se sabe qué funciona y qué no.",
+    after: "Dashboard con métricas de reservas, conversión y rendimiento de campañas en tiempo real.",
   },
 ];
 
-const transformationsSystem = [
+const deliverablesEssentialList = [
+  "Landing page optimizada para reservas",
+  "Integración con WhatsApp Business",
+  "Formularios de captación de leads",
+  "Configuración de métricas y Meta Pixel",
+  "Automatización básica de seguimiento",
+  "Optimización inicial de conversión",
+  "Diseño estratégico orientado a reservas",
+  "30 días de soporte post-entrega",
+];
+
+const deliverablesScaleExtra = [
+  "CRM de seguimiento de prospectos",
+  "Automatizaciones avanzadas de reservas",
+  "Embudos completos de conversión",
+  "Recuperación automática de leads",
+  "Remarketing estratégico",
+  "Dashboard de métricas de reservas",
+  "Arquitectura de escalamiento",
+  "Secuencias automáticas de seguimiento",
+  "Optimización avanzada de experiencia",
+];
+
+const deliverablesSystem = [
   {
-    before:
-      "El contenido trae interaccion, pero no existe una ruta minima clara para convertir interesados.",
-    after:
-      "Landing base + CTA directo para transformar trafico en conversaciones con intencion de reserva.",
-  },
-  {
-    before:
-      "La gestion comercial depende de respuestas manuales sin seguimiento estructurado.",
-    after:
-      "Embudo esencial con mensaje inicial y orden de atencion para no perder oportunidades.",
+    title: "Plan Esencial — Entregables",
+    color: "text-emerald-300 border-emerald-400/40",
+    items: deliverablesEssentialList,
   },
 ];
 
 const deliverablesScale = [
   {
-    title: "Landing de Experiencias",
+    title: "Incluye Plan Esencial",
     color: "text-emerald-300 border-emerald-400/40",
-    items: [
-      "Pagina principal con diseno premium mobile-first",
-      "Seccion VIP, Deluxe y Compartido con fotos, precios y que incluye",
-      "Plan romantico destacado: fogata, jacuzzi climatizado, naturaleza",
-      "Galeria visual optimizada para mobile",
-      "CTA directo al sistema de reservas",
-      "Meta Pixel instalado",
-    ],
+    items: deliverablesEssentialList,
   },
   {
-    title: "Sistema de Reservas Online",
+    title: "Ampliación Plan Completo",
     color: "text-blue-300 border-blue-400/40",
-    items: [
-      "Calendario de disponibilidad en tiempo real",
-      "Seleccion de tipo de cabana, fecha y numero de personas",
-      "Pago de anticipo online con Wompi",
-      "Confirmacion automatica por WhatsApp y email",
-      "Panel administrativo para gestionar reservas",
-      "Recordatorio automatico 48 horas antes de la llegada",
-    ],
-  },
-  {
-    title: "CRM y Seguimiento de Clientes",
-    color: "text-violet-300 border-violet-400/40",
-    items: [
-      "Base de datos de prospectos con estados",
-      "Historial por cliente",
-      "Mensaje de agradecimiento y encuesta post-estadia",
-      "Campaña de reactivacion para clientes de 60+ dias",
-      "Segmentacion por tipo de experiencia",
-      "Reporte mensual de reservas, conversion y ticket promedio",
-    ],
-  },
-  {
-    title: "Pauta, Contenido y Acompañamiento",
-    color: "text-amber-300 border-amber-400/40",
-    items: [
-      "Arquitectura de contenido de 90 dias",
-      "Guias de produccion por formato",
-      "Configuracion y gestion de campañas Meta Ads",
-      "Publicos objetivo: Bogota, Bucaramanga, Cucuta y Medellin",
-      "Optimizacion semanal",
-      "3 sesiones estrategicas + soporte WhatsApp",
-    ],
-  },
-];
-
-const deliverablesSystem = [
-  {
-    title: "Landing Base de Captacion",
-    color: "text-emerald-300 border-emerald-400/40",
-    items: [
-      "1 landing principal con estructura de conversion",
-      "Secciones esenciales: oferta, prueba social, CTA y FAQ",
-      "Diseno responsive mobile-first",
-      "Integracion de formulario o boton directo a WhatsApp",
-      "Pixel base instalado para medicion",
-    ],
-  },
-  {
-    title: "Embudo Esencial",
-    color: "text-blue-300 border-blue-400/40",
-    items: [
-      "Ruta simple de captacion: anuncio o contenido -> landing -> contacto",
-      "Mensaje de seguimiento inicial para leads entrantes",
-      "Estructura minima para no depender solo del DM manual",
-      "Sin tienda multi-producto ni checkout avanzado",
-    ],
-  },
-  {
-    title: "Setup Publicitario y Acompanamiento Inicial",
-    color: "text-violet-300 border-violet-400/40",
-    items: [
-      "Configuracion inicial de cuenta Meta Ads",
-      "Evento principal de conversion listo",
-      "Publicos base para primeras pruebas",
-      "Sin gestion semanal de campañas incluida",
-      "1 sesion estrategica de arranque",
-      "Guia de contenido base para iniciar publicacion",
-      "Soporte por WhatsApp en fase de implementacion",
-      "No incluye sistema avanzado de CRM ni automatizaciones complejas",
-    ],
+    items: deliverablesScaleExtra,
   },
 ];
 
@@ -495,22 +470,36 @@ const executionPlanSystem = [
 
 export default function EcoDreamersCuritiPage() {
   const [selectedPlan, setSelectedPlan] = useState("scale");
+  const [tabFadeIn, setTabFadeIn] = useState(true);
   const [activePhase, setActivePhase] = useState("fase-1");
   const [reduceMotion, setReduceMotion] = useState(false);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false });
   const timelineCarouselRef = useRef(null);
-  const currentPlan = PLAN_CONFIGS[selectedPlan];
+  const isExtrasTab = selectedPlan === "extras";
+  const currentPlan = isExtrasTab ? null : PLAN_CONFIGS[selectedPlan];
   const currentDeliverables = selectedPlan === "scale" ? deliverablesScale : deliverablesSystem;
   const currentTimelinePhases = selectedPlan === "scale" ? timelinePhasesScale : timelinePhasesSystem;
-  const currentTransformationsCore = selectedPlan === "scale" ? transformationsCore : transformationsSystem;
   const currentExecutiveSummary = selectedPlan === "scale" ? executiveSummaryScale : executiveSummarySystem;
   const currentExecutionPlan = selectedPlan === "scale" ? executionPlanScale : executionPlanSystem;
+
+  const handleTabChange = (plan) => {
+    if (plan === selectedPlan) return;
+    if (reduceMotion) {
+      setSelectedPlan(plan);
+      return;
+    }
+    setTabFadeIn(false);
+    window.setTimeout(() => {
+      setSelectedPlan(plan);
+      setTabFadeIn(true);
+    }, 220);
+  };
 
   const progressPercent = 0;
 
   useEffect(() => {
-    setActivePhase("fase-1");
+    if (selectedPlan !== "extras") setActivePhase("fase-1");
   }, [selectedPlan]);
 
   const handleMagneticMove = (event, strength = 10) => {
@@ -595,79 +584,186 @@ export default function EcoDreamersCuritiPage() {
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
             Toca un plan para ver sus detalles
           </p>
-          <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
+          <div className="mb-5 flex w-full flex-col gap-2 md:flex-row md:flex-wrap md:items-center md:justify-center">
             <button
               type="button"
-              onClick={() => setSelectedPlan("system")}
+              onClick={() => handleTabChange("system")}
               aria-pressed={selectedPlan === "system"}
-              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`h-12 w-full shrink-0 rounded-full border px-4 text-xs font-bold uppercase tracking-[0.14em] transition md:w-auto md:px-4 ${
                 selectedPlan === "system"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
               }`}
             >
-              Plan esencial · $697
+              Plan Esencial · $697
             </button>
             <button
               type="button"
-              onClick={() => setSelectedPlan("scale")}
+              onClick={() => handleTabChange("scale")}
               aria-pressed={selectedPlan === "scale"}
-              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`h-12 w-full shrink-0 rounded-full border px-4 text-xs font-bold uppercase tracking-[0.14em] transition md:w-auto md:px-4 ${
                 selectedPlan === "scale"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
               }`}
             >
-              Plan completo · $1,597
+              Plan Completo · $1,597
+            </button>
+            <button
+              type="button"
+              onClick={() => handleTabChange("extras")}
+              aria-pressed={selectedPlan === "extras"}
+              className={`h-12 w-full shrink-0 rounded-full border px-4 text-xs font-bold uppercase tracking-[0.14em] transition md:w-auto md:px-4 ${
+                selectedPlan === "extras"
+                  ? "border-[#FFD600] bg-[#FFD600] text-black"
+                  : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
+              }`}
+            >
+              Educación · $250
             </button>
           </div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{currentPlan.chip}</p>
-          <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
-            Eco-Dreamers{" "}
-            <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.45)]">Curiti</span>
-          </h1>
-          <p className="mt-4 text-xl text-zinc-200 sm:text-2xl">
-            Sistema digital para convertir <span className="font-extrabold">30,000 seguidores</span> en reservas automaticas.
-          </p>
-          <p className="mt-2 text-sm font-semibold text-zinc-300">{currentPlan.subtitle}</p>
-          <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:mt-7 sm:text-sm sm:tracking-[0.35em]">
-            GLAMPING · PLAN ROMANTICO · JACUZZI · NATURALEZA · CURITI, SANTANDER
-          </p>
-          <div className="mt-7 grid gap-3 sm:grid-cols-3">
-            <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">{currentPlan.heroPrice}</p>
-              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Inversion total</p>
-            </article>
-            <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">{currentPlan.heroDuration}</p>
-              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Duracion</p>
-            </article>
-            <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
-              <p className="text-3xl font-extrabold text-white">{currentPlan.heroModules}</p>
-              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">{currentPlan.progressLabel}</p>
-            </article>
-          </div>
-          <a
-            href="https://wa.me/573116425337"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+
+          <div
+            className={`fade-tab ${tabFadeIn ? "fade-tab-in" : "fade-tab-out"}`}
+            style={reduceMotion ? { opacity: 1, transform: "none" } : undefined}
           >
-            {currentPlan.ctaText}
-          </a>
+            {isExtrasTab ? (
+              <>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{EXTRAS_TAB.chip}</p>
+                <h1 className="mt-3 text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl">
+                  {EXTRAS_TAB.title}
+                </h1>
+                <p className="mt-4 text-base text-zinc-300 sm:text-lg">{EXTRAS_TAB.subtitle}</p>
+                <p className="mt-6 flex flex-wrap items-center justify-center gap-2 text-lg sm:text-xl md:text-2xl">
+                  <span className="font-extrabold text-[#FFD600]">$250 USD</span>
+                  <span className="font-medium text-zinc-500">—</span>
+                  <span className="font-medium text-zinc-500 line-through">antes $597 USD</span>
+                </p>
+                <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:text-sm sm:tracking-[0.35em]">
+                  GLAMPING · CURITI, SANTANDER
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{currentPlan.chip}</p>
+                <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
+                  Eco-Dreamers{" "}
+                  <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.45)]">Curiti</span>
+                </h1>
+                <p className="mt-4 text-xl text-zinc-200 sm:text-2xl">
+                  Sistema digital para convertir <span className="font-extrabold">30,000 seguidores</span> en reservas automaticas.
+                </p>
+                <p className="mt-2 text-sm font-semibold text-zinc-300">{currentPlan.subtitle}</p>
+                <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:mt-7 sm:text-sm sm:tracking-[0.35em]">
+                  GLAMPING · PLAN ROMANTICO · JACUZZI · NATURALEZA · CURITI, SANTANDER
+                </p>
+                <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">{currentPlan.heroPrice}</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Inversion total</p>
+                  </article>
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">{currentPlan.heroDuration}</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Duracion</p>
+                  </article>
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">{currentPlan.heroModules}</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">{currentPlan.progressLabel}</p>
+                  </article>
+                </div>
+                <a
+                  href="https://wa.me/573116425337"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+                >
+                  {currentPlan.ctaText}
+                </a>
+              </>
+            )}
+          </div>
         </div>
       </section>
 
+      {isExtrasTab ? (
+        <section className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8">
+          <div data-reveal className="reveal">
+            <div className="grid gap-5 md:grid-cols-2">
+              {educationModuleCards.map((card) => (
+                <article
+                  key={card.title}
+                  className="flex flex-col rounded-2xl border border-zinc-700 bg-[#111111] p-6 text-left"
+                >
+                  <span className="inline-flex w-fit rounded-full border border-yellow-400/50 bg-yellow-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-yellow-200">
+                    {card.badge}
+                  </span>
+                  <h3 className="mt-4 text-xl font-extrabold text-white">{card.title}</h3>
+                  <ul className="mt-4 flex-1 space-y-2 text-sm text-zinc-300">
+                    {card.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="text-[#FFD600]">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            <article
+              className="mt-8 rounded-2xl border-2 border-[#FFD600] p-6 text-center sm:p-8"
+              style={{ backgroundColor: "#0B1F3A" }}
+            >
+              <h3 className="text-xl font-extrabold text-white sm:text-2xl">⭐ Recomendación Fluxa Method</h3>
+              <p className="mt-3 text-sm text-zinc-200 sm:text-base">
+                Para un glamping, el contenido visual y la automatización hacen una gran diferencia.
+              </p>
+              <p className="mt-4 text-lg font-extrabold text-[#FFD600] sm:text-xl">Plan Completo + Educación</p>
+              <p className="mt-2 text-sm text-zinc-300 sm:text-base">
+                Escala más rápido, aprovecha temporadas altas y convierte redes sociales en reservas reales.
+              </p>
+              <p className="mt-5 text-base font-extrabold text-white sm:text-lg">
+                Plan Completo + Educación = $1,597 + $250 = $1,847 USD
+              </p>
+            </article>
+
+            <article
+              className="mt-8 rounded-2xl border-2 border-[#FFD600] p-6 text-center sm:p-8"
+              style={{ backgroundColor: "#0D0D0D" }}
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">Inversión del combo</p>
+              <h3 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">Combo completo de educación</h3>
+              <p className="mt-4 text-xl font-medium text-zinc-500 line-through sm:text-2xl">$597 USD</p>
+              <p className="mt-2 text-4xl font-extrabold text-[#FFD600] sm:text-5xl">$250 USD</p>
+              <p className="mt-3 text-lg font-extrabold text-emerald-400 sm:text-xl">Ahorras $347 USD</p>
+              <p className="mt-2 text-sm text-zinc-500 sm:text-base">Pauta + Contenido · 4 semanas cada módulo</p>
+              <a
+                href={EDUCATION_PROGRAM_WA}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+              >
+                Quiero el programa de educación
+              </a>
+            </article>
+
+            <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-zinc-500 sm:text-sm">
+              {educationProgramDisclaimer}
+            </p>
+          </div>
+        </section>
+      ) : null}
+
+      {!isExtrasTab ? (
       <section className="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8">
         <div data-reveal className="reveal rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 sm:p-7">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">Plan activo</p>
           <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">
-            {selectedPlan === "scale" ? "FLUXA SCALE ($1,597)" : "FLUXA SYSTEM ($697)"}
+            {selectedPlan === "scale" ? "Plan Completo ($1,597)" : "Plan Esencial ($697)"}
           </h2>
           <p className="mt-2 text-sm text-zinc-300">Informacion clave que cambia automaticamente segun el plan seleccionado.</p>
           {selectedPlan === "system" ? (
             <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-amber-300">
-              Version esencial: menor alcance que Fluxa Scale.
+              Version esencial: menor alcance que el Plan Completo.
             </p>
           ) : null}
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -679,7 +775,9 @@ export default function EcoDreamersCuritiPage() {
           </div>
         </div>
       </section>
+      ) : null}
 
+      {!isExtrasTab ? (
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 sm:px-8 md:pt-16">
         <div data-reveal className="reveal">
           <div className="mb-9 text-center">
@@ -769,13 +867,15 @@ export default function EcoDreamersCuritiPage() {
           </div>
         </div>
       </section>
+      ) : null}
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">01. Donde esta hoy Eco-Dreamers Curiti</h2>
-          <p className="text-sm text-zinc-400 sm:text-base">
-            Tienen audiencia activa, instalaciones premium y contenido de calidad, pero el sistema comercial no convierte ni escala.
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500">01 · Diagnóstico</p>
+          <h2 className="mb-2 mt-2 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+            {currentSituation.sectionTitle}
+          </h2>
+          <p className="text-sm text-zinc-400 sm:text-base">{currentSituation.sectionSubtitle}</p>
 
           <div className="mt-5 grid gap-3 sm:grid-cols-4">
             {metrics.map((metric) => (
@@ -789,7 +889,7 @@ export default function EcoDreamersCuritiPage() {
           <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1.45fr]">
             <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6">
               <p className="inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">Punto de partida</p>
-              <h3 className="mt-4 text-2xl font-extrabold leading-tight">{currentSituation.startPointTitle}</h3>
+              <h3 className="mt-4 text-xl font-extrabold leading-tight text-zinc-100 sm:text-2xl">Situación actual</h3>
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                 {currentSituation.startPointItems.map((item) => (
                   <li key={item} className="flex gap-2"><span className="text-red-400">●</span><span>{item}</span></li>
@@ -818,13 +918,12 @@ export default function EcoDreamersCuritiPage() {
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            {selectedPlan === "scale" ? "02. Las transformaciones concretas en 90 dias" : "02. Transformaciones clave del plan esencial"}
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500">02 · Transformaciones</p>
+          <h2 className="mb-2 mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Del caos manual al sistema que reserva
           </h2>
           <p className="text-sm text-zinc-400 sm:text-base">
-            {selectedPlan === "scale"
-              ? "Cada transformacion impacta reservas, eficiencia operativa y crecimiento sostenible."
-              : "Cambios iniciales para ordenar la captacion y preparar la siguiente etapa de crecimiento."}
+            Cinco cambios concretos que impactan reservas, seguimiento y crecimiento sostenible.
           </p>
 
           <div className="mt-6 grid gap-3">
@@ -832,7 +931,7 @@ export default function EcoDreamersCuritiPage() {
               <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">Antes</p>
               <p className="inline-flex w-fit rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 md:justify-self-end">Despues</p>
             </div>
-            {currentTransformationsCore.map((item, idx) => (
+            {transformationsAll.map((item, idx) => (
               <div key={item.before} className="grid gap-3 md:grid-cols-2">
                 <article className="rounded-xl border border-red-400/25 bg-red-950/15 p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-300">Transformacion {idx + 1}</p>
@@ -848,38 +947,8 @@ export default function EcoDreamersCuritiPage() {
         </div>
       </section>
 
-      {selectedPlan === "scale" ? (
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">02. Transformaciones 4 y 5 - conversion y escalamiento</h2>
-          <p className="text-sm text-zinc-400 sm:text-base">Contenido y pauta trabajan como sistema para llenar calendario con reservas reales.</p>
-
-          <div className="mt-6 grid gap-3">
-            <div className="grid gap-3 md:grid-cols-2">
-              <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">Antes</p>
-              <p className="inline-flex w-fit rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 md:justify-self-end">Despues</p>
-            </div>
-            {transformationsScale.map((item, idx) => (
-              <div key={item.before} className="grid gap-3 md:grid-cols-2">
-                <article className="rounded-xl border border-red-400/25 bg-red-950/15 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-300">Transformacion {idx + 4}</p>
-                  <p className="mt-1 text-sm text-zinc-200">{item.before}</p>
-                </article>
-                <article className="rounded-xl border border-emerald-400/25 bg-emerald-950/15 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300">Impacto {idx + 4}</p>
-                  <p className="mt-1 text-sm text-zinc-100">{item.after}</p>
-                </article>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-6 rounded-xl border border-emerald-300/35 bg-emerald-500/10 px-5 py-3 text-center text-base font-bold text-emerald-100">
-            Con el ecosistema activo, el contenido organico y la pauta trabajan en paralelo para llenar el calendario de reservas sin esfuerzo manual.
-          </p>
-        </div>
-      </section>
-      ) : null}
-
+      {!isExtrasTab ? (
+      <>
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">03. Que recibe exactamente - entregables y presupuesto</h2>
@@ -946,6 +1015,8 @@ export default function EcoDreamersCuritiPage() {
           <p className="mt-7 text-center text-4xl font-extrabold">{currentPlan.totalLine}</p>
         </div>
       </section>
+      </>
+      ) : null}
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal rounded-2xl border border-zinc-700 bg-[#111111] p-6 sm:p-8">
@@ -966,18 +1037,8 @@ export default function EcoDreamersCuritiPage() {
         </div>
       </section>
 
-      <section className="bg-[#0B1F3A] px-5 py-16 sm:px-8">
-        <div data-reveal className="reveal mx-auto max-w-5xl text-center">
-          <h2 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl">
-            Eco-Dreamers ya tiene el lugar, el contenido y la audiencia.
-          </h2>
-          <p className="mt-3 text-3xl font-extrabold text-blue-300 sm:text-4xl">Fluxa Method pone el sistema.</p>
-          <p className="mt-10 text-xs font-medium uppercase tracking-[0.2em] text-blue-200/80 sm:text-sm">
-            fluxamethod.com · @fluxamethod · Cucuta, Colombia
-          </p>
-        </div>
-      </section>
-
+      {!isExtrasTab ? (
+      <>
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 pt-16 sm:px-8">
         <div data-reveal className="reveal">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Resumen ejecutivo</h2>
@@ -1040,6 +1101,8 @@ export default function EcoDreamersCuritiPage() {
           </div>
         </div>
       </section>
+      </>
+      ) : null}
 
       <section className="mx-auto w-full max-w-6xl px-5 pb-24 sm:px-8">
         <div data-reveal className="reveal">
@@ -1064,6 +1127,39 @@ export default function EcoDreamersCuritiPage() {
         </div>
       </section>
 
+      <section className="px-5 py-14 sm:px-8" style={{ backgroundColor: "#0D0D0D" }}>
+        <div data-reveal className="reveal mx-auto max-w-6xl">
+          <h2 className="text-center text-3xl font-extrabold tracking-tight text-white sm:text-4xl">¿Cómo arrancamos?</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-zinc-400 sm:text-base">
+            Del acuerdo al sistema activo en 5 pasos.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 md:flex-row md:flex-wrap md:justify-center md:gap-4">
+            {nextSteps.map((step) => (
+              <div
+                key={step.n}
+                className="flex min-w-0 flex-1 items-start gap-3 rounded-xl border border-zinc-800 bg-black/40 py-4 pl-4 pr-3 md:max-w-[220px] md:flex-col md:items-center md:text-center"
+                style={{ borderLeftWidth: 4, borderLeftColor: "#FFD600" }}
+              >
+                <span className="text-2xl font-extrabold text-[#FFD600]">{step.n}</span>
+                <p className="text-sm font-semibold leading-snug text-zinc-100 sm:text-base">{step.title}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#0B1F3A] px-5 py-16 sm:px-8">
+        <div data-reveal className="reveal mx-auto max-w-5xl text-center">
+          <h2 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            Eco-Dreamers ya tiene el lugar y la experiencia.
+          </h2>
+          <p className="mt-4 text-2xl font-extrabold text-[#FFD600] sm:text-3xl md:text-4xl">Fluxa Method llena el calendario.</p>
+          <p className="mt-10 text-xs font-medium uppercase tracking-[0.2em] text-blue-200/80 sm:text-sm">
+            fluxamethod.com · @fluxamethod · Cucuta, Colombia
+          </p>
+        </div>
+      </section>
+
       <div className="mobile-cta mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8 md:hidden">
         <a href="https://wa.me/573116425337" target="_blank" rel="noopener noreferrer" className="block w-full rounded-xl border border-yellow-400 bg-[#FFD600] px-4 py-3 text-center text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]">
           Confirmar arranque del proyecto
@@ -1080,6 +1176,17 @@ export default function EcoDreamersCuritiPage() {
         .reveal.is-visible {
           opacity: 1;
           transform: translateY(0) scale(1);
+        }
+        .fade-tab {
+          transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+        .fade-tab.fade-tab-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        .fade-tab.fade-tab-out {
+          opacity: 0;
+          transform: translateY(14px);
         }
         .pulse-glow {
           animation: pulseGlow 2.2s ease-in-out infinite;
@@ -1150,6 +1257,7 @@ export default function EcoDreamersCuritiPage() {
         }
         @media (prefers-reduced-motion: reduce) {
           .reveal,
+          .fade-tab,
           .pulse-glow,
           .timeline-dash,
           .timeline-dash-vertical,
@@ -1158,6 +1266,9 @@ export default function EcoDreamersCuritiPage() {
             animation: none !important;
             transition: none !important;
             transform: none !important;
+          }
+          .fade-tab.fade-tab-out {
+            opacity: 1 !important;
           }
         }
       `}</style>
