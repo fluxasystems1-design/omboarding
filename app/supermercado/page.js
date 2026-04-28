@@ -1,6 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+/** Paleta profesional: teal (frescura + confianza), sin amarillo */
+const THEME = {
+  accent: "#0d9488",
+  accentGlow:
+    "0 0 0 2px rgba(13,148,136,0.5), 0 0 36px rgba(13,148,136,0.42)",
+};
+
+const CTA_BTN =
+  "rounded-xl border border-teal-400/90 bg-teal-600 font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_0_18px_rgba(13,148,136,0.28)] transition hover:bg-teal-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
 
 const PLAN_META = {
   system: {
@@ -12,7 +22,7 @@ const PLAN_META = {
     heroModules: "4 módulos",
     heroMetric4: "∞",
     heroMetric4Label: "Clientes potenciales",
-    ctaText: "Confirmar arranque del proyecto",
+    ctaText: "QUIERO ACTIVAR MI SISTEMA",
     included: [
       "Presencia digital: Instagram, WhatsApp Business y link en bio.",
       "Sistema de pedidos online con catálogo, confirmaciones y panel del día.",
@@ -48,7 +58,7 @@ const PLAN_META = {
     heroModules: "4 activos",
     heroMetric4: "—",
     heroMetric4Label: "Automatizaciones",
-    ctaText: "Confirmar arranque del proyecto",
+    ctaText: "QUIERO ACTIVAR MI SISTEMA",
     included: [],
     paymentA: null,
     paymentB: null,
@@ -67,7 +77,7 @@ const PLAN_META = {
     heroModules: "4 sesiones",
     heroMetric4: "1:1",
     heroMetric4Label: "Acompañamiento",
-    ctaText: "Confirmar arranque del proyecto",
+    ctaText: "QUIERO ACTIVAR MI SISTEMA",
     included: [],
     paymentA: null,
     paymentB: null,
@@ -128,8 +138,8 @@ const timelinePhasesSystem = [
     title: "AUTOMATIZACIONES",
     subtitle: "Semanas 5–6",
     icon: "⚡",
-    color: "#FFD600",
-    glow: "0 0 0 2px rgba(255,214,0,0.5), 0 0 36px rgba(255,214,0,0.5)",
+    color: THEME.accent,
+    glow: THEME.accentGlow,
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     items: [
@@ -191,7 +201,7 @@ const timelineWeeksEducation = [
   {
     id: "sem-2",
     label: "SEMANA 2",
-    title: "Contenido que vende",
+    title: "Cómo crear contenido que genere pedidos reales",
     subtitle: "Semana 2",
     icon: "🎬",
     color: "#10B981",
@@ -212,11 +222,11 @@ const timelineWeeksEducation = [
   {
     id: "sem-3",
     label: "SEMANA 3",
-    title: "Meta Ads desde cero",
+    title: "Cómo conseguir clientes cerca con Meta Ads",
     subtitle: "Semana 3",
     icon: "🎯",
-    color: "#FFD600",
-    glow: "0 0 0 2px rgba(255,214,0,0.5), 0 0 36px rgba(255,214,0,0.5)",
+    color: THEME.accent,
+    glow: THEME.accentGlow,
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     items: [
@@ -233,7 +243,7 @@ const timelineWeeksEducation = [
   {
     id: "sem-4",
     label: "SEMANA 4",
-    title: "Optimización y escala",
+    title: "Cómo leer los datos y seguir creciendo solo",
     subtitle: "Semana 4",
     icon: "📊",
     color: "#A855F7",
@@ -254,42 +264,42 @@ const timelineWeeksEducation = [
 ];
 
 const diagnosisSituation = {
-  titleBlock: "Dónde está hoy tu supermercado",
+  titleBlock:
+    "Tu supermercado ya vende. El problema es que depende completamente del tráfico físico.",
   subtitle:
-    "Tienes clientes que ya te conocen, pero sin sistema digital estás dejando ventas sobre la mesa todos los días.",
-  startPointTitle:
-    "Ventas locales fuertes, pero sin máquina digital que capture pedidos y recurrentes.",
+    "Sin pedidos online, fidelización y automatización, cada semana empieza desde cero.",
+  startPointTitle: "Hoy el negocio funciona… pero no escala.",
   startPointItems: [
-    "Las ventas dependen 100 % del tráfico de calle.",
-    "Sin presencia digital consistente.",
-    "Sin sistema de pedidos ni domicilios online.",
-    "Sin base de datos de clientes propia.",
-    "Sin automatizaciones de ofertas.",
+    "Si el cliente no pasa por el local, no compra.",
+    "No existe sistema de recompra automática.",
+    "Las promociones no llegan al celular del cliente.",
+    "No hay base de clientes propia organizada.",
+    "Todo depende de atención manual.",
   ],
   frictionItems: [
     {
-      title: "Competencia de cadenas",
+      title: "La competencia ya vende desde el celular.",
       description:
-        "D1, Ara y Justo&Bueno tienen app y ofertas digitales. Sin sistema, el cliente va donde ve la oferta primero.",
+        "Mientras las cadenas usan apps, ofertas digitales y fidelización, el supermercado tradicional sigue dependiendo solo del tráfico físico.",
     },
     {
-      title: "Ventas solo presenciales",
+      title: "Si el cliente no pasa, no compra.",
       description:
-        "Si el cliente no pasa por el local, no compra. Sin domicilios ni pedidos online, pierdes ventas diarias.",
+        "Sin pedidos online ni domicilios digitales, se pierden ventas todos los días.",
     },
     {
-      title: "Sin fidelización",
+      title: "No existe recompra.",
       description:
-        "No hay forma de traer de vuelta al cliente que ya compró. Cada semana empiezas desde cero.",
+        "El cliente compra una vez… y nadie lo vuelve a contactar. Cada semana hay que empezar desde cero.",
     },
     {
-      title: "Ofertas que nadie ve",
+      title: "Las promociones no llegan al cliente.",
       description:
-        "Las promociones se hacen en el local pero no llegan a los clientes que están en casa.",
+        "Las ofertas viven dentro del local, no en el celular de las personas.",
     },
   ],
   conclusion:
-    "Ya tienes clientes y ticket; falta el sistema que lleve ofertas, pedidos y recurrencia al celular.",
+    "Fluxa convierte tu supermercado en un sistema digital que vende, fideliza y genera pedidos todos los días.",
 };
 
 const transformationsSystem = [
@@ -351,7 +361,7 @@ const deliverablesSystem = [
   },
   {
     title: "Pauta y Escala",
-    color: "text-amber-300 border-amber-400/40",
+    color: "text-teal-300 border-teal-400/40",
     items: [
       "Configuración Meta Ads desde cero",
       "Campañas geolocalizadas 5 km",
@@ -375,11 +385,43 @@ const executiveSummaryShared = {
   withFluxa: ["Sistema activo", "Clientes fidelizados", "Pauta convirtiendo"],
 };
 
+const marketSeparateCostRows = [
+  { label: "Ecommerce + tienda online", value: "$450 USD" },
+  { label: "Automatizaciones WhatsApp", value: "$180 USD" },
+  { label: "CRM de clientes", value: "$200 USD" },
+  { label: "Setup Meta Ads", value: "$150 USD" },
+  { label: "Diseño UX + landing", value: "$200 USD" },
+  { label: "Estrategia de contenido", value: "$220 USD" },
+];
+
+const whyFluxaCards = [
+  {
+    emoji: "⚡",
+    title: "Entrega en semanas, no meses",
+    body: "Nuestro stack propio nos permite lanzar en 2–6 semanas lo que una agencia tradicional demora 3–6 meses.",
+  },
+  {
+    emoji: "🏆",
+    title: "Activos que son tuyos",
+    body: "Todo lo que construimos queda en tus cuentas. Sin dependencia de Fluxa después de la entrega.",
+  },
+  {
+    emoji: "🤖",
+    title: "Automatización real",
+    body: "No solo diseño — instalamos bots, CRM y embudos que trabajan mientras tú atiendes tu negocio.",
+  },
+  {
+    emoji: "📍",
+    title: "Entendemos tu mercado",
+    body: "Somos locales. Conocemos la plaza, la competencia y el comportamiento del consumidor colombiano.",
+  },
+];
+
 const metricsHero = [
-  { label: "Competencia con app", value: "D1, Ara", color: "text-emerald-300" },
-  { label: "Sistema de pedidos online", value: "0", color: "text-blue-300" },
-  { label: "Clientes en base de datos", value: "0", color: "text-violet-300" },
-  { label: "Automatizaciones activas", value: "0", color: "text-red-300" },
+  { label: "YA VENDEN DESDE EL CELULAR", value: "D1, Ara", color: "text-emerald-300" },
+  { label: "PEDIDOS ONLINE ACTIVOS", value: "0", color: "text-blue-300" },
+  { label: "BASE DE CLIENTES PROPIA", value: "0", color: "text-violet-300" },
+  { label: "AUTOMATIZACIONES ACTIVAS", value: "0", color: "text-red-300" },
 ];
 
 const PRIMARY_PAGE_SERVICE_ID = "tienda-ecommerce";
@@ -450,6 +492,30 @@ function formatUsdAmount(n) {
   });
 }
 
+const WA_NUMBER = "573116425337";
+
+function buildPlanWaMessage(selectedTab, plan) {
+  const planByTab = {
+    system: "Plan Sistema / Fluxa System — $697 USD",
+    pages: "Plan Solo Páginas / Fluxa Pages — desde $450 USD",
+    education: "Plan Educación / Fluxa Edu — $250 USD",
+  };
+  return [
+    "Hola Fluxa Method.",
+    "",
+    "QUIERO ACTIVAR MI SISTEMA.",
+    "",
+    `Me interesa: ${planByTab[selectedTab]}`,
+    `Referencia: ${plan.chip}`,
+    "",
+    "Mi supermercado está en Bogotá. ¿Me indican los siguientes pasos?",
+  ].join("\n");
+}
+
+function waHrefFromText(text) {
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 const educationIncludes = [
   "4 sesiones en vivo de 60 minutos (1 por semana).",
   "Grabación de cada sesión para repasar.",
@@ -487,6 +553,15 @@ export default function SupermercadoPage() {
 
   const plan = PLAN_META[selectedTab];
 
+  const planWaHref = useMemo(
+    () => waHrefFromText(buildPlanWaMessage(selectedTab, plan)),
+    [selectedTab, plan]
+  );
+
+  const diagnosisTitleParts = diagnosisSituation.titleBlock.split(". ");
+  const diagnosisTitleHead = diagnosisTitleParts[0] ? `${diagnosisTitleParts[0]}.` : diagnosisSituation.titleBlock;
+  const diagnosisTitleTail = diagnosisTitleParts.slice(1).join(". ").trim();
+
   const selectedCartaItems = PAGE_SERVICES_CARTA.filter((s) => selectedPageServices.includes(s.id));
   const cartaCount = selectedCartaItems.length;
   const additionalServicesCount = Math.max(cartaCount - 1, 0);
@@ -496,14 +571,16 @@ export default function SupermercadoPage() {
   const cartaTotal = Math.round((cartaSubtotal - cartaDiscountUsd) * 100) / 100;
 
   const pagesCartaWaHref = (() => {
-    const base = "https://wa.me/573116425337";
+    const base = `https://wa.me/${WA_NUMBER}`;
     if (cartaCount === 0) {
       return `${base}?text=${encodeURIComponent(
-        "Hola Fluxa Method, quiero información sobre Fluxa Pages y la carta de servicios para mi supermercado."
+        "Hola Fluxa Method.\n\nQUIERO ACTIVAR MI SISTEMA.\n\nQuiero información sobre Fluxa Pages y la carta de servicios para mi supermercado (Bogotá)."
       )}`;
     }
     const lines = [
-      "Hola Fluxa Method, quiero consultar este paquete de servicios para mi supermercado:",
+      "Hola Fluxa Method.",
+      "",
+      "QUIERO ACTIVAR MI SISTEMA — consulto este paquete Fluxa Pages para mi supermercado (Bogotá):",
       "",
       ...selectedCartaItems.map((s) => `• ${s.label} — $${formatUsdAmount(s.priceUsd)} USD`),
       "",
@@ -689,7 +766,7 @@ export default function SupermercadoPage() {
       <ul className="mt-3 space-y-1.5 text-left text-[12px] leading-relaxed text-zinc-300">
         {phase.items.map((line) => (
           <li key={line} className="flex gap-2">
-            <span className="text-[#FFD600]">•</span>
+            <span className="text-teal-400">•</span>
             <span>{line}</span>
           </li>
         ))}
@@ -723,45 +800,55 @@ export default function SupermercadoPage() {
   );
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-black text-white antialiased">
       <section className="mx-auto w-full max-w-6xl px-5 pb-10 pt-10 sm:px-8 md:pb-20 md:pt-24">
         <div data-reveal className="reveal mx-auto max-w-4xl text-center">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
-            Toca un plan para ver sus detalles
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400" id="supermercado-plans-label">
+            Selecciona un plan
           </p>
-          <div className="plan-tabs-scroll mb-5 flex items-center justify-start gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible">
+          <div
+            role="tablist"
+            aria-labelledby="supermercado-plans-label"
+            className="plan-tabs-scroll mb-5 flex w-full flex-col gap-2 md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-2"
+          >
             <button
               type="button"
+              role="tab"
+              id="supermercado-tab-system"
+              aria-selected={selectedTab === "system"}
               onClick={() => handleTabChange("system")}
-              aria-pressed={selectedTab === "system"}
-              className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`flex h-12 w-full items-center justify-center rounded-full border px-4 text-xs uppercase tracking-[0.14em] transition md:h-auto md:w-auto md:py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                 selectedTab === "system"
-                  ? "border-[#FFD600] bg-[#FFD600] text-black"
-                  : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
+                  ? "border-teal-500 bg-teal-600 font-bold text-white"
+                  : "border-[#333] bg-[#1a1a1a] font-medium text-[#94A3B8]"
               }`}
             >
               Plan Sistema · $697
             </button>
             <button
               type="button"
+              role="tab"
+              id="supermercado-tab-pages"
+              aria-selected={selectedTab === "pages"}
               onClick={() => handleTabChange("pages")}
-              aria-pressed={selectedTab === "pages"}
-              className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`flex h-12 w-full items-center justify-center rounded-full border px-4 text-xs uppercase tracking-[0.14em] transition md:h-auto md:w-auto md:py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                 selectedTab === "pages"
-                  ? "border-[#FFD600] bg-[#FFD600] text-black"
-                  : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
+                  ? "border-teal-500 bg-teal-600 font-bold text-white"
+                  : "border-[#333] bg-[#1a1a1a] font-medium text-[#94A3B8]"
               }`}
             >
               Solo Páginas · $450
             </button>
             <button
               type="button"
+              role="tab"
+              id="supermercado-tab-education"
+              aria-selected={selectedTab === "education"}
               onClick={() => handleTabChange("education")}
-              aria-pressed={selectedTab === "education"}
-              className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`flex h-12 w-full items-center justify-center rounded-full border px-4 text-xs uppercase tracking-[0.14em] transition md:h-auto md:w-auto md:py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
                 selectedTab === "education"
-                  ? "border-[#FFD600] bg-[#FFD600] text-black"
-                  : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
+                  ? "border-teal-500 bg-teal-600 font-bold text-white"
+                  : "border-[#333] bg-[#1a1a1a] font-medium text-[#94A3B8]"
               }`}
             >
               Plan Educación · $250
@@ -769,6 +856,9 @@ export default function SupermercadoPage() {
           </div>
 
           <div
+            role="tabpanel"
+            id="supermercado-hero-panel"
+            aria-labelledby={`supermercado-tab-${selectedTab}`}
             className={`fade-tab ${tabFade ? "fade-tab-visible" : ""}`}
             key={selectedTab}
             aria-live="polite"
@@ -776,7 +866,7 @@ export default function SupermercadoPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{plan.chip}</p>
           <h1 className="text-3xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
             Tu{" "}
-            <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.45)]">Supermercado</span>
+            <span className="text-teal-400 drop-shadow-[0_0_14px_rgba(13,148,136,0.45)]">Supermercado</span>
           </h1>
           <p className="mt-4 text-lg text-zinc-200 sm:text-2xl">
             Sistema digital para que tu supermercado venda más todos los días.
@@ -812,10 +902,10 @@ export default function SupermercadoPage() {
             </article>
           </div>
           <a
-            href="https://wa.me/573116425337"
+            href={planWaHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex w-full justify-center rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-center text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)] sm:w-auto"
+            className={`mt-6 inline-flex w-full justify-center px-6 py-3 text-sm sm:w-auto ${CTA_BTN}`}
           >
             {plan.ctaText}
           </a>
@@ -852,7 +942,7 @@ export default function SupermercadoPage() {
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
               4 fases secuenciales para presencia digital, pedidos, automatización y pauta local.
             </p>
-            <p className="mx-auto mt-4 inline-flex rounded-full border border-yellow-400/70 bg-yellow-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-yellow-300">
+            <p className="mx-auto mt-4 inline-flex rounded-full border border-teal-500/50 bg-teal-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-200">
               Arranque: al confirmar propuesta
             </p>
             <div className="mx-auto mt-5 w-full max-w-md">
@@ -923,7 +1013,7 @@ export default function SupermercadoPage() {
           </div>
 
           <div className="mt-10 flex justify-center">
-            <p className="rounded-xl border border-[#FFD600] bg-[#FFD600] px-6 py-3 text-center text-sm font-bold text-black shadow-[0_0_22px_rgba(255,214,0,0.25)] sm:text-base">
+            <p className="rounded-xl border border-teal-500/80 bg-teal-600 px-6 py-3 text-center text-sm font-bold text-white shadow-[0_0_22px_rgba(13,148,136,0.25)] sm:text-base">
               Tu supermercado ya tiene los clientes. Fluxa Method pone el sistema.
             </p>
           </div>
@@ -933,51 +1023,88 @@ export default function SupermercadoPage() {
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
           <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            01. {diagnosisSituation.titleBlock}
+            01. {diagnosisTitleHead}
+            {diagnosisTitleTail ? (
+              <>
+                <br className="lg:hidden" aria-hidden />
+                <span> {diagnosisTitleTail}</span>
+              </>
+            ) : null}
           </h2>
           <p className="text-sm text-zinc-400 sm:text-base">{diagnosisSituation.subtitle}</p>
 
           <div className="mt-5 grid gap-3 sm:grid-cols-4">
-            {metricsHero.map((metric) => (
-              <article key={metric.label} className="rounded-xl border border-zinc-700 bg-[#111111] p-4 text-center">
-                <p className={`text-3xl font-extrabold ${metric.color}`}>{metric.value}</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.08em] text-zinc-400">{metric.label}</p>
+            {metricsHero.map((metric, idx) => (
+              <article
+                key={metric.label}
+                className="overflow-hidden rounded-xl border border-[#222222] bg-[#111111] text-center"
+              >
+                <div
+                  className={`h-0.5 w-full ${idx === 0 ? "bg-[#EF4444]" : "bg-teal-500"}`}
+                  aria-hidden
+                />
+                <div className="px-3 py-4 sm:px-4">
+                  <p className="text-[36px] font-bold leading-none text-white">{metric.value}</p>
+                  <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[#666666]">
+                    {metric.label}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
 
           <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1.45fr]">
-            <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6">
-              <p className="inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
-                Punto de partida
-              </p>
-              <h3 className="mt-4 text-2xl font-extrabold leading-tight">{diagnosisSituation.startPointTitle}</h3>
+            <article className="rounded-2xl border border-[#222222] border-l-2 border-l-teal-500 bg-[#111111] pl-5 pr-5 py-5 sm:pl-6 sm:pr-6 sm:py-6">
+              <h3 className="text-[20px] font-bold leading-snug text-white">
+                {diagnosisSituation.startPointTitle}
+              </h3>
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                 {diagnosisSituation.startPointItems.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="text-red-400">●</span>
+                    <span className="shrink-0 text-teal-400">●</span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </article>
 
-            <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6">
-              <p className="inline-flex rounded-full bg-red-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
-                Fricciones del negocio
+            <article className="rounded-2xl border border-[#222222] bg-[#111111] p-5 sm:p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#666666]">
+                Lo que ya hacen las cadenas
               </p>
               <div className="mt-4 space-y-3">
-                {diagnosisSituation.frictionItems.map((item) => (
-                  <div key={item.title} className="rounded-xl border border-zinc-700 bg-zinc-900/75 p-4">
-                    <p className="text-base font-bold text-white">{item.title}</p>
-                    <p className="mt-1 text-sm text-zinc-300">{item.description}</p>
-                  </div>
-                ))}
+                {diagnosisSituation.frictionItems.map((item) => {
+                  const frictionIcon =
+                    item.title === "La competencia ya vende desde el celular."
+                      ? "⚡"
+                      : item.title === "Si el cliente no pasa, no compra."
+                        ? "📍"
+                        : item.title === "No existe recompra."
+                          ? "🔄"
+                          : "📣";
+                  return (
+                    <div
+                      key={item.title}
+                      className="border-l-[3px] border-l-teal-500 bg-[#0D0D0D] py-3 pl-4 pr-3 transition-colors duration-200 hover:bg-[#1a1a1a] sm:pl-5 sm:pr-4"
+                    >
+                      <p className="flex items-start gap-2.5">
+                        <span className="shrink-0 text-base leading-none" aria-hidden>
+                          {frictionIcon}
+                        </span>
+                        <span className="text-[13px] font-bold leading-snug text-white">{item.title}</span>
+                      </p>
+                      <p className="mt-1.5 pl-[1.85rem] text-[12px] leading-relaxed text-[#94A3B8]">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </article>
           </div>
 
-          <p className="mt-6 rounded-xl border border-sky-300/35 bg-sky-500/10 px-5 py-3 text-center text-base font-bold text-sky-100">
+          <p className="mt-6 rounded-lg bg-teal-600 p-3 text-center text-base font-bold text-white shadow-[0_0_18px_rgba(13,148,136,0.22)]">
+            <span aria-hidden>→ </span>
             Conclusión: {diagnosisSituation.conclusion}
           </p>
         </div>
@@ -1030,13 +1157,13 @@ export default function SupermercadoPage() {
                 key={column.title}
                 onMouseMove={(event) => handleMagneticMove(event, 8)}
                 onMouseLeave={handleMagneticLeave}
-                className="magnetic rounded-2xl border border-zinc-700 bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:border-yellow-300/70 hover:shadow-[0_0_22px_rgba(255,214,0,0.18)]"
+                className="magnetic rounded-2xl border border-zinc-700 bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:border-teal-400/60 hover:shadow-[0_0_22px_rgba(13,148,136,0.14)]"
               >
                 <h3 className={`mb-4 border-b pb-3 text-lg font-bold tracking-wide ${column.color}`}>{column.title}</h3>
                 <ul className="space-y-2 text-sm leading-relaxed text-zinc-300 sm:text-[15px]">
                   {column.items.map((item) => (
                     <li key={item} className="flex gap-2">
-                      <span className="text-[#FFD600]">•</span>
+                      <span className="text-teal-400">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -1049,10 +1176,55 @@ export default function SupermercadoPage() {
             <p className="rounded-xl bg-[#0B2A4A] px-5 py-3 text-center text-xl font-extrabold text-white">
               TOTAL DEL PROYECTO | $697 USD
             </p>
-            <p className="rounded-xl border border-yellow-400/55 bg-yellow-400/10 px-5 py-3 text-center text-sm font-bold text-yellow-200">
+            <p className="rounded-xl border border-teal-500/45 bg-teal-500/10 px-5 py-3 text-center text-sm font-bold text-teal-100">
               Presupuesto de pauta Meta Ads se paga aparte por el supermercado.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
+        <div data-reveal className="reveal-fade-in-up rounded-2xl border border-zinc-800 bg-[#0A0A0A] p-5 sm:p-8">
+          <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+            Construir esto por separado costaría:
+          </h2>
+          <p className="mt-2 text-sm text-zinc-500 sm:text-base">Precio real de mercado Colombia 2026</p>
+          <div className="mt-6 overflow-hidden rounded-xl border border-zinc-800/80">
+            <table className="w-full border-collapse text-left text-sm">
+              <tbody>
+                {marketSeparateCostRows.map((row) => (
+                  <tr key={row.label} className="border-b border-zinc-800/90 last:border-b-0">
+                    <td className="px-4 py-3 text-zinc-300 sm:px-5 sm:py-3.5">{row.label}</td>
+                    <td className="px-4 py-3 text-right font-semibold tabular-nums text-zinc-100 sm:px-5 sm:py-3.5">
+                      {row.value}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
+            <p className="text-center text-2xl font-bold tabular-nums text-zinc-500 line-through sm:text-left sm:text-3xl">
+              $1.400 USD
+            </p>
+            <span className="hidden text-3xl font-light text-teal-400 sm:block" aria-hidden>
+              →
+            </span>
+            <div className="flex flex-1 flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <span className="text-2xl text-teal-400 sm:hidden" aria-hidden>
+                →
+              </span>
+              <div className="w-full border-l-4 border-teal-500 bg-black/25 py-4 pl-4 sm:max-w-md sm:py-5 sm:pl-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Inversión Fluxa</p>
+                <p className="mt-1 text-3xl font-extrabold tabular-nums text-teal-400 sm:text-4xl md:text-5xl">
+                  $697 USD
+                </p>
+              </div>
+            </div>
+          </div>
+          <p className="mt-6 text-center text-base font-semibold text-[#6EE7B7] sm:text-lg">
+            Ahorras $703 USD con el sistema completo
+          </p>
         </div>
       </section>
 
@@ -1173,15 +1345,15 @@ export default function SupermercadoPage() {
                 El ecommerce es la base principal. Los demás servicios se agregan como adicionales según lo que necesites.
               </p>
 
-              <article className="mt-6 overflow-hidden rounded-2xl border border-[#FFD600]/45 bg-gradient-to-br from-yellow-400/10 via-zinc-950 to-zinc-900 p-5 sm:p-6">
-                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#FFD600]">Servicio principal</p>
+              <article className="mt-6 overflow-hidden rounded-2xl border border-teal-500/40 bg-gradient-to-br from-teal-500/10 via-zinc-950 to-zinc-900 p-5 sm:p-6">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-400">Servicio principal</p>
                 <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
                   <h3 className="text-2xl font-extrabold sm:text-3xl">Tienda ecommerce completa</h3>
-                  <p className="text-4xl font-extrabold text-[#FFD600]">$450</p>
+                  <p className="text-4xl font-extrabold text-teal-400">$450</p>
                 </div>
                 <p className="mt-2 text-sm text-zinc-300">Incluye catálogo, carrito, checkout y Wompi listo para vender.</p>
                 <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
-                  <span className="service-shine block h-full w-1/3 rounded-full bg-gradient-to-r from-[#FFD600] via-yellow-300 to-transparent" />
+                  <span className="service-shine block h-full w-1/3 rounded-full bg-gradient-to-r from-teal-500 via-teal-300 to-transparent" />
                 </div>
               </article>
 
@@ -1194,8 +1366,8 @@ export default function SupermercadoPage() {
                       key={svc.id}
                       onMouseMove={(e) => handleMagneticMove(e, 8)}
                       onMouseLeave={handleMagneticLeave}
-                      className={`magnetic route-card rounded-2xl border bg-[#111111] p-5 transition duration-300 hover:scale-[1.01] hover:shadow-[0_0_22px_rgba(255,214,0,0.18)] ${
-                        checked ? "border-[#FFD600]/70 shadow-[0_0_18px_rgba(255,214,0,0.12)]" : "border-zinc-700 hover:border-yellow-300/70"
+                      className={`magnetic route-card rounded-2xl border bg-[#111111] p-5 transition duration-300 hover:scale-[1.01] hover:shadow-[0_0_22px_rgba(13,148,136,0.12)] ${
+                        checked ? "border-teal-500/70 shadow-[0_0_18px_rgba(13,148,136,0.1)]" : "border-zinc-700 hover:border-teal-400/50"
                       }`}
                     >
                       <label className={`flex gap-3 ${isPrimary ? "cursor-default" : "cursor-pointer"}`}>
@@ -1204,15 +1376,15 @@ export default function SupermercadoPage() {
                           checked={checked}
                           onChange={() => togglePageService(svc.id)}
                           disabled={isPrimary}
-                          className="peer mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-zinc-600 bg-zinc-900 accent-[#FFD600] focus:ring-2 focus:ring-[#FFD600]/40 focus:ring-offset-0 focus:ring-offset-black"
+                          className="peer mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-zinc-600 bg-zinc-900 accent-teal-600 focus:ring-2 focus:ring-teal-500/40 focus:ring-offset-0 focus:ring-offset-black"
                           aria-describedby={`svc-price-${svc.id}`}
                         />
-                        <span className="min-w-0 flex-1 text-left text-sm font-medium leading-snug text-zinc-100 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#FFD600]">
+                        <span className="min-w-0 flex-1 text-left text-sm font-medium leading-snug text-zinc-100 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-teal-500">
                           {svc.label}
                           <span
                             className={`mt-1 inline-flex rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] ${
                               isPrimary
-                                ? "border-[#FFD600]/70 bg-[#FFD600]/10 text-[#FFD600]"
+                                ? "border-teal-500/70 bg-teal-500/10 text-teal-300"
                                 : "border-zinc-600 text-zinc-400"
                             }`}
                           >
@@ -1224,7 +1396,7 @@ export default function SupermercadoPage() {
                             </span>
                           ) : null}
                         </span>
-                        <span id={`svc-price-${svc.id}`} className="shrink-0 text-lg font-extrabold tabular-nums text-[#FFD600]">
+                        <span id={`svc-price-${svc.id}`} className="shrink-0 text-lg font-extrabold tabular-nums text-teal-400">
                           ${formatUsdAmount(svc.priceUsd)}
                         </span>
                       </label>
@@ -1256,7 +1428,7 @@ export default function SupermercadoPage() {
                 <div className="mt-4 flex items-end justify-between gap-4">
                   <div>
                     <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">A pagar</p>
-                    <p className={`text-3xl font-extrabold text-white transition-all duration-200 ${totalPulse ? "scale-[1.04] text-yellow-200" : ""}`}>
+                    <p className={`text-3xl font-extrabold text-white transition-all duration-200 ${totalPulse ? "scale-[1.04] text-teal-200" : ""}`}>
                       ${formatUsdAmount(cartaTotal)} USD
                     </p>
                   </div>
@@ -1264,7 +1436,7 @@ export default function SupermercadoPage() {
                     href={pagesCartaWaHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex shrink-0 rounded-xl border border-yellow-400 bg-[#FFD600] px-5 py-3 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)] sm:text-sm"
+                    className={`inline-flex shrink-0 px-5 py-3 text-center text-xs tracking-[0.12em] sm:text-sm ${CTA_BTN}`}
                   >
                     Consultar por este paquete
                   </a>
@@ -1278,7 +1450,7 @@ export default function SupermercadoPage() {
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">Total</p>
-                  <p className={`text-2xl font-extrabold text-white transition-all duration-200 ${totalPulse ? "scale-[1.04] text-yellow-200" : ""}`}>
+                  <p className={`text-2xl font-extrabold text-white transition-all duration-200 ${totalPulse ? "scale-[1.04] text-teal-200" : ""}`}>
                     ${formatUsdAmount(cartaTotal)} USD
                   </p>
                 </div>
@@ -1292,7 +1464,7 @@ export default function SupermercadoPage() {
                 href={pagesCartaWaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full rounded-xl border border-yellow-400 bg-[#FFD600] px-4 py-3 text-center text-xs font-extrabold uppercase tracking-[0.12em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)] sm:w-auto sm:min-w-[200px]"
+                className={`block w-full px-4 py-3 text-center text-xs tracking-[0.12em] sm:w-auto sm:min-w-[200px] sm:text-sm ${CTA_BTN}`}
               >
                 Consultar por este paquete
               </a>
@@ -1315,9 +1487,9 @@ export default function SupermercadoPage() {
                   <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Entrega típica</p>
                   <p className="mt-2 text-3xl font-extrabold text-emerald-300">2 semanas</p>
                 </div>
-                <div className="rounded-xl border border-yellow-500/40 bg-yellow-950/15 p-5 text-center">
+                <div className="rounded-xl border border-teal-500/40 bg-teal-950/20 p-5 text-center">
                   <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Pago paquete</p>
-                  <p className="mt-2 text-lg font-bold text-yellow-200">50% inicio + 50% entrega</p>
+                  <p className="mt-2 text-lg font-bold text-teal-100">50% inicio + 50% entrega</p>
                 </div>
               </div>
               <p className="mt-6 rounded-xl border border-zinc-600 bg-zinc-900/80 px-4 py-3 text-sm text-zinc-300">
@@ -1410,7 +1582,7 @@ export default function SupermercadoPage() {
               <ul className="mt-5 space-y-2 text-sm text-zinc-300 sm:text-base">
                 {educationIncludes.map((line) => (
                   <li key={line} className="flex gap-2">
-                    <span className="text-[#FFD600]">•</span>
+                    <span className="text-teal-400">•</span>
                     <span>{line}</span>
                   </li>
                 ))}
@@ -1443,7 +1615,9 @@ export default function SupermercadoPage() {
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                 {executiveSummaryShared.today.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="text-red-400">●</span>
+                    <span className="shrink-0 text-[#FCA5A5]" aria-hidden>
+                      ❌
+                    </span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -1457,7 +1631,9 @@ export default function SupermercadoPage() {
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                 {executiveSummaryShared.withFluxa.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="text-emerald-400">●</span>
+                    <span className="shrink-0 text-[#6EE7B7]" aria-hidden>
+                      ✅
+                    </span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -1509,6 +1685,31 @@ export default function SupermercadoPage() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-5 pb-12 sm:px-8">
+        <div data-reveal className="reveal-fade-in-up">
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Por qué Fluxa y no una agencia tradicional
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
+            No hacemos páginas web. Instalamos sistemas digitales.
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+            {whyFluxaCards.map((card) => (
+              <article
+                key={card.title}
+                className="route-card rounded-2xl border border-zinc-700 bg-[#111111] p-5 transition duration-300 hover:border-teal-400/60 hover:shadow-[0_0_22px_rgba(13,148,136,0.14)] sm:p-6"
+              >
+                <p className="text-2xl" aria-hidden>
+                  {card.emoji}
+                </p>
+                <h3 className="mt-3 text-lg font-bold text-white sm:text-xl">{card.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-400 sm:text-[15px]">{card.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#0B1F3A] px-5 py-16 sm:px-8">
         <div data-reveal className="reveal mx-auto max-w-5xl text-center">
           <h2 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl">
@@ -1516,12 +1717,12 @@ export default function SupermercadoPage() {
           </h2>
           <p className="mt-3 text-3xl font-extrabold text-blue-300 sm:text-4xl">Fluxa Method pone el sistema.</p>
           <a
-            href="https://wa.me/573116425337"
+            href={planWaHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-8 py-4 text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+            className={`mt-10 inline-flex px-8 py-4 text-sm ${CTA_BTN}`}
           >
-            Confirmar arranque del proyecto
+            QUIERO ACTIVAR MI SISTEMA
           </a>
           <p className="mt-10 text-xs font-medium uppercase tracking-[0.2em] text-blue-200/80 sm:text-sm">
             fluxamethod.com · @fluxamethod · Bogotá, Colombia
@@ -1531,12 +1732,12 @@ export default function SupermercadoPage() {
 
       <div className="mobile-cta mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8 md:hidden">
         <a
-          href="https://wa.me/573116425337"
+          href={planWaHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full rounded-xl border border-yellow-400 bg-[#FFD600] px-4 py-3 text-center text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+          className={`block w-full px-4 py-3 text-center text-sm ${CTA_BTN}`}
         >
-          Confirmar arranque del proyecto
+          QUIERO ACTIVAR MI SISTEMA
         </a>
       </div>
 
@@ -1550,6 +1751,16 @@ export default function SupermercadoPage() {
         .reveal.is-visible {
           opacity: 1;
           transform: translateY(0) scale(1);
+        }
+        .reveal-fade-in-up {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.72s ease, transform 0.72s ease;
+          will-change: transform, opacity;
+        }
+        .reveal-fade-in-up.is-visible {
+          opacity: 1;
+          transform: translateY(0);
         }
         .fade-tab {
           opacity: 0;
@@ -1613,8 +1824,8 @@ export default function SupermercadoPage() {
         }
         .route-card:hover {
           transform: translateY(-2px);
-          border-color: rgba(255, 255, 255, 0.18);
-          box-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
+          border-color: rgba(45, 212, 191, 0.35);
+          box-shadow: 0 0 24px rgba(13, 148, 136, 0.12);
         }
         .service-shine {
           animation: serviceShine 2.4s ease-in-out infinite;
@@ -1665,6 +1876,7 @@ export default function SupermercadoPage() {
         }
         @media (prefers-reduced-motion: reduce) {
           .reveal,
+          .reveal-fade-in-up,
           .pulse-glow,
           .timeline-dash,
           .timeline-dash-vertical,
@@ -1677,6 +1889,9 @@ export default function SupermercadoPage() {
             transform: none !important;
           }
           .fade-tab {
+            opacity: 1 !important;
+          }
+          .reveal-fade-in-up {
             opacity: 1 !important;
           }
         }
