@@ -340,6 +340,28 @@ const deliverablesScale = [
   },
 ];
 
+/** Plan Esencial vs Plan Completo — true/false = incluido; string = texto en celda */
+const planPackageComparison = [
+  { feature: "Landing estratégica", essential: true, complete: true },
+  { feature: "Catálogo digital (experiencias / cabañas)", essential: true, complete: true },
+  { feature: "Pagos online (anticipo / reserva)", essential: true, complete: true },
+  { feature: "WhatsApp integrado", essential: true, complete: true },
+  { feature: "Diseño responsive", essential: true, complete: true },
+  { feature: "Automatización básica", essential: true, complete: true },
+  { feature: "Pixel Meta", essential: true, complete: true },
+  { feature: "Embudos y reservas avanzadas", essential: false, complete: true },
+  { feature: "Panel administrativo", essential: false, complete: true },
+  { feature: "Gestión de disponibilidad (calendario)", essential: false, complete: true },
+  { feature: "Alertas y recordatorios automáticos", essential: false, complete: true },
+  { feature: "CRM integrado", essential: false, complete: true },
+  { feature: "Dashboard comercial", essential: false, complete: true },
+  { feature: "Recuperación de leads sin reserva", essential: false, complete: true },
+  { feature: "Recompra y referidos automáticos", essential: false, complete: true },
+  { feature: "Automatización avanzada", essential: false, complete: true },
+  { feature: "Fidelización de clientes", essential: "Básica", complete: "Avanzada" },
+  { feature: "Preparado para escalamiento", essential: "Limitado", complete: "Completo" },
+];
+
 const projectConditions = [
   "Duracion del proyecto: 3 meses desde la firma del contrato.",
   "30 dias de soporte post-entrega para ajustes menores.",
@@ -494,6 +516,33 @@ export default function EcoDreamersCuritiPage() {
       setSelectedPlan(plan);
       setTabFadeIn(true);
     }, 220);
+  };
+
+  const renderPkgCell = (value, isCompleteColumn) => {
+    if (value === true) {
+      return (
+        <span
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/25 text-sm font-bold text-emerald-300 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)]"
+          aria-label="Incluido"
+        >
+          ✓
+        </span>
+      );
+    }
+    if (value === false) {
+      return (
+        <span className="text-lg font-bold leading-none text-red-400" aria-label="No incluido">
+          ✗
+        </span>
+      );
+    }
+    return (
+      <span
+        className={`text-center text-[11px] font-semibold leading-tight sm:text-sm ${isCompleteColumn ? "text-[#FFD600]" : "text-zinc-400"}`}
+      >
+        {value}
+      </span>
+    );
   };
 
   const progressPercent = 0;
@@ -772,6 +821,45 @@ export default function EcoDreamersCuritiPage() {
                 • {item}
               </p>
             ))}
+          </div>
+        </div>
+      </section>
+      ) : null}
+
+      {!isExtrasTab ? (
+      <section className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8">
+        <div data-reveal className="reveal rounded-2xl border border-zinc-800 bg-[#0D0D0D] p-4 sm:p-8">
+          <h2 className="text-center text-base font-extrabold uppercase leading-snug tracking-wide text-white sm:text-lg md:text-xl">
+            Diferencia real entre el Plan Esencial y el Plan Completo
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-xs text-zinc-500 sm:text-sm">
+            Misma base profesional; el Plan Completo suma CRM, embudos, recuperación de leads y métricas para escalar reservas.
+          </p>
+
+          <div className="mt-6 overflow-x-auto rounded-xl border border-zinc-800 bg-black/40">
+            <div className="min-w-[320px]">
+              <div className="grid grid-cols-[1fr_72px_72px] gap-2 border-b border-zinc-800 px-3 py-3 sm:grid-cols-[1fr_88px_88px] sm:px-4 sm:py-4">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">Característica</span>
+                <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
+                  Plan Esencial
+                  <span className="block font-extrabold text-[#FFD600]">$697</span>
+                </span>
+                <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
+                  Plan Completo
+                  <span className="block font-extrabold text-[#FFD600]">$1,597</span>
+                </span>
+              </div>
+              {planPackageComparison.map((row) => (
+                <div
+                  key={row.feature}
+                  className="grid grid-cols-[1fr_72px_72px] items-center gap-2 border-b border-zinc-800/90 px-3 py-2.5 last:border-b-0 sm:grid-cols-[1fr_88px_88px] sm:px-4 sm:py-3"
+                >
+                  <span className="text-left text-[11px] leading-snug text-zinc-200 sm:text-sm">{row.feature}</span>
+                  <div className="flex justify-center">{renderPkgCell(row.essential, false)}</div>
+                  <div className="flex justify-center">{renderPkgCell(row.complete, true)}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
