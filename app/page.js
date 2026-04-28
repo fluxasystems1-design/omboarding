@@ -27,6 +27,11 @@ const landings = [
     description: "Ecosistema de reservas automáticas",
   },
   {
+    name: "Tu Supermercado",
+    path: "/supermercado",
+    description: "Sistema digital para vender más (3 planes: Sistema, Páginas, Educación)",
+  },
+  {
     name: "Carolina Rojas",
     path: "/carolina-rojas",
     description: "Ecosistema digital para monetizar audiencia",
