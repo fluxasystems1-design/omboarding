@@ -14,7 +14,7 @@ const PLAN_META = {
     heroMetric4Label: "Clientes potenciales",
     ctaText: "Confirmar arranque del proyecto",
     included: [
-      "Presencia digital: Instagram, WhatsApp Business, Google My Business y link en bio.",
+      "Presencia digital: Instagram, WhatsApp Business y link en bio.",
       "Sistema de pedidos online con catálogo, confirmaciones y panel del día.",
       "Automatizaciones: ofertas semanales, puntos por WhatsApp, cupones y recuperación.",
       "Pauta Meta Ads geolocalizada (5 km), creativos de ofertas y optimización por ROAS.",
@@ -43,7 +43,7 @@ const PLAN_META = {
     chip: "FLUXA PAGES",
     subtitle:
       "Tu presencia digital profesional lista en 2 semanas. Sin sistema completo — solo las páginas que necesitas.",
-    heroPrice: "$350 USD",
+    heroPrice: "$450 USD",
     heroDuration: "2 semanas",
     heroModules: "4 activos",
     heroMetric4: "—",
@@ -53,10 +53,10 @@ const PLAN_META = {
     paymentA: null,
     paymentB: null,
     totalLine: "",
-    summaryInvestment: "$350 USD",
+    summaryInvestment: "$450 USD",
     summaryPayment: "50% inicio + 50% entrega",
     metaNote: "",
-    totalProjectLabel: "$350 USD",
+    totalProjectLabel: "$450 USD",
   },
   education: {
     chip: "FLUXA EDU · 4 SEMANAS",
@@ -65,8 +65,8 @@ const PLAN_META = {
     heroPrice: "$250 USD",
     heroDuration: "4 semanas",
     heroModules: "4 sesiones",
-    heroMetric4: "1",
-    heroMetric4Label: "Cupo por cohorte",
+    heroMetric4: "1:1",
+    heroMetric4Label: "Acompañamiento",
     ctaText: "Confirmar arranque del proyecto",
     included: [],
     paymentA: null,
@@ -93,12 +93,12 @@ const timelinePhasesSystem = [
     items: [
       "Perfil Instagram optimizado con identidad visual",
       "WhatsApp Business configurado con catálogo",
-      'Google My Business activo (aparece en "supermercado cerca de mí")',
+      "Perfil digital local optimizado para que te encuentren fácil",
       "Link en bio con menú de ofertas, pedidos y contacto",
     ],
     scope: "Base digital local: te encuentran, confían y contactan sin fricción.",
     build: "Configuramos canales, identidad y datos de contacto unificados.",
-    activate: "Publicamos bio, catálogo WA y ficha Google con CTA claro.",
+    activate: "Publicamos bio y catálogo WA con CTA claro.",
     result: "Más visibilidad local y conversaciones que antes se quedaban en el aire.",
   },
   {
@@ -322,7 +322,7 @@ const deliverablesSystem = [
     items: [
       "Perfil Instagram con identidad visual consistente",
       "WhatsApp Business con catálogo de productos",
-      "Google My Business optimizado",
+      "Perfil digital local optimizado",
       "Link en bio con menú completo",
       "Fotografía de productos para redes",
     ],
@@ -382,64 +382,63 @@ const metricsHero = [
   { label: "Automatizaciones activas", value: "0", color: "text-red-300" },
 ];
 
+const PRIMARY_PAGE_SERVICE_ID = "tienda-ecommerce";
+
 const PAGE_SERVICES_CARTA = [
-  {
-    id: "landing-negocio",
-    label: "Landing de negocio (quiénes somos, servicios, contacto, ubicación)",
-    priceUsd: 150,
-  },
-  {
-    id: "landing-producto",
-    label: "Landing de producto individual con CTA",
-    priceUsd: 120,
-  },
   {
     id: "tienda-ecommerce",
     label: "Tienda ecommerce completa (catálogo, carrito, Wompi)",
     priceUsd: 450,
   },
   {
+    id: "landing-negocio",
+    label: "Página web de tu negocio (quiénes somos, servicios, contacto y ubicación)",
+    priceUsd: 150,
+  },
+  {
+    id: "landing-producto",
+    label: "Página para vender un solo producto",
+    priceUsd: 120,
+  },
+  {
     id: "pedidos-wa",
-    label: "Sistema de pedidos por WhatsApp automatizado",
+    label: "Pedidos por WhatsApp automáticos",
     priceUsd: 180,
   },
   {
     id: "panel-dashboard",
-    label: "Panel de control + dashboard de métricas",
+    label: "Panel para ver ventas y resultados",
     priceUsd: 200,
   },
   {
     id: "inventario",
-    label: "Sistema de inventario con alertas de stock",
+    label: "Control de inventario con alertas cuando se acaba algo",
     priceUsd: 220,
   },
   {
     id: "blog-ofertas",
-    label: "Blog o sección de ofertas actualizable",
+    label: "Sección de ofertas que puedes actualizar fácil",
     priceUsd: 100,
   },
   {
     id: "gmb",
-    label: "Google My Business optimizado",
+    label: "Perfil digital local optimizado",
     priceUsd: 60,
   },
   {
     id: "instagram-canva",
-    label: "Perfil Instagram optimizado + 5 plantillas Canva",
+    label: "Instagram optimizado + 5 plantillas listas para usar",
     priceUsd: 80,
   },
   {
     id: "pagina-ofertas",
-    label: "Página de ofertas semanales actualizable",
+    label: "Página de promociones semanales",
     priceUsd: 90,
   },
 ];
 
 function pagesCartaDiscountPercent(count) {
-  if (count <= 1) return 0;
-  if (count <= 3) return 10;
-  if (count <= 5) return 20;
-  return 30;
+  return 0;
 }
 
 function formatUsdAmount(n) {
@@ -482,15 +481,17 @@ export default function SupermercadoPage() {
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false });
   const [tabFade, setTabFade] = useState(true);
-  const [selectedPageServices, setSelectedPageServices] = useState([]);
+  const [selectedPageServices, setSelectedPageServices] = useState([PRIMARY_PAGE_SERVICE_ID]);
+  const [totalPulse, setTotalPulse] = useState(false);
   const timelineCarouselRef = useRef(null);
 
   const plan = PLAN_META[selectedTab];
 
   const selectedCartaItems = PAGE_SERVICES_CARTA.filter((s) => selectedPageServices.includes(s.id));
   const cartaCount = selectedCartaItems.length;
+  const additionalServicesCount = Math.max(cartaCount - 1, 0);
   const cartaSubtotal = selectedCartaItems.reduce((acc, s) => acc + s.priceUsd, 0);
-  const cartaDiscountPct = pagesCartaDiscountPercent(cartaCount);
+  const cartaDiscountPct = pagesCartaDiscountPercent(additionalServicesCount);
   const cartaDiscountUsd = Math.round(cartaSubtotal * (cartaDiscountPct / 100) * 100) / 100;
   const cartaTotal = Math.round((cartaSubtotal - cartaDiscountUsd) * 100) / 100;
 
@@ -516,6 +517,7 @@ export default function SupermercadoPage() {
   })();
 
   const togglePageService = (id) => {
+    if (id === PRIMARY_PAGE_SERVICE_ID) return;
     setSelectedPageServices((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
@@ -589,6 +591,12 @@ export default function SupermercadoPage() {
   useEffect(() => {
     setTabFade(true);
   }, []);
+
+  useEffect(() => {
+    setTotalPulse(true);
+    const id = window.setTimeout(() => setTotalPulse(false), 280);
+    return () => window.clearTimeout(id);
+  }, [cartaTotal]);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll("[data-reveal]");
@@ -721,12 +729,12 @@ export default function SupermercadoPage() {
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-400">
             Toca un plan para ver sus detalles
           </p>
-          <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
+          <div className="plan-tabs-scroll mb-5 flex items-center justify-start gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:justify-center sm:overflow-visible">
             <button
               type="button"
               onClick={() => handleTabChange("system")}
               aria-pressed={selectedTab === "system"}
-              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 selectedTab === "system"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
@@ -738,19 +746,19 @@ export default function SupermercadoPage() {
               type="button"
               onClick={() => handleTabChange("pages")}
               aria-pressed={selectedTab === "pages"}
-              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 selectedTab === "pages"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
               }`}
             >
-              Solo Páginas · $350
+              Solo Páginas · $450
             </button>
             <button
               type="button"
               onClick={() => handleTabChange("education")}
               aria-pressed={selectedTab === "education"}
-              className={`rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] transition ${
                 selectedTab === "education"
                   ? "border-[#FFD600] bg-[#FFD600] text-black"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
@@ -766,18 +774,18 @@ export default function SupermercadoPage() {
             aria-live="polite"
           >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{plan.chip}</p>
-          <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="text-3xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
             Tu{" "}
             <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.45)]">Supermercado</span>
           </h1>
-          <p className="mt-4 text-xl text-zinc-200 sm:text-2xl">
+          <p className="mt-4 text-lg text-zinc-200 sm:text-2xl">
             Sistema digital para que tu supermercado venda más todos los días.
           </p>
           <p className="mt-2 text-sm font-semibold text-zinc-300">{plan.subtitle}</p>
           <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:mt-7 sm:text-sm sm:tracking-[0.35em]">
-            OFERTAS · DOMICILIOS · FIDELIZACIÓN · CLIENTES · CÚCUTA
+            OFERTAS · DOMICILIOS · FIDELIZACIÓN · CLIENTES · BOGOTÁ
           </p>
-          <div className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
               <p className="text-3xl font-extrabold text-white">{plan.heroPrice}</p>
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">
@@ -807,7 +815,7 @@ export default function SupermercadoPage() {
             href="https://wa.me/573116425337"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+            className="mt-6 inline-flex w-full justify-center rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-center text-sm font-extrabold uppercase tracking-[0.14em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)] sm:w-auto"
           >
             {plan.ctaText}
           </a>
@@ -824,7 +832,7 @@ export default function SupermercadoPage() {
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">Plan activo</p>
           <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">FLUXA SYSTEM ($697)</h2>
           <p className="mt-2 text-sm text-zinc-300">
-            Información clave del sistema completo para tu supermercado en Cúcuta.
+                Información clave del sistema completo para tu supermercado en Bogotá.
           </p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
             {plan.included.map((item) => (
@@ -1146,11 +1154,11 @@ export default function SupermercadoPage() {
       </section>
         </>
       ) : selectedTab === "pages" ? (
-        <div className="pb-28 md:pb-0">
+        <div className="pb-10 md:pb-0">
           <section className="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8">
             <div data-reveal className="reveal rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 sm:p-7">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">Plan activo</p>
-              <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">FLUXA PAGES ($350)</h2>
+              <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">FLUXA PAGES ($450)</h2>
               <p className="mt-2 text-sm text-zinc-300">
                 Presencia profesional en 2 semanas — páginas listas para dirigir tráfico a WhatsApp y ofertas.
               </p>
@@ -1162,21 +1170,24 @@ export default function SupermercadoPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500">Carta modular</p>
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">Arma tu paquete</h2>
               <p className="mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
-                Marca los servicios que necesitas. El descuento sube según cuántos incluyas en un mismo proyecto.
+                El ecommerce es la base principal. Los demás servicios se agregan como adicionales según lo que necesites.
               </p>
 
-              <div className="mt-6 rounded-2xl border border-yellow-500/25 bg-yellow-400/5 px-4 py-3 text-sm text-zinc-300">
-                <p className="font-bold text-[#FFD600]">Descuentos por cantidad</p>
-                <ul className="mt-2 grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
-                  <li>1 servicio → precio normal</li>
-                  <li>2–3 servicios → 10% off</li>
-                  <li>4–5 servicios → 20% off</li>
-                  <li>6 o más → 30% off</li>
-                </ul>
-              </div>
+              <article className="mt-6 overflow-hidden rounded-2xl border border-[#FFD600]/45 bg-gradient-to-br from-yellow-400/10 via-zinc-950 to-zinc-900 p-5 sm:p-6">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#FFD600]">Servicio principal</p>
+                <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
+                  <h3 className="text-2xl font-extrabold sm:text-3xl">Tienda ecommerce completa</h3>
+                  <p className="text-4xl font-extrabold text-[#FFD600]">$450</p>
+                </div>
+                <p className="mt-2 text-sm text-zinc-300">Incluye catálogo, carrito, checkout y Wompi listo para vender.</p>
+                <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
+                  <span className="service-shine block h-full w-1/3 rounded-full bg-gradient-to-r from-[#FFD600] via-yellow-300 to-transparent" />
+                </div>
+              </article>
 
               <div className="mt-8 grid gap-4 md:grid-cols-2">
                 {PAGE_SERVICES_CARTA.map((svc) => {
+                  const isPrimary = svc.id === PRIMARY_PAGE_SERVICE_ID;
                   const checked = selectedPageServices.includes(svc.id);
                   return (
                     <article
@@ -1187,16 +1198,31 @@ export default function SupermercadoPage() {
                         checked ? "border-[#FFD600]/70 shadow-[0_0_18px_rgba(255,214,0,0.12)]" : "border-zinc-700 hover:border-yellow-300/70"
                       }`}
                     >
-                      <label className="flex cursor-pointer gap-3">
+                      <label className={`flex gap-3 ${isPrimary ? "cursor-default" : "cursor-pointer"}`}>
                         <input
                           type="checkbox"
                           checked={checked}
                           onChange={() => togglePageService(svc.id)}
+                          disabled={isPrimary}
                           className="peer mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-zinc-600 bg-zinc-900 accent-[#FFD600] focus:ring-2 focus:ring-[#FFD600]/40 focus:ring-offset-0 focus:ring-offset-black"
                           aria-describedby={`svc-price-${svc.id}`}
                         />
                         <span className="min-w-0 flex-1 text-left text-sm font-medium leading-snug text-zinc-100 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#FFD600]">
                           {svc.label}
+                          <span
+                            className={`mt-1 inline-flex rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em] ${
+                              isPrimary
+                                ? "border-[#FFD600]/70 bg-[#FFD600]/10 text-[#FFD600]"
+                                : "border-zinc-600 text-zinc-400"
+                            }`}
+                          >
+                            {isPrimary ? "Principal" : "Adicional"}
+                          </span>
+                          {!isPrimary ? (
+                            <span className={`ml-2 inline-flex text-xs font-bold text-emerald-300 transition-all duration-200 ${checked ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"}`}>
+                              ✓ agregado
+                            </span>
+                          ) : null}
                         </span>
                         <span id={`svc-price-${svc.id}`} className="shrink-0 text-lg font-extrabold tabular-nums text-[#FFD600]">
                           ${formatUsdAmount(svc.priceUsd)}
@@ -1212,7 +1238,7 @@ export default function SupermercadoPage() {
                 <div className="mt-4 space-y-3 border-b border-zinc-800 pb-4">
                   <div className="flex justify-between text-sm">
                     <span className="text-zinc-400">
-                      Subtotal ({cartaCount} {cartaCount === 1 ? "servicio" : "servicios"})
+                      Subtotal ({additionalServicesCount} {additionalServicesCount === 1 ? "adicional" : "adicionales"} + principal)
                     </span>
                     <span className="font-semibold text-white">${formatUsdAmount(cartaSubtotal)} USD</span>
                   </div>
@@ -1230,7 +1256,9 @@ export default function SupermercadoPage() {
                 <div className="mt-4 flex items-end justify-between gap-4">
                   <div>
                     <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">A pagar</p>
-                    <p className="text-3xl font-extrabold text-white">${formatUsdAmount(cartaTotal)} USD</p>
+                    <p className={`text-3xl font-extrabold text-white transition-all duration-200 ${totalPulse ? "scale-[1.04] text-yellow-200" : ""}`}>
+                      ${formatUsdAmount(cartaTotal)} USD
+                    </p>
                   </div>
                   <a
                     href={pagesCartaWaHref}
@@ -1245,17 +1273,19 @@ export default function SupermercadoPage() {
             </div>
           </section>
 
-          <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-zinc-700 bg-zinc-950/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-12px_40px_rgba(0,0,0,0.65)] backdrop-blur-md md:hidden">
+          <div className="sticky bottom-3 z-30 mx-4 mt-6 rounded-2xl border border-zinc-700 bg-zinc-950/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_0_24px_rgba(0,0,0,0.55)] backdrop-blur-md md:hidden">
             <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">Total</p>
-                  <p className="text-2xl font-extrabold text-white">${formatUsdAmount(cartaTotal)} USD</p>
+                  <p className={`text-2xl font-extrabold text-white transition-all duration-200 ${totalPulse ? "scale-[1.04] text-yellow-200" : ""}`}>
+                    ${formatUsdAmount(cartaTotal)} USD
+                  </p>
                 </div>
                 {cartaDiscountPct > 0 ? (
                   <p className="text-sm font-semibold text-emerald-400">−{cartaDiscountPct}% aplicado</p>
                 ) : (
-                  <p className="text-xs text-zinc-500">{cartaCount === 0 ? "Elige servicios" : "Sin dto."}</p>
+                  <p className="text-xs text-zinc-500">Sin dto. aún</p>
                 )}
               </div>
               <a
@@ -1273,13 +1303,13 @@ export default function SupermercadoPage() {
             <div data-reveal className="reveal rounded-2xl border border-zinc-700 bg-[#111111] p-6 sm:p-8">
               <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Inversión</h2>
               <p className="mt-3 text-sm text-zinc-400">
-                Paquete referencia Fluxa Pages <span className="font-semibold text-zinc-200">$350 USD</span> (entrega ~2 semanas,
+                Paquete referencia Fluxa Pages <span className="font-semibold text-zinc-200">$450 USD</span> (entrega ~2 semanas,
                 50% + 50%) o arma tu propio mix con la carta y descuentos por volumen arriba.
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
                 <div className="rounded-xl border border-blue-500/40 bg-blue-950/25 p-5 text-center">
-                  <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Paquete base</p>
-                  <p className="mt-2 text-4xl font-extrabold text-blue-300">$350 USD</p>
+                  <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Ecommerce principal</p>
+                  <p className="mt-2 text-4xl font-extrabold text-blue-300">$450 USD</p>
                 </div>
                 <div className="rounded-xl border border-emerald-500/40 bg-emerald-950/20 p-5 text-center">
                   <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">Entrega típica</p>
@@ -1394,7 +1424,7 @@ export default function SupermercadoPage() {
               <p className="mt-4 text-4xl font-extrabold text-blue-300">$250 USD</p>
               <p className="mt-2 text-sm text-zinc-400">Pago único antes de la primera sesión.</p>
               <p className="mt-4 rounded-xl border border-violet-500/40 bg-violet-950/20 px-4 py-3 text-sm text-violet-200">
-                Cupo máximo: 1 supermercado por cohorte (atención personalizada).
+                Atención personalizada durante las 4 semanas.
               </p>
             </div>
           </section>
@@ -1438,7 +1468,7 @@ export default function SupermercadoPage() {
               <p className="inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-blue-300">
                 Inversión
               </p>
-              <p className="mt-4 text-5xl font-extrabold text-blue-300">{plan.summaryInvestment}</p>
+              <p className="mt-4 text-4xl font-extrabold text-blue-300 sm:text-5xl">{plan.summaryInvestment}</p>
               <p className="mt-4 text-lg text-zinc-300">
                 {selectedTab === "system" && (
                   <>
@@ -1464,7 +1494,7 @@ export default function SupermercadoPage() {
                     <br />
                     4 sesiones en vivo
                     <br />
-                    1 cupo / cohorte
+                    acompañamiento personalizado
                   </>
                 )}
               </p>
@@ -1494,7 +1524,7 @@ export default function SupermercadoPage() {
             Confirmar arranque del proyecto
           </a>
           <p className="mt-10 text-xs font-medium uppercase tracking-[0.2em] text-blue-200/80 sm:text-sm">
-            fluxamethod.com · @fluxamethod · Cúcuta, Colombia
+            fluxamethod.com · @fluxamethod · Bogotá, Colombia
           </p>
         </div>
       </section>
@@ -1567,6 +1597,13 @@ export default function SupermercadoPage() {
         .mobile-snap-carousel::-webkit-scrollbar {
           display: none;
         }
+        .plan-tabs-scroll {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .plan-tabs-scroll::-webkit-scrollbar {
+          display: none;
+        }
         .magnetic {
           transition: transform 0.25s ease;
           will-change: transform;
@@ -1578,6 +1615,9 @@ export default function SupermercadoPage() {
           transform: translateY(-2px);
           border-color: rgba(255, 255, 255, 0.18);
           box-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
+        }
+        .service-shine {
+          animation: serviceShine 2.4s ease-in-out infinite;
         }
         @keyframes pulseGlow {
           0% {
@@ -1609,6 +1649,20 @@ export default function SupermercadoPage() {
             background-position: 0 48px;
           }
         }
+        @keyframes serviceShine {
+          0% {
+            transform: translateX(-35%);
+            opacity: 0.55;
+          }
+          50% {
+            transform: translateX(115%);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(220%);
+            opacity: 0.4;
+          }
+        }
         @media (prefers-reduced-motion: reduce) {
           .reveal,
           .pulse-glow,
@@ -1616,7 +1670,8 @@ export default function SupermercadoPage() {
           .timeline-dash-vertical,
           .magnetic,
           .route-card,
-          .fade-tab {
+          .fade-tab,
+          .service-shine {
             animation: none !important;
             transition: none !important;
             transform: none !important;
