@@ -22,7 +22,7 @@ const PLAN_CONFIGS = {
       title: "Pago en 2 cuotas",
       rows: [
         { label: "Cuota 1 al firmar", value: "$350 USD" },
-        { label: "Cuota 2 al mes 2", value: "$347 USD" },
+        { label: "Cuota 2 a los 20 días", value: "$347 USD" },
       ],
     },
     paymentB: {
@@ -32,7 +32,7 @@ const PLAN_CONFIGS = {
     },
     totalLine: "$697 USD · Sin intereses",
     summaryInvestment: "$697 USD",
-    summaryPayment: "2 cuotas (inicio + mes 2)",
+    summaryPayment: "2 cuotas (inicio + 20 días)",
   },
   scale: {
     chip: "FLUXA SYSTEM · ESCALAMIENTO & AUTOMATIZACIÓN",
@@ -50,11 +50,10 @@ const PLAN_CONFIGS = {
       "Optimización avanzada de experiencia y acompañamiento en pauta",
     ],
     paymentA: {
-      title: "Pago en 3 cuotas",
+      title: "Pago en 2 cuotas",
       rows: [
-        { label: "Cuota 1 al firmar", value: "$600 USD" },
-        { label: "Cuota 2 al mes 2", value: "$500 USD" },
-        { label: "Cuota 3 al mes 3", value: "$497 USD" },
+        { label: "Cuota 1 al firmar", value: "$800 USD" },
+        { label: "Cuota 2 a los 20 días", value: "$797 USD" },
       ],
     },
     paymentB: {
@@ -64,7 +63,7 @@ const PLAN_CONFIGS = {
     },
     totalLine: "$1,597 USD · Sin intereses",
     summaryInvestment: "$1,597 USD",
-    summaryPayment: "3 cuotas o pago único",
+    summaryPayment: "2 cuotas (inicio + 20 días) o pago único",
   },
 };
 

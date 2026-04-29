@@ -417,13 +417,6 @@ const whyFluxaCards = [
   },
 ];
 
-const metricsHero = [
-  { label: "YA VENDEN DESDE EL CELULAR", value: "D1, Ara", color: "text-emerald-300" },
-  { label: "PEDIDOS ONLINE ACTIVOS", value: "0", color: "text-blue-300" },
-  { label: "BASE DE CLIENTES PROPIA", value: "0", color: "text-violet-300" },
-  { label: "AUTOMATIZACIONES ACTIVAS", value: "0", color: "text-red-300" },
-];
-
 const PRIMARY_PAGE_SERVICE_ID = "tienda-ecommerce";
 
 const PAGE_SERVICES_CARTA = [
@@ -540,6 +533,28 @@ const executionRowsSystem = [
   },
 ];
 
+/** Paquete 2 vs Paquete 3 — boolean = incluido; string = texto en celda */
+const supermercadoPackageComparison = [
+  { feature: "Landing estratégica", paquete2: true, paquete3: true },
+  { feature: "Catálogo digital", paquete2: true, paquete3: true },
+  { feature: "Pagos online", paquete2: true, paquete3: true },
+  { feature: "WhatsApp integrado", paquete2: true, paquete3: true },
+  { feature: "Diseño responsive", paquete2: true, paquete3: true },
+  { feature: "Automatización básica", paquete2: true, paquete3: true },
+  { feature: "Pixel Meta", paquete2: true, paquete3: true },
+  { feature: "Ecommerce avanzado", paquete2: false, paquete3: true },
+  { feature: "Panel administrativo", paquete2: false, paquete3: true },
+  { feature: "Gestión de inventario", paquete2: false, paquete3: true },
+  { feature: "Alertas de stock", paquete2: false, paquete3: true },
+  { feature: "CRM integrado", paquete2: false, paquete3: true },
+  { feature: "Dashboard comercial", paquete2: false, paquete3: true },
+  { feature: "Recuperación de carritos", paquete2: false, paquete3: true },
+  { feature: "Recompra automática", paquete2: false, paquete3: true },
+  { feature: "Automatización avanzada", paquete2: false, paquete3: true },
+  { feature: "Fidelización de clientes", paquete2: "Básica", paquete3: "Avanzada" },
+  { feature: "Preparado para escalamiento", paquete2: "Limitado", paquete3: "Completo" },
+];
+
 export default function SupermercadoPage() {
   const [selectedTab, setSelectedTab] = useState("system");
   const [activePhase, setActivePhase] = useState("fase-1");
@@ -557,6 +572,33 @@ export default function SupermercadoPage() {
     () => waHrefFromText(buildPlanWaMessage(selectedTab, plan)),
     [selectedTab, plan]
   );
+
+  const renderPkgCompareCell = (value, isPaquete3Column) => {
+    if (value === true) {
+      return (
+        <span
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/25 text-sm font-bold text-emerald-300 shadow-[inset_0_0_0_1px_rgba(16,185,129,0.35)]"
+          aria-label="Incluido"
+        >
+          ✓
+        </span>
+      );
+    }
+    if (value === false) {
+      return (
+        <span className="text-lg font-bold leading-none text-red-400" aria-label="No incluido">
+          ✗
+        </span>
+      );
+    }
+    return (
+      <span
+        className={`text-center text-[11px] font-semibold leading-tight sm:text-sm ${isPaquete3Column ? "text-teal-300" : "text-zinc-400"}`}
+      >
+        {value}
+      </span>
+    );
+  };
 
   const diagnosisTitleParts = diagnosisSituation.titleBlock.split(". ");
   const diagnosisTitleHead = diagnosisTitleParts[0] ? `${diagnosisTitleParts[0]}.` : diagnosisSituation.titleBlock;
@@ -934,6 +976,41 @@ export default function SupermercadoPage() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8">
+        <div data-reveal className="reveal rounded-2xl border border-zinc-800 bg-[#0D0D0D] p-4 sm:p-8">
+          <h2 className="text-center text-base font-extrabold uppercase leading-snug tracking-wide text-white sm:text-lg md:text-xl">
+            Diferencia real entre el Paquete 2 y el Paquete 3
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-center text-xs text-zinc-500 sm:text-sm">
+            La misma base digital; el Paquete 3 suma ecommerce avanzado, inventario, CRM y automatizaciones para escalar ventas.
+          </p>
+
+          <div className="mt-6 overflow-x-auto rounded-xl border border-zinc-800 bg-black/40">
+            <div className="min-w-[320px]">
+              <div className="grid grid-cols-[1fr_72px_72px] gap-2 border-b border-zinc-800 px-3 py-3 sm:grid-cols-[1fr_88px_88px] sm:px-4 sm:py-4">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">Característica</span>
+                <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
+                  Paquete 2
+                </span>
+                <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
+                  Paquete 3
+                </span>
+              </div>
+              {supermercadoPackageComparison.map((row) => (
+                <div
+                  key={row.feature}
+                  className="grid grid-cols-[1fr_72px_72px] items-center gap-2 border-b border-zinc-800/90 px-3 py-2.5 last:border-b-0 sm:grid-cols-[1fr_88px_88px] sm:px-4 sm:py-3"
+                >
+                  <span className="text-left text-[11px] leading-snug text-zinc-200 sm:text-sm">{row.feature}</span>
+                  <div className="flex justify-center">{renderPkgCompareCell(row.paquete2, false)}</div>
+                  <div className="flex justify-center">{renderPkgCompareCell(row.paquete3, true)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 sm:px-8 md:pt-16">
         <div data-reveal className="reveal">
           <div className="mb-9 text-center">
@@ -1032,26 +1109,6 @@ export default function SupermercadoPage() {
             ) : null}
           </h2>
           <p className="text-sm text-zinc-400 sm:text-base">{diagnosisSituation.subtitle}</p>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-4">
-            {metricsHero.map((metric, idx) => (
-              <article
-                key={metric.label}
-                className="overflow-hidden rounded-xl border border-[#222222] bg-[#111111] text-center"
-              >
-                <div
-                  className={`h-0.5 w-full ${idx === 0 ? "bg-[#EF4444]" : "bg-teal-500"}`}
-                  aria-hidden
-                />
-                <div className="px-3 py-4 sm:px-4">
-                  <p className="text-[36px] font-bold leading-none text-white">{metric.value}</p>
-                  <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.12em] text-[#666666]">
-                    {metric.label}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
 
           <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1.45fr]">
             <article className="rounded-2xl border border-[#222222] border-l-2 border-l-teal-500 bg-[#111111] pl-5 pr-5 py-5 sm:pl-6 sm:pr-6 sm:py-6">
@@ -1203,28 +1260,19 @@ export default function SupermercadoPage() {
               </tbody>
             </table>
           </div>
-          <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
-            <p className="text-center text-2xl font-bold tabular-nums text-zinc-500 line-through sm:text-left sm:text-3xl">
-              $1.400 USD
-            </p>
-            <span className="hidden text-3xl font-light text-teal-400 sm:block" aria-hidden>
-              →
-            </span>
-            <div className="flex flex-1 flex-col items-center gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <span className="text-2xl text-teal-400 sm:hidden" aria-hidden>
-                →
-              </span>
-              <div className="w-full border-l-4 border-teal-500 bg-black/25 py-4 pl-4 sm:max-w-md sm:py-5 sm:pl-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Inversión Fluxa</p>
-                <p className="mt-1 text-3xl font-extrabold tabular-nums text-teal-400 sm:text-4xl md:text-5xl">
-                  $697 USD
-                </p>
-              </div>
+          <div className="mt-8 flex justify-center">
+            <div className="w-full max-w-md border-l-4 border-teal-500 bg-black/25 py-4 pl-4 sm:py-5 sm:pl-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Inversión Fluxa System</p>
+              <p className="mt-1 text-3xl font-extrabold tabular-nums text-teal-400 sm:text-4xl md:text-5xl">
+                $697 USD
+              </p>
+              <p className="mt-3 text-xs leading-relaxed text-zinc-500 sm:text-sm">
+                Incluye el alcance del sistema descrito arriba. Si necesitas tienda ecommerce completa u otros desarrollos
+                puntuales, cotízalos en{" "}
+                <span className="font-semibold text-zinc-300">Fluxa Pages</span> — precio aparte.
+              </p>
             </div>
           </div>
-          <p className="mt-6 text-center text-base font-semibold text-[#6EE7B7] sm:text-lg">
-            Ahorras $703 USD con el sistema completo
-          </p>
         </div>
       </section>
 
