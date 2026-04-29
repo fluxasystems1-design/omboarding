@@ -105,8 +105,50 @@ const educationModuleCards = [
   },
 ];
 
-const educationProgramDisclaimer =
-  "Este programa es educación práctica — el equipo del glamping aprende a ejecutar. No incluye gestión activa de campañas ni producción de contenido por parte de Fluxa.";
+const educationWeekCards = [
+  {
+    id: "sem-1",
+    label: "SEMANA 1",
+    title: "Educación en Pauta — Meta Ads",
+    subtitle: "Semana 1",
+    icon: "🎯",
+    color: "#3B82F6",
+    glow: "0 0 0 2px rgba(59,130,246,0.5), 0 0 36px rgba(59,130,246,0.6)",
+    items: educationModuleCards[0].items.slice(0, 3),
+  },
+  {
+    id: "sem-2",
+    label: "SEMANA 2",
+    title: "Educación en Pauta — Meta Ads",
+    subtitle: "Semana 2",
+    icon: "📈",
+    color: "#10B981",
+    glow: "0 0 0 2px rgba(16,185,129,0.5), 0 0 36px rgba(16,185,129,0.58)",
+    items: educationModuleCards[0].items.slice(3),
+  },
+  {
+    id: "sem-3",
+    label: "SEMANA 3",
+    title: "Educación en Creación de Contenido",
+    subtitle: "Semana 3",
+    icon: "🎬",
+    color: "#0d9488",
+    glow: "0 0 0 2px rgba(13,148,136,0.5), 0 0 36px rgba(13,148,136,0.42)",
+    items: educationModuleCards[1].items.slice(0, 3),
+  },
+  {
+    id: "sem-4",
+    label: "SEMANA 4",
+    title: "Educación en Creación de Contenido",
+    subtitle: "Semana 4",
+    icon: "🧠",
+    color: "#A855F7",
+    glow: "0 0 0 2px rgba(168,85,247,0.5), 0 0 36px rgba(168,85,247,0.55)",
+    items: educationModuleCards[1].items.slice(3),
+  },
+];
+
+const educationIncludes = educationModuleCards.flatMap((card) => card.items);
 
 const nextSteps = [
   { n: 1, title: "Definir el plan elegido" },
@@ -547,7 +589,7 @@ export default function EcoDreamersCuritiPage() {
   const progressPercent = 0;
 
   useEffect(() => {
-    if (selectedPlan !== "extras") setActivePhase("fase-1");
+    setActivePhase(selectedPlan === "extras" ? "sem-1" : "fase-1");
   }, [selectedPlan]);
 
   const handleMagneticMove = (event, strength = 10) => {
@@ -663,7 +705,7 @@ export default function EcoDreamersCuritiPage() {
               aria-pressed={selectedPlan === "extras"}
               className={`h-12 w-full shrink-0 rounded-full border px-4 text-xs font-bold uppercase tracking-[0.14em] transition md:w-auto md:px-4 ${
                 selectedPlan === "extras"
-                  ? "border-[#FFD600] bg-[#FFD600] text-black"
+                  ? "border-teal-500 bg-teal-600 text-white"
                   : "border-zinc-600 bg-zinc-900/70 text-zinc-300"
               }`}
             >
@@ -678,18 +720,42 @@ export default function EcoDreamersCuritiPage() {
             {isExtrasTab ? (
               <>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-300/90">{EXTRAS_TAB.chip}</p>
-                <h1 className="mt-3 text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl">
-                  {EXTRAS_TAB.title}
+                <h1 className="mt-3 text-3xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
+                  Aprende a manejar tu{" "}
+                  <span className="text-teal-400 drop-shadow-[0_0_14px_rgba(13,148,136,0.45)]">glamping</span>
+                  <br className="hidden sm:block" />
+                  digitalmente en 4 semanas
                 </h1>
-                <p className="mt-4 text-base text-zinc-300 sm:text-lg">{EXTRAS_TAB.subtitle}</p>
-                <p className="mt-6 flex flex-wrap items-center justify-center gap-2 text-lg sm:text-xl md:text-2xl">
-                  <span className="font-extrabold text-[#FFD600]">$250 USD</span>
-                  <span className="font-medium text-zinc-500">—</span>
-                  <span className="font-medium text-zinc-500 line-through">antes $597 USD</span>
-                </p>
+                <p className="mt-4 text-lg text-zinc-200 sm:text-2xl">{EXTRAS_TAB.subtitle}</p>
                 <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:text-sm sm:tracking-[0.35em]">
                   GLAMPING · CURITI, SANTANDER
                 </p>
+                <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">$250 USD</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">PRECIO</p>
+                  </article>
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">4 semanas</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">DURACIÓN</p>
+                  </article>
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">4 sesiones</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">FORMATO</p>
+                  </article>
+                  <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
+                    <p className="text-3xl font-extrabold text-white">1:1</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">ACOMPAÑAMIENTO</p>
+                  </article>
+                </div>
+                <a
+                  href={EDUCATION_PROGRAM_WA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex rounded-xl border border-teal-400 bg-teal-600 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-white shadow-[0_0_18px_rgba(13,148,136,0.35)]"
+                >
+                  Quiero el programa de educación
+                </a>
               </>
             ) : (
               <>
@@ -734,71 +800,160 @@ export default function EcoDreamersCuritiPage() {
       </section>
 
       {isExtrasTab ? (
-        <section className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8">
-          <div data-reveal className="reveal">
-            <div className="grid gap-5 md:grid-cols-2">
-              {educationModuleCards.map((card) => (
-                <article
-                  key={card.title}
-                  className="flex flex-col rounded-2xl border border-zinc-700 bg-[#111111] p-6 text-left"
-                >
-                  <span className="inline-flex w-fit rounded-full border border-yellow-400/50 bg-yellow-400/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-yellow-200">
-                    {card.badge}
-                  </span>
-                  <h3 className="mt-4 text-xl font-extrabold text-white">{card.title}</h3>
-                  <ul className="mt-4 flex-1 space-y-2 text-sm text-zinc-300">
-                    {card.items.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="text-[#FFD600]">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
+        <>
+          <section className="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8">
+            <div data-reveal className="reveal rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 sm:p-7">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">Plan activo</p>
+              <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{EXTRAS_TAB.title}</h2>
+              <p className="mt-2 text-sm text-zinc-300">{EXTRAS_TAB.subtitle}</p>
             </div>
-            <article
-              className="mt-8 rounded-2xl border-2 border-[#FFD600] p-6 text-center sm:p-8"
-              style={{ backgroundColor: "#0B1F3A" }}
-            >
-              <h3 className="text-xl font-extrabold text-white sm:text-2xl">⭐ Recomendación Fluxa Method</h3>
-              <p className="mt-3 text-sm text-zinc-200 sm:text-base">
-                Para un glamping, el contenido visual y la automatización hacen una gran diferencia.
-              </p>
-              <p className="mt-4 text-lg font-extrabold text-[#FFD600] sm:text-xl">Plan Completo + Educación</p>
-              <p className="mt-2 text-sm text-zinc-300 sm:text-base">
-                Escala más rápido, aprovecha temporadas altas y convierte redes sociales en reservas reales.
-              </p>
-              <p className="mt-5 text-base font-extrabold text-white sm:text-lg">
-                Plan Completo + Educación = $1,597 + $250 = $1,847 USD
-              </p>
-            </article>
+          </section>
 
-            <article
-              className="mt-8 rounded-2xl border-2 border-[#FFD600] p-6 text-center sm:p-8"
-              style={{ backgroundColor: "#0D0D0D" }}
-            >
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">Inversión del combo</p>
-              <h3 className="mt-3 text-2xl font-extrabold text-white sm:text-3xl">Combo completo de educación</h3>
+          <section className="mx-auto w-full max-w-6xl px-5 pb-20 pt-4 sm:px-8 md:pt-8">
+            <div data-reveal className="reveal">
+              <div className="mb-9 text-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.36em] text-zinc-400">Calendario</p>
+                <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Semana a semana</h2>
+                <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
+                  Cuatro módulos en línea con entregables prácticos por semana.
+                </p>
+                <div className="mt-4 flex items-center justify-center gap-3 md:hidden">
+                  <button
+                    type="button"
+                    onClick={() => scrollTimeline("left")}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-600 bg-zinc-900/80 text-lg font-bold text-zinc-200"
+                    aria-label="Anterior"
+                  >
+                    ←
+                  </button>
+                  <p className="text-xs uppercase tracking-[0.18em] text-zinc-500">Desliza semanas</p>
+                  <button
+                    type="button"
+                    onClick={() => scrollTimeline("right")}
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-600 bg-zinc-900/80 text-lg font-bold text-zinc-200"
+                    aria-label="Siguiente"
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className="relative"
+                onMouseMove={(event) => {
+                  if (reduceMotion || window.matchMedia("(pointer: coarse)").matches) return;
+                  const rect = event.currentTarget.getBoundingClientRect();
+                  setSpotlight({ x: event.clientX - rect.left, y: event.clientY - rect.top, active: true });
+                }}
+                onMouseLeave={() => setSpotlight((prev) => ({ ...prev, active: false }))}
+              >
+                <div
+                  className="pointer-events-none absolute -left-10 top-14 hidden h-40 w-40 rounded-full bg-cyan-400/15 blur-3xl md:block"
+                  style={{ transform: `translateY(${reduceMotion ? 0 : parallaxOffset * 0.45}px)` }}
+                />
+                <div
+                  className="pointer-events-none absolute -right-8 bottom-10 hidden h-44 w-44 rounded-full bg-indigo-500/15 blur-3xl md:block"
+                  style={{ transform: `translateY(${reduceMotion ? 0 : -parallaxOffset * 0.35}px)` }}
+                />
+                <div
+                  className="spotlight-layer pointer-events-none absolute inset-0 z-0 hidden rounded-3xl md:block"
+                  style={{
+                    opacity: spotlight.active ? 1 : 0,
+                    background: `radial-gradient(340px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255,255,255,0.12), transparent 60%)`,
+                  }}
+                />
+                <div
+                  ref={timelineCarouselRef}
+                  className="mobile-snap-carousel flex items-start gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:pb-0"
+                >
+                  {educationWeekCards.map((week, index) => (
+                    <div
+                      key={week.id}
+                      data-reveal
+                      className="reveal route-card relative z-10 w-[88vw] min-w-[88vw] max-w-md shrink-0 snap-center rounded-2xl border border-zinc-800/80 bg-zinc-950/55 p-4 text-center backdrop-blur-[1px] md:mx-auto md:w-full md:min-w-0 md:max-w-none md:shrink md:snap-none md:p-5"
+                      style={{ transitionDelay: `${index * 120}ms` }}
+                    >
+                      {index !== educationWeekCards.length - 1 && (
+                        <div className="relative mx-auto mt-4 h-12 w-[2px] overflow-hidden rounded-full md:hidden">
+                          <span className="timeline-dash-vertical block h-full w-full" />
+                        </div>
+                      )}
+                      {index !== educationWeekCards.length - 1 && (
+                        <div className="absolute left-[calc(50%+50px)] top-[72px] hidden h-[2px] w-[calc(100%-20px)] overflow-hidden rounded-full md:block">
+                          <span className="timeline-dash absolute inset-0 block" />
+                        </div>
+                      )}
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em]" style={{ color: week.color }}>
+                        {week.label}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setActivePhase(week.id)}
+                        onMouseMove={(event) => handleMagneticMove(event, 12)}
+                        onMouseLeave={handleMagneticLeave}
+                        className="magnetic mx-auto block"
+                      >
+                        <div
+                          className="pulse-glow mx-auto flex h-[60px] w-[60px] items-center justify-center rounded-full border bg-zinc-950/85 text-2xl md:h-[80px] md:w-[80px] md:text-3xl"
+                          style={{
+                            borderColor: week.color,
+                            boxShadow: week.glow,
+                            transform: activePhase === week.id ? "scale(1.08)" : undefined,
+                          }}
+                        >
+                          <span role="img" aria-label={week.title}>
+                            {week.icon}
+                          </span>
+                        </div>
+                      </button>
+                      <p className="mt-4 text-sm font-bold uppercase tracking-wide text-white md:text-base">{week.title}</p>
+                      <p className="text-sm text-zinc-300">{week.subtitle}</p>
+                      <ul className="mt-3 space-y-1.5 text-left text-[12px] leading-relaxed text-zinc-300">
+                        {week.items.map((line) => (
+                          <li key={line} className="flex gap-2">
+                            <span className="text-teal-400">•</span>
+                            <span>{line}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
+            <div data-reveal className="reveal">
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Qué incluye</h2>
+              <ul className="mt-5 space-y-2 text-sm text-zinc-300 sm:text-base">
+                {educationIncludes.map((line) => (
+                  <li key={line} className="flex gap-2">
+                    <span className="text-teal-400">•</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+
+          <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
+            <div data-reveal className="reveal rounded-2xl border border-zinc-700 bg-[#111111] p-6 sm:p-8">
+              <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Inversión</h2>
               <p className="mt-4 text-xl font-medium text-zinc-500 line-through sm:text-2xl">$597 USD</p>
-              <p className="mt-2 text-4xl font-extrabold text-[#FFD600] sm:text-5xl">$250 USD</p>
-              <p className="mt-3 text-lg font-extrabold text-emerald-400 sm:text-xl">Ahorras $347 USD</p>
+              <p className="mt-2 text-4xl font-extrabold text-blue-300 sm:text-5xl">$250 USD</p>
               <p className="mt-2 text-sm text-zinc-500 sm:text-base">Pauta + Contenido · 4 semanas cada módulo</p>
               <a
                 href={EDUCATION_PROGRAM_WA}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex rounded-xl border border-yellow-400 bg-[#FFD600] px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+                className="mt-6 inline-flex rounded-xl border border-teal-400 bg-teal-600 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.12em] text-white shadow-[0_0_18px_rgba(13,148,136,0.35)]"
               >
                 Quiero el programa de educación
               </a>
-            </article>
-
-            <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-relaxed text-zinc-500 sm:text-sm">
-              {educationProgramDisclaimer}
-            </p>
-          </div>
-        </section>
+            </div>
+          </section>
+        </>
       ) : null}
 
       {!isExtrasTab ? (
@@ -956,6 +1111,8 @@ export default function EcoDreamersCuritiPage() {
       </section>
       ) : null}
 
+      {!isExtrasTab ? (
+      <>
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500">01 · Diagnóstico</p>
@@ -1033,6 +1190,8 @@ export default function EcoDreamersCuritiPage() {
           </div>
         </div>
       </section>
+      </>
+      ) : null}
 
       {!isExtrasTab ? (
       <>
@@ -1105,6 +1264,7 @@ export default function EcoDreamersCuritiPage() {
       </>
       ) : null}
 
+      {!isExtrasTab ? (
       <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
         <div data-reveal className="reveal rounded-2xl border border-zinc-700 bg-[#111111] p-6 sm:p-8">
           <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Condiciones del proyecto</h2>
@@ -1123,6 +1283,7 @@ export default function EcoDreamersCuritiPage() {
           </ul>
         </div>
       </section>
+      ) : null}
 
       {!isExtrasTab ? (
       <>
@@ -1191,6 +1352,8 @@ export default function EcoDreamersCuritiPage() {
       </>
       ) : null}
 
+      {!isExtrasTab ? (
+      <>
       <section className="mx-auto w-full max-w-6xl px-5 pb-24 sm:px-8">
         <div data-reveal className="reveal">
           <h2 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">Planes de soporte post-entrega</h2>
@@ -1234,6 +1397,8 @@ export default function EcoDreamersCuritiPage() {
           </div>
         </div>
       </section>
+      </>
+      ) : null}
 
       <section className="bg-[#0B1F3A] px-5 py-16 sm:px-8">
         <div data-reveal className="reveal mx-auto max-w-5xl text-center">

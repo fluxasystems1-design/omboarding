@@ -19,17 +19,17 @@ const PLAN_META = {
       "Tu sistema digital instalado y funcionando para vender más sin depender solo del voz a voz.",
     heroPrice: "$697 USD",
     heroDuration: "2 meses",
-    heroModules: "4 módulos",
+    heroModules: "2 páginas",
     heroMetric4: "∞",
     heroMetric4Label: "Clientes potenciales",
     ctaText: "QUIERO ACTIVAR MI SISTEMA",
     included: [
-      "Presencia digital: Instagram, WhatsApp Business y link en bio.",
-      "Sistema de pedidos online con catálogo, confirmaciones y panel del día.",
-      "Automatizaciones: ofertas semanales, puntos por WhatsApp, cupones y recuperación.",
-      "Pauta Meta Ads geolocalizada (5 km), creativos de ofertas y optimización por ROAS.",
-      "Entrega en 2 meses con activos 100 % para el supermercado.",
-      "30 días de soporte post-entrega para ajustes menores.",
+      "Landing principal del supermercado con diseño profesional",
+      "Landing catálogo de productos con categorías y precios",
+      "Automatización de oferta semanal cada lunes vía n8n",
+      "Meta Pixel instalado en ambas páginas",
+      "Configuración inicial Meta Ads + primera campaña activa",
+      "1 sesión estratégica de arranque · 30 días soporte post-entrega",
     ],
     paymentA: {
       title: "Opción A — Pago en 2 cuotas",
@@ -45,8 +45,8 @@ const PLAN_META = {
     },
     totalLine: "$697 USD · 2 meses · Sin intereses",
     summaryInvestment: "$697 USD",
-    summaryPayment: "2 cuotas (inicio + 20 días) o pago único",
-    metaNote: "Meta Ads se paga aparte por el cliente (sugerido $100–$200 USD/mes).",
+    summaryPayment: "2 cuotas — inicio y día 20 — o pago único",
+    metaNote: "Meta Ads se paga aparte por el cliente. Rango sugerido: $100–$200 USD/mes.",
     totalProjectLabel: "$697 USD",
   },
   pages: {
@@ -93,7 +93,7 @@ const timelinePhasesSystem = [
   {
     id: "fase-1",
     label: "FASE 1",
-    title: "PRESENCIA DIGITAL",
+    title: "LANDING PRINCIPAL",
     subtitle: "Semanas 1–2",
     icon: "🌐",
     color: "#3B82F6",
@@ -101,20 +101,20 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     items: [
-      "Perfil Instagram optimizado con identidad visual",
-      "WhatsApp Business configurado con catálogo",
-      "Perfil digital local optimizado para que te encuentren fácil",
-      "Link en bio con menú de ofertas, pedidos y contacto",
+      "Diseño y desarrollo de la landing del supermercado",
+      "Secciones: quiénes somos, productos destacados, contacto y ubicación",
+      "Formulario de contacto directo al WhatsApp del negocio",
+      "Meta Pixel instalado y verificado",
     ],
-    scope: "Base digital local: te encuentran, confían y contactan sin fricción.",
-    build: "Configuramos canales, identidad y datos de contacto unificados.",
-    activate: "Publicamos bio y catálogo WA con CTA claro.",
-    result: "Más visibilidad local y conversaciones que antes se quedaban en el aire.",
+    scope: "La cara digital del supermercado: clara, confiable y medible desde el día uno.",
+    build: "Diseño, desarrollo, formulario a WhatsApp e instalación del Pixel.",
+    activate: "Publicamos la landing en producción con Pixel verificado.",
+    result: "Te buscan, entienden qué ofreces y escriben por WhatsApp sin fricción.",
   },
   {
     id: "fase-2",
     label: "FASE 2",
-    title: "SISTEMA DE PEDIDOS",
+    title: "CATÁLOGO DIGITAL",
     subtitle: "Semanas 3–4",
     icon: "🛒",
     color: "#10B981",
@@ -122,20 +122,20 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     items: [
-      "Página web con catálogo y sistema de pedidos online",
-      "Confirmación automática de pedido al cliente por WhatsApp",
-      "Notificación al supermercado cuando llega pedido nuevo",
-      "Panel de gestión de pedidos del día",
+      "Landing de catálogo con categorías de productos",
+      "Cada producto con foto, nombre y precio actualizable",
+      "Botón de pedido directo al WhatsApp por producto",
+      "Diseño mobile-first optimizado para compartir en redes",
     ],
-    scope: "Ventas fuera del mostrador: pedido claro, confirmado y seguible.",
-    build: "Implementamos web, flujo de pedido y avisos en tiempo real.",
-    activate: "Conectamos WhatsApp del cliente y del equipo con el flujo de pedidos.",
-    result: "El cliente compra desde el celular; el local recibe cada orden ordenada.",
+    scope: "Tu vitrina online: precios visibles y pedido en un toque.",
+    build: "Catálogo por categorías, fichas de producto y CTAs a WhatsApp.",
+    activate: "Dejamos precios editables y la experiencia lista para móvil.",
+    result: "El cliente ve qué hay y a cuánto, y pide sin pasar por el mostrador.",
   },
   {
     id: "fase-3",
     label: "FASE 3",
-    title: "AUTOMATIZACIONES",
+    title: "AUTOMATIZACIÓN",
     subtitle: "Semanas 5–6",
     icon: "⚡",
     color: THEME.accent,
@@ -143,20 +143,20 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     items: [
-      "Envío automático de ofertas semanales cada lunes",
-      "Flujo de recuperación de clientes inactivos",
-      "Sistema de puntos digital por WhatsApp sin app",
-      "Cupones digitales de descuento automatizados",
+      "Flujo automático de oferta semanal cada lunes vía n8n",
+      "Notificación automática al equipo cuando llega consulta",
+      "Mensaje de bienvenida automático a nuevos contactos",
+      "Integración básica de formularios con WhatsApp",
     ],
-    scope: "Recurrencia y ticket: ofertas y fidelidad sin depender solo del tráfico a la puerta.",
-    build: "Diseñamos flujos de mensaje, reglas de puntos y cupones.",
-    activate: "Programamos envíos, segmentación básica y respuestas automáticas.",
-    result: "Más recompra y visitas guiadas por ofertas, no solo por el azar del paso.",
+    scope: "Menos trabajo manual: avisos y ofertas que corren en segundo plano.",
+    build: "Flujos en n8n, notificaciones al equipo y bienvenidas automáticas.",
+    activate: "Conectamos formularios y WhatsApp con reglas claras.",
+    result: "Oferta del lunes en marcha y cero consultas perdidas por desorden.",
   },
   {
     id: "fase-4",
     label: "FASE 4",
-    title: "PAUTA Y ESCALA",
+    title: "PAUTA Y CIERRE",
     subtitle: "Mes 2",
     icon: "📈",
     color: "#A855F7",
@@ -164,15 +164,15 @@ const timelinePhasesSystem = [
     status: "POR INICIAR",
     statusClass: "border-zinc-500/60 text-zinc-300",
     items: [
-      "Campañas Meta Ads geolocalizadas (5 km a la redonda)",
-      "Creativos optimizados para ofertas semanales",
-      "Optimización semanal de campañas por ROAS",
-      "Reporte mensual de desempeño y clientes nuevos",
+      "Configuración cuenta Meta Ads desde cero",
+      "Primera campaña activa geolocalizada (5km a la redonda)",
+      "1 sesión estratégica de revisión de resultados",
+      "Reporte final + plan del siguiente trimestre",
     ],
-    scope: "Escala medible: inversión en anuncios con control y mejora continua.",
-    build: "Estructuramos campañas, creativos y medición por zona y oferta.",
-    activate: "Ajustamos pujas, creativos y audiencias con reporte claro.",
-    result: "Llegas a familias cercanas con ofertas que convierten, no solo impresiones.",
+    scope: "Llegar a familias cercanas con inversión clara y cierre documentado.",
+    build: "Cuenta publicitaria, campaña geolocalizada y estructura de reporte.",
+    activate: "Encendemos la primera campaña y revisamos resultados en sesión.",
+    result: "Tráfico pagado local y una hoja de ruta para el trimestre siguiente.",
   },
 ];
 
@@ -267,14 +267,14 @@ const diagnosisSituation = {
   titleBlock:
     "Tu supermercado ya vende. El problema es que depende completamente del tráfico físico.",
   subtitle:
-    "Sin pedidos online, fidelización y automatización, cada semana empieza desde cero.",
+    "Sin página, catálogo digital ni pauta, cada venta depende de quien pase por la puerta.",
   startPointTitle: "Hoy el negocio funciona… pero no escala.",
   startPointItems: [
-    "Si el cliente no pasa por el local, no compra.",
-    "No existe sistema de recompra automática.",
-    "Las promociones no llegan al celular del cliente.",
-    "No hay base de clientes propia organizada.",
-    "Todo depende de atención manual.",
+    "Sin página web ni catálogo digital de productos",
+    "Las ofertas no llegan al celular del cliente",
+    "Sin presencia en Meta Ads — solo vendes a quien pasa",
+    "Sin automatización — todo depende de atención manual",
+    "Sin datos de cuántas personas buscan el negocio online",
   ],
   frictionItems: [
     {
@@ -299,85 +299,74 @@ const diagnosisSituation = {
     },
   ],
   conclusion:
-    "Fluxa convierte tu supermercado en un sistema digital que vende, fideliza y genera pedidos todos los días.",
+    "Fluxa entrega dos landings con Pixel, automatización semanal con n8n y primera campaña Meta con cierre y plan a 90 días.",
 };
 
 const transformationsSystem = [
   {
-    before: "El cliente pasa por el local o no compra.",
-    after: "Sistema de pedidos online activo — compra desde el celular a cualquier hora.",
+    before: "El cliente no sabe qué productos tienes ni a qué precio.",
+    after:
+      "Catálogo digital profesional — tus productos con fotos y precios visibles desde cualquier celular.",
   },
   {
-    before: "Las ofertas solo se ven en el local.",
-    after: "Ofertas enviadas automáticamente a todos los contactos cada lunes por WhatsApp.",
+    before: "Las ofertas de la semana solo se ven en el local.",
+    after: "Oferta semanal automática enviada cada lunes sin que nadie tenga que hacer nada.",
   },
   {
-    before: "No sabes quiénes son tus clientes frecuentes.",
-    after: "Base de datos activa con historial de compra y segmentación por preferencias.",
+    before: "Sin presencia digital — no apareces cuando te buscan.",
+    after: "Landing profesional del supermercado lista para compartir en redes y recibir consultas.",
   },
   {
-    before: "Sin sistema de fidelización — cada semana empiezas desde cero.",
-    after: "Sistema de puntos digital — el cliente acumula y vuelve solo.",
+    before: "Sin pauta — solo vendes a quien pasa por la puerta.",
+    after: "Campaña Meta Ads activa llegando a familias en 5 km a la redonda del local.",
   },
   {
-    before: "La competencia tiene app y ofertas digitales — tú no.",
-    after: "Campañas Meta Ads geolocalizadas que llegan a familias en 5 km a la redonda.",
+    before: "Sin datos — no sabes cuántas personas llegan desde digital.",
+    after: "Meta Pixel instalado midiendo todo el tráfico desde el primer día.",
   },
 ];
 
 const deliverablesSystem = [
   {
-    title: "Presencia Digital",
-    color: "text-emerald-300 border-emerald-400/40",
-    items: [
-      "Perfil Instagram con identidad visual consistente",
-      "WhatsApp Business con catálogo de productos",
-      "Perfil digital local optimizado",
-      "Link en bio con menú completo",
-      "Fotografía de productos para redes",
-    ],
-  },
-  {
-    title: "Sistema de Pedidos",
+    title: "Páginas web",
     color: "text-blue-300 border-blue-400/40",
     items: [
-      "Página web con catálogo online",
-      "Carrito con pago contra entrega o Wompi",
-      "Sistema de domicilios con zonas y horarios",
-      "Confirmación automática al cliente",
-      "Panel de gestión de pedidos",
+      "Landing principal del supermercado",
+      "Landing catálogo de productos con precios",
+      "Diseño responsive mobile-first",
+      "Meta Pixel instalado en ambas",
+      "Dominio y despliegue en producción incluido",
     ],
   },
   {
-    title: "Automatizaciones",
-    color: "text-violet-300 border-violet-400/40",
+    title: "Automatización",
+    color: "text-amber-300 border-amber-400/40",
     items: [
-      "Ofertas semanales automáticas cada lunes",
-      "Sistema de puntos digital por WhatsApp",
-      "Cupones digitales de descuento",
-      "Flujo de recuperación clientes inactivos",
-      "Cumpleaños automatizados con descuento",
+      "Oferta semanal automática cada lunes",
+      "Notificación automática de nuevas consultas",
+      "Mensaje de bienvenida a nuevos contactos",
+      "Integración formularios → WhatsApp",
     ],
   },
   {
-    title: "Pauta y Escala",
-    color: "text-teal-300 border-teal-400/40",
+    title: "Pauta y estrategia",
+    color: "text-purple-300 border-purple-400/40",
     items: [
-      "Configuración Meta Ads desde cero",
-      "Campañas geolocalizadas 5 km",
-      "Creativos para ofertas semanales",
-      "Optimización semanal por ROAS",
-      "2 sesiones estratégicas mensuales",
+      "Configuración inicial Meta Ads",
+      "Primera campaña activa geolocalizada",
+      "1 sesión estratégica de arranque",
+      "30 días soporte post-entrega",
     ],
   },
 ];
 
 const projectConditionsSystem = [
-  "Duración: 2 meses desde la firma.",
-  "30 días de soporte post-entrega para ajustes menores.",
-  "Todos los activos quedan como propiedad del supermercado.",
-  "Sin dependencia de Fluxa Method tras la entrega.",
-  "Meta Ads se paga aparte por el cliente ($100–$200 USD/mes sugerido).",
+  "Duración: 2 meses desde la firma",
+  "Incluye 2 páginas web + automatización básica + Meta Ads setup",
+  "El catálogo se construye con la info que entregue el cliente en el brief",
+  "Meta Ads se paga directamente por el cliente ($100–$200 USD/mes sugerido)",
+  "30 días de soporte post-entrega para ajustes menores",
+  "Todos los activos quedan en las cuentas propias del supermercado",
 ];
 
 const executiveSummaryShared = {
@@ -385,13 +374,24 @@ const executiveSummaryShared = {
   withFluxa: ["Sistema activo", "Clientes fidelizados", "Pauta convirtiendo"],
 };
 
+/** Resumen “Con Fluxa” alineado al plan mostrado (evita prometer Paquete 3 en $697) */
+const executiveWithFluxaByTab = {
+  system: [
+    "Dos landings con Pixel y pedidos por WhatsApp",
+    "Automatización semanal con n8n y avisos al equipo",
+    "Primera campaña Meta activa — inversión en anuncios aparte",
+  ],
+  pages: ["Páginas y módulos que elijas en la carta", "Precio según combinación", "Ideal si aún no quieres el sistema completo"],
+  education: ["4 sesiones 1:1 sobre redes, contenido y Meta Ads", "Plantillas y material para ejecutar tú", "Enfoque práctico para tu supermercado"],
+};
+
+/** Referencias mercado al contratar por separado piezas similares al paquete sistema */
 const marketSeparateCostRows = [
-  { label: "Ecommerce + tienda online", value: "$450 USD" },
-  { label: "Automatizaciones WhatsApp", value: "$180 USD" },
-  { label: "CRM de clientes", value: "$200 USD" },
-  { label: "Setup Meta Ads", value: "$150 USD" },
-  { label: "Diseño UX + landing", value: "$200 USD" },
-  { label: "Estrategia de contenido", value: "$220 USD" },
+  { label: "Landing principal profesional →", value: "$150 USD" },
+  { label: "Landing catálogo de productos →", value: "$180 USD" },
+  { label: "Automatización oferta semanal →", value: "$120 USD" },
+  { label: "Setup Meta Ads + primera campaña →", value: "$150 USD" },
+  { label: "Estrategia y sesión de arranque →", value: "$100 USD" },
 ];
 
 const whyFluxaCards = [
@@ -408,7 +408,7 @@ const whyFluxaCards = [
   {
     emoji: "🤖",
     title: "Automatización real",
-    body: "No solo diseño — instalamos bots, CRM y embudos que trabajan mientras tú atiendes tu negocio.",
+    body: "No solo diseño — instalamos automatizaciones y flujos en WhatsApp que trabajan mientras tú atiendes tu negocio.",
   },
   {
     emoji: "📍",
@@ -521,14 +521,14 @@ const educationIncludes = [
 const executionRowsSystem = [
   {
     month: "Mes 1",
-    title: "Presencia + pedidos",
-    points: "Fases 1–2 · Digital local · Catálogo y pedidos online",
+    title: "Landings + catálogo",
+    points: "Fases 1–2 · Landing principal · Catálogo digital y Pixel",
     color: "text-emerald-300",
   },
   {
     month: "Mes 2",
     title: "Automatización + pauta",
-    points: "Fases 3–4 · Ofertas y puntos · Meta Ads 5 km · Reporte",
+    points: "Fases 3–4 · n8n · Meta Ads · Sesión y reporte final",
     color: "text-blue-300",
   },
 ];
@@ -539,11 +539,16 @@ const supermercadoPackageComparison = [
   { feature: "Catálogo digital", paquete2: true, paquete3: true },
   { feature: "Pagos online", paquete2: true, paquete3: true },
   { feature: "WhatsApp integrado", paquete2: true, paquete3: true },
+  {
+    feature: "Vista de pedidos del día — seguimiento operativo básico",
+    paquete2: true,
+    paquete3: true,
+  },
   { feature: "Diseño responsive", paquete2: true, paquete3: true },
   { feature: "Automatización básica", paquete2: true, paquete3: true },
   { feature: "Pixel Meta", paquete2: true, paquete3: true },
   { feature: "Ecommerce avanzado", paquete2: false, paquete3: true },
-  { feature: "Panel administrativo", paquete2: false, paquete3: true },
+  { feature: "Panel administrativo completo", paquete2: false, paquete3: true },
   { feature: "Gestión de inventario", paquete2: false, paquete3: true },
   { feature: "Alertas de stock", paquete2: false, paquete3: true },
   { feature: "CRM integrado", paquete2: false, paquete3: true },
@@ -757,9 +762,7 @@ export default function SupermercadoPage() {
   }, [reduceMotion]);
 
   const timelineGridClass =
-    selectedTab === "system" || selectedTab === "education"
-      ? "md:grid-cols-4"
-      : "";
+    selectedTab === "system" ? "md:grid-cols-4" : selectedTab === "education" ? "md:grid-cols-4" : "";
 
   const renderPhaseCard = (phase, index, phasesLength) => (
     <div
@@ -915,7 +918,9 @@ export default function SupermercadoPage() {
           </p>
           <p className="mt-2 text-sm font-semibold text-zinc-300">{plan.subtitle}</p>
           <p className="mt-5 text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-400 sm:mt-7 sm:text-sm sm:tracking-[0.35em]">
-            OFERTAS · DOMICILIOS · FIDELIZACIÓN · CLIENTES · BOGOTÁ
+            {selectedTab === "system"
+              ? "OFERTAS · CATÁLOGO · AUTOMATIZACIÓN · CLIENTES · BOGOTÁ"
+              : "OFERTAS · DOMICILIOS · FIDELIZACIÓN · CLIENTES · BOGOTÁ"}
           </p>
           <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
             <article className="rounded-xl border border-blue-500/70 bg-blue-950/20 p-4 text-center">
@@ -932,7 +937,7 @@ export default function SupermercadoPage() {
               <p className="text-3xl font-extrabold text-white">{plan.heroModules}</p>
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-400">
                 {selectedTab === "system"
-                  ? "Sistema completo"
+                  ? "ENTREGABLES"
                   : selectedTab === "pages"
                     ? "Entregables"
                     : "Formato"}
@@ -962,9 +967,10 @@ export default function SupermercadoPage() {
       <section className="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-8">
         <div data-reveal className="reveal rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 sm:p-7">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-zinc-400">Plan activo</p>
-          <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">FLUXA SYSTEM ($697)</h2>
+          <h2 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">FLUXA SYSTEM · $697 USD</h2>
           <p className="mt-2 text-sm text-zinc-300">
-                Información clave del sistema completo para tu supermercado en Bogotá.
+            Alcance acorde a la primera columna de la tabla comparativa. Para inventario, CRM y ecommerce avanzado revisa el
+            plan superior en la misma tabla.
           </p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
             {plan.included.map((item) => (
@@ -982,7 +988,9 @@ export default function SupermercadoPage() {
             Diferencia real entre el Paquete 2 y el Paquete 3
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-center text-xs text-zinc-500 sm:text-sm">
-            La misma base digital; el Paquete 3 suma ecommerce avanzado, inventario, CRM y automatizaciones para escalar ventas.
+            Este plan Fluxa System es el de $697 en la tabla. El de $1,597 suma ecommerce avanzado, panel administrativo
+            completo, inventario, alertas, CRM, dashboard, recuperación de carritos, recompra automática y automatización
+            avanzada.
           </p>
 
           <div className="mt-6 overflow-x-auto rounded-xl border border-zinc-800 bg-black/40">
@@ -991,15 +999,11 @@ export default function SupermercadoPage() {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">Característica</span>
                 <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
                   Paquete 2
-                  <span className="mt-0.5 block whitespace-nowrap font-extrabold normal-case text-teal-300">
-                    ($697)
-                  </span>
+                  <span className="mt-0.5 block whitespace-nowrap font-extrabold normal-case text-teal-300">$697</span>
                 </span>
                 <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
                   Paquete 3
-                  <span className="mt-0.5 block whitespace-nowrap font-extrabold normal-case text-teal-300">
-                    ($1,597)
-                  </span>
+                  <span className="mt-0.5 block whitespace-nowrap font-extrabold normal-case text-teal-300">$1,597</span>
                 </span>
               </div>
               {supermercadoPackageComparison.map((row) => (
@@ -1023,7 +1027,7 @@ export default function SupermercadoPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.36em] text-zinc-400">Ruta de activación</p>
             <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Plan de ejecución por fases</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
-              4 fases secuenciales para presencia digital, pedidos, automatización y pauta local.
+              Cuatro fases: landing principal, catálogo digital, automatización con n8n y pauta con cierre.
             </p>
             <p className="mx-auto mt-4 inline-flex rounded-full border border-teal-500/50 bg-teal-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-200">
               Arranque: al confirmar propuesta
@@ -1211,10 +1215,10 @@ export default function SupermercadoPage() {
         <div data-reveal className="reveal">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">03. Qué recibe exactamente — entregables</h2>
           <p className="mt-3 text-sm text-zinc-400 sm:text-base">
-            Todo lo que se construye, instala y activa durante los 2 meses dentro de la inversión acordada.
+            Dos landings, automatización semanal y arranque en Meta Ads. Implementación en 2 meses.
           </p>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {deliverablesSystem.map((column) => (
               <article
                 key={column.title}
@@ -1237,7 +1241,7 @@ export default function SupermercadoPage() {
 
           <div className="mt-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
             <p className="rounded-xl bg-[#0B2A4A] px-5 py-3 text-center text-xl font-extrabold text-white">
-              TOTAL DEL PROYECTO | $697 USD
+              PAQUETE 2 · TOTAL | $697 USD
             </p>
             <p className="rounded-xl border border-teal-500/45 bg-teal-500/10 px-5 py-3 text-center text-sm font-bold text-teal-100">
               Presupuesto de pauta Meta Ads se paga aparte por el supermercado.
@@ -1251,32 +1255,36 @@ export default function SupermercadoPage() {
           <h2 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
             Construir esto por separado costaría:
           </h2>
-          <p className="mt-2 text-sm text-zinc-500 sm:text-base">Precio real de mercado Colombia 2026</p>
+          <p className="mt-2 text-sm text-zinc-500 sm:text-base">
+            Referencias de mercado Colombia 2026 para piezas parecidas a este paquete.
+          </p>
           <div className="mt-6 overflow-hidden rounded-xl border border-zinc-800/80">
             <table className="w-full border-collapse text-left text-sm">
               <tbody>
                 {marketSeparateCostRows.map((row) => (
-                  <tr key={row.label} className="border-b border-zinc-800/90 last:border-b-0">
+                  <tr key={row.label} className="border-b border-zinc-800/90">
                     <td className="px-4 py-3 text-zinc-300 sm:px-5 sm:py-3.5">{row.label}</td>
                     <td className="px-4 py-3 text-right font-semibold tabular-nums text-zinc-100 sm:px-5 sm:py-3.5">
                       {row.value}
                     </td>
                   </tr>
                 ))}
+                <tr className="border-b border-zinc-800/90">
+                  <td className="px-4 py-3 text-zinc-400 line-through sm:px-5 sm:py-3.5">Total referencia mercado</td>
+                  <td className="px-4 py-3 text-right font-semibold tabular-nums text-zinc-400 line-through sm:px-5 sm:py-3.5">
+                    $700 USD
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
           <div className="mt-8 flex justify-center">
             <div className="w-full max-w-md border-l-4 border-teal-500 bg-black/25 py-4 pl-4 sm:py-5 sm:pl-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Inversión Fluxa System</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Inversión Fluxa</p>
               <p className="mt-1 text-3xl font-extrabold tabular-nums text-teal-400 sm:text-4xl md:text-5xl">
                 $697 USD
               </p>
-              <p className="mt-3 text-xs leading-relaxed text-zinc-500 sm:text-sm">
-                Incluye el alcance del sistema descrito arriba. Si necesitas tienda ecommerce completa u otros desarrollos
-                puntuales, cotízalos en{" "}
-                <span className="font-semibold text-zinc-300">Fluxa Pages</span> — precio aparte.
-              </p>
+              <p className="mt-3 text-sm font-bold text-emerald-400">Mismo precio. Todo incluido.</p>
             </div>
           </div>
         </div>
@@ -1683,7 +1691,7 @@ export default function SupermercadoPage() {
                 Con Fluxa
               </p>
               <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                {executiveSummaryShared.withFluxa.map((item) => (
+                {(executiveWithFluxaByTab[selectedTab] ?? executiveSummaryShared.withFluxa).map((item) => (
                   <li key={item} className="flex gap-2">
                     <span className="shrink-0 text-[#6EE7B7]" aria-hidden>
                       ✅
@@ -1704,7 +1712,7 @@ export default function SupermercadoPage() {
                   <>
                     2 meses
                     <br />
-                    4 módulos
+                    2 páginas · 4 fases
                     <br />
                     activos propios
                   </>
