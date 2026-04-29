@@ -35,7 +35,7 @@ const PLAN_META = {
       title: "Opción A — Pago en 2 cuotas",
       rows: [
         { label: "Cuota 1 al firmar", value: "$350 USD" },
-        { label: "Cuota 2 al mes 2", value: "$347 USD" },
+        { label: "Cuota 2 a los 20 días", value: "$347 USD" },
       ],
     },
     paymentB: {
@@ -45,7 +45,7 @@ const PLAN_META = {
     },
     totalLine: "$697 USD · 2 meses · Sin intereses",
     summaryInvestment: "$697 USD",
-    summaryPayment: "2 cuotas o pago único",
+    summaryPayment: "2 cuotas (inicio + 20 días) o pago único",
     metaNote: "Meta Ads se paga aparte por el cliente (sugerido $100–$200 USD/mes).",
     totalProjectLabel: "$697 USD",
   },
@@ -991,9 +991,15 @@ export default function SupermercadoPage() {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 sm:text-xs">Característica</span>
                 <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
                   Paquete 2
+                  <span className="mt-0.5 block whitespace-nowrap font-extrabold normal-case text-teal-300">
+                    ($697)
+                  </span>
                 </span>
                 <span className="text-center text-[10px] font-bold uppercase leading-tight text-zinc-300 sm:text-xs">
                   Paquete 3
+                  <span className="mt-0.5 block whitespace-nowrap font-extrabold normal-case text-teal-300">
+                    ($1,597)
+                  </span>
                 </span>
               </div>
               {supermercadoPackageComparison.map((row) => (
