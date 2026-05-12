@@ -31,7 +31,7 @@ export function ContainerScroll({ titleComponent, children, className = "", inne
   return (
     <div
       ref={containerRef}
-      className={`relative flex h-[26rem] items-center justify-center p-1 sm:h-[32rem] md:h-[38rem] md:p-10 ${className}`}
+      className={`relative flex h-[28rem] items-center justify-center p-1 sm:h-[34rem] md:h-[40rem] md:p-10 ${className}`}
     >
       <div
         className="relative w-full py-6 md:py-12"
@@ -66,10 +66,10 @@ export function Card({ rotate, scale, children, innerClassName = "" }) {
         boxShadow:
           "0 0 24px rgba(168, 85, 247, 0.35), 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255,255,255,0.06)",
       }}
-      className="mx-auto -mt-8 h-[14rem] w-full max-w-5xl rounded-[22px] border-2 border-[#A855F7]/50 bg-gradient-to-br from-[#1A1A2E] to-[#0F0F1E] p-1.5 shadow-2xl sm:-mt-10 sm:h-[17rem] md:-mt-12 md:h-[22rem] md:p-3"
+      className="mx-auto -mt-8 h-[15rem] w-full max-w-5xl rounded-[22px] border-2 border-[#A855F7]/50 bg-gradient-to-br from-[#1A1A2E] to-[#0F0F1E] p-1.5 shadow-2xl sm:-mt-10 sm:h-[18rem] md:-mt-12 md:h-[24rem] md:p-3"
     >
       <div
-        className={`relative h-full w-full overflow-hidden rounded-2xl bg-[#0F0F1E] ring-1 ring-white/10 md:rounded-2xl md:p-2 ${innerClassName}`}
+        className={`relative h-full w-full overflow-hidden rounded-2xl bg-[#121018] ring-1 ring-[#A855F7]/25 ring-inset md:rounded-2xl md:p-2 ${innerClassName}`}
       >
         {children}
       </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { ProductImageSlider } from "@/components/ui/image-auto-slider";
 import { GradientCtaPulse, ScrollReveal, FloatFrame } from "./ClientWidgets";
-import { HeroProductScroll } from "./HeroProductScroll";
 
 const P = "#A855F7";
 const B = "#0066FF";
@@ -13,9 +13,32 @@ const W = "#FFFFFF";
 const GRAY = "#B0B0B0";
 const YELLOW = "#FFD600";
 
+const CONTENIDO_FASE1 = [
+  {
+    ent: "1 Reel Orgánico",
+    obj: "Generar conexión y humanizar la marca.",
+    fmt: "Storytelling, experiencia, rutina y lifestyle.",
+  },
+  {
+    ent: "1 Video UGC Ads",
+    obj: "Contenido para campañas publicitarias.",
+    fmt: "Hook + experiencia + sensación + CTA.",
+  },
+  {
+    ent: "3-5 Historias",
+    obj: "Mostrar integración real del suplemento.",
+    fmt: "Rutina, unboxing, experiencia y CTA.",
+  },
+  {
+    ent: "3-5 Fotos Lifestyle",
+    obj: "Contenido para landings y funnels.",
+    fmt: "Naturales, humanas y wellness premium.",
+  },
+];
+
 export default function FuncionaCreadoresPage() {
   return (
-    <div className="min-h-screen overflow-x-hidden antialiased" style={{ backgroundColor: DARK, color: W }}>
+    <div className="min-h-screen overflow-x-hidden antialiased selection:bg-[#A855F7]/25 selection:text-white" style={{ backgroundColor: DARK, color: W }}>
       <style
         dangerouslySetInnerHTML={{
           __html: `
@@ -84,177 +107,232 @@ export default function FuncionaCreadoresPage() {
             background-clip: text;
             color: transparent;
           }
+          .text-grad-kit-subtitle {
+            background: linear-gradient(90deg, ${P}, ${M});
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+          }
+          @keyframes kitBonosPulse {
+            0%, 100% { box-shadow: 0 0 0 1px rgba(168,85,247,0.35), 0 0 24px rgba(168,85,247,0.2); }
+            50% { box-shadow: 0 0 0 1px rgba(168,85,247,0.55), 0 0 40px rgba(168,85,247,0.45); }
+          }
+          .kit-bonos-pulse { animation: kitBonosPulse 3s ease-in-out infinite; }
+          @keyframes kitValorGrad {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .kit-valor-grad-anim {
+            background: linear-gradient(120deg, ${P}, ${M}, ${P}, ${M});
+            background-size: 300% 300%;
+            animation: kitValorGrad 4s ease infinite;
+          }
+          .kit-product-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+          }
+          @media (hover: hover) and (pointer: fine) {
+            .kit-product-card:hover {
+              transform: scale(1.03);
+              box-shadow: 0 14px 36px rgba(168, 85, 247, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+            }
+          }
         `,
         }}
       />
 
       {/* Navbar */}
-      <header className="sticky top-0 z-50 border-b border-[#A855F7]/40 bg-[#0F0F1E]/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
-          <Link href="/" className="text-lg font-extrabold tracking-wide sm:text-xl" style={{ color: P }}>
-            FuncionA+
+      <header className="sticky top-0 z-50 border-b border-[#A855F7]/30 bg-[#0F0F1E]/85 backdrop-blur-xl backdrop-saturate-150">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3.5">
+          <Link href="/" className="text-[22px] font-extrabold tracking-tight text-[#A855F7]">
+            Funciona+
           </Link>
-          <nav className="order-3 flex w-full flex-nowrap items-center justify-center gap-4 overflow-x-auto text-sm sm:order-none sm:w-auto sm:justify-end md:gap-8">
-            <Link href="/" className="shrink-0 font-medium text-[#B0B0B0] transition hover:text-[#22C55E]">
-              Home
-            </Link>
-            <Link href="/dr-leonardo-bello" className="shrink-0 font-medium text-[#B0B0B0] transition hover:text-[#22C55E]">
-              Sobre nosotros
-            </Link>
-            <Link href="#final-cta" className="shrink-0 font-medium text-[#B0B0B0] transition hover:text-[#22C55E]">
-              Contacto
-            </Link>
-          </nav>
           <div className="shrink-0">
-            <GradientCtaPulse className="[&_button]:!px-4 [&_button]:!py-2 [&_button]:!text-sm sm:[&_button]:!px-6 sm:[&_button]:!py-2.5">
-              Aplicar ahora
-            </GradientCtaPulse>
+            <GradientCtaPulse>Aplicar ahora</GradientCtaPulse>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-8 sm:py-12">
+      <section className="relative overflow-hidden py-8 sm:py-10 lg:py-14">
         <div
           className="pointer-events-none absolute inset-0 hero-bg-pulse bg-gradient-to-br from-[#1A1A2E] via-[#0F0F1E] to-[#0F0F1E]"
           aria-hidden
         />
-        <div className="pointer-events-none absolute -right-20 top-20 h-72 w-72 rounded-full bg-[#A855F7]/20 blur-3xl" aria-hidden />
-        <div className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-[#0066FF]/15 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -right-24 top-16 h-80 w-80 rounded-full bg-[#A855F7]/18 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -left-20 bottom-8 h-72 w-72 rounded-full bg-[#0066FF]/12 blur-3xl" aria-hidden />
+        <div
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[min(28rem,90vw)] w-[min(28rem,90vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FF0080]/6 blur-[100px]"
+          aria-hidden
+        />
 
-        <div className="relative z-[1] mx-auto flex max-w-6xl flex-col gap-6 px-4 lg:flex-row lg:items-center lg:gap-8">
-          <div className="hero-enter w-full lg:w-[58%] lg:max-w-none">
-            <p
-              className="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white"
-              style={{ borderColor: P, backgroundColor: "rgba(168, 85, 247, 0.2)" }}
-            >
-              <span className="text-base" aria-hidden>
-                ✨
-              </span>
-              Selección privada — Solo 10 perfiles
-            </p>
-            <h1 className="hero-enter mb-4 text-3xl font-extrabold leading-tight tracking-wide text-grad-hero sm:text-4xl lg:text-[48px] lg:leading-[1.1]">
-              Sé parte de la primera generación de embajadores Funciona+
-            </h1>
-            <div className="hero-enter-slow mb-6 space-y-4 text-base leading-relaxed" style={{ color: GRAY }}>
-              <p>
-                Estamos construyendo la primera selección privada de embajadores Funciona+. Una nueva generación de contenido enfocada en: bienestar,
-                salud funcional, neurología moderna, y conexión humana real. La idea de este proyecto NO es crear publicidad tradicional ni contenido
-                forzado.
+        <div className="relative z-[1] mx-auto max-w-6xl px-4">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
+            <div className="hero-enter w-full lg:w-[55%] lg:max-w-none xl:w-[52%]">
+              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A855F7] bg-[rgba(168,85,247,0.15)] px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white">
+                <span className="text-sm" aria-hidden>
+                  ✨
+                </span>
+                Selección privada — Solo 10 perfiles
               </p>
-              <p>
-                Queremos construir contenido: humano, elegante, emocional, auténtico, wellness/lifestyle, y alineado con la visión de la marca.
-                Actualmente estamos seleccionando únicamente 10 perfiles estratégicos para formar parte de esta primera fase.
+              <h1 className="hero-enter mb-4 text-[28px] font-extrabold leading-[1.2] tracking-tight text-grad-hero md:text-4xl lg:text-5xl lg:leading-[1.2] xl:text-[52px]">
+                Sé parte de la primera generación de embajadores Funciona+
+              </h1>
+              <p className="hero-enter-slow mb-3 text-base font-normal leading-snug" style={{ color: GRAY }}>
+                No buscamos anuncios. Buscamos conexión real.
               </p>
-            </div>
-            <div className="hero-enter-slow flex max-w-xl flex-col gap-3 sm:flex-row sm:items-center">
-              <GradientCtaPulse className="flex-1 sm:flex-none">
-                <span className="whitespace-nowrap">Quiero formar parte</span>
-              </GradientCtaPulse>
-              <Link
-                href="#kit"
-                className="inline-flex flex-1 items-center justify-center rounded-lg border-2 px-6 py-3.5 text-center text-base font-bold transition hover:bg-[#00D9FF]/10 sm:flex-none"
-                style={{ borderColor: C, color: C }}
-              >
-                Ver más info
-              </Link>
-            </div>
-          </div>
+              <p className="hero-enter-slow mb-6 text-[14px] font-light leading-[1.6] lg:hidden" style={{ color: GRAY }}>
+                Seleccionando únicamente 10 perfiles estratégicos para formar parte de esta primera fase.
+              </p>
+              <div className="hero-enter-slow mb-6 hidden space-y-4 text-base font-normal leading-[1.7] lg:block" style={{ color: GRAY }}>
+                <p>
+                  Estamos construyendo la primera selección privada de embajadores Funciona+. Una nueva generación de contenido enfocada en: bienestar,
+                  salud funcional, neurología moderna, y conexión humana real. La idea de este proyecto NO es crear publicidad tradicional ni contenido
+                  forzado.
+                </p>
+                <p>
+                  Queremos construir contenido: humano, elegante, emocional, auténtico, wellness/lifestyle, y alineado con la visión de la marca.
+                  Actualmente estamos seleccionando únicamente 10 perfiles estratégicos para formar parte de esta primera fase.
+                </p>
+              </div>
 
-          <div className="hero-enter-slow w-full shrink-0 lg:w-[42%]">
-            <HeroProductScroll />
+              <div className="hero-enter-slow mb-6 flex w-full justify-center md:mx-auto">
+                <div className="w-fit max-w-full overflow-hidden rounded-xl border-2 border-[#A855F7] bg-transparent shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                  <img
+                    src="/imagenes/productos.png"
+                    alt="Kit de suplementos Funciona+: creatina, glicinato de magnesio y omega 3"
+                    width={1363}
+                    height={1154}
+                    loading="eager"
+                    className="block h-auto max-h-[260px] w-auto max-w-full md:max-h-[280px]"
+                  />
+                </div>
+              </div>
+
+              <div className="hero-enter-slow flex w-full max-w-xl flex-col gap-3 lg:max-w-lg">
+                <GradientCtaPulse className="w-full [&_a]:w-full [&_a]:rounded-lg [&_a]:px-8 [&_a]:py-4 [&_a]:text-base [&_a]:font-bold lg:[&_a]:w-auto">
+                  <span className="whitespace-nowrap">Quiero formar parte</span>
+                </GradientCtaPulse>
+                <Link
+                  href="#kit"
+                  className="inline-flex w-full items-center justify-center rounded-lg border-2 border-[#00D9FF] bg-transparent px-8 py-3.5 text-center text-sm font-semibold text-[#00D9FF] transition hover:bg-[rgba(0,217,255,0.1)] lg:w-auto"
+                >
+                  Ver más info
+                </Link>
+              </div>
+            </div>
+
+            <div className="hero-enter-slow hidden w-full shrink-0 lg:flex lg:w-[45%] lg:items-center lg:justify-center">
+              <div className="w-fit max-w-full overflow-hidden rounded-xl border-2 border-[#A855F7] bg-transparent shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                <img
+                  src="/imagenes/productos.png"
+                  alt="Kit de suplementos Funciona+: creatina, glicinato de magnesio y omega 3"
+                  width={1363}
+                  height={1154}
+                  loading="eager"
+                  className="block h-auto max-h-[min(70vh,520px)] w-auto max-w-full"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Sección 2 */}
+      {/* Sección 2 — ¿Por qué estamos haciendo esto? */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 rounded-2xl border border-white/5 bg-gradient-to-br from-[#1A1A2E] to-[#0F0F1E] px-6 py-10 sm:mx-auto sm:max-w-6xl sm:px-12 sm:py-12">
-          <div className="flex gap-6 sm:gap-8">
-            <div className="w-1 shrink-0 rounded-full bg-gradient-to-b from-[#A855F7] to-[#00D9FF]" aria-hidden />
+        <section className="mx-4 mb-12 rounded-2xl border border-white/[0.07] bg-gradient-to-br from-[#1A1A2E]/95 to-[#0F0F1E] px-5 py-8 shadow-[0_0_0_1px_rgba(168,85,247,0.08)] sm:mx-auto sm:max-w-6xl sm:px-8 sm:py-10">
+          <div className="flex gap-5 sm:gap-6">
+            <div className="w-1 shrink-0 rounded-full bg-gradient-to-b from-[#A855F7] via-[#FF0080]/80 to-[#00D9FF]" aria-hidden />
             <div className="min-w-0 flex-1">
-            <h2 className="mb-6 text-3xl font-extrabold leading-tight sm:text-[40px] text-grad-title [text-shadow:0_0_24px_rgba(168,85,247,0.35)]">
-              El contenido que más conecta es el más real.
-            </h2>
-            <div className="mb-6 space-y-4 text-base leading-[1.7]" style={{ color: GRAY }}>
-              <p>En Funciona+ creemos que el contenido que más conecta NO es el más producido.</p>
-              <p>Es el más real.</p>
-              <p>
-                Por eso queremos trabajar con perfiles capaces de transmitir: bienestar, hábitos saludables, claridad mental, energía, descanso, y
-                experiencias humanas reales. No buscamos anuncios.
+              <h2 className="mb-4 text-[26px] font-extrabold leading-tight text-grad-title md:text-3xl lg:text-[32px] [text-shadow:0_0_20px_rgba(168,85,247,0.2)]">
+                ¿Por qué estamos haciendo esto?
+              </h2>
+              <div className="space-y-3 text-[15px] font-normal leading-relaxed md:text-base" style={{ color: GRAY }}>
+                <p>
+                  En Funciona+ creemos que el contenido que más conecta NO es el más producido. Es el más real.
+                </p>
+                <p className="hidden lg:block">
+                  Por eso queremos trabajar con perfiles capaces de transmitir: bienestar, hábitos saludables, claridad mental, energía, descanso, y
+                  experiencias humanas reales.
+                </p>
+              </div>
+              <p className="mt-3 text-lg font-bold leading-snug lg:text-[18px]" style={{ color: G }}>
+                No buscamos anuncios. Buscamos conexión.
               </p>
-              <p className="font-semibold text-white">Buscamos conexión.</p>
-            </div>
-            <div
-              className="mb-8 flex flex-col items-start gap-3 rounded-xl border-2 px-6 py-6 sm:flex-row sm:items-center sm:gap-4"
-              style={{ borderColor: G, backgroundColor: "rgba(34, 197, 94, 0.1)" }}
-            >
-              <span className="text-3xl" aria-hidden>
-                🎯
-              </span>
-              <p className="text-2xl font-extrabold sm:text-[28px]" style={{ color: G }}>
-                Es el más real.
-              </p>
-            </div>
-            <div className="flex flex-col gap-6 sm:flex-row sm:justify-center sm:gap-8">
-              <div className="flex flex-col items-center text-center">
-                <span className="text-4xl" aria-hidden>
-                  🧠
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-x-0.5 py-4 text-[15px] md:justify-start md:text-base">
+                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="text-[20px] leading-none" aria-hidden>
+                    🧠
+                  </span>
+                  <span className="font-medium" style={{ color: G }}>
+                    Bienestar y salud
+                  </span>
                 </span>
-                <p className="mt-2 text-sm font-bold" style={{ color: G }}>
-                  Bienestar y salud
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <span className="text-4xl" aria-hidden>
-                  ⚡
+                <span className="px-2 text-[#64748B]" aria-hidden>
+                  ·
                 </span>
-                <p className="mt-2 text-sm font-bold" style={{ color: B }}>
-                  Energía y claridad
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <span className="text-4xl" aria-hidden>
-                  ❤️
+                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="text-[20px] leading-none" aria-hidden>
+                    ⚡
+                  </span>
+                  <span className="font-medium" style={{ color: B }}>
+                    Energía y claridad
+                  </span>
                 </span>
-                <p className="mt-2 text-sm font-bold" style={{ color: M }}>
-                  Conexión real
-                </p>
+                <span className="px-2 text-[#64748B]" aria-hidden>
+                  ·
+                </span>
+                <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="text-[20px] leading-none" aria-hidden>
+                    ❤️
+                  </span>
+                  <span className="font-medium" style={{ color: M }}>
+                    Conexión real
+                  </span>
+                </span>
               </div>
-            </div>
             </div>
           </div>
         </section>
       </ScrollReveal>
 
+      <div className="mx-4 mb-12 overflow-hidden rounded-xl border border-[#A855F7]/25 shadow-[0_0_32px_rgba(168,85,247,0.15)] sm:mx-auto sm:max-w-6xl">
+        <ProductImageSlider />
+      </div>
+
       {/* Sección 3 */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 rounded-2xl border border-white/10 bg-[#1A1A2E]/80 px-4 py-8 backdrop-blur-md sm:mx-auto sm:max-w-6xl sm:px-8">
-          <h2 className="mb-6 text-center text-2xl font-extrabold sm:text-3xl text-grad-title">¿Por qué fuiste seleccionado?</h2>
+        <section className="mx-4 mb-12 rounded-2xl border border-white/10 bg-[#1A1A2E]/90 px-4 py-8 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] backdrop-blur-md sm:mx-auto sm:max-w-6xl sm:px-8 sm:py-10">
+          <h2 className="mb-5 text-center text-[26px] font-extrabold leading-tight text-grad-title sm:text-3xl md:text-[32px]">
+            ¿Por qué fuiste seleccionado?
+          </h2>
           <div className="flex flex-col gap-6 md:flex-row md:items-start">
             <div className="flex shrink-0 justify-center md:w-[30%] md:justify-start">
-              <div className="rounded-full bg-gradient-to-br from-[#A855F7] to-[#FF0080] p-[3px] shadow-[0_0_20px_rgba(168,85,247,0.6)]">
+              <div className="rounded-full bg-gradient-to-br from-[#A855F7] to-[#FF0080] p-[3px] shadow-[0_0_20px_rgba(168,85,247,0.5)]">
                 <img
                   src="/imagenes/1.png"
                   alt="Dr. Leonardo Bello, especialista en neurología funcional"
                   width={150}
                   height={150}
                   loading="lazy"
-                  className="h-[150px] w-[150px] rounded-full object-cover"
+                  className="h-[100px] w-[100px] rounded-full object-cover lg:h-[120px] lg:w-[120px]"
                 />
               </div>
             </div>
             <div className="min-w-0 flex-1 md:w-[70%]">
-              <p className="text-2xl font-bold text-white">Dr. Leonardo Bello</p>
-              <p className="mb-4 text-sm font-semibold" style={{ color: G }}>
-                Especialista en Neurología Funcional
+              <p className="text-xl font-bold text-white lg:text-2xl">Dr. Leonardo Bello</p>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-wide lg:text-sm" style={{ color: G }}>
+                Especialista en neurología funcional
               </p>
-              <p className="mb-6 text-[15px] leading-relaxed" style={{ color: GRAY }}>
+              <p className="mb-5 text-[15px] font-normal leading-relaxed lg:hidden" style={{ color: GRAY }}>
+                No fue al azar. Fuiste seleccionado por lo que comunicas, cómo conectas y tu alineación con bienestar real.
+              </p>
+              <p className="mb-5 hidden text-[15px] font-normal leading-relaxed lg:block" style={{ color: GRAY }}>
                 Cada perfil fue seleccionado estratégicamente según: su comunicación, su autenticidad, su estética visual, su conexión con la audiencia, y
                 su alineación con la visión de Funciona+. No buscamos únicamente alcance. Valoramos mucho más: la autenticidad, la conexión humana, la
                 comunicación, y la capacidad de transmitir bienestar de forma real.
               </p>
-              <ul className="flex flex-col gap-6">
+              <ul className="flex flex-col gap-4">
                 {[
                   { t: "Su comunicación", c: G },
                   { t: "Su autenticidad", c: B },
@@ -262,8 +340,8 @@ export default function FuncionaCreadoresPage() {
                   { t: "Su conexión con audiencia", c: M },
                   { t: "Su alineación con Funciona+", c: C },
                 ].map((item) => (
-                  <li key={item.t} className="flex items-center gap-3 text-[15px] font-medium" style={{ color: GRAY }}>
-                    <span className="text-xl font-black" style={{ color: item.c }}>
+                  <li key={item.t} className="flex items-start gap-3 text-[15px] font-medium leading-snug" style={{ color: GRAY }}>
+                    <span className="mt-0.5 shrink-0 text-xl font-black leading-none" style={{ color: item.c }}>
                       ✓
                     </span>
                     {item.t}
@@ -276,154 +354,245 @@ export default function FuncionaCreadoresPage() {
       </ScrollReveal>
 
       {/* Sección 4 — Kit */}
-      <ScrollReveal>
-        <section id="kit" className="mx-4 mb-6 sm:mx-auto sm:max-w-6xl">
-          <div className="rounded-2xl p-[2px] bg-gradient-to-r from-[#A855F7] to-[#FF0080] shadow-[0_0_40px_rgba(168,85,247,0.4)]">
-            <div className="rounded-2xl bg-gradient-to-br from-[#1A1A2E] to-[#0F0F1E] px-6 py-8 sm:p-10">
-              <h2 className="mb-2 text-2xl font-extrabold text-white sm:text-3xl">¿Qué recibirá el creador?</h2>
-              <p className="mb-8 flex flex-wrap items-center gap-2 text-xl font-extrabold text-white sm:text-[32px]">
-                <span aria-hidden>🎁</span> Kit Funciona+ completo
-              </p>
-              <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                {[
-                  { emoji: "💪", title: "Creatina Funciona+", sub: "Energía mental y física", e: M },
-                  { emoji: "💤", title: "Magnesio Glicinato", sub: "Descanso y claridad", e: G },
-                  { emoji: "🧠", title: "Omega 3", sub: "Memoria y concentración", e: B },
-                ].map((s) => (
+      <section id="kit" className="mb-12 bg-gradient-to-b from-[#1A1A2E] to-[#0F0F1E] py-8 sm:py-10">
+        <div className="mx-auto max-w-[800px] px-4 sm:px-6 lg:max-w-6xl">
+          <ScrollReveal>
+            <h2 className="text-[26px] font-extrabold leading-tight text-white md:text-3xl lg:text-[34px]">
+              ¿Qué recibirá el creador?
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delayMs={100} className="mt-3">
+            <p className="flex flex-wrap items-center gap-2 text-lg font-extrabold leading-snug sm:text-xl">
+              <span className="text-2xl leading-none sm:text-[26px] text-grad-kit-subtitle" aria-hidden>
+                🎁
+              </span>
+              <span className="text-grad-kit-subtitle">Kit Funciona+ completo</span>
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delayMs={180} className="mt-8">
+            <div
+              className="rounded-2xl p-[3px] shadow-[0_0_40px_rgba(168,85,247,0.45)]"
+              style={{
+                borderRadius: 16,
+                background: `linear-gradient(90deg, ${P}, ${M})`,
+              }}
+            >
+              <div className="rounded-[13px] bg-gradient-to-br from-[#1A1A2E] to-[#0F0F1E] px-5 py-8 md:px-8" style={{ borderRadius: 13 }}>
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-4">
+                  {[
+                    {
+                      img: "/imagenes/creatina.png",
+                      title: "Creatina Funciona+",
+                      sub: "Energía mental y física",
+                      icon: "💪",
+                      iconColor: M,
+                      border: P,
+                    },
+                    {
+                      img: "/imagenes/glicinatodemagensio.png",
+                      title: "Glicinato de magnesio Funciona+",
+                      sub: "Descanso y claridad",
+                      icon: "💤",
+                      iconColor: G,
+                      border: G,
+                    },
+                    {
+                      img: "/imagenes/omega3.png",
+                      title: "Omega 3 Funciona+",
+                      sub: "Memoria y concentración",
+                      icon: "🧠",
+                      iconColor: B,
+                      border: B,
+                    },
+                  ].map((s) => (
+                    <div
+                      key={s.title}
+                      className="kit-product-card mb-4 flex min-h-[160px] flex-row items-center gap-3 rounded-xl border-2 bg-[#1A1A2E] p-5 last:mb-0 lg:mb-0 lg:flex-col lg:items-stretch lg:gap-3"
+                      style={{ borderColor: s.border }}
+                    >
+                      <div className="flex h-[180px] w-[45%] shrink-0 items-center justify-center rounded-lg bg-[#0F0F1E] p-2 lg:h-[180px] lg:w-full">
+                        <img
+                          src={s.img}
+                          alt={s.title}
+                          width={240}
+                          height={240}
+                          loading="lazy"
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </div>
+                      <div className="flex min-w-0 w-[55%] flex-col justify-center lg:w-full">
+                        <span className="text-[28px] leading-none" style={{ color: s.iconColor }} aria-hidden>
+                          {s.icon}
+                        </span>
+                        <p className="mt-2 text-base font-bold leading-snug text-white">{s.title}</p>
+                        <p className="mt-1 text-[13px] font-normal leading-relaxed" style={{ color: GRAY }}>
+                          {s.sub}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <ScrollReveal delayMs={160} className="mt-8">
+                  <p className="mb-4 text-center text-base font-bold text-white sm:text-lg">
+                    Libros del Dr. Leonardo Bello
+                  </p>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                    <div className="flex min-h-[200px] items-center justify-center rounded-xl border-2 border-[#A855F7]/40 bg-[#0F0F1E] p-4 sm:min-h-[220px]">
+                      <img
+                        src="/imagenes/libro1.png"
+                        alt="Libro: Para que no se te olvide"
+                        width={480}
+                        height={640}
+                        loading="lazy"
+                        className="max-h-[280px] w-full max-w-[220px] object-contain sm:max-h-[300px] sm:max-w-[240px]"
+                      />
+                    </div>
+                    <div className="flex min-h-[200px] items-center justify-center rounded-xl border-2 border-[#A855F7]/40 bg-[#0F0F1E] p-4 sm:min-h-[220px]">
+                      <img
+                        src="/imagenes/libro2.png"
+                        alt="Libro: Que tu vida no sea un dolor de cabeza"
+                        width={480}
+                        height={640}
+                        loading="lazy"
+                        className="max-h-[280px] w-full max-w-[220px] object-contain sm:max-h-[300px] sm:max-w-[240px]"
+                      />
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                <ScrollReveal delayMs={200} className="mt-8">
                   <div
-                    key={s.title}
-                    className="rounded-xl border border-[#A855F7]/60 bg-[rgba(26,26,46,0.85)] p-5 transition duration-300 hover:scale-105 hover:border-[#FF0080]"
+                    className="kit-bonos-pulse rounded-xl border-2 p-5 sm:p-6"
+                    style={{
+                      borderColor: P,
+                      backgroundColor: "rgba(168, 85, 247, 0.15)",
+                      borderRadius: 12,
+                    }}
                   >
-                    <span className="text-4xl" aria-hidden>
-                      {s.emoji}
-                    </span>
-                    <p className="mt-3 text-lg font-bold text-white">{s.title}</p>
-                    <p className="mt-1 text-sm" style={{ color: GRAY }}>
-                      {s.sub}
+                    <p className="mb-4 text-lg font-bold" style={{ color: P }}>
+                      Bonos
+                    </p>
+                    <ul className="flex flex-col gap-4">
+                      {[
+                        { icon: "⭐", c: YELLOW, text: "Acceso prioritario a lanzamientos y campañas futuras" },
+                        { icon: "👥", c: B, text: "Invitación a comunidad privada de embajadores" },
+                        { icon: "💬", c: M, text: "Soporte directo del equipo Funciona+ durante todo el proceso" },
+                      ].map((row) => (
+                        <li
+                          key={row.text}
+                          className="flex gap-3 border-l-2 py-0.5 pl-4"
+                          style={{ borderColor: P }}
+                        >
+                          <span className="shrink-0 text-xl sm:text-2xl" style={{ color: row.c }} aria-hidden>
+                            {row.icon}
+                          </span>
+                          <span className="text-[14px] leading-[1.6] sm:text-[15px]" style={{ color: GRAY }}>
+                            {row.text}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </ScrollReveal>
+
+                <ScrollReveal delayMs={280} className="mt-8">
+                  <div className="kit-valor-grad-anim rounded-xl px-5 py-7 text-center sm:px-8 sm:py-9" style={{ borderRadius: 12 }}>
+                    <p
+                      className="font-black leading-none text-white"
+                      style={{
+                        fontSize: "clamp(40px, 8vw, 56px)",
+                        textShadow: "0 0 20px rgba(0, 217, 255, 0.5)",
+                      }}
+                    >
+                      +$700.000{" "}
+                      <span className="align-baseline text-[18px] font-bold sm:text-[20px]" style={{ color: C }}>
+                        COP
+                      </span>
+                    </p>
+                    <p className="pt-3 text-lg font-bold sm:text-[18px]" style={{ color: G, paddingTop: 12 }}>
+                      Completamente gratis
                     </p>
                   </div>
-                ))}
+                </ScrollReveal>
               </div>
-              <div
-                className="mb-8 rounded-xl border-2 px-6 py-6"
-                style={{ borderColor: P, backgroundColor: "rgba(168, 85, 247, 0.15)" }}
-              >
-                <p className="mb-3 text-sm font-bold uppercase tracking-wide text-white">Bonos</p>
-                <ul className="space-y-2 text-sm leading-relaxed text-white/95 sm:text-base">
-                  <li>📚 2 libros del Dr. Leonardo Bello (bestseller + guía práctica)</li>
-                  <li>⭐ Acceso prioritario a lanzamientos y campañas futuras</li>
-                  <li>👥 Invitación a comunidad privada de embajadores</li>
-                  <li>💬 Soporte directo del equipo Funciona+ durante todo el proceso</li>
-                </ul>
-              </div>
-              <p className="text-center text-4xl font-black text-grad-val">+$700.000 COP</p>
-              <p className="mt-2 text-center text-lg font-bold" style={{ color: G }}>
-                completamente gratis
-              </p>
             </div>
-          </div>
-        </section>
-      </ScrollReveal>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* Sección 5 */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 sm:mx-auto sm:max-w-6xl">
-          <h2 className="mb-6 text-center text-3xl font-extrabold sm:text-4xl text-grad-title">Entregables — Primera fase</h2>
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-            {[
-              {
-                n: "1",
-                icon: "🎬",
-                title: "Tu historia con Funciona+",
-                obj: "Generar conexión y humanizar la marca.",
-                fmt: "Storytelling, experiencia, rutina y lifestyle.",
-              },
-              {
-                n: "2",
-                icon: "▶️",
-                title: "El hook que convierte",
-                obj: "Contenido para campañas publicitarias.",
-                fmt: "Hook + experiencia + sensación + CTA.",
-              },
-              {
-                n: "3",
-                icon: "📖",
-                title: "Day-in-your-life",
-                obj: "Mostrar integración real del suplemento.",
-                fmt: "Rutina, unboxing, experiencia y CTA.",
-              },
-              {
-                n: "4",
-                icon: "📷",
-                title: "Lifestyle puro",
-                obj: "Contenido para landings y funnels.",
-                fmt: "Naturales, humanas y wellness premium.",
-              },
-            ].map((row) => (
-              <article
-                key={row.n}
-                className="relative overflow-hidden rounded-xl border-2 border-[#A855F7] bg-[#1A1A2E] p-6 transition duration-300 hover:scale-105 hover:border-[#FF0080] hover:shadow-[0_0_28px_rgba(255,0,128,0.35)]"
+        <section className="mx-4 mb-12 sm:mx-auto sm:max-w-6xl">
+          <h2 className="mb-8 text-center text-[26px] font-extrabold leading-tight text-grad-title md:text-4xl">
+            Contenido solicitado — Primera fase
+          </h2>
+
+          {/* Mobile: cards */}
+          <div className="flex flex-col gap-4 md:hidden">
+            {CONTENIDO_FASE1.map((row) => (
+              <div
+                key={row.ent}
+                className="cursor-default rounded-lg border border-[#A855F7] bg-[#1A1A2E] p-5"
               >
-                <span className="pointer-events-none absolute right-4 top-2 text-7xl font-black leading-none opacity-30" style={{ color: P }}>
-                  {row.n}
-                </span>
-                <span className="relative z-[1] text-4xl" aria-hidden>
-                  {row.icon}
-                </span>
-                <h3 className="relative z-[1] mt-3 text-xl font-bold text-white">{row.title}</h3>
-                <p className="relative z-[1] mt-2 text-sm font-semibold" style={{ color: YELLOW }}>
-                  {row.obj}
-                </p>
-                <p className="relative z-[1] mt-1 text-sm" style={{ color: GRAY }}>
-                  {row.fmt}
-                </p>
-              </article>
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-[#64748B]">Entregable</p>
+                <p className="mb-3 mt-1 text-lg font-bold text-white">{row.ent}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-[#64748B]">Objetivo</p>
+                <p className="mb-3 mt-1 text-sm leading-relaxed text-[#B0B0B0]">{row.obj}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-[#64748B]">Formato</p>
+                <p className="mt-1 text-sm leading-relaxed text-[#B0B0B0]">{row.fmt}</p>
+              </div>
             ))}
+          </div>
+
+          {/* Desktop / tablet: tabla */}
+          <div className="hidden overflow-x-auto md:block">
+            <table className="w-full cursor-default border-collapse border border-[#A855F7] bg-[#1A1A2E] text-left text-[13px] leading-[1.6] text-[#B0B0B0] lg:text-sm">
+              <thead>
+                <tr className="bg-[#0B1F33]">
+                  <th
+                    className="w-[25%] border-b-2 border-[#A855F7] p-3 text-sm font-bold uppercase tracking-wide text-white lg:p-4"
+                    scope="col"
+                  >
+                    Entregable
+                  </th>
+                  <th
+                    className="w-[40%] border-b-2 border-[#A855F7] p-3 text-sm font-bold uppercase tracking-wide text-white lg:p-4"
+                    scope="col"
+                  >
+                    Objetivo
+                  </th>
+                  <th
+                    className="w-[35%] border-b-2 border-[#A855F7] p-3 text-sm font-bold uppercase tracking-wide text-white lg:p-4"
+                    scope="col"
+                  >
+                    Formato
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {CONTENIDO_FASE1.map((row, i) => (
+                  <tr
+                    key={row.ent}
+                    className={`cursor-default border-b border-[#333333] transition-colors hover:bg-[rgba(168,85,247,0.2)] ${i % 2 === 0 ? "bg-[#1A1A2E]" : "bg-[rgba(26,26,46,0.5)]"}`}
+                  >
+                    <td className="p-3 align-top lg:p-4">{row.ent}</td>
+                    <td className="p-3 align-top lg:p-4">{row.obj}</td>
+                    <td className="p-3 align-top lg:p-4">{row.fmt}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
       </ScrollReveal>
 
       {/* Sección 6 */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 grid max-w-6xl gap-3 sm:mx-auto md:grid-cols-2">
-          <div className="rounded-xl border-l-4 py-6 pl-5 pr-4" style={{ borderColor: G, backgroundColor: "rgba(34, 197, 94, 0.1)" }}>
-            <p className="mb-4 text-lg font-extrabold text-white">✓ Lo que queremos</p>
-            <ul className="space-y-3 text-sm sm:text-base" style={{ color: GRAY }}>
-              {["Tu experiencia real", "Emociones genuinas", "Luz natural, sin filtros", "Tu voz auténtica", "Composición limpia", "Vibes wellness premium"].map(
-                (x) => (
-                  <li key={x} className="flex gap-2">
-                    <span className="font-black" style={{ color: G }}>
-                      ✓
-                    </span>
-                    {x}
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-          <div className="rounded-xl border-l-4 py-6 pl-5 pr-4" style={{ borderColor: M, backgroundColor: "rgba(255, 0, 128, 0.1)" }}>
-            <p className="mb-4 text-lg font-extrabold text-white">✗ Lo que no queremos</p>
-            <ul className="space-y-3 text-sm sm:text-base" style={{ color: GRAY }}>
-              {["Comerciales forzados", "Actitud de vendedor", "Overediting", "Guiones exagerados", "Promesas irreales", "Contenido demasiado producido"].map(
-                (x) => (
-                  <li key={x} className="flex gap-2">
-                    <span className="font-black" style={{ color: M }}>
-                      ✗
-                    </span>
-                    {x}
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-        </section>
-      </ScrollReveal>
-
-      {/* Sección 7 */}
-      <ScrollReveal>
-        <section className="mx-4 mb-6 rounded-2xl border border-white/10 bg-[#1A1A2E]/90 px-4 py-8 backdrop-blur-sm sm:mx-auto sm:max-w-6xl sm:px-8">
-          <h2 className="mb-4 text-center text-3xl font-extrabold text-white sm:text-4xl">Esto es solo el inicio</h2>
-          <p className="mx-auto mb-10 max-w-3xl text-center text-base leading-relaxed" style={{ color: GRAY }}>
+        <section className="mx-4 mb-12 rounded-2xl border border-white/[0.08] bg-gradient-to-b from-[#1A1A2E]/95 to-[#0F0F1E] px-4 py-8 shadow-[0_0_60px_-20px_rgba(168,85,247,0.2)] backdrop-blur-sm sm:mx-auto sm:max-w-6xl sm:px-8 sm:py-10">
+          <h2 className="mb-4 text-center text-[26px] font-extrabold text-white md:text-3xl lg:text-4xl">Esto es solo el inicio</h2>
+          <p className="mx-auto mb-8 max-w-3xl text-center text-[15px] font-normal leading-relaxed md:text-base" style={{ color: GRAY }}>
             Los perfiles con mejor conexión y rendimiento podrán participar en: campañas futuras, lanzamientos, publicidad oficial de la marca, contenido
             para escalamiento internacional, y futuras embajadurías Funciona+.
           </p>
@@ -490,10 +659,10 @@ export default function FuncionaCreadoresPage() {
         </section>
       </ScrollReveal>
 
-      {/* Sección 8 */}
+      {/* Sección 7 */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 sm:mx-auto sm:max-w-6xl">
-          <h2 className="mb-6 text-center text-2xl font-extrabold sm:text-3xl text-grad-title">Lineamientos importantes</h2>
+        <section className="mx-4 mb-12 sm:mx-auto sm:max-w-6xl">
+          <h2 className="mb-5 text-center text-[26px] font-extrabold sm:text-3xl text-grad-title md:text-[32px]">Lineamientos importantes</h2>
           <div className="flex flex-col gap-4 md:flex-row md:items-stretch">
             <div className="md:w-2/5">
               <img
@@ -507,7 +676,7 @@ export default function FuncionaCreadoresPage() {
             </div>
             <div className="flex flex-1 flex-col gap-3 md:w-3/5">
               <article
-                className="rounded-xl border-2 p-6 shadow-[0_0_30px_rgba(168,85,247,0.25)] transition hover:brightness-110"
+                className="rounded-xl border-2 p-5 shadow-[0_0_30px_rgba(168,85,247,0.25)] transition hover:brightness-110"
                 style={{ borderColor: P, backgroundColor: CARD }}
               >
                 <span className="text-4xl" aria-hidden>
@@ -521,7 +690,7 @@ export default function FuncionaCreadoresPage() {
                 </p>
               </article>
               <article
-                className="rounded-xl border-2 p-6 shadow-[0_0_30px_rgba(0,102,255,0.25)] transition hover:brightness-110"
+                className="rounded-xl border-2 p-5 shadow-[0_0_30px_rgba(0,102,255,0.25)] transition hover:brightness-110"
                 style={{ borderColor: B, backgroundColor: CARD }}
               >
                 <span className="text-4xl" aria-hidden>
@@ -539,9 +708,9 @@ export default function FuncionaCreadoresPage() {
         </section>
       </ScrollReveal>
 
-      {/* Sección 9 */}
+      {/* Sección 8 */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 sm:mx-auto sm:max-w-6xl">
+        <section className="mx-4 mb-12 sm:mx-auto sm:max-w-6xl">
           <div
             className="rounded-xl border border-white/10 px-6 py-8"
             style={{ backgroundColor: CARD, borderTopWidth: "3px", borderTopColor: YELLOW }}
@@ -559,9 +728,9 @@ export default function FuncionaCreadoresPage() {
         </section>
       </ScrollReveal>
 
-      {/* Sección 10 */}
+      {/* Sección 9 */}
       <ScrollReveal>
-        <section className="mx-4 mb-6 sm:mx-auto sm:max-w-6xl">
+        <section className="mx-4 mb-12 sm:mx-auto sm:max-w-6xl">
           <div className="quote-grad-anim rounded-2xl border-4 p-8 shadow-[0_0_50px_rgba(168,85,247,0.6)] sm:p-12" style={{ borderColor: C }}>
             <blockquote className="text-center">
               <p
@@ -578,20 +747,20 @@ export default function FuncionaCreadoresPage() {
         </section>
       </ScrollReveal>
 
-      {/* Sección 11 */}
+      {/* Sección 10 */}
       <ScrollReveal>
-        <section id="final-cta" className="mx-4 mb-10 scroll-mt-24 sm:mx-auto sm:max-w-6xl">
+        <section id="final-cta" className="mx-4 mb-12 scroll-mt-24 sm:mx-auto sm:max-w-6xl">
           <div className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-[#0F0F1E] p-4 sm:flex-row sm:items-center sm:p-6">
-            <div className="w-full shrink-0 sm:w-[40%]">
+            <div className="flex w-full shrink-0 justify-center sm:w-[40%] sm:justify-center">
               <FloatFrame>
-                <div className="rounded-xl bg-gradient-to-br from-[#A855F7] to-[#0066FF] p-[2px] shadow-[0_0_30px_rgba(168,85,247,0.45)]">
+                <div className="w-fit max-w-full rounded-xl bg-gradient-to-br from-[#A855F7] to-[#0066FF] p-[2px] shadow-[0_0_30px_rgba(168,85,247,0.45)]">
                   <img
-                    src="/imagenes/15.png"
-                    alt="Dr. Leonardo Bello invita a embajadores Funciona+"
-                    width={800}
-                    height={900}
+                    src="/imagenes/productos.png"
+                    alt="Kit de suplementos Funciona+"
+                    width={1363}
+                    height={1154}
                     loading="lazy"
-                    className="w-full rounded-[10px] object-cover transition hover:brightness-110"
+                    className="block h-auto max-h-[220px] w-auto max-w-full rounded-[10px] transition hover:brightness-110 sm:max-h-[280px] md:max-h-[320px]"
                   />
                 </div>
               </FloatFrame>
@@ -605,16 +774,18 @@ export default function FuncionaCreadoresPage() {
                 primera generación de embajadores Funciona+.
               </p>
               <div className="flex max-w-lg flex-col gap-4 sm:flex-row">
-                <GradientCtaPulse className="flex-1">
+                <GradientCtaPulse className="flex-1 [&_a]:w-full [&_a]:rounded-lg [&_a]:px-8 [&_a]:py-4 [&_a]:text-base [&_a]:font-bold sm:[&_a]:w-auto">
                   <span className="text-lg">Quiero formar parte</span>
                 </GradientCtaPulse>
-                <Link
-                  href="/dr-leonardo-bello"
+                <a
+                  href="https://www.instagram.com/doctor_bello?igsh=MXJzc2hjaGo0cGxtMg=="
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex flex-1 items-center justify-center rounded-lg border-2 px-8 py-4 text-center text-lg font-bold transition hover:bg-[#00D9FF]/15"
                   style={{ borderColor: C, color: C }}
                 >
                   Ver más sobre Funciona+
-                </Link>
+                </a>
               </div>
               <p className="pt-2 text-xs sm:text-sm" style={{ color: "#64748B" }}>
                 Seleccionaremos creadores durante las próximas 2 semanas. Responderemos a todas las aplicaciones.
