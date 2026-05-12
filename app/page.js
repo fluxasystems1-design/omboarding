@@ -22,6 +22,11 @@ const landings = [
     description: "Brief estratégico de diagnóstico y arranque",
   },
   {
+    name: "Funciona+ creadores",
+    path: "/funciona-creadores",
+    description: "Reclutamiento privado de embajadores y creadores UGC",
+  },
+  {
     name: "Eco-Dreamers Curití",
     path: "/eco-dreamers-curiti",
     description: "Ecosistema de reservas automáticas",
