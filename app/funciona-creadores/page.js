@@ -196,7 +196,7 @@ export default function FuncionaCreadoresPage() {
                 </p>
               </div>
 
-              <div className="hero-enter-slow mb-6 flex w-full justify-center md:mx-auto">
+              <div className="hero-enter-slow mb-6 flex w-full justify-center md:mx-auto lg:hidden">
                 <div className="w-fit max-w-full overflow-hidden rounded-xl border-2 border-[#A855F7] bg-transparent shadow-[0_0_30px_rgba(168,85,247,0.5)]">
                   <img
                     src="/imagenes/productos.png"
@@ -222,15 +222,18 @@ export default function FuncionaCreadoresPage() {
               </div>
             </div>
 
-            <div className="hero-enter-slow hidden w-full shrink-0 lg:flex lg:w-[45%] lg:items-center lg:justify-center">
-              <div className="w-fit max-w-full overflow-hidden rounded-xl border-2 border-[#A855F7] bg-transparent shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+            <div className="hero-enter-slow hidden w-full min-w-0 shrink-0 lg:flex lg:w-[45%] lg:flex-col lg:justify-center">
+              <div
+                className="relative w-full overflow-hidden rounded-xl border-2 border-[#A855F7] bg-[#0F0F1E] shadow-[0_0_30px_rgba(168,85,247,0.5)]"
+                style={{ aspectRatio: "1363 / 1154" }}
+              >
                 <img
                   src="/imagenes/productos.png"
                   alt="Kit de suplementos Funciona+: creatina, glicinato de magnesio y omega 3"
                   width={1363}
                   height={1154}
                   loading="eager"
-                  className="block h-auto max-h-[min(70vh,520px)] w-auto max-w-full"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
                 />
               </div>
             </div>
@@ -500,19 +503,19 @@ export default function FuncionaCreadoresPage() {
                 <ScrollReveal delayMs={280} className="mt-8">
                   <div className="kit-valor-grad-anim rounded-xl px-5 py-7 text-center sm:px-8 sm:py-9" style={{ borderRadius: 12 }}>
                     <p
-                      className="font-black leading-none text-white"
+                      className="font-black leading-tight text-white"
                       style={{
-                        fontSize: "clamp(40px, 8vw, 56px)",
+                        fontSize: "clamp(26px, 5vw, 44px)",
                         textShadow: "0 0 20px rgba(0, 217, 255, 0.5)",
                       }}
                     >
-                      +$700.000{" "}
+                      Kit valorado en{" "}
+                      <span className="whitespace-nowrap" style={{ fontSize: "clamp(32px, 6.5vw, 52px)" }}>
+                        $800.000
+                      </span>{" "}
                       <span className="align-baseline text-[18px] font-bold sm:text-[20px]" style={{ color: C }}>
                         COP
                       </span>
-                    </p>
-                    <p className="pt-3 text-lg font-bold sm:text-[18px]" style={{ color: G, paddingTop: 12 }}>
-                      Completamente gratis
                     </p>
                   </div>
                 </ScrollReveal>
