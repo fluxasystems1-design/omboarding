@@ -158,23 +158,23 @@ const ENTREGABLES_DER = [
 
 function SectionBlock({ id, eyebrow, title, subtitle, children, elevated = false }) {
   return (
-    <section id={id} className="scroll-mt-28 px-4 pb-24 sm:px-6 lg:pb-28">
+    <section id={id} className="scroll-mt-24 px-4 pb-14 sm:px-6 sm:pb-16 lg:pb-20">
       <div
         data-reveal
         className={`reveal mx-auto w-full max-w-7xl ${
           elevated
-            ? "rounded-2xl border border-white/10 bg-gradient-to-b from-[#101c31]/95 to-[#0B1526]/95 p-7 shadow-[0_14px_52px_rgba(2,6,23,0.4)] ring-1 ring-white/5 sm:p-10"
+            ? "rounded-2xl border border-white/10 bg-gradient-to-b from-[#101c31]/95 to-[#0B1526]/95 p-4 shadow-[0_14px_52px_rgba(2,6,23,0.4)] ring-1 ring-white/5 sm:p-7"
             : ""
         }`}
       >
         {(eyebrow || title || subtitle) && (
           <header className="max-w-4xl">
             {eyebrow ? <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-300/90">{eyebrow}</p> : null}
-            {title ? <h2 className="mt-3 text-3xl font-extrabold leading-tight text-slate-50 sm:text-4xl lg:text-[2.65rem]">{title}</h2> : null}
-            {subtitle ? <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-slate-300 sm:text-[17px]">{subtitle}</p> : null}
+            {title ? <h2 className="mt-2 text-2xl font-extrabold leading-tight text-slate-50 sm:mt-3 sm:text-4xl lg:text-[2.65rem]">{title}</h2> : null}
+            {subtitle ? <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-slate-300 sm:mt-4 sm:text-[17px]">{subtitle}</p> : null}
           </header>
         )}
-        <div className={title || subtitle || eyebrow ? "mt-10" : ""}>{children}</div>
+        <div className={title || subtitle || eyebrow ? "mt-6 sm:mt-8" : ""}>{children}</div>
       </div>
     </section>
   );
@@ -182,10 +182,10 @@ function SectionBlock({ id, eyebrow, title, subtitle, children, elevated = false
 
 function PremiumCard({ title, text, badge }) {
   return (
-    <article className="rounded-xl border border-white/10 bg-gradient-to-b from-[#16253e]/85 to-[#0F1B2E]/85 p-5 shadow-[0_8px_30px_rgba(2,6,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_0_28px_rgba(56,189,248,0.14)]">
+    <article className="rounded-xl border border-white/10 bg-gradient-to-b from-[#16253e]/85 to-[#0F1B2E]/85 p-4 shadow-[0_8px_30px_rgba(2,6,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_0_28px_rgba(56,189,248,0.14)] sm:p-5">
       {badge ? <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300/80">{badge}</p> : null}
-      <h3 className="mt-2 text-[17px] font-bold text-slate-100">{title}</h3>
-      <p className="mt-3 text-sm leading-relaxed text-slate-300/95">{text}</p>
+      <h3 className="mt-1.5 text-[17px] font-bold text-slate-100 sm:mt-2">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-slate-300/95 sm:mt-3">{text}</p>
     </article>
   );
 }
@@ -198,9 +198,9 @@ function BulletPanel({ title, items, tone = "default" }) {
   const bulletTone = tone === "success" ? "text-emerald-300" : "text-sky-300";
 
   return (
-    <article className={`rounded-xl border p-6 shadow-[0_8px_28px_rgba(2,6,23,0.35)] ${toneClass}`}>
+    <article className={`rounded-xl border p-4 shadow-[0_8px_28px_rgba(2,6,23,0.35)] sm:p-6 ${toneClass}`}>
       <h3 className="text-lg font-bold text-slate-100">{title}</h3>
-      <ul className="mt-4 space-y-2.5 text-sm text-slate-300">
+      <ul className="mt-3 space-y-2 text-sm text-slate-300 sm:mt-4 sm:space-y-2.5">
         {items.map((item) => (
           <li key={item} className="flex gap-2">
             <span className={bulletTone}>•</span>
@@ -215,12 +215,12 @@ function BulletPanel({ title, items, tone = "default" }) {
 function FlowCard({ title, items, accent, step, layerLabel }) {
   return (
     <article
-      className={`relative overflow-hidden rounded-xl border bg-gradient-to-b p-5 shadow-[0_10px_30px_rgba(2,6,23,0.4)] ring-1 ring-white/[0.04] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent ${accent}`}
+      className={`relative overflow-hidden rounded-xl border bg-gradient-to-b p-4 shadow-[0_10px_30px_rgba(2,6,23,0.4)] ring-1 ring-white/[0.04] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/25 before:to-transparent sm:p-5 ${accent}`}
     >
-      <div className="flex flex-wrap items-start justify-between gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3">
         <div className="min-w-0 flex-1">
           {layerLabel ? <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{layerLabel}</p> : null}
-          <h4 className={`text-[12px] font-bold uppercase tracking-[0.16em] text-slate-100 ${layerLabel ? "mt-1.5" : ""}`}>{title}</h4>
+          <h4 className={`text-[12px] font-bold uppercase tracking-[0.16em] text-slate-100 ${layerLabel ? "mt-1" : ""}`}>{title}</h4>
         </div>
         {step ? (
           <span className="shrink-0 rounded-lg border border-white/15 bg-black/35 px-2.5 py-1 text-[11px] font-extrabold tabular-nums text-sky-200/95">
@@ -228,7 +228,7 @@ function FlowCard({ title, items, accent, step, layerLabel }) {
           </span>
         ) : null}
       </div>
-      <div className="mt-4 flex flex-wrap gap-2.5">
+      <div className="mt-3 flex flex-wrap gap-2 sm:mt-4 sm:gap-2.5">
         {items.map((item) => (
           <span
             key={item}
@@ -245,28 +245,28 @@ function FlowCard({ title, items, accent, step, layerLabel }) {
 function ConnectorArrow({ vertical = false, label }) {
   if (vertical) {
     return (
-      <div className="ecosystem-connector-vertical relative mx-auto flex w-full max-w-md flex-col items-center py-1">
+      <div className="ecosystem-connector-vertical relative mx-auto flex w-full max-w-md flex-col items-center py-0">
         {label ? (
-          <p className="z-[1] mb-2 rounded-full border border-white/12 bg-[#0a1424]/90 px-3 py-1 text-center text-[10px] font-bold uppercase leading-tight tracking-[0.14em] text-slate-300 shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-sm">
+          <p className="z-[1] mb-1 rounded-full border border-white/12 bg-[#0a1424]/90 px-2.5 py-0.5 text-center text-[9px] font-bold uppercase leading-tight tracking-[0.14em] text-slate-300 shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-sm sm:mb-1.5 sm:px-3 sm:py-1 sm:text-[10px]">
             {label}
           </p>
         ) : null}
         <div className="flex flex-col items-center">
-          <span className="ecosystem-dash-v h-12 w-[2px] rounded-full" />
+          <span className="ecosystem-dash-v h-7 w-[2px] rounded-full sm:h-10 lg:h-12" />
           <span className="mt-[-1px] h-0 w-0 border-l-[6px] border-r-[6px] border-t-[9px] border-l-transparent border-r-transparent border-t-emerald-300/85" />
         </div>
       </div>
     );
   }
   return (
-    <div className="relative flex min-h-[4.5rem] w-full flex-col items-center justify-center gap-2 lg:min-h-0 lg:w-auto lg:flex-row lg:gap-0">
+    <div className="relative flex min-h-[2.75rem] w-full flex-col items-center justify-center gap-1 lg:min-h-0 lg:w-auto lg:flex-row lg:gap-0">
       <p className="order-2 px-2 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-slate-500 lg:absolute lg:-top-5 lg:order-none lg:whitespace-nowrap lg:px-0">
         {label}
       </p>
       <div className="order-1 flex flex-col items-center lg:flex-row">
         <span className="ecosystem-dash-h hidden h-[2px] w-12 rounded-full lg:block" />
         <span className="hidden h-0 w-0 border-b-[5px] border-l-[8px] border-t-[5px] border-b-transparent border-l-emerald-300/85 border-t-transparent lg:block" />
-        <span className="ecosystem-dash-v h-10 w-[2px] rounded-full lg:hidden" />
+        <span className="ecosystem-dash-v h-6 w-[2px] rounded-full lg:hidden" />
         <span className="mt-[-1px] h-0 w-0 border-l-[5px] border-r-[5px] border-t-[7px] border-l-transparent border-r-transparent border-t-emerald-300/85 lg:hidden" />
       </div>
     </div>
@@ -275,11 +275,11 @@ function ConnectorArrow({ vertical = false, label }) {
 
 function JesusEcosystemMap() {
   return (
-    <div className="ecosystem-map-root relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#0f1c31] to-[#0A1426] p-6 shadow-[0_16px_52px_rgba(2,6,23,0.5)] sm:p-8">
+    <div className="ecosystem-map-root relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#0f1c31] to-[#0A1426] p-4 shadow-[0_16px_52px_rgba(2,6,23,0.5)] sm:p-6 lg:p-8">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(56,189,248,0.14),transparent_45%),radial-gradient(circle_at_78%_82%,rgba(34,197,94,0.1),transparent_45%)]" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[linear-gradient(rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.05)_1px,transparent_1px)] bg-[size:42px_42px]" />
 
-      <div className="relative flex flex-col gap-2 lg:flex-row lg:items-stretch lg:gap-0">
+      <div className="relative flex flex-col gap-1 lg:flex-row lg:items-stretch lg:gap-0">
         <aside className="relative mb-2 hidden w-10 shrink-0 lg:mb-0 lg:flex lg:flex-col lg:items-center lg:pt-14">
           <span className="absolute left-1/2 top-8 bottom-16 w-px -translate-x-1/2 bg-gradient-to-b from-sky-400/35 via-white/12 to-emerald-400/35" />
           <span className="relative z-[1] mt-6 rounded-full border border-sky-300/25 bg-[#0c1628] px-2 py-3 text-[8px] font-bold uppercase leading-snug tracking-[0.18em] text-slate-400 [writing-mode:vertical-rl] rotate-180">
@@ -288,11 +288,11 @@ function JesusEcosystemMap() {
         </aside>
 
         <div className="relative min-w-0 flex-1">
-          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 lg:text-left">
+          <p className="mb-2 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 lg:mb-3 lg:text-left">
             Diagrama estratégico · de la captación a la conversión por perfil
           </p>
 
-          <div className="grid gap-4 lg:grid-cols-[1fr_minmax(0,7.5rem)_1fr] lg:items-stretch">
+          <div className="grid gap-2 sm:gap-3 lg:grid-cols-[1fr_minmax(0,7.5rem)_1fr] lg:gap-4 lg:items-stretch">
             <FlowCard
               step="01"
               layerLabel="Capa 1 — Entrada"
@@ -336,7 +336,7 @@ function JesusEcosystemMap() {
         </div>
       </div>
 
-      <div className="relative mt-8 rounded-xl border border-emerald-300/45 bg-gradient-to-r from-emerald-400/10 via-cyan-400/10 to-emerald-400/10 px-5 py-4 text-center text-sm font-extrabold tracking-[0.04em] text-emerald-100 shadow-[0_0_32px_rgba(16,185,129,0.15)] sm:text-base">
+      <div className="relative mt-4 rounded-xl border border-emerald-300/45 bg-gradient-to-r from-emerald-400/10 via-cyan-400/10 to-emerald-400/10 px-4 py-3 text-center text-xs font-extrabold tracking-[0.04em] text-emerald-100 shadow-[0_0_32px_rgba(16,185,129,0.15)] sm:mt-6 sm:px-5 sm:py-4 sm:text-base">
         MÁS LEADS CALIFICADOS + MEJOR SEGMENTACIÓN + CONVERSIÓN AUTOMATIZADA
       </div>
     </div>
@@ -399,7 +399,7 @@ export default function JesusRodriguezPage() {
       </div>
 
       <nav className="sticky top-0 z-40 border-b border-white/10 bg-[#07111F]/90 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-7xl items-center gap-3 overflow-x-auto px-4 py-3.5 sm:px-6">
+        <div className="mx-auto flex w-full max-w-7xl items-center gap-2 overflow-x-auto px-4 py-2.5 sm:gap-3 sm:px-6 sm:py-3">
           <span className="shrink-0 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">Onboarding</span>
           {NAV_ITEMS.map((item) => (
             <a
@@ -422,20 +422,20 @@ export default function JesusRodriguezPage() {
         <div className="pointer-events-none absolute -left-20 top-24 h-64 w-64 rounded-full bg-sky-400/15 blur-3xl" />
         <div className="pointer-events-none absolute right-0 top-72 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
 
-        <section id="hero" className="scroll-mt-28 px-4 pb-24 pt-16 sm:px-6 lg:pb-28 lg:pt-24">
-          <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[1.22fr_0.78fr]">
+        <section id="hero" className="scroll-mt-24 px-4 pb-16 pt-12 sm:px-6 sm:pb-20 lg:pb-24 lg:pt-20">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.22fr_0.78fr] lg:gap-12">
             <div data-reveal className="reveal">
               <p className="inline-flex rounded-full border border-sky-300/40 bg-sky-400/12 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-sky-100">
                 Onboarding estratégico
               </p>
-              <h1 className="mt-6 max-w-3xl text-3xl font-extrabold leading-[1.06] text-slate-50 sm:text-4xl lg:text-[2.75rem]">
+              <h1 className="mt-4 max-w-3xl text-3xl font-extrabold leading-[1.06] text-slate-50 sm:mt-6 sm:text-4xl lg:text-[2.75rem]">
                 Sistema de captación, segmentación y conversión para el ecosistema de trading de Jesús Rodríguez
               </h1>
-              <p className="mt-6 max-w-3xl text-[16px] leading-relaxed text-slate-300 sm:text-[17px] lg:text-xl">
+              <p className="mt-4 max-w-3xl text-[16px] leading-relaxed text-slate-300 sm:mt-5 sm:text-[17px] lg:text-xl">
                 Una arquitectura comercial donde cada persona entra al camino correcto según su nivel, intención, capital
                 y necesidad.
               </p>
-              <div className="mt-9 flex flex-wrap gap-2.5">
+              <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-2.5">
                 {["Academia de trading", "Grupo de señales", "Escáner", "Mentoría 1:1", "Fondo de inversión"].map((chip) => (
                   <span
                     key={chip}
@@ -447,16 +447,16 @@ export default function JesusRodriguezPage() {
               </div>
             </div>
 
-            <aside data-reveal className="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-[#14233a]/92 to-[#0F1B2E]/92 p-6 shadow-[0_20px_58px_rgba(2,6,23,0.5)] ring-1 ring-white/5">
+            <aside data-reveal className="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-[#14233a]/92 to-[#0F1B2E]/92 p-4 shadow-[0_20px_58px_rgba(2,6,23,0.5)] ring-1 ring-white/5 sm:p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Resumen del proyecto</p>
-              <ul className="mt-5 space-y-4 text-sm text-slate-200">
-                <li className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+              <ul className="mt-4 space-y-3 text-sm text-slate-200 sm:mt-5">
+                <li className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 sm:px-4 sm:py-3">
                   <strong className="font-bold text-slate-50">Proyecto:</strong> Onboarding estratégico
                 </li>
-                <li className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+                <li className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 sm:px-4 sm:py-3">
                   <strong className="font-bold text-slate-50">Inversión:</strong> $697 USD / $2.600.000 COP
                 </li>
-                <li className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3">
+                <li className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 sm:px-4 sm:py-3">
                   <strong className="font-bold text-slate-50">Objetivo:</strong> Segmentar y convertir tráfico en clientes calificados
                 </li>
               </ul>
@@ -471,9 +471,9 @@ export default function JesusRodriguezPage() {
           subtitle="Comunidad, contenido, autoridad, tráfico pago y diferentes líneas de negocio. El problema no es que falten servicios — es que todos los perfiles están llegando al mismo lugar sin segmentación clara."
           elevated
         >
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2">
             <div>
-              <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.12em] text-slate-400">Lo que ya existe</h3>
+              <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-slate-400">Lo que ya existe</h3>
               <div className="grid gap-4 sm:grid-cols-2">
                 {VISION_EXISTS.map((t) => (
                   <PremiumCard key={t} title={t} text="Activo clave dentro del ecosistema actual de Jesús." />
@@ -481,7 +481,7 @@ export default function JesusRodriguezPage() {
               </div>
             </div>
             <div>
-              <h3 className="mb-4 text-sm font-bold uppercase tracking-[0.12em] text-slate-400">Lo que ofrece actualmente</h3>
+              <h3 className="mb-3 text-sm font-bold uppercase tracking-[0.12em] text-slate-400">Lo que ofrece actualmente</h3>
               <div className="grid gap-4 sm:grid-cols-2">
                 {VISION_OFFERS.map((t) => (
                   <PremiumCard key={t} title={t} text="Línea de negocio con narrativa y CTA propios en el sistema." />
@@ -533,7 +533,7 @@ export default function JesusRodriguezPage() {
               <PremiumCard key={card.title} title={card.title} text={card.text} badge={card.badge} />
             ))}
           </div>
-          <p className="mt-8 text-center text-sm font-semibold text-slate-400">1 quiz principal. No varios — eso fragmenta el sistema.</p>
+          <p className="mt-5 text-center text-sm font-semibold text-slate-400 sm:mt-6">1 quiz principal. No varios — eso fragmenta el sistema.</p>
         </SectionBlock>
 
         <SectionBlock
@@ -543,17 +543,17 @@ export default function JesusRodriguezPage() {
           subtitle="Cada decisión de compra diferente necesita una ruta diferente."
           elevated
         >
-          <div className="grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2">
             {LANDINGS_SIX.map((landing, index) => (
               <article
                 key={landing.title}
-                className={`rounded-xl border bg-[#0F1B2E]/88 p-6 shadow-[0_10px_32px_rgba(2,6,23,0.38)] transition duration-300 hover:-translate-y-0.5 ${
+                className={`rounded-xl border bg-[#0F1B2E]/88 p-4 shadow-[0_10px_32px_rgba(2,6,23,0.38)] transition duration-300 hover:-translate-y-0.5 sm:p-6 ${
                   index % 2 === 0 ? "border-sky-300/25 hover:border-sky-300/38" : "border-emerald-300/20 hover:border-emerald-300/35"
                 }`}
               >
                 <h3 className="text-lg font-bold text-slate-50">{landing.title}</h3>
                 <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Objetivo</p>
-                <ul className="mt-4 space-y-2.5 text-sm text-slate-300">
+                <ul className="mt-3 space-y-2 text-sm text-slate-300 sm:mt-4 sm:space-y-2.5">
                   {landing.points.map((point) => (
                     <li key={point} className="flex gap-2">
                       <span className="text-sky-300">•</span>
@@ -575,17 +575,17 @@ export default function JesusRodriguezPage() {
             {MANYCHAT_CARDS.map((card) => (
               <article
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#0F1B2E]/85 p-5 shadow-[0_8px_30px_rgba(2,6,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)]"
+                className="rounded-xl border border-white/10 bg-[#0F1B2E]/85 p-4 shadow-[0_8px_30px_rgba(2,6,23,0.35)] transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/35 hover:shadow-[0_0_28px_rgba(56,189,248,0.12)] sm:p-5"
               >
                 <h3 className="text-base font-bold text-slate-50">{card.title}</h3>
-                <p className="mt-3 text-sm text-slate-300">{card.text}</p>
+                <p className="mt-2 text-sm text-slate-300 sm:mt-3">{card.text}</p>
               </article>
             ))}
           </div>
         </SectionBlock>
 
         <SectionBlock id="whatsapp" eyebrow="07. Secuencias WhatsApp" title="ManyChat capta. WhatsApp nutre y cierra." elevated>
-          <div className="mb-4 flex gap-3 md:hidden">
+          <div className="mb-3 flex gap-2 sm:gap-3 md:hidden">
             <button
               type="button"
               onClick={() => setWaTab("frio")}
@@ -610,9 +610,9 @@ export default function JesusRodriguezPage() {
             </button>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             <article
-              className={`rounded-xl border border-white/10 bg-[#0F1B2E]/88 p-6 shadow-[0_8px_28px_rgba(2,6,23,0.35)] ${
+              className={`rounded-xl border border-white/10 bg-[#0F1B2E]/88 p-4 shadow-[0_8px_28px_rgba(2,6,23,0.35)] sm:p-5 ${
                 waTab !== "frio" ? "hidden md:block" : ""
               }`}
             >
@@ -629,7 +629,7 @@ export default function JesusRodriguezPage() {
             </article>
 
             <article
-              className={`rounded-xl border border-white/10 bg-[#0F1B2E]/88 p-6 shadow-[0_8px_28px_rgba(2,6,23,0.35)] ${
+              className={`rounded-xl border border-white/10 bg-[#0F1B2E]/88 p-4 shadow-[0_8px_28px_rgba(2,6,23,0.35)] sm:p-5 ${
                 waTab !== "caliente" ? "hidden md:block" : ""
               }`}
             >
@@ -675,7 +675,7 @@ export default function JesusRodriguezPage() {
         </SectionBlock>
 
         <SectionBlock id="entregables" eyebrow="10. Qué incluye" title="Todo lo que se construye e implementa">
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2">
             <BulletPanel title="Entregables principales" items={ENTREGABLES_IZQ} />
             <BulletPanel title="Sistema y seguimiento" items={ENTREGABLES_DER} tone="success" />
           </div>
