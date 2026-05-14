@@ -1,284 +1,129 @@
 "use client";
 
+import { FallingPattern } from "@/components/ui/falling-pattern";
 import { useEffect, useState } from "react";
 
-const timelinePhases = [
+const funnelSteps = [
+  { id: "ig", label: "Instagram / Pauta" },
+  { id: "mc", label: "ManyChat" },
+  { id: "qz", label: "Quiz" },
+  { id: "wa", label: "WhatsApp" },
+  { id: "ld", label: "Landing correcta" },
+  { id: "cv", label: "Conversión" },
+];
+
+const quizProfiles = [
   {
-    id: "fase-1",
-    label: "FASE 1",
-    title: "GUIONES Y ESTRUCTURA",
-    subtitle: "Semana 1 · Al confirmar arranque",
-    icon: "📋",
-    color: "#3B82F6",
-    glow: "0 0 0 2px rgba(59,130,246,0.5), 0 0 36px rgba(59,130,246,0.6)",
-    status: "POR INICIAR",
-    statusClass: "border-zinc-500/60 text-zinc-300",
-    points: ["VSL x4", "Landings x4", "Embudo listo"],
-    build: "Construimos 4 guiones y estructura comercial por oferta.",
-    activate: "Activamos el diseño de landings y flujo inicial.",
-    result: "Base clara para pasar a lanzamiento sin fricción.",
+    perfil: "Trader principiante",
+    descripcion: "Quiere aprender desde base",
+    ruta: "Academia",
   },
   {
-    id: "fase-2",
-    label: "FASE 2",
-    title: "LANZAMIENTO",
-    subtitle: "Semanas 2–3",
-    icon: "🚀",
-    color: "#10B981",
-    glow: "0 0 0 2px rgba(16,185,129,0.5), 0 0 36px rgba(16,185,129,0.6)",
-    status: "POR INICIAR",
-    statusClass: "border-yellow-400/50 text-yellow-300",
-    points: ["VSL publicado", "Agenda activa", "Campaña ON"],
-    build: "Publicamos 4 landings con VSL y CTA por producto.",
-    activate: "Conectamos agenda automatica y pixeles de seguimiento.",
-    result: "Empiezan a entrar leads y solicitudes calificadas.",
+    perfil: "Trader emocional",
+    descripcion: "Tiene estrategia pero falla emocionalmente",
+    ruta: "Educación + comunidad",
   },
   {
-    id: "fase-3",
-    label: "FASE 3",
-    title: "CONTENIDO Y PAUTA",
-    subtitle: "Semanas 3-4",
-    icon: "📊",
-    color: "#FFD600",
-    glow: "0 0 0 2px rgba(255,214,0,0.5), 0 0 36px rgba(255,214,0,0.58)",
-    status: "PROXIMO",
-    statusClass: "border-zinc-500/60 text-zinc-300",
-    points: ["Organico 60 dias", "Creativos Ads", "Sesion 1"],
-    build: "Diseñamos calendario organico y angulos creativos.",
-    activate: "Encendemos pauta y primera sesion de optimizacion.",
-    result: "Canal organico y pago alimentan el mismo sistema.",
+    perfil: "Trader operativo",
+    descripcion: "Ya opera, quiere estructura",
+    ruta: "Señales + escáner",
   },
   {
-    id: "fase-4",
-    label: "FASE 4",
-    title: "ESCALA",
-    subtitle: "Mes 2",
-    icon: "📈",
-    color: "#A855F7",
-    glow: "0 0 0 2px rgba(168,85,247,0.5), 0 0 36px rgba(168,85,247,0.6)",
-    status: "POR INICIAR",
-    statusClass: "border-zinc-500/60 text-zinc-300",
-    points: ["ROAS optimizado", "Reporte final", "Plan trimestre"],
-    build: "Ajustamos campañas con datos reales de conversion.",
-    activate: "Consolidamos reporte y plan del siguiente trimestre.",
-    result: "Sistema listo para escalar de forma independiente.",
+    perfil: "Trader con capital",
+    descripcion: "Busca gestión o guía personalizada",
+    ruta: "Fondo / Mentoría 1:1",
   },
 ];
 
-const detailCards = [
+const landingsSix = [
   {
-    id: "detail-1",
-    phase: "Fase 1",
-    title: "Guiones y estructura",
-    items: [
-      "4 guiones VSL estratégicos (uno por producto)",
-      "Diseño y estructura de las 4 landings",
-      "Configuración inicial de cuentas publicitarias",
-      "Arquitectura de embudos según perfil del prospecto",
-      "Jesús queda con guiones listos y landings en construcción",
-    ],
+    n: "1",
+    title: "HUB Principal",
+    text: "Página de autoridad y posicionamiento. Presenta el ecosistema, dirige al quiz.",
   },
   {
-    id: "detail-2",
-    phase: "Fase 2",
-    title: "Lanzamiento y automatizaciones",
-    items: [
-      "Publicación de 4 landings con VSL integrado",
-      "Agenda automática para mentoría 1:1 y bot",
-      "Sistema de entrega automática de videos en Instagram",
-      "Píxeles instalados y primera campaña activa",
-      "El sistema empieza a captar y convertir desde la semana 3",
-    ],
+    n: "2",
+    title: "Landing del Quiz",
+    text: "La entrada principal. Captura leads, diagnostica el perfil, segmenta y redirige a la oferta correcta.",
   },
   {
-    id: "detail-3",
-    phase: "Fase 3",
-    title: "Contenido y pauta",
-    items: [
-      "Arranque del contenido orgánico (60 días planificados)",
-      "Ángulos creativos y mensajes para Meta Ads",
-      "Primera sesión estratégica mensual",
-      "Optimización según resultados reales",
-      "Orgánico y pauta alimentan las landings en paralelo",
-    ],
-  },
-  {
-    id: "detail-4",
-    phase: "Fase 4",
-    title: "Escala y cierre",
-    items: [
-      "Ajuste de campañas según ROAS real",
-      "Segunda sesión estratégica",
-      "Reporte final de métricas del proyecto",
-      "Plan de acción para el siguiente trimestre",
-      "Sistema optimizado y listo para escalar de forma independiente",
-    ],
-  },
-];
-
-const deliverables = [
-  {
-    title: "Desarrollo digital",
-    color: "text-blue-300 border-blue-400/40",
-    items: [
-      "Landing academia de trading con VSL",
-      "Landing scanner de señales",
-      "Landing bot con agenda automática",
-      "Landing mentoría 1:1 con precalificación",
-      "Sistema entrega automática videos Instagram",
-      "Píxeles en todas las páginas",
-    ],
-  },
-  {
-    title: "Estrategia y embudos",
-    color: "text-green-300 border-green-400/40",
-    items: [
-      "4 guiones VSL — uno por producto",
-      "Arquitectura de embudos por producto",
-      "Estrategia contenido orgánico 60 días",
-      "Estrategia de pauta Meta Ads",
-      "2 sesiones estratégicas mensuales",
-    ],
-  },
-  {
-    title: "Campañas publicitarias",
-    color: "text-yellow-300 border-yellow-400/40",
-    items: [
-      "Configuración Meta Ads completa",
-      "Campañas activas mes 1 y mes 2",
-      "Optimización semanal",
-      "Soporte WhatsApp días hábiles",
-      "Inversión publicitaria sugerida aparte: $300-$500 USD/mes",
-    ],
-  },
-];
-
-const currentSituation = {
-  startPointTitle: "Hoy las ventas dependen de la atencion manual",
-  startPointItems: [
-    "Sin landing dedicada por producto.",
-    "Sin VSL estrategico que complete la decision de compra.",
-    "Sin embudo de contenido que nutra al prospecto.",
-    "Sin agenda automatizada para la mentoria 1:1.",
-    "Sin flujo gratuito de valor previo a la venta.",
-  ],
-  frictionItems: [
-    {
-      title: "Confusion de oferta",
-      description: "Academia, scanner, bot y mentoria compiten en el mismo espacio.",
-    },
-    {
-      title: "Falta de persuasion",
-      description: "No existe una pieza clara por producto que explique beneficios y siguiente paso.",
-    },
-    {
-      title: "Proceso lento",
-      description: "La mentoria depende de mensajes manuales y seguimiento uno a uno.",
-    },
-    {
-      title: "Contenido sin sistema",
-      description: "Instagram atrae interes, pero no hay una secuencia que convierta atencion en demanda.",
-    },
-  ],
-};
-
-const transformations = [
-  {
-    before: "El prospecto llega al perfil y no sabe que producto es para el.",
-    after: "4 landings dedicadas, cada una habla al perfil correcto y lo empuja a la decision de compra.",
-  },
-  {
-    before: "Existe contenido, pero no esta conectado al sistema de venta.",
-    after: "Estrategia de 60 dias en dos carriles: organico para audiencia y pauta para conversion.",
-  },
-  {
-    before: "La mentoria 1:1 depende de mensajes y espera manual.",
-    after: "Embudo de precalificacion con agenda automatica integrada en landing.",
-  },
-  {
-    before: "El prospecto no recibe valor automatizado antes de comprar.",
-    after: "Sistema que entrega videos educativos y acelera confianza.",
-  },
-  {
-    before: "Las campanas no tienen landings optimizadas para convertir.",
-    after: "Cada producto recibe su landing con VSL y CTA especifico para trafico pagado.",
-  },
-];
-
-const strategicLandings = [
-  {
+    n: "3",
     title: "Academia de Trading",
-    text: "Para quien quiere aprender desde cero o mejorar su operativa.",
-    focus: "Transformacion educativa y resultados de alumnos.",
-    tags: ["VSL estrategico", "Oferta principal"],
+    text: "Para quien quiere aprender. Incluye roadmap, módulos, testimonios y CTA a pago.",
   },
   {
-    title: "Scanner de Senales",
-    text: "Para el trader que ya opera y quiere ventaja informativa.",
-    focus: "Precision, ahorro de tiempo y casos de uso reales.",
-    tags: ["VSL estrategico", "Casos reales"],
+    n: "4",
+    title: "Señales + Escáner",
+    text: "Membresía operativa. El escáner vive dentro de esta oferta como diferencial. CTA a acceso recurrente.",
   },
   {
-    title: "Bot de Operacion Automatizada",
-    text: "Para el trader avanzado que quiere que el sistema opere por el.",
-    focus: "Autonomia, resultados y diferencial tecnico del bot.",
-    tags: ["VSL estrategico", "Agenda integrada"],
+    n: "5",
+    title: "Mentoría 1:1",
+    text: "Página tipo aplicación. Filtra curiosos, eleva percepción premium, lleva a llamada de cierre.",
   },
   {
-    title: "Mentoria 1:1",
-    text: "Para el trader serio que busca acompanamiento personalizado.",
-    focus: "Autoridad, resultado individual y agenda inmediata.",
-    tags: ["VSL estrategico", "Agenda integrada"],
+    n: "6",
+    title: "Fondo de Inversión",
+    text: "Comunicación financiera sobria. Para inversionistas calificados. Proceso de aplicación privada.",
   },
 ];
 
-const projectConditions = [
-  "Duracion del proyecto: 2 meses desde la firma.",
-  "30 dias de soporte post-entrega incluidos para ajustes menores.",
-  "Todas las landings quedan publicadas en el dominio propio de Jesus.",
-  "Los activos digitales son propiedad de Jesus; no queda dependencia de Fluxa Method.",
-  "La pauta publicitaria y suscripciones requeridas se pagan directamente por Jesus.",
+const manychatAutomations = [
+  { n: "1", title: "Reels", text: "Activa cuando alguien comenta palabra clave" },
+  { n: "2", title: "Stories", text: "Activa cuando alguien responde una historia" },
+  { n: "3", title: "Quiz", text: "Entrega el quiz y guía al perfil correcto" },
+  { n: "4", title: "Mini guía gratis", text: "Entrega el recurso de captación" },
+  { n: "5", title: "Recuperación", text: "Para quien abre el quiz pero no lo termina" },
+  { n: "6", title: "Testimonios", text: "Envía casos y prueba social automáticamente" },
+  { n: "7", title: "Señales", text: "Para interesados en operar acompañados" },
+  { n: "8", title: "Premium", text: "Para mentoría y fondo de inversión" },
 ];
 
-const supportPlans = [
-  {
-    name: "Plan Base",
-    price: "Incluido",
-    period: "30 dias post-entrega",
-    items: [
-      "Ajustes menores sobre landings y automatizaciones",
-      "Soporte por WhatsApp en dias habiles",
-      "Revision de incidencias tecnicas puntuales",
-    ],
-    highlight: "border-emerald-400/40",
-  },
-  {
-    name: "Plan Continuidad",
-    price: "Opcional",
-    period: "Mensual",
-    items: [
-      "Optimizacion semanal de conversion y embudos",
-      "Seguimiento de pauta con recomendaciones accionables",
-      "1 sesion estrategica mensual de crecimiento",
-    ],
-    highlight: "border-blue-400/40",
-  },
-  {
-    name: "Plan Escala",
-    price: "Opcional",
-    period: "Trimestral",
-    items: [
-      "Roadmap de nuevos activos y ofertas",
-      "Iteraciones de mensajes y angulos comerciales",
-      "Tablero de metricas para decisiones de escala",
-    ],
-    highlight: "border-yellow-400/50",
-  },
+const nutricionDias = [
+  { dia: "Día 1", text: "Resultado del quiz personalizado" },
+  { dia: "Día 2", text: "Error principal según su perfil" },
+  { dia: "Día 3", text: "Contenido educativo clave" },
+  { dia: "Día 4", text: "Caso o testimonio real" },
+  { dia: "Día 5", text: "Explicación de la solución recomendada" },
+  { dia: "Día 6", text: "Objeciones frecuentes respondidas" },
+  { dia: "Día 7", text: "CTA directo a la oferta correcta" },
+];
+
+const cierreBullets = [
+  "Recordatorio",
+  "Urgencia",
+  "Beneficios",
+  "Prueba social",
+  "CTA a llamada o pago",
+  "Seguimiento si no responde",
+];
+
+const implementacionIzq = [
+  "Arquitectura estratégica del funnel",
+  "1 quiz principal de diagnóstico",
+  "1 mini guía gratuita de captación",
+  "6 landings estratégicas completas",
+  "8 automatizaciones en ManyChat",
+];
+
+const implementacionDer = [
+  "2 secuencias de WhatsApp (nutrición + cierre)",
+  "Segmentación de leads por perfil",
+  "Optimización de CTA por oferta",
+  "Estructura de contenido por línea",
+  "Sistema de seguimiento y organización comercial",
+];
+
+const problemaBullets = [
+  "Sin quiz que filtre el tipo de trader",
+  "Todos los prospectos llegan a la misma landing",
+  "Sin rutas diferenciadas por nivel o intención de compra",
+  "Las automatizaciones no segmentan ni nutren",
+  "El capital y la experiencia no determinan la oferta",
 ];
 
 export default function JesusRodriguezPage() {
-  const [openCard, setOpenCard] = useState("detail-1");
-  const [activePhase, setActivePhase] = useState("fase-1");
+  const [waTab, setWaTab] = useState("frio");
 
   useEffect(() => {
     const revealElements = document.querySelectorAll("[data-reveal]");
@@ -303,433 +148,308 @@ export default function JesusRodriguezPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="mx-auto w-full max-w-6xl px-5 pb-14 pt-16 sm:px-8 md:pb-20 md:pt-24">
+    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+      <FallingPattern />
+      <div className="relative z-10">
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8 md:pb-8 md:pt-10">
         <div data-reveal className="reveal mx-auto max-w-3xl text-center">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.42em] text-yellow-300/90">
-            EL PROYECTO
-          </p>
-          <h1 className="text-4xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl md:text-6xl">
-            De las ideas
-            <br />
-            a ejecutar con{" "}
-            <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.5)]">
-              claridad.
-            </span>
+          <h1 className="text-3xl font-extrabold leading-[1.06] tracking-tight text-white sm:text-4xl md:text-5xl">
+            Tu sistema de captación está listo para{" "}
+            <span className="text-[#FFD600] drop-shadow-[0_0_14px_rgba(255,214,0,0.5)]">construirse.</span>
           </h1>
-          <p className="mt-7 text-xs font-medium uppercase tracking-[0.35em] text-zinc-400 sm:text-sm">
-            DIAGNÓSTICO · SISTEMA · LANZAMIENTO · ESCALA
+          <p className="mt-4 text-sm font-bold text-zinc-200 sm:text-base md:text-lg">
+            Ecosistema digital completo — quiz, landings, automatizaciones y secuencias de WhatsApp para convertir tu
+            comunidad en clientes.
+          </p>
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.35em] text-[#FFD600] sm:text-sm">
+            DIAGNÓSTICO · SEGMENTACIÓN · CONVERSIÓN · AUTOMATIZACIÓN
           </p>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
         <div data-reveal className="reveal">
-          <div className="mb-9 text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.36em] text-zinc-400">
-              Ruta de activacion
-            </p>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Sistema en 60 dias
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-400 sm:text-base">
-              4 fases conectadas para pasar de claridad comercial a captacion automatizada.
-            </p>
-            <p className="mx-auto mt-4 inline-flex rounded-full border border-yellow-400/70 bg-yellow-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-yellow-300">
-              Arranque: al confirmar propuesta
-            </p>
-          </div>
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.28em] text-zinc-500">El problema actual</p>
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-white sm:text-3xl md:text-4xl">
+            Hoy todos llegan al mismo lugar
+          </h2>
+          <p className="mb-4 max-w-3xl text-sm font-bold text-zinc-300 sm:text-base">
+            Tienes comunidad, contenido, autoridad y tráfico. El problema es que todos los perfiles están llegando al
+            mismo punto sin segmentación clara.
+          </p>
+          <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:border-[#FFD600]/50 hover:shadow-[0_0_22px_rgba(255,214,0,0.18)] sm:p-6">
+            <ul className="flex flex-col gap-3 text-sm font-bold text-zinc-100 sm:text-[15px]">
+              {problemaBullets.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="shrink-0 text-red-400" aria-hidden>
+                    ●
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </section>
 
-          <div className="relative">
-            <div className="grid gap-8 md:grid-cols-4 md:gap-6">
-              {timelinePhases.map((phase, index) => (
-                <div
-                  key={phase.id}
-                  data-reveal
-                  className="reveal route-card relative mx-auto w-full max-w-md rounded-2xl border border-zinc-800/80 bg-zinc-950/55 p-4 text-center backdrop-blur-[1px] md:max-w-none md:p-5"
-                  style={{ transitionDelay: `${index * 120}ms` }}
-                >
-                  {index !== timelinePhases.length - 1 && (
-                    <div className="relative mx-auto mt-4 h-12 w-[2px] overflow-hidden rounded-full md:hidden">
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+        <div data-reveal className="reveal">
+          <p className="mb-2 text-xs font-extrabold uppercase tracking-[0.28em] text-zinc-500">
+            La solución: el funnel segmentado
+          </p>
+          <h2 className="mb-4 max-w-3xl text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
+            Un sistema que lleva a cada persona al camino correcto
+          </h2>
+
+          <div className="mb-4 md:hidden">
+            <div className="flex flex-col gap-3">
+              {funnelSteps.map((step, index) => (
+                <div key={step.id} className="flex flex-col items-center gap-3">
+                  <article className="w-full max-w-sm rounded-2xl border border-zinc-700 bg-[#111111] p-4 text-center transition duration-300 hover:border-[#FFD600]/50 hover:shadow-[0_0_22px_rgba(255,214,0,0.18)]">
+                    <div
+                      className="pulse-glow mx-auto flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#FFD600] bg-zinc-950/85 text-xs font-extrabold text-[#FFD600] shadow-[0_0_0_2px_rgba(255,214,0,0.35),0_0_28px_rgba(255,214,0,0.45)]"
+                      aria-hidden
+                    >
+                      {index + 1}
+                    </div>
+                    <p className="mt-3 text-sm font-extrabold text-white">{step.label}</p>
+                  </article>
+                  {index < funnelSteps.length - 1 && (
+                    <div className="relative h-10 w-[2px] overflow-hidden rounded-full">
                       <span className="timeline-dash-vertical block h-full w-full" />
                     </div>
                   )}
-                  {index !== timelinePhases.length - 1 && (
-                    <div className="absolute left-[calc(50%+50px)] top-[72px] hidden h-[2px] w-[calc(100%-20px)] overflow-hidden rounded-full md:block">
-                      <span className="timeline-dash absolute inset-0 block" />
-                    </div>
-                  )}
-                  <p
-                    className="mb-3 text-xs font-semibold uppercase tracking-[0.25em]"
-                    style={{ color: phase.color }}
-                  >
-                    {phase.label}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setActivePhase(phase.id)}
-                    className="group mx-auto block"
-                    aria-label={`Activar ${phase.title}`}
-                  >
-                    <div
-                      className="pulse-glow mx-auto flex h-[60px] w-[60px] items-center justify-center rounded-full border bg-zinc-950/85 text-2xl md:h-[80px] md:w-[80px] md:text-3xl"
-                      style={{
-                        borderColor: phase.color,
-                        boxShadow: phase.glow,
-                        transform: activePhase === phase.id ? "scale(1.08)" : undefined,
-                      }}
-                    >
-                      <span role="img" aria-label={phase.title}>
-                        {phase.icon}
-                      </span>
-                    </div>
-                  </button>
-                  <p className="mt-4 text-sm font-bold uppercase tracking-wide text-white md:text-base">
-                    {phase.title}
-                  </p>
-                  <p className="text-sm text-zinc-300">{phase.subtitle}</p>
-
-                  <div className="mt-3 flex flex-wrap justify-center gap-2">
-                    {phase.points.map((point, chipIndex) => (
-                      <span
-                        key={point}
-                        data-reveal
-                        className="reveal fade-soft rounded-full border border-zinc-600/70 bg-zinc-900/80 px-2.5 py-1 text-[11px] font-medium text-zinc-200"
-                        style={{ transitionDelay: `${chipIndex * 80 + index * 100}ms` }}
-                      >
-                        {point}
-                      </span>
-                    ))}
-                  </div>
-
-                  <span
-                    className={`mt-4 inline-flex rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] ${phase.statusClass}`}
-                  >
-                    {phase.status}
-                  </span>
-
-                  <div
-                    className={`mt-4 grid transition-all duration-500 ${
-                      activePhase === phase.id ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <ul className="space-y-1.5 text-left text-[12px] leading-relaxed text-zinc-300">
-                        <li>
-                          <span className="font-semibold text-zinc-100">Construimos:</span> {phase.build}
-                        </li>
-                        <li>
-                          <span className="font-semibold text-zinc-100">Activamos:</span> {phase.activate}
-                        </li>
-                        <li>
-                          <span className="font-semibold text-zinc-100">Resultado:</span> {phase.result}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <ul className="sr-only">
-                    {phase.points.map((point) => (
-                      <li key={`${phase.id}-${point}`} className="flex gap-2">
-                        <span style={{ color: phase.color }}>·</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-10 flex justify-center">
-            <p className="rounded-xl border border-[#FFD600] px-6 py-3 text-center text-sm font-bold text-black shadow-[0_0_22px_rgba(255,214,0,0.25)] sm:text-base bg-[#FFD600]">
-              = Sistema activo + Resultados reales
-            </p>
+          <div className="mb-4 hidden md:flex md:flex-wrap md:items-start md:justify-center md:gap-0">
+            {funnelSteps.map((step, index) => (
+              <div key={step.id} className="flex min-w-0 items-start">
+                <div className="flex w-[88px] shrink-0 flex-col items-center text-center lg:w-[100px]">
+                  <div
+                    className="pulse-glow flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#FFD600] bg-zinc-950/85 text-xs font-extrabold text-[#FFD600] shadow-[0_0_0_2px_rgba(255,214,0,0.35),0_0_28px_rgba(255,214,0,0.45)]"
+                    aria-hidden
+                  >
+                    {index + 1}
+                  </div>
+                  <p className="mt-3 text-[10px] font-extrabold leading-tight text-white lg:text-[11px]">{step.label}</p>
+                </div>
+                {index < funnelSteps.length - 1 && (
+                  <div className="relative mt-7 h-[2px] min-w-[12px] flex-1 max-w-[48px] overflow-hidden lg:max-w-[72px]">
+                    <span className="timeline-dash absolute inset-0 block" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {quizProfiles.map((row) => (
+              <article
+                key={row.perfil}
+                className="rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:scale-[1.01] hover:border-[#FFD600]/55 hover:shadow-[0_0_22px_rgba(255,214,0,0.2)]"
+              >
+                <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-[#FFD600]">Perfil</p>
+                <h3 className="mt-2 text-base font-extrabold text-white">{row.perfil}</h3>
+                <p className="mt-3 text-sm font-bold text-zinc-300">{row.descripcion}</p>
+                <p className="mt-4 border-t border-zinc-700 pt-3 text-xs font-extrabold uppercase tracking-wide text-zinc-400">
+                  Ruta
+                </p>
+                <p className="mt-1 text-sm font-extrabold text-white">{row.ruta}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
         <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            01. Donde esta hoy Jesus Rodriguez
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
+            Las 6 landings estratégicas
           </h2>
-          <p className="text-sm text-zinc-400 sm:text-base">
-            Tiene credibilidad y productos valiosos, pero el sistema comercial aun no convierte ni escala.
+          <p className="mb-2 text-sm font-bold text-white sm:text-base">Cada oferta tiene su propia arquitectura de conversión</p>
+          <p className="mb-4 max-w-3xl text-sm font-bold text-zinc-400 sm:text-base">
+            No una sola landing genérica. Seis rutas distintas para seis decisiones distintas.
           </p>
+          <div className="grid gap-3 md:grid-cols-2">
+            {landingsSix.map((card) => (
+              <article
+                key={card.title}
+                className="rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:scale-[1.01] hover:border-[#FFD600]/55 hover:shadow-[0_0_22px_rgba(255,214,0,0.2)] sm:p-5"
+              >
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#FFD600]/60 bg-[#FFD600]/10 text-sm font-extrabold text-[#FFD600]">
+                  {card.n}
+                </span>
+                <h3 className="mt-3 text-lg font-extrabold text-white sm:text-xl">{card.title}</h3>
+                <p className="mt-3 text-sm font-bold leading-relaxed text-zinc-300">{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1.45fr]">
-            <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6">
-              <p className="inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-blue-300">
-                Punto de partida
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+        <div data-reveal className="reveal">
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
+            Las 8 automatizaciones ManyChat
+          </h2>
+          <p className="mb-4 max-w-3xl text-sm font-bold text-zinc-300 sm:text-base">
+            ManyChat convierte cada interacción en una captación
+          </p>
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {manychatAutomations.map((a) => (
+              <article
+                key={a.title}
+                className="rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:border-[#FFD600]/55 hover:shadow-[0_0_22px_rgba(255,214,0,0.2)] sm:p-5"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#FFD600]/50 bg-zinc-950 text-sm font-extrabold text-[#FFD600]">
+                    {a.n}
+                  </span>
+                  <div>
+                    <h3 className="text-base font-extrabold text-white sm:text-lg">{a.title}</h3>
+                    <p className="mt-2 text-sm font-bold text-zinc-300">{a.text}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+        <div data-reveal className="reveal">
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
+            Secuencias de WhatsApp
+          </h2>
+          <p className="mb-4 text-sm font-bold text-[#FFD600] sm:text-base">ManyChat capta. WhatsApp nutre y cierra.</p>
+
+          <div className="mb-4 flex gap-3 md:hidden">
+            <button
+              type="button"
+              onClick={() => setWaTab("frio")}
+              className={`flex-1 rounded-xl border px-3 py-2 text-center text-xs font-extrabold uppercase tracking-wide transition ${
+                waTab === "frio"
+                  ? "border-[#FFD600] bg-[#FFD600] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+                  : "border-zinc-600 bg-[#111111] text-zinc-300"
+              }`}
+            >
+              Nutrición 7 días
+            </button>
+            <button
+              type="button"
+              onClick={() => setWaTab("caliente")}
+              className={`flex-1 rounded-xl border px-3 py-2 text-center text-xs font-extrabold uppercase tracking-wide transition ${
+                waTab === "caliente"
+                  ? "border-[#FFD600] bg-[#FFD600] text-black shadow-[0_0_18px_rgba(255,214,0,0.35)]"
+                  : "border-zinc-600 bg-[#111111] text-zinc-300"
+              }`}
+            >
+              Cierre
+            </button>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2">
+            <article
+              className={`rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:border-[#FFD600]/45 hover:shadow-[0_0_20px_rgba(255,214,0,0.14)] sm:p-5 ${
+                waTab !== "frio" ? "hidden md:block" : ""
+              }`}
+            >
+              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#FFD600]">
+                Secuencia 1 — Nutrición 7 días
               </p>
-              <h3 className="mt-4 text-2xl font-extrabold leading-tight">{currentSituation.startPointTitle}</h3>
-              <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                {currentSituation.startPointItems.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="text-red-400">●</span>
-                    <span>{item}</span>
+              <p className="mt-2 text-sm font-bold text-zinc-400">Para leads fríos</p>
+              <ul className="mt-4 flex flex-col gap-3 text-sm font-bold text-zinc-100">
+                {nutricionDias.map((d) => (
+                  <li key={d.dia} className="flex gap-3 border-b border-zinc-800 pb-3 last:border-0 last:pb-0">
+                    <span className="shrink-0 text-[#FFD600]">{d.dia}</span>
+                    <span className="text-zinc-200">{d.text}</span>
                   </li>
                 ))}
               </ul>
             </article>
 
-            <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-6">
-              <p className="inline-flex rounded-full bg-red-500/20 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
-                Friccion actual
-              </p>
-              <div className="mt-4 space-y-3">
-                {currentSituation.frictionItems.map((item) => (
-                  <div key={item.title} className="rounded-xl border border-zinc-700 bg-zinc-900/75 p-4">
-                    <p className="text-base font-bold text-white">{item.title}</p>
-                    <p className="mt-1 text-sm text-zinc-300">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            02. Transformaciones concretas en 60 dias
-          </h2>
-          <p className="text-sm text-zinc-400 sm:text-base">
-            Cada mejora impacta directamente ventas, claridad de oferta y eficiencia operativa.
-          </p>
-
-          <div className="mt-6 grid gap-3">
-            <div className="grid gap-3 md:grid-cols-2">
-              <p className="inline-flex w-fit rounded-full bg-red-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-red-300">
-                Antes
-              </p>
-              <p className="inline-flex w-fit rounded-full bg-emerald-500/20 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-300 md:justify-self-end">
-                Despues
-              </p>
-            </div>
-            {transformations.map((item, idx) => (
-              <div key={item.before} className="grid gap-3 md:grid-cols-2">
-                <article className="rounded-xl border border-red-400/25 bg-red-950/15 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-red-300">Transformacion {idx + 1}</p>
-                  <p className="mt-1 text-sm text-zinc-200">{item.before}</p>
-                </article>
-                <article className="rounded-xl border border-emerald-400/25 bg-emerald-950/15 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300">Impacto {idx + 1}</p>
-                  <p className="mt-1 text-sm text-zinc-100">{item.after}</p>
-                </article>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="mb-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            03. Las 4 landings estrategicas
-          </h2>
-          <p className="text-sm text-zinc-400 sm:text-base">
-            Cada producto tiene su propia narrativa de venta con VSL y CTA listo para convertir.
-          </p>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {strategicLandings.map((landing) => (
-              <article
-                key={landing.title}
-                className="rounded-2xl border border-zinc-700 bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:border-blue-300/60"
-              >
-                <h3 className="text-2xl font-extrabold">{landing.title}</h3>
-                <p className="mt-2 text-sm text-zinc-300">{landing.text}</p>
-                <p className="mt-3 font-semibold text-zinc-100">{landing.focus}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {landing.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-blue-400/40 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-blue-200">
-                      {tag}
+            <article
+              className={`rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:border-[#FFD600]/45 hover:shadow-[0_0_20px_rgba(255,214,0,0.14)] sm:p-5 ${
+                waTab !== "caliente" ? "hidden md:block" : ""
+              }`}
+            >
+              <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#FFD600]">Secuencia 2 — Cierre</p>
+              <p className="mt-2 text-sm font-bold text-zinc-400">Para leads calientes</p>
+              <ul className="mt-4 flex flex-col gap-3 text-sm font-bold text-zinc-100">
+                {cierreBullets.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-[#FFD600]" aria-hidden>
+                      •
                     </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-          <p className="mt-6 rounded-xl border border-blue-300/40 bg-blue-500/10 px-5 py-3 text-center font-semibold text-blue-100">
-            Los guiones VSL se entregan antes de la semana 2. Jesus solo debe grabarlos.
-          </p>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="mb-7 text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Detalle de fases
-          </h2>
-          <div className="grid gap-5 md:grid-cols-2">
-            {detailCards.map((card) => {
-              const isOpen = openCard === card.id;
-              return (
-                <article
-                  key={card.id}
-                  className={`group rounded-2xl border border-zinc-700 bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:border-yellow-300/70 hover:shadow-[0_0_22px_rgba(255,214,0,0.18)] ${
-                    isOpen ? "border-yellow-400/70 shadow-[0_0_26px_rgba(255,214,0,0.2)]" : ""
-                  }`}
-                >
-                  <button
-                    type="button"
-                    onClick={() => setOpenCard(isOpen ? "" : card.id)}
-                    className="flex w-full items-center justify-between text-left"
-                    aria-expanded={isOpen}
-                  >
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-zinc-400">
-                        {card.phase}
-                      </p>
-                      <h3 className="mt-2 text-xl font-bold">{card.title}</h3>
-                    </div>
-                    <span className="ml-4 text-2xl text-yellow-300">{isOpen ? "−" : "+"}</span>
-                  </button>
-
-                  <div
-                    className={`grid transition-all duration-500 ease-out ${
-                      isOpen ? "mt-5 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <ul className="space-y-2 text-sm leading-relaxed text-zinc-300 sm:text-[15px]">
-                        {card.items.map((item) => (
-                          <li key={item} className="flex gap-2">
-                            <span className="text-[#FFD600]">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Qué recibe exactamente
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-zinc-400 sm:text-base">
-            Todo lo que se construye e instala en los 2 meses
-          </p>
-
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {deliverables.map((column) => (
-              <article
-                key={column.title}
-                className="rounded-2xl border border-zinc-700 bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:border-yellow-300/70 hover:shadow-[0_0_22px_rgba(255,214,0,0.18)]"
-              >
-                <h3
-                  className={`mb-4 border-b pb-3 text-lg font-bold tracking-wide ${column.color}`}
-                >
-                  {column.title}
-                </h3>
-                <ul className="space-y-2 text-sm leading-relaxed text-zinc-300 sm:text-[15px]">
-                  {column.items.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-[#FFD600]">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="mb-8 text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
-            La inversión
-          </h2>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            <article className="rounded-2xl border border-blue-400/80 bg-[#111111] p-8 text-center shadow-[0_0_24px_rgba(59,130,246,0.24)] transition duration-300 hover:scale-[1.02]">
-              <p className="text-4xl font-extrabold text-blue-300">$400 USD</p>
-              <p className="mt-2 text-sm uppercase tracking-[0.18em] text-zinc-300">
-                Pago 1 — Al firmar
-              </p>
-              <p className="mt-4 text-zinc-400">Arranca el proyecto de inmediato</p>
-            </article>
-
-            <article className="rounded-2xl border border-yellow-400/80 bg-[#111111] p-8 text-center shadow-[0_0_24px_rgba(255,214,0,0.2)] transition duration-300 hover:scale-[1.02]">
-              <p className="text-4xl font-extrabold text-[#FFD600]">$297 USD</p>
-              <p className="mt-2 text-sm uppercase tracking-[0.18em] text-zinc-300">
-                Pago 2 — Al pasar 15 días
-              </p>
-              <p className="mt-4 text-zinc-400">Activa las fases 3 y 4</p>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </article>
           </div>
+        </div>
+      </section>
 
-          <p className="mt-8 text-center text-3xl font-extrabold text-white sm:text-4xl">
-            $697 USD <span className="text-zinc-500">· Sin intereses</span>
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+        <div data-reveal className="reveal">
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">
+            Qué incluye la implementación
+          </h2>
+          <p className="mb-4 text-sm font-bold text-zinc-300 sm:text-base">Todo lo que se construye e implementa</p>
+          <div className="grid gap-3 md:grid-cols-2">
+            <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:border-[#FFD600]/55 hover:shadow-[0_0_22px_rgba(255,214,0,0.2)] sm:p-5">
+              <ul className="flex flex-col gap-3 text-sm font-bold text-zinc-200">
+                {implementacionIzq.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-[#FFD600]">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+            <article className="rounded-2xl border border-zinc-700 bg-[#111111] p-4 transition duration-300 hover:border-[#FFD600]/55 hover:shadow-[0_0_22px_rgba(255,214,0,0.2)] sm:p-5">
+              <ul className="flex flex-col gap-3 text-sm font-bold text-zinc-200">
+                {implementacionDer.map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="text-[#FFD600]">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 sm:px-8">
+        <div data-reveal className="reveal text-center">
+          <h2 className="mb-4 text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl">La inversión</h2>
+          <p className="text-3xl font-extrabold text-[#FFD600] drop-shadow-[0_0_20px_rgba(255,214,0,0.25)] sm:text-4xl">
+            $697 USD / 2.600.000 COP
           </p>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-        <div data-reveal className="reveal rounded-2xl border border-zinc-700 bg-[#111111] p-6 sm:p-8">
-          <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Condiciones del proyecto</h2>
-          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-zinc-300 sm:text-base">
-            {projectConditions.map((item) => (
-              <li key={item} className="flex gap-2">
-                <span className="text-emerald-300">●</span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="bg-[#0B1F3A] px-5 py-16 sm:px-8">
-        <div data-reveal className="reveal mx-auto max-w-5xl text-center">
-          <h2 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl">
-            Jesus, ya tienes la audiencia y los productos.
-          </h2>
-          <p className="mt-4 text-lg text-blue-100 sm:text-xl">Fluxa Method pone el sistema.</p>
-          <p className="mt-10 text-xs font-medium uppercase tracking-[0.2em] text-blue-200/80 sm:text-sm">
+      <section className="mx-auto w-full max-w-6xl px-5 py-6 pb-16 sm:px-8">
+        <div data-reveal className="reveal mx-auto max-w-3xl text-center">
+          <p className="text-xl font-extrabold leading-snug text-white sm:text-2xl md:text-3xl">
+            Jesús, ya tienes la comunidad, el contenido y la autoridad.
+          </p>
+          <p className="mt-4 text-sm font-bold text-zinc-300 sm:text-base">Fluxa Method construye el sistema que los convierte.</p>
+          <a
+            href="https://wa.me/573001234567"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center justify-center rounded-xl border-2 border-[#FFD600] bg-[#FFD600] px-8 py-3 text-sm font-extrabold text-black shadow-[0_0_24px_rgba(255,214,0,0.35)] transition hover:brightness-110 sm:text-base"
+          >
+            Confirmar arranque por WhatsApp
+          </a>
+          <p className="mt-10 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 sm:text-sm">
             fluxamethod.com · @fluxamethod · Cúcuta, Colombia
           </p>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-5 pb-24 pt-16 sm:px-8">
-        <div data-reveal className="reveal">
-          <h2 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Planes de soporte post-entrega
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-zinc-400 sm:text-base">
-            Puedes continuar con acompanamiento segun el nivel de soporte que necesites despues de la entrega.
-          </p>
-
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {supportPlans.map((plan) => (
-              <article
-                key={plan.name}
-                className={`rounded-2xl border ${plan.highlight} bg-[#111111] p-6 transition duration-300 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(255,255,255,0.08)]`}
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-zinc-400">{plan.period}</p>
-                <h3 className="mt-2 text-2xl font-extrabold text-white">{plan.name}</h3>
-                <p className="mt-1 text-sm font-semibold text-[#FFD600]">{plan.price}</p>
-                <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-                  {plan.items.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="text-[#FFD600]">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -772,20 +492,6 @@ export default function JesusRodriguezPage() {
           animation: dashFlowVertical 1.8s linear infinite;
         }
 
-        .fade-soft {
-          transition-duration: 0.8s;
-        }
-
-        .route-card {
-          transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .route-card:hover {
-          transform: translateY(-2px);
-          border-color: rgba(255, 255, 255, 0.18);
-          box-shadow: 0 0 24px rgba(255, 255, 255, 0.08);
-        }
-
         @keyframes pulseGlow {
           0% {
             transform: scale(1);
@@ -819,6 +525,7 @@ export default function JesusRodriguezPage() {
           }
         }
       `}</style>
+      </div>
     </main>
   );
 }
