@@ -7,6 +7,16 @@ const landings = [
     description: "Seguimiento de proyecto Fluxa Method",
   },
   {
+    name: "Trading — Propuesta comercial",
+    path: "/trading-propuesta",
+    description: "Fluxa Launch y Fluxa Pro · academia de trading · 8 slides",
+  },
+  {
+    name: "Propuesta comercial (slides)",
+    path: "/propuesta-supermercado",
+    description: "Propuesta Fluxa Launch y Fluxa Pro · diseño premium mobile-first",
+  },
+  {
     name: "Dr. Leonardo Bello",
     path: "/dr-leonardo-bello",
     description: "Propuesta comercial y plan de ejecución",
