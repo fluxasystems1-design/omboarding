@@ -553,17 +553,6 @@ export default function AlianzaChilePage() {
           </a>
         </article>
 
-        {/* Caso referencia */}
-        <article className="propuesta-card alianza-chile-card mt-4 p-5">
-          <p className="alianza-chile-label text-xs font-bold uppercase tracking-wide">Caso de referencia · Chile</p>
-          <p className="mt-2 text-sm text-zinc-300">
-            <strong className="text-zinc-200">Tipo de negocio:</strong> servicios profesionales locales en Chile (confidencial).
-            Vendido a <strong className="alianza-chile-highlight">968.990 CLP</strong> (~$
-            {Math.round(968990 / CLP_PER_USD_REF)} USD al cambio de referencia). Fluxa ejecutó equivalente a{" "}
-            <strong className="text-white">Sistema Completo ($750 USD neto)</strong>. El mercado ya validó ese precio — tú
-            podrías replicar la misma lógica con tu cartera.
-          </p>
-        </article>
       </PropuestaSection>
 
       {/* EJECUTA */}
