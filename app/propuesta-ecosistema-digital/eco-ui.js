@@ -271,9 +271,6 @@ export function SocialProofStrip() {
         captación premium. Trabajamos detrás de escena;{" "}
         <strong className="text-zinc-100">tú eres quien aparece frente a tu audiencia</strong>.
       </p>
-      <p className="mt-3 text-xs text-zinc-500">
-        Si necesitas referencias concretas antes de firmar, las compartimos en la llamada de cierre.
-      </p>
     </article>
   );
 }

@@ -398,10 +398,6 @@ const FAQ_ITEMS = [
     q: "¿Quién es dueño de las páginas y sistemas?",
     a: "Tú. Todo queda para tu operación; Fluxa entrega accesos y documentación básica.",
   },
-  {
-    q: "¿Qué pasa después de decir que sí?",
-    a: "Pagas el hito inicial, completamos checklist de accesos y en 48 h agendamos la reunión de arranque (semana 1).",
-  },
 ];
 
 export default function PropuestaEcosistemaDigitalPage() {
