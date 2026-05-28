@@ -107,8 +107,8 @@ export function PlanChangeHint() {
   return (
     <div className="eco-plan-hint mt-4 rounded-lg bg-zinc-900/50 px-4 py-3 text-sm text-zinc-300">
       <p>
-        <strong className="text-white">Un solo frente (desde $1,800):</strong> eliges ecommerce, asesoramiento deportivo
-        o fondo de inversión.
+        <strong className="text-white">Un solo frente (desde $1,800):</strong> eliges Ecommerce + Ropa + Suplementos,
+        Asesoramiento Deportivo + Membresía o Fondo de Inversión + Brokeraje.
         Duración aproximada 6–8 semanas. Pagas 50% al inicio y 50% a los 20 días del pago inicial.
       </p>
       <p className="mt-2">
@@ -123,10 +123,7 @@ export function PlanChangeHint() {
 export function Summary30Card() {
   return (
     <article className="propuesta-card eco-summary-30 mt-6 border-teal-500/30 p-5 sm:p-6">
-      <p className="alianza-eyebrow text-[10px] font-bold uppercase tracking-[0.2em]">
-        Resumen en 30 segundos
-      </p>
-      <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-zinc-200 sm:text-[15px]">
+      <ol className="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-zinc-200 sm:text-[15px]">
         <li>
           <strong className="text-white">Tres frentes:</strong> Ecommerce + Ropa + Suplementos, Asesoramiento Deportivo +
           Membresía y Fondo de Inversión + Brokeraje — conectados a tu marca.
@@ -140,15 +137,15 @@ export function Summary30Card() {
           <strong className="text-white">Fluxa:</strong> construye páginas, cobros, automatizaciones y medición.
         </li>
         <li>
-          <strong className="text-white">Después del sí:</strong> pago inicial, checklist de accesos y arranque en la
-          semana 1.
+          <strong className="text-white">Pack recomendado:</strong> $4,500 por los 3 frentes (ahorro $1,200 vs. $5,700
+          por separado).
         </li>
       </ol>
     </article>
   );
 }
 
-export function TotalCostBox({ tab }) {
+export function TotalCostBox({ tab, investment, firstPayment }) {
   const isFull = tab === "full";
   return (
     <article className="eco-total-cost propuesta-card mt-6 p-5 sm:p-6">
@@ -175,12 +172,12 @@ export function TotalCostBox({ tab }) {
       ) : (
         <ul className="mt-4 space-y-3 text-sm text-zinc-300">
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Inversión inicial (un ecosistema)</span>
-            <span className="alianza-money-value font-extrabold">desde $1,800</span>
+            <span>Inversión inicial (plan seleccionado)</span>
+            <span className="alianza-money-value font-extrabold">{investment}</span>
           </li>
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Primer pago para arrancar (50%)</span>
-            <span className="font-bold text-white">desde $900</span>
+            <span className="font-bold text-white">{firstPayment}</span>
           </li>
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Duración estimada</span>
@@ -214,10 +211,10 @@ export function PlanRecommendations() {
       desc: "Automatizas captación, cobro y bienvenida de miembros.",
     },
     {
-      title: "¿Ya tienes audiencia para señales o educación premium?",
+      title: "¿Tienes audiencia para fondo o educación premium?",
       rec: "Empieza por Fondo de Inversión + Brokeraje",
       tab: "eco3",
-      desc: "Montamos captación calificada, canal privado y niveles básico/VIP.",
+      desc: "Montamos captación de inversores, canal privado y niveles básico/VIP del fondo.",
       highlight: false,
     },
     {
@@ -267,8 +264,8 @@ export function SocialProofStrip() {
     <article className="propuesta-card mt-6 border-zinc-700/80 p-5 sm:p-6">
       <p className="alianza-eyebrow text-[10px] font-bold uppercase tracking-[0.18em]">Experiencia Fluxa</p>
       <p className="mt-3 text-sm leading-relaxed text-zinc-300">
-        Hemos montado sistemas de venta digital para creadores y marcas personales: tiendas en línea, membresías y
-        captación premium. Trabajamos detrás de escena;{" "}
+        Hemos montado ecommerce, membresías deportivas y frentes de inversión para creadores y marcas personales.
+        Trabajamos detrás de escena;{" "}
         <strong className="text-zinc-100">tú eres quien aparece frente a tu audiencia</strong>.
       </p>
     </article>
@@ -282,7 +279,6 @@ export function PackComparator() {
     ["Los 3 sistemas hablan entre sí", "No", "Sí — misma audiencia"],
     ["Una sola estrategia de crecimiento", "No", "Sí"],
     ["Tiempo total estimado", "3 proyectos por separado", "4 meses coordinados"],
-    ["Precio lista pack (referencia)", "—", "$5,700 → pagas $4,500"],
   ];
   return (
     <div className="propuesta-compare-table mt-4 overflow-x-auto rounded-xl border border-zinc-800 bg-black/30">
@@ -322,68 +318,51 @@ export function DeliverablesBlock({ tab, groups, single, tabFade, loading }) {
     return (
       <div className={panelClass}>
         <h3 className="text-sm font-bold uppercase tracking-wide text-zinc-400">
-          Entregables y precio — Ecosistema Integral
+          Entregables — Ecosistema integral
         </h3>
         <div className="mt-4 space-y-4 md:hidden">
           {groups.map((g) => (
             <div key={g.id} className="eco-deliverable-group space-y-2 pt-4 first:pt-0">
               <p className="text-[11px] font-bold uppercase tracking-wide text-teal-300">{g.label}</p>
-              {g.rows.map(([name, price], i) => (
+              {g.rows.map((name, i) => (
                 <article
                   key={name}
                   style={{ "--stagger-i": i }}
                   className="alianza-compare-row rounded-xl border border-zinc-800 bg-gradient-to-r from-zinc-900/70 to-zinc-950/70 p-3"
                 >
                   <p className="text-xs leading-relaxed text-zinc-300">{name}</p>
-                  <p className="mt-2 text-right text-sm font-extrabold text-teal-300">{price}</p>
                 </article>
               ))}
-              <p className="text-right text-xs font-bold text-zinc-400">
-                Subtotal {g.label.split("·")[0].trim()}:{" "}
-                <span className="alianza-money-value text-sm">{g.subtotal}</span>
-              </p>
             </div>
           ))}
-          <article className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3">
-            <p className="text-[11px] font-bold uppercase tracking-wide text-zinc-300">Subtotal combinado</p>
-            <p className="alianza-money-value mt-1 text-right text-lg font-extrabold">$2,090</p>
-          </article>
         </div>
         <div className="propuesta-compare-table mt-4 hidden overflow-x-auto rounded-xl border border-zinc-800 bg-black/30 md:block">
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="border-b border-zinc-800 bg-zinc-900/70 text-left text-[10px] uppercase tracking-wider text-zinc-500">
                 <th className="px-3 py-3 sm:px-4">Entregable</th>
-                <th className="px-3 py-3 text-right sm:px-4">Precio</th>
               </tr>
             </thead>
             <tbody>
               {groups.map((g) => (
                 <Fragment key={g.id}>
                   <tr className="eco-deliverable-group bg-teal-950/30">
-                    <td colSpan={2} className="px-3 py-2.5 text-xs font-bold uppercase tracking-wide text-teal-300 sm:px-4">
-                      {g.label} · Subtotal {g.subtotal}
+                    <td className="px-3 py-2.5 text-xs font-bold uppercase tracking-wide text-teal-300 sm:px-4">
+                      {g.label}
                     </td>
                   </tr>
-                  {g.rows.map(([name, price], i) => (
+                  {g.rows.map((name, i) => (
                     <tr
                       key={name}
                       style={{ "--stagger-i": i }}
                       className="alianza-compare-row border-b border-zinc-800/80 transition-colors hover:bg-zinc-900/40"
                     >
                       <td className="px-3 py-2.5 text-zinc-300 sm:px-4">{name}</td>
-                      <td className="px-3 py-2.5 text-right font-semibold text-teal-300 sm:px-4">{price}</td>
                     </tr>
                   ))}
                 </Fragment>
               ))}
             </tbody>
-            <tfoot>
-              <tr className="border-t border-zinc-700 bg-amber-500/10">
-                <td className="px-3 py-3 font-bold text-zinc-200 sm:px-4">SUBTOTAL COMBINADO</td>
-                <td className="alianza-money-value px-3 py-3 text-right font-extrabold sm:px-4">$2,090</td>
-              </tr>
-            </tfoot>
           </table>
         </div>
         <p className="mt-3 text-xs text-zinc-400">
@@ -396,7 +375,7 @@ export function DeliverablesBlock({ tab, groups, single, tabFade, loading }) {
   return (
     <div className={panelClass}>
       <h3 className="text-sm font-bold uppercase tracking-wide text-zinc-400">
-        Entregables y precio — {single?.label ?? ""}
+        Entregables — {single?.label ?? ""}
       </h3>
       <div className="mt-4 space-y-2 md:hidden">
         {(single?.rows ?? []).map((name, i) => (
