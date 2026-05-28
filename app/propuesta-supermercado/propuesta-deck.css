@@ -230,6 +230,12 @@
   font-variant-numeric: tabular-nums;
 }
 
+@keyframes propuestaLineGrow {
+  to {
+    width: 120px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .propuesta-supermercado [data-reveal],
   .propuesta-supermercado .reveal-child,

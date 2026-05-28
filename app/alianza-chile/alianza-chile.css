@@ -1,0 +1,549 @@
+/* Paleta Alianza Chile — teal Fluxa + neutros + ámbar (dinero) + cobre (Chile) */
+
+.propuesta-supermercado.alianza-page {
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --alianza-bg: #09090b;
+  --alianza-surface: #111113;
+  --alianza-surface-elevated: #18181b;
+  --alianza-border: #27272a;
+  --alianza-text: #fafafa;
+  --alianza-muted: #a1a1aa;
+  --alianza-accent: #0d9488;
+  --alianza-accent-hi: #2dd4bf;
+  --alianza-accent-dim: rgba(13, 148, 136, 0.14);
+  --alianza-money: #d97706;
+  --alianza-money-hi: #fbbf24;
+  --alianza-money-dim: rgba(217, 119, 6, 0.12);
+  --alianza-chile: #b45309;
+  --alianza-chile-hi: #f59e0b;
+  --alianza-chile-dim: rgba(180, 83, 9, 0.14);
+
+  --accent: var(--alianza-accent);
+  --accent-light: var(--alianza-accent-hi);
+  --bg: var(--alianza-bg);
+  --card: var(--alianza-surface);
+
+  background-color: var(--alianza-bg);
+  color: var(--alianza-text);
+  background-image: radial-gradient(
+    ellipse 90% 55% at 50% -12%,
+    rgba(13, 148, 136, 0.1),
+    transparent 55%
+  );
+}
+
+/* Botón principal */
+.alianza-btn-primary {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(45, 212, 191, 0.55);
+  background: var(--alianza-accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #fff;
+  box-shadow: 0 0 18px rgba(13, 148, 136, 0.28);
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.alianza-btn-primary:hover {
+  background: #0f766e;
+  box-shadow: 0 0 24px rgba(13, 148, 136, 0.35);
+}
+
+.alianza-btn-primary:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--alianza-bg),
+    0 0 0 4px var(--alianza-accent-hi);
+}
+
+/* Solo marca / sección */
+.alianza-eyebrow {
+  color: var(--alianza-accent-hi);
+}
+
+.alianza-hero-accent {
+  color: var(--alianza-accent-hi);
+}
+
+.alianza-hero-line {
+  background: var(--alianza-accent-hi);
+  box-shadow: 0 0 12px rgba(13, 148, 136, 0.45);
+}
+
+/* Precios y CTAs secundarios con acento Fluxa */
+.alianza-price {
+  color: var(--alianza-accent-hi);
+}
+
+.alianza-pilot-card {
+  border-color: rgba(13, 148, 136, 0.45) !important;
+  background: linear-gradient(145deg, var(--alianza-accent-dim), rgba(9, 9, 11, 0.6)) !important;
+}
+
+.alianza-pilot-label {
+  color: var(--alianza-accent-hi);
+}
+
+.alianza-combo-featured {
+  border-color: rgba(13, 148, 136, 0.55) !important;
+  box-shadow: 0 0 24px rgba(13, 148, 136, 0.1);
+}
+
+.alianza-combo-badge {
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  background: var(--alianza-accent-dim);
+  color: var(--alianza-accent-hi);
+}
+
+/* Dinero / ganancia */
+.alianza-money-label {
+  color: var(--alianza-money-hi);
+}
+
+.alianza-money-value {
+  color: #fde68a;
+}
+
+.alianza-money-box {
+  border: 1px solid rgba(217, 119, 6, 0.45);
+  background: var(--alianza-money-dim);
+}
+
+.alianza-gain-cell {
+  color: var(--alianza-money-hi) !important;
+  font-weight: 800;
+}
+
+/* Chile */
+.alianza-chile-card {
+  border-left: 4px solid var(--alianza-chile) !important;
+  background: linear-gradient(90deg, var(--alianza-chile-dim), transparent 40%);
+}
+
+.alianza-chile-label {
+  color: var(--alianza-chile-hi);
+}
+
+.alianza-chile-highlight {
+  color: #fcd34d;
+}
+
+/* UI neutra (menos teal) */
+.alianza-bullet {
+  color: #71717a;
+}
+
+.alianza-check {
+  color: #a1a1aa;
+}
+
+.alianza-step-num {
+  color: #52525b;
+}
+
+.alianza-flow-num {
+  color: var(--alianza-accent);
+  opacity: 0.85;
+}
+
+.alianza-sla-label {
+  color: #d4d4d8;
+}
+
+.alianza-partner-label {
+  color: var(--alianza-accent-hi);
+}
+
+.alianza-partner-card {
+  border-left-color: rgba(13, 148, 136, 0.45) !important;
+}
+
+.alianza-summary-card {
+  border-color: rgba(13, 148, 136, 0.35) !important;
+  background: linear-gradient(145deg, var(--alianza-accent-dim), rgba(17, 17, 19, 0.85)) !important;
+}
+
+.alianza-compare-yes {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: var(--alianza-accent-dim);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--alianza-accent-hi);
+}
+
+.alianza-surface-panel {
+  border: 1px solid var(--alianza-border);
+  background: var(--alianza-surface);
+}
+
+.alianza-nav-bar {
+  border-bottom: 1px solid rgba(39, 39, 42, 0.85);
+  background: rgba(9, 9, 11, 0.92);
+}
+
+.alianza-nav-link:hover {
+  color: var(--alianza-accent-hi) !important;
+}
+
+.alianza-btn-ghost {
+  border: 1px solid #52525b;
+  color: #e4e4e7;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.alianza-btn-ghost:hover {
+  border-color: rgba(45, 212, 191, 0.45);
+  color: var(--alianza-accent-hi);
+  box-shadow: 0 0 16px rgba(13, 148, 136, 0.1);
+}
+
+.alianza-cta-footer {
+  border-top: 1px solid rgba(13, 148, 136, 0.35);
+  background: linear-gradient(180deg, var(--alianza-surface) 0%, #0a1210 100%);
+}
+
+.alianza-cta-footer p {
+  color: var(--alianza-muted);
+}
+
+.alianza-sticky-bar {
+  border-top: 1px solid rgba(13, 148, 136, 0.35);
+  background: rgba(9, 9, 11, 0.96);
+}
+
+.alianza-faq-icon {
+  color: #a1a1aa;
+}
+
+.alianza-faq-btn--open .alianza-faq-icon {
+  color: var(--alianza-accent-hi);
+}
+
+.propuesta-supermercado.alianza-page .propuesta-card {
+  background: var(--alianza-surface);
+  border-color: var(--alianza-border);
+}
+
+.propuesta-supermercado.alianza-page .plan-tab--active {
+  border-color: rgba(45, 212, 191, 0.55);
+  background: var(--alianza-accent);
+}
+
+/* Stagger hijos cuando la sección entra en viewport */
+.propuesta-supermercado .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.propuesta-supermercado [data-reveal].is-visible .reveal-stagger > * {
+  animation: alianzaStaggerIn 0.55s var(--ease-spring) forwards;
+  animation-delay: calc(var(--stagger-i, 0) * 65ms + 90ms);
+}
+
+@keyframes alianzaStaggerIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero */
+.alianza-hero-glow {
+  animation: alianzaHeroGlow 4s ease-in-out infinite;
+}
+
+@keyframes alianzaHeroGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(13, 148, 136, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(45, 212, 191, 0.55));
+  }
+}
+
+.alianza-hero-line {
+  animation: propuestaLineGrow 1.1s var(--ease-spring) 0.5s forwards;
+}
+
+/* Cards hover */
+.alianza-card-hover {
+  transition:
+    border-color 0.35s var(--ease-spring),
+    box-shadow 0.35s var(--ease-spring),
+    transform 0.35s var(--ease-spring);
+}
+
+@media (hover: hover) {
+  .alianza-card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(13, 148, 136, 0.12);
+  }
+}
+
+/* Combo destacado */
+.alianza-featured-pulse {
+  animation: alianzaFeaturedPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes alianzaFeaturedPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 28px 2px rgba(13, 148, 136, 0.22);
+  }
+}
+
+/* Tabs catálogo */
+.alianza-tab-panel {
+  transition:
+    opacity 0.4s var(--ease-spring),
+    transform 0.4s var(--ease-spring);
+}
+
+.alianza-tab-panel--enter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.alianza-tab-panel--exit {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.plan-tab {
+  transition:
+    transform 0.25s var(--ease-spring),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.plan-tab:active {
+  transform: scale(0.97);
+}
+
+/* Nav */
+.alianza-nav-link {
+  position: relative;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.alianza-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--alianza-accent-hi);
+  transition: width 0.3s var(--ease-spring), left 0.3s var(--ease-spring);
+}
+
+.alianza-nav-link:hover::after {
+  left: 20%;
+  width: 60%;
+}
+
+/* FAQ acordeón */
+.alianza-faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--ease-spring);
+}
+
+.alianza-faq-panel--open {
+  grid-template-rows: 1fr;
+}
+
+.alianza-faq-panel > div {
+  overflow: hidden;
+}
+
+.alianza-faq-btn .alianza-faq-icon {
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.alianza-faq-btn--open .alianza-faq-icon {
+  transform: rotate(45deg);
+}
+
+/* Flujo dinero — conector */
+.alianza-flow-connector {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(13, 148, 136, 0.5) 0,
+    rgba(13, 148, 136, 0.5) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  background-size: 32px 2px;
+  animation: alianzaDashFlow 1.2s linear infinite;
+}
+
+@keyframes alianzaDashFlow {
+  to {
+    background-position: 32px 0;
+  }
+}
+
+/* Tabla / filas compare */
+.alianza-compare-row {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.propuesta-supermercado [data-reveal].is-visible .alianza-compare-row {
+  animation: alianzaRowIn 0.45s var(--ease-spring) forwards;
+  animation-delay: calc(var(--stagger-i, 0) * 40ms + 120ms);
+}
+
+@keyframes alianzaRowIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Calculadora — highlight ganancia */
+.alianza-gain-flash {
+  animation: alianzaGainFlash 0.6s var(--ease-spring);
+}
+
+@keyframes alianzaGainFlash {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.45);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 0 0 24px rgba(251, 191, 36, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/* CTA sticky móvil */
+.alianza-sticky-cta {
+  transition: transform 0.45s var(--ease-spring), opacity 0.45s ease;
+}
+
+.alianza-sticky-cta--hidden {
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.alianza-sticky-cta--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Botones CTA */
+.alianza-cta-pulse {
+  position: relative;
+  overflow: hidden;
+}
+
+.alianza-cta-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  animation: alianzaCtaShine 3s ease-in-out infinite;
+}
+
+@keyframes alianzaCtaShine {
+  0%,
+  75%,
+  100% {
+    transform: translateX(-120%);
+  }
+  35% {
+    transform: translateX(120%);
+  }
+}
+
+/* Progress bar shimmer */
+.propuesta-progress-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.propuesta-progress-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: alianzaProgressShine 2.5s ease-in-out infinite;
+}
+
+@keyframes alianzaProgressShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Checkmarks reglas — pop */
+.alianza-check-item {
+  opacity: 0;
+  transform: translateX(-6px);
+}
+
+.propuesta-supermercado [data-reveal].is-visible .alianza-check-item {
+  animation: alianzaStaggerIn 0.4s var(--ease-spring) forwards;
+  animation-delay: calc(var(--stagger-i, 0) * 50ms + 100ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alianza-hero-glow,
+  .alianza-featured-pulse,
+  .alianza-flow-connector,
+  .propuesta-progress-bar::after,
+  .alianza-cta-pulse::after {
+    animation: none !important;
+  }
+
+  .propuesta-supermercado .reveal-stagger > *,
+  .alianza-compare-row,
+  .alianza-check-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .alianza-sticky-cta--hidden {
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .alianza-card-hover:hover {
+    transform: none;
+  }
+}

@@ -13,9 +13,12 @@ export function StaggerItems({ items, className = "", bulletClass = "text-teal-4
   );
 }
 
-export function PropuestaSection({ children, className = "" }) {
+export function PropuestaSection({ children, className = "", id }) {
   return (
-    <section className={`mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8 md:pb-20 ${className}`.trim()}>
+    <section
+      id={id}
+      className={`mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8 md:pb-20 ${className}`.trim()}
+    >
       <div data-reveal>{children}</div>
     </section>
   );

@@ -7,14 +7,14 @@ const landings = [
     description: "Seguimiento de proyecto Fluxa Method",
   },
   {
-    name: "Trading — Propuesta comercial",
-    path: "/trading-propuesta",
-    description: "Fluxa Launch y Fluxa Pro · academia de trading · 8 slides",
+    name: "Juan Pablo Moreno",
+    path: "/juan-pablo-moreno",
+    description: "Propuesta Comercial · Fluxa Launch y Fluxa Pro · @juan.moreno.fx · Junio 2026",
   },
   {
-    name: "Propuesta comercial (slides)",
-    path: "/propuesta-supermercado",
-    description: "Propuesta Fluxa Launch y Fluxa Pro · diseño premium mobile-first",
+    name: "Ronaldo Escandón — Alianza Chile",
+    path: "/alianza-chile",
+    description: "Alianza comercial B2B · Fluxa × Chile 2026 · Tú cierras, nosotros ejecutamos",
   },
   {
     name: "Dr. Leonardo Bello",
