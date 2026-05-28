@@ -39,7 +39,7 @@ const landings = [
   {
     name: "Andrés Wolves — Ecosistema digital",
     path: "/propuesta-ecosistema-digital",
-    description: "Propuesta privada · tienda, membresía y señales integradas",
+    description: "Propuesta privada · ecommerce, asesoramiento deportivo y fondo de inversión integrados",
   },
   {
     name: "Tu Supermercado",

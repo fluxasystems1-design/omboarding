@@ -1,5 +1,292 @@
 /* Propuesta ecosistema digital — UI específica */
 
+/* Hero — fondo con asteroides (solo inicio) */
+.eco-hero {
+  background-color: #09090b;
+}
+
+.eco-hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.eco-hero-bg__glow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  width: min(120%, 720px);
+  height: 70%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.22) 0%, transparent 68%);
+  animation: ecoHeroGlow 8s ease-in-out infinite;
+}
+
+.eco-hero-bg__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-image:
+    linear-gradient(rgba(45, 212, 191, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 191, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 40%, black 10%, transparent 75%);
+  animation: ecoGridShift 28s linear infinite;
+}
+
+.eco-hero-bg__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(to bottom, transparent, #09090b 92%);
+}
+
+.eco-asteroid {
+  position: absolute;
+  background: linear-gradient(145deg, #52525b 0%, #27272a 45%, #18181b 100%);
+  border: 1px solid rgba(45, 212, 191, 0.12);
+  box-shadow:
+    inset -3px -5px 10px rgba(0, 0, 0, 0.55),
+    0 0 18px rgba(13, 148, 136, 0.08);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.eco-asteroid--1 {
+  top: 12%;
+  left: -5%;
+  width: 36px;
+  height: 22px;
+  border-radius: 42% 58% 52% 48% / 48% 42% 58% 52%;
+  animation: ecoAsteroid1 26s linear infinite;
+}
+
+.eco-asteroid--2 {
+  top: 8%;
+  right: 5%;
+  width: 52px;
+  height: 32px;
+  border-radius: 55% 45% 40% 60% / 52% 58% 42% 48%;
+  animation: ecoAsteroid2 32s linear infinite;
+  animation-delay: -4s;
+}
+
+.eco-asteroid--3 {
+  top: 38%;
+  right: -8%;
+  width: 24px;
+  height: 16px;
+  border-radius: 38% 62% 50% 50% / 45% 55% 45% 55%;
+  animation: ecoAsteroid3 20s linear infinite;
+  animation-delay: -8s;
+}
+
+.eco-asteroid--4 {
+  top: 55%;
+  left: 4%;
+  width: 44px;
+  height: 28px;
+  border-radius: 48% 52% 58% 42% / 55% 45% 55% 45%;
+  animation: ecoAsteroid4 28s linear infinite;
+  animation-delay: -12s;
+}
+
+.eco-asteroid--5 {
+  top: 22%;
+  left: 42%;
+  width: 18px;
+  height: 12px;
+  border-radius: 50% 50% 45% 55% / 60% 40% 60% 40%;
+  opacity: 0.4;
+  animation: ecoAsteroid5 18s linear infinite;
+  animation-delay: -2s;
+}
+
+.eco-asteroid--6 {
+  top: 68%;
+  right: 18%;
+  width: 30px;
+  height: 20px;
+  border-radius: 60% 40% 45% 55% / 50% 50% 50% 50%;
+  animation: ecoAsteroid6 24s linear infinite;
+  animation-delay: -16s;
+}
+
+.eco-asteroid--7 {
+  top: 45%;
+  left: 72%;
+  width: 14px;
+  height: 10px;
+  border-radius: 45% 55% 55% 45% / 50% 50% 50% 50%;
+  opacity: 0.35;
+  animation: ecoAsteroid7 15s linear infinite;
+  animation-delay: -6s;
+}
+
+.eco-asteroid--8 {
+  top: 78%;
+  left: 55%;
+  width: 22px;
+  height: 14px;
+  border-radius: 52% 48% 42% 58% / 48% 52% 48% 52%;
+  animation: ecoAsteroid8 22s linear infinite;
+  animation-delay: -10s;
+}
+
+.eco-debris {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(45, 212, 191, 0.35);
+  box-shadow: 0 0 6px rgba(45, 212, 191, 0.4);
+}
+
+.eco-debris--1 {
+  width: 3px;
+  height: 3px;
+  top: 30%;
+  left: 20%;
+  animation: ecoDebrisDrift 14s ease-in-out infinite;
+}
+
+.eco-debris--2 {
+  width: 2px;
+  height: 2px;
+  top: 50%;
+  left: 65%;
+  animation: ecoDebrisDrift 11s ease-in-out infinite reverse;
+  animation-delay: -3s;
+}
+
+.eco-debris--3 {
+  width: 4px;
+  height: 4px;
+  top: 18%;
+  left: 78%;
+  animation: ecoDebrisDrift 16s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+@keyframes ecoHeroGlow {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
+}
+
+@keyframes ecoGridShift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+@keyframes ecoAsteroid1 {
+  0% {
+    transform: translate(0, 0) rotate(12deg);
+  }
+  100% {
+    transform: translate(110vw, 40vh) rotate(220deg);
+  }
+}
+
+@keyframes ecoAsteroid2 {
+  0% {
+    transform: translate(0, 0) rotate(-8deg);
+  }
+  100% {
+    transform: translate(-105vw, 35vh) rotate(-200deg);
+  }
+}
+
+@keyframes ecoAsteroid3 {
+  0% {
+    transform: translate(0, 0) rotate(25deg);
+  }
+  100% {
+    transform: translate(-90vw, 50vh) rotate(180deg);
+  }
+}
+
+@keyframes ecoAsteroid4 {
+  0% {
+    transform: translate(0, 0) rotate(-15deg);
+  }
+  100% {
+    transform: translate(100vw, -20vh) rotate(160deg);
+  }
+}
+
+@keyframes ecoAsteroid5 {
+  0% {
+    transform: translate(0, 0) rotate(40deg);
+  }
+  100% {
+    transform: translate(-80vw, 45vh) rotate(-140deg);
+  }
+}
+
+@keyframes ecoAsteroid6 {
+  0% {
+    transform: translate(0, 0) rotate(-22deg);
+  }
+  100% {
+    transform: translate(95vw, -30vh) rotate(190deg);
+  }
+}
+
+@keyframes ecoAsteroid7 {
+  0% {
+    transform: translate(0, 0) rotate(18deg);
+  }
+  100% {
+    transform: translate(-70vw, 55vh) rotate(-160deg);
+  }
+}
+
+@keyframes ecoAsteroid8 {
+  0% {
+    transform: translate(0, 0) rotate(-30deg);
+  }
+  100% {
+    transform: translate(85vw, 25vh) rotate(150deg);
+  }
+}
+
+@keyframes ecoDebrisDrift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(12px, -18px);
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eco-hero-bg__glow,
+  .eco-hero-bg__grid,
+  .eco-asteroid,
+  .eco-debris {
+    animation: none !important;
+  }
+
+  .eco-asteroid {
+    opacity: 0.35;
+  }
+}
+
 .eco-nav-mobile {
   border-bottom: 1px solid rgba(13, 148, 136, 0.25);
   background: rgba(9, 9, 11, 0.92);
@@ -158,10 +445,6 @@
 
 .eco-summary-30 {
   border-color: rgba(13, 148, 136, 0.35);
-}
-
-.eco-price-note {
-  border-left: 3px solid rgba(251, 191, 36, 0.5);
 }
 
 .eco-total-cost {

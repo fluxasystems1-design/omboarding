@@ -9,6 +9,7 @@ import {
   DeliverablesBlock,
   FaqAccordion,
   PackComparator,
+  EcoHeroBackground,
   PlanChangeHint,
   PlanRecommendations,
   PlanStickyBar,
@@ -19,7 +20,6 @@ import {
 } from "./eco-ui";
 
 const CLIENT_NAME = "Andrés Wolves";
-const CLIENT_SHORT = "Andrés";
 
 const WA_URL =
   "https://wa.me/573116425337?text=" +
@@ -48,17 +48,17 @@ const MOBILE_NAV = [
 
 const CTA_BY_TAB = {
   full: "Quiero el pack integral",
-  eco1: "Quiero la tienda en línea",
-  eco2: "Quiero la membresía deportiva",
-  eco3: "Quiero señales y membresía VIP",
+  eco1: "Quiero Ecommerce + Ropa + Suplementos",
+  eco2: "Quiero Asesoramiento Deportivo + Membresía",
+  eco3: "Quiero Fondo de Inversión + Brokeraje",
 };
 
 const TABS = [
   {
     id: "eco1",
-    label: "Tienda en línea",
-    title: "Ecosistema 1: Tienda de ropa y suplementos en línea",
-    investment: "$1,400",
+    label: "Ecommerce + Ropa + Suplementos",
+    title: "Ecosistema 1: Ecommerce + Ropa + Suplementos",
+    investment: "$2,000",
     desc: "Hoy vendes con un catálogo manual por mensajes. Eso limita tu volumen a tu tiempo disponible. Vamos a construir una tienda pensada para convertir visitas en pedidos.",
     items: [
       "Tienda completa con diseño de tu marca",
@@ -71,9 +71,9 @@ const TABS = [
   },
   {
     id: "eco2",
-    label: "Membresía",
-    title: "Ecosistema 2: Asesoramiento deportivo + membresía",
-    investment: "$1,400",
+    label: "Asesoramiento Deportivo + Membresía",
+    title: "Ecosistema 2: Asesoramiento Deportivo + Membresía",
+    investment: "$1,800",
     desc: "Hoy das mentorías de forma manual. Eso no escala. Construimos un sistema de captación y cobro automático para que tu tiempo se concentre en contenido y autoridad.",
     items: [
       "Video de ventas con estructura de conversión",
@@ -85,9 +85,9 @@ const TABS = [
   },
   {
     id: "eco3",
-    label: "Señales y VIP",
-    title: "Ecosistema 3: Comunidad premium de señales y membresía",
-    investment: "$1,400",
+    label: "Fondo de Inversión + Brokeraje",
+    title: "Ecosistema 3: Fondo de Inversión + Brokeraje",
+    investment: "$1,900",
     desc: "Proyecto de mayor ticket y potencial. La prioridad es posicionamiento de autoridad y filtro de perfiles para cuidar calidad de ingreso.",
     items: [
       "Video de autoridad y confianza",
@@ -102,13 +102,13 @@ const TABS = [
     id: "full",
     label: "Pack integral",
     title: "Pack completo: 3 ecosistemas integrados",
-    investment: "$4,200",
-    desc: "Por separado son $1,400 cada uno. Juntos mantienen el mismo precio por unidad, pero multiplican valor porque comparten audiencia, contenido y adquisición.",
+    investment: "$4,500",
+    desc: "Por separado suman $5,700 ($2,000 + $1,800 + $1,900). En pack pagas $4,500 con integración, campañas incluidas y ahorro total de $1,550.",
     items: [
       "Una sola estrategia comercial para 3 fuentes de ingreso",
       "Venta cruzada entre tus marcas con menos fricción",
       "Misma audiencia, más ingresos por persona",
-      "Recomendado para Andrés: construir todo conectado de una vez",
+      "Recomendado: construir todo conectado de una vez",
     ],
     featured: true,
   },
@@ -117,45 +117,42 @@ const TABS = [
 const DELIVERABLES = {
   eco1: {
     rows: [
-      ["Configuración de tienda en línea", "$150"],
-      ["Diseño visual: tema, colores y marca", "$120"],
-      ["Carga de productos + fichas + fotos", "$80"],
-      ["Página del producto ganador (suplementos)", "$150"],
-      ["Integración de cobros en línea", "$60"],
-      ["Medición de campañas y conversiones", "$60"],
-      ["Botón de contacto para cerrar ventas", "$40"],
-      ["Publicación del sitio y acceso seguro", "$40"],
+      "Configuración de tienda en línea",
+      "Diseño visual: tema, colores y marca",
+      "Carga de productos + fichas + fotos",
+      "Página del producto ganador (suplementos)",
+      "Integración de cobros en línea",
+      "Medición de campañas y conversiones",
+      "Botón de contacto para cerrar ventas",
+      "Publicación del sitio y acceso seguro",
     ],
-    subtotal: "$700",
   },
   eco2: {
     rows: [
-      ["Video de ventas: estructura y diseño", "$150"],
-      ["Configuración de plataforma de membresía", "$120"],
-      ["Diseño de página de captación (membresía o reto)", "$130"],
-      ["Configuración de pagos y accesos automáticos", "$80"],
-      ["Página de bienvenida para nuevos miembros", "$60"],
-      ["Mensajes automáticos tras el pago", "$80"],
+      "Video de ventas: estructura y diseño",
+      "Configuración de plataforma de membresía",
+      "Diseño de página de captación (membresía o reto)",
+      "Configuración de pagos y accesos automáticos",
+      "Página de bienvenida para nuevos miembros",
+      "Mensajes automáticos tras el pago",
     ],
-    subtotal: "$620",
   },
   eco3: {
     rows: [
-      ["Video de autoridad y posicionamiento premium", "$200"],
-      ["Página de captación y filtro de contactos calificados", "$120"],
-      ["Canal privado para señales", "$150"],
-      ["Página de resultados y prueba social", "$100"],
-      ["Membresía escalonada básico y VIP", "$120"],
-      ["Formulario de ingreso y aviso legal", "$80"],
+      "Video de autoridad y posicionamiento premium",
+      "Página de captación y filtro de contactos calificados",
+      "Canal privado para señales",
+      "Página de resultados y prueba social",
+      "Membresía escalonada básico y VIP",
+      "Formulario de ingreso y aviso legal",
     ],
-    subtotal: "$770",
   },
 };
 
 const DELIVERABLE_GROUPS = [
   {
     id: "eco1",
-    label: "Ecosistema 1 · Tienda en línea",
+    label: "Ecosistema 1 · Ecommerce + Ropa + Suplementos",
     subtotal: "$700",
     rows: [
       ["Configuración de tienda en línea", "$150"],
@@ -170,7 +167,7 @@ const DELIVERABLE_GROUPS = [
   },
   {
     id: "eco2",
-    label: "Ecosistema 2 · Membresía Deportiva",
+    label: "Ecosistema 2 · Asesoramiento Deportivo + Membresía",
     subtotal: "$620",
     rows: [
       ["Video de ventas: estructura y diseño", "$150"],
@@ -183,7 +180,7 @@ const DELIVERABLE_GROUPS = [
   },
   {
     id: "eco3",
-    label: "Ecosistema 3 · Señales y VIP",
+    label: "Ecosistema 3 · Fondo de Inversión + Brokeraje",
     subtotal: "$770",
     rows: [
       ["Video de autoridad y posicionamiento premium", "$200"],
@@ -200,27 +197,27 @@ const PLAN_VIEWS = {
   eco1: {
     summary: [
       "Construcción enfocada en tienda en línea, página de venta, cobros y medición.",
-      "Inversión de construcción: $1,400.",
+      "Inversión de construcción: $2,000.",
       "Puedes operar solo este ecosistema y escalar después al plan integral.",
       "Fluxa ejecuta la construcción; tú concentras contenido y cierre.",
     ],
     inversion: [
-      ["Construcción Ecosistema 1", "$1,400"],
-      ["Total fase seleccionada", "$1,400"],
+      ["Construcción · Ecommerce + Ropa + Suplementos", "$2,000"],
+      ["Total fase seleccionada", "$2,000"],
       ["Gestión de pauta (opcional)", "$600/mes"],
       ["Mantenimiento y soporte (opcional)", "$200/mes"],
     ],
     pago: [
-      ["50% al inicio", "$700"],
-      ["50% a 20 días del pago inicial", "$700"],
+      ["50% al inicio", "$1,000"],
+      ["50% a 20 días del pago inicial", "$1,000"],
     ],
     cronograma: [
-      ["Semanas 1–4", "Tienda en línea + página de venta + cobros + medición"],
+      ["Semanas 1–4", "Ecommerce + Ropa + Suplementos + página de venta + cobros + medición"],
       ["Semanas 5–8", "Ajustes, pruebas contigo y salida a operación"],
     ],
     acceptance: [
       [
-        "Ecosistema 1",
+        "Ecommerce + Ropa + Suplementos",
         "Entregado cuando tienda, página principal, cobros en línea y medición quedan operativos y validados.",
       ],
     ],
@@ -229,19 +226,19 @@ const PLAN_VIEWS = {
   eco2: {
     summary: [
       "Construcción enfocada en captación y monetización de membresía deportiva.",
-      "Inversión de construcción: $1,400.",
+      "Inversión de construcción: $1,800.",
       "Incluye estructura de cobro y bienvenida automatizada de miembros.",
       "Tú concentras autoridad y ventas; Fluxa ejecuta el sistema.",
     ],
     inversion: [
-      ["Construcción Ecosistema 2", "$1,400"],
-      ["Total fase seleccionada", "$1,400"],
+      ["Construcción · Asesoramiento Deportivo + Membresía", "$1,800"],
+      ["Total fase seleccionada", "$1,800"],
       ["Gestión de pauta (opcional)", "$600/mes"],
       ["Mantenimiento y soporte (opcional)", "$200/mes"],
     ],
     pago: [
-      ["50% al inicio", "$700"],
-      ["50% a 20 días del pago inicial", "$700"],
+      ["50% al inicio", "$900"],
+      ["50% a 20 días del pago inicial", "$900"],
     ],
     cronograma: [
       ["Semanas 1–4", "Video de ventas + página de captación + plataforma de membresía"],
@@ -249,7 +246,7 @@ const PLAN_VIEWS = {
     ],
     acceptance: [
       [
-        "Ecosistema 2",
+        "Asesoramiento Deportivo + Membresía",
         "Entregado cuando video de ventas, página de captación y plataforma de membresía quedan publicados con bienvenida automática funcional.",
       ],
     ],
@@ -258,19 +255,19 @@ const PLAN_VIEWS = {
   eco3: {
     summary: [
       "Construcción enfocada en autoridad, captación calificada y operación de señales.",
-      "Inversión de construcción: $1,400.",
+      "Inversión de construcción: $1,900.",
       "Incluye estructura de membresía escalonada y registro con aviso legal.",
       "Requiere validación legal de tu lado antes de salida comercial.",
     ],
     inversion: [
-      ["Construcción Ecosistema 3", "$1,400"],
-      ["Total fase seleccionada", "$1,400"],
+      ["Construcción · Fondo de Inversión + Brokeraje", "$1,900"],
+      ["Total fase seleccionada", "$1,900"],
       ["Gestión de pauta (opcional)", "$600/mes"],
       ["Mantenimiento y soporte (opcional)", "$200/mes"],
     ],
     pago: [
-      ["50% al inicio", "$700"],
-      ["50% a 20 días del pago inicial", "$700"],
+      ["50% al inicio", "$950"],
+      ["50% a 20 días del pago inicial", "$950"],
     ],
     cronograma: [
       ["Semanas 1–4", "Video de ventas + página de captación + canal privado"],
@@ -278,7 +275,7 @@ const PLAN_VIEWS = {
     ],
     acceptance: [
       [
-        "Ecosistema 3",
+        "Fondo de Inversión + Brokeraje",
         "Entregado cuando captación, canal de señales, membresía y página de autoridad quedan activos y validados contigo.",
       ],
     ],
@@ -287,42 +284,44 @@ const PLAN_VIEWS = {
   full: {
     summary: [
       "Construimos 3 ecosistemas conectados para monetizar la misma audiencia en diferentes ofertas.",
-      "Precio lista de construcción: $4,550 (incluye setup).",
-      "Precio pack integral: $4,200.",
-      "Ahorro aplicado por paquete: $350.",
+      "Precio lista de construcción: $5,700.",
+      "Precio pack integral: $4,500.",
+      "Ahorro en construcción: $1,200.",
+      "Setup campañas incluido: $350.",
+      "Ahorro total del pack: $1,550.",
     ],
     inversion: [
-      ["Desarrollo completo de los 3 ecosistemas", "$4,200"],
+      ["Desarrollo completo de los 3 ecosistemas", "$4,500"],
       ["Setup inicial de campañas publicitarias", "$350"],
-      ["Precio lista construcción (referencia)", "$4,550"],
-      ["Descuento aplicado por Pack Integral", "-$350"],
-      ["Precio final Pack Integral", "$4,200"],
+      ["Precio lista construcción (referencia)", "$5,700"],
+      ["Descuento aplicado por Pack Integral", "-$1,550"],
+      ["Precio final Pack Integral", "$4,500"],
       ["Gestión mensual de pauta", "$600/mes"],
       ["Mantenimiento y soporte web", "$200/mes"],
       ["Total mensual recurrente desde el mes 5", "$800/mes"],
     ],
     pago: [
-      ["50% al inicio para arrancar", "$2,100"],
-      ["30% a 20 días del pago inicial", "$1,260"],
-      ["20% a 40 días del pago inicial", "$840"],
+      ["50% al inicio para arrancar", "$2,250"],
+      ["30% a 20 días del pago inicial", "$1,350"],
+      ["20% a 40 días del pago inicial", "$900"],
     ],
     cronograma: [
-      ["Mes 1", "Tienda en línea + páginas de venta"],
-      ["Mes 2", "Membresía deportiva + video de ventas + plataforma"],
-      ["Mes 3", "Señales, comunidad VIP y página de autoridad"],
+      ["Mes 1", "Ecommerce + Ropa + Suplementos + páginas de venta"],
+      ["Mes 2", "Asesoramiento Deportivo + Membresía + video de ventas + plataforma"],
+      ["Mes 3", "Fondo de Inversión + Brokeraje + página de autoridad"],
       ["Mes 4", "Optimización + ajustes de pauta + entrega final"],
     ],
     acceptance: [
       [
-        "Ecosistema 1",
+        "Ecommerce + Ropa + Suplementos",
         "Entregado cuando tienda, página principal, cobros en línea y medición quedan operativos y validados.",
       ],
       [
-        "Ecosistema 2",
+        "Asesoramiento Deportivo + Membresía",
         "Entregado cuando video de ventas, página de captación y plataforma de membresía quedan publicados con bienvenida automática funcional.",
       ],
       [
-        "Ecosistema 3",
+        "Fondo de Inversión + Brokeraje",
         "Entregado cuando captación, canal de señales, membresía y página de autoridad quedan activos y validados contigo.",
       ],
     ],
@@ -347,7 +346,7 @@ const SCOPE_EXCLUDED = [
 const CLIENT_ASSUMPTIONS = [
   "Ideal tener cuentas de publicidad, dominio y plataformas — si no, te guiamos en la semana 1",
   "Contenido base: oferta, mensajes, branding y fotos (puede ser versión inicial)",
-  "Andrés o alguien de su equipo aprueba en máximo 48–72 h para no frenar fechas",
+  "Tú o alguien de tu equipo aprueba en máximo 48–72 h para no frenar fechas",
   "Cumplimiento de reglas de las plataformas que uses y normativa de tu mercado",
 ];
 
@@ -381,7 +380,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "¿Puedo contratar un ecosistema hoy y otro después?",
-    a: "Sí. Muchos clientes empiezan por un frente ($1,400) y luego suman el pack o el siguiente ecosistema. El cronograma se ajusta sin perder lo ya construido.",
+    a: "Sí. Muchos clientes empiezan por un frente (desde $1,800) y luego suman el pack o el siguiente ecosistema. El cronograma se ajusta sin perder lo ya construido.",
   },
   {
     q: "¿Qué pasa si me atraso con fotos o aprobaciones?",
@@ -420,7 +419,7 @@ export default function PropuestaEcosistemaDigitalPage() {
   const planView = useMemo(() => PLAN_VIEWS[tab] ?? PLAN_VIEWS.full, [tab]);
   const activeDeliverables = useMemo(() => DELIVERABLES[tab] ?? null, [tab]);
   const ctaLabel = CTA_BY_TAB[tab] ?? CTA_BY_TAB.full;
-  const planSavings = tab === "full" ? "$350" : null;
+  const planSavings = tab === "full" ? "$1,550" : null;
 
   useDeckReveal();
 
@@ -519,40 +518,44 @@ export default function PropuestaEcosistemaDigitalPage() {
         </div>
       </nav>
 
-      <section className="mx-auto flex min-h-[82vh] w-full max-w-3xl flex-col justify-center px-5 pb-12 pt-10 sm:px-8 md:pt-14">
+      <section className="eco-hero relative w-full overflow-hidden">
+        <EcoHeroBackground />
+        <div className="relative z-[1] mx-auto flex min-h-[82vh] w-full max-w-3xl flex-col justify-center px-5 pb-12 pt-10 sm:px-8 md:pt-14">
         <div data-reveal className="is-visible">
           <p className="reveal-child alianza-eyebrow text-[10px] font-semibold uppercase tracking-[0.22em] sm:text-[11px]" style={{ "--reveal-delay": 0 }}>
             Propuesta privada — {CLIENT_NAME}
           </p>
           <h1 className="reveal-child mt-5 text-4xl font-extrabold leading-[1.06] tracking-tight sm:text-5xl md:text-6xl" style={{ "--reveal-delay": 1 }}>
-            <span className="block text-white">{CLIENT_SHORT.toUpperCase()}, TUS 3 MARCAS EN UN SOLO SISTEMA</span>
+            <span className="block text-white">DE VENDER POR MENSAJES</span>
             <span className="alianza-hero-accent alianza-hero-glow block">
-              Tienda, membresía deportiva y comunidad de señales — sin vivir pegado al celular
+              a tener 3 marcas en piloto automático.
             </span>
           </h1>
           <p className="reveal-child mt-5 text-base leading-relaxed text-zinc-300 sm:text-lg" style={{ "--reveal-delay": 2 }}>
-            {CLIENT_SHORT}, lo que ya tienes vale oro: audiencia, autoridad y ventas por mensajes. Fluxa Method
-            construye detrás de escena las páginas, cobros y automatizaciones para que vendas tienda, membresía y
-            señales con menos trabajo manual. Tú sigues siendo la cara; nosotros ejecutamos.
+            Hoy tienes tres negocios que dependen de que tú estés activo para funcionar. Lo que vamos a construir es
+            diferente: un sistema donde la tienda vende sola, la membresía cobra sola y la comunidad crece sola. Tú
+            sigues siendo la cara. Nosotros ponemos la infraestructura.
           </p>
           <a href="#ventanas" className={`reveal-child alianza-cta-pulse mt-8 inline-flex px-6 py-3 text-sm ${CTA_BTN}`} style={{ "--reveal-delay": 3 }}>
             Ver propuesta completa
           </a>
         </div>
+        </div>
       </section>
 
       <PropuestaSection id="resumen" className="!max-w-3xl">
-        <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Resumen para {CLIENT_SHORT}</h2>
-        <Summary30Card clientShort={CLIENT_SHORT} />
+        <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Resumen en 30 segundos</h2>
+        <Summary30Card />
       </PropuestaSection>
 
       <PropuestaSection className="!max-w-3xl">
         <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Lo que vamos a construir</h2>
         <p className="mt-3 text-sm text-zinc-300 sm:text-base">
-          Tres sistemas de venta conectados a tu marca: tienda en línea, membresía deportiva y comunidad premium
-          de señales. Cada uno genera ingresos; juntos multiplican el valor de tu audiencia.
+          Tres sistemas de venta conectados a tu marca: Ecommerce + Ropa + Suplementos, Asesoramiento Deportivo +
+          Membresía y Fondo de Inversión + Brokeraje. Cada uno genera ingresos; juntos multiplican el valor de tu
+          audiencia.
         </p>
-        <PlanRecommendations clientShort={CLIENT_SHORT} />
+        <PlanRecommendations />
       </PropuestaSection>
 
       <PropuestaSection id="ventanas" className="!max-w-3xl">
@@ -576,7 +579,7 @@ export default function PropuestaEcosistemaDigitalPage() {
               {t.featured ? (
                 <span className="eco-tab-badge" aria-hidden>
                   <span className="eco-tab-badge-line">Recomendado</span>
-                  <span className="eco-tab-badge-line eco-tab-badge-line--accent">Ahorro $350</span>
+                  <span className="eco-tab-badge-line eco-tab-badge-line--accent">Ahorro $1,550</span>
                 </span>
               ) : null}
             </button>
@@ -601,9 +604,9 @@ export default function PropuestaEcosistemaDigitalPage() {
           </ul>
           {active.featured ? (
             <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-zinc-300">
-              <strong className="alianza-money-label">Pack recomendado para {CLIENT_SHORT}:</strong> pagas lo
-              mismo que 3 proyectos sueltos ($4,200), pero incluye campañas iniciales ($350), los 3 sistemas
-              conectados y 4 meses coordinados — no tres proyectos desordenados.
+              <strong className="alianza-money-label">Pack recomendado:</strong> pagas lo
+              mismo precio que 3 proyectos sueltos ($5,700), pero pagas $4,500 con ahorro de $1,550 (incluye
+              $1,200 en construcción + $350 en setup de campañas), los 3 sistemas conectados y 4 meses coordinados.
             </p>
           ) : null}
         </div>
@@ -641,7 +644,7 @@ export default function PropuestaEcosistemaDigitalPage() {
             <div className="alianza-card-hover rounded-lg border border-teal-500/35 bg-teal-500/10 p-3">
               <p className="text-xs font-bold uppercase tracking-wide text-teal-300">Pack integral</p>
               <p className="mt-2 text-zinc-200">
-                Una sola estrategia: captar, vender y retener en tienda, membresía y señales.
+                Una sola estrategia: captar, vender y retener en los tres frentes del pack.
               </p>
             </div>
           </div>
@@ -743,7 +746,7 @@ export default function PropuestaEcosistemaDigitalPage() {
         </p>
         <h3 className="mt-10 text-xl font-extrabold text-white">Por qué tiene sentido hacerlo todo junto</h3>
         <p className="mt-3 text-sm leading-relaxed text-zinc-300 sm:text-base">
-          {CLIENT_SHORT}, tus tres marcas comparten el mismo activo: tú. Tu audiencia de fitness puede comprar
+          Tus tres marcas comparten el mismo activo: tú. Tu audiencia de fitness puede comprar
           suplementos y entrar a señales o membresía VIP. Si los tres sistemas están conectados, el esfuerzo
           de atraer clientes se reparte entre tres ingresos. No es solo gastar en webs: es invertir en un
           negocio que trabaja en paralelo.
@@ -806,8 +809,8 @@ export default function PropuestaEcosistemaDigitalPage() {
           <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Nota legal y compliance</h2>
           <p className="mt-3 rounded-lg border border-amber-600/30 bg-amber-950/20 px-4 py-3 text-sm leading-relaxed text-zinc-300">
             El sistema de señales y membresía VIP es operación comercial digital. Esta propuesta no es
-            asesoría financiera ni promesa de ganancias. {CLIENT_SHORT} define los mensajes con su equipo
-            legal; Fluxa monta páginas, cobros y canal privado.
+            asesoría financiera ni promesa de ganancias. Tú defines los mensajes con tu equipo legal; Fluxa monta
+            páginas, cobros y canal privado.
           </p>
         </PropuestaSection>
       ) : null}
@@ -824,7 +827,7 @@ export default function PropuestaEcosistemaDigitalPage() {
       <section id="contacto" className="alianza-cta-footer px-5 py-16 sm:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-            {CLIENT_SHORT}, ¿arrancamos?
+            ¿Arrancamos?
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-zinc-400 sm:text-base">
             Escríbenos por WhatsApp. En menos de 48 h coordinamos una llamada de 20 minutos para resolver dudas y

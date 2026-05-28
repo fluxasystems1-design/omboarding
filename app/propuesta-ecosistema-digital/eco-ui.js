@@ -2,6 +2,28 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 
+/** Fondo animado solo del hero: asteroides + glow + rejilla */
+export function EcoHeroBackground() {
+  return (
+    <div className="eco-hero-bg" aria-hidden>
+      <div className="eco-hero-bg__glow" />
+      <div className="eco-hero-bg__grid" />
+      <span className="eco-asteroid eco-asteroid--1" />
+      <span className="eco-asteroid eco-asteroid--2" />
+      <span className="eco-asteroid eco-asteroid--3" />
+      <span className="eco-asteroid eco-asteroid--4" />
+      <span className="eco-asteroid eco-asteroid--5" />
+      <span className="eco-asteroid eco-asteroid--6" />
+      <span className="eco-asteroid eco-asteroid--7" />
+      <span className="eco-asteroid eco-asteroid--8" />
+      <span className="eco-debris eco-debris--1" />
+      <span className="eco-debris eco-debris--2" />
+      <span className="eco-debris eco-debris--3" />
+      <div className="eco-hero-bg__fade" />
+    </div>
+  );
+}
+
 export function parseUsd(str) {
   const n = parseInt(String(str).replace(/[^0-9-]/g, ""), 10);
   return Number.isFinite(n) ? n : 0;
@@ -85,32 +107,33 @@ export function PlanChangeHint() {
   return (
     <div className="eco-plan-hint mt-4 rounded-lg bg-zinc-900/50 px-4 py-3 text-sm text-zinc-300">
       <p>
-        <strong className="text-white">Un solo frente ($1,400):</strong> eliges tienda, membresía o señales.
+        <strong className="text-white">Un solo frente (desde $1,800):</strong> eliges ecommerce, asesoramiento deportivo
+        o fondo de inversión.
         Duración aproximada 6–8 semanas. Pagas 50% al inicio y 50% a los 20 días del pago inicial.
       </p>
       <p className="mt-2">
-        <strong className="text-teal-300">Pack integral ($4,200):</strong> los 3 frentes conectados en 4 meses.
+        <strong className="text-teal-300">Pack integral ($4,500):</strong> los 3 frentes conectados en 4 meses.
         Incluye configuración inicial de campañas ($350 de valor) y una sola estrategia para tu audiencia.
-        Precio lista $4,550 → pagas <span className="alianza-money-label">$4,200</span>.
+        Precio lista $5,700 → pagas <span className="alianza-money-label">$4,500</span> (ahorro $1,550).
       </p>
     </div>
   );
 }
 
-export function Summary30Card({ clientShort }) {
+export function Summary30Card() {
   return (
     <article className="propuesta-card eco-summary-30 mt-6 border-teal-500/30 p-5 sm:p-6">
       <p className="alianza-eyebrow text-[10px] font-bold uppercase tracking-[0.2em]">
-        Resumen en 30 segundos — {clientShort}
+        Resumen en 30 segundos
       </p>
       <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-zinc-200 sm:text-[15px]">
         <li>
-          <strong className="text-white">Tres frentes:</strong> tienda en línea, membresía deportiva y comunidad
-          premium de señales — conectados a tu marca.
+          <strong className="text-white">Tres frentes:</strong> Ecommerce + Ropa + Suplementos, Asesoramiento Deportivo +
+          Membresía y Fondo de Inversión + Brokeraje — conectados a tu marca.
         </li>
         <li>
-          <strong className="text-white">Inversión:</strong> desde <span className="alianza-money-label">$1,400</span>{" "}
-          por frente o <span className="alianza-money-label">$4,200</span> el pack completo (4 meses, pagos por hitos).
+          <strong className="text-white">Inversión:</strong> desde <span className="alianza-money-label">$1,800</span>{" "}
+          por frente o <span className="alianza-money-label">$4,500</span> el pack completo (4 meses, pagos por hitos).
         </li>
         <li>
           <strong className="text-white">Tú:</strong> contenido, cierre y decisiones.{" "}
@@ -125,20 +148,6 @@ export function Summary30Card({ clientShort }) {
   );
 }
 
-export function PriceBreakdownNote() {
-  return (
-    <div className="eco-price-note mt-4 rounded-lg border border-amber-500/25 bg-amber-950/20 px-4 py-3 text-sm leading-relaxed text-zinc-300">
-      <p className="font-semibold text-amber-200/90">¿Por qué la tabla suma ~$2.090 y el proyecto cuesta más?</p>
-      <p className="mt-2">
-        Los montos de la tabla son <strong className="text-zinc-100">referencia del desglose técnico</strong> por
-        entregable. Tu inversión de construcción es <strong className="text-zinc-100">$1,400 por ecosistema</strong> o{" "}
-        <strong className="text-zinc-100">$4,200 el pack</strong>, e incluye coordinación, integración, revisiones y
-        puesta en marcha — no es una suma literal línea por línea.
-      </p>
-    </div>
-  );
-}
-
 export function TotalCostBox({ tab }) {
   const isFull = tab === "full";
   return (
@@ -148,11 +157,11 @@ export function TotalCostBox({ tab }) {
         <ul className="mt-4 space-y-3 text-sm text-zinc-300">
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Inversión inicial (construcción pack)</span>
-            <span className="alianza-money-value font-extrabold">$4,200</span>
+            <span className="alianza-money-value font-extrabold">$4,500</span>
           </li>
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Primer pago para arrancar (50%)</span>
-            <span className="font-bold text-white">$2,100</span>
+            <span className="font-bold text-white">$2,250</span>
           </li>
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Duración estimada</span>
@@ -167,11 +176,11 @@ export function TotalCostBox({ tab }) {
         <ul className="mt-4 space-y-3 text-sm text-zinc-300">
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Inversión inicial (un ecosistema)</span>
-            <span className="alianza-money-value font-extrabold">$1,400</span>
+            <span className="alianza-money-value font-extrabold">desde $1,800</span>
           </li>
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Primer pago para arrancar (50%)</span>
-            <span className="font-bold text-white">$700</span>
+            <span className="font-bold text-white">desde $900</span>
           </li>
           <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
             <span>Duración estimada</span>
@@ -190,23 +199,23 @@ export function TotalCostBox({ tab }) {
   );
 }
 
-export function PlanRecommendations({ clientShort }) {
+export function PlanRecommendations() {
   const items = [
     {
       title: "¿Vendes mucho por mensajes?",
-      rec: "Empieza por Tienda en línea",
+      rec: "Empieza por Ecommerce + Ropa + Suplementos",
       tab: "eco1",
       desc: "Sales del catálogo manual y cobras en la web con seguimiento de anuncios.",
     },
     {
       title: "¿Tu fuerza es la comunidad fitness?",
-      rec: "Empieza por Membresía deportiva",
+      rec: "Empieza por Asesoramiento Deportivo + Membresía",
       tab: "eco2",
       desc: "Automatizas captación, cobro y bienvenida de miembros.",
     },
     {
       title: "¿Ya tienes audiencia para señales o educación premium?",
-      rec: "Empieza por Señales y membresía VIP",
+      rec: "Empieza por Fondo de Inversión + Brokeraje",
       tab: "eco3",
       desc: "Montamos captación calificada, canal privado y niveles básico/VIP.",
       highlight: false,
@@ -215,7 +224,7 @@ export function PlanRecommendations({ clientShort }) {
       title: "¿Quieres los tres ingresos conectados?",
       rec: "Pack integral (recomendado)",
       tab: "full",
-      desc: `${clientShort}, misma audiencia en tres ofertas: menos fricción y una sola estrategia en 4 meses.`,
+      desc: "Misma audiencia en tres ofertas: menos fricción y una sola estrategia en 4 meses.",
       highlight: true,
     },
   ];
@@ -271,12 +280,12 @@ export function SocialProofStrip() {
 
 export function PackComparator() {
   const rows = [
-    ["Precio por construir los 3 frentes", "$4,200 (3 × $1,400)", "$4,200"],
+    ["Precio por construir los 3 frentes", "$5,700 ($2,000 + $1,800 + $1,900)", "$4,500"],
     ["Configuración inicial de campañas", "Se cotiza aparte", "$350 incluido en pack"],
     ["Los 3 sistemas hablan entre sí", "No", "Sí — misma audiencia"],
     ["Una sola estrategia de crecimiento", "No", "Sí"],
     ["Tiempo total estimado", "3 proyectos por separado", "4 meses coordinados"],
-    ["Precio lista pack (referencia)", "—", "$4,550 → pagas $4,200"],
+    ["Precio lista pack (referencia)", "—", "$5,700 → pagas $4,500"],
   ];
   return (
     <div className="propuesta-compare-table mt-4 overflow-x-auto rounded-xl border border-zinc-800 bg-black/30">
@@ -380,7 +389,6 @@ export function DeliverablesBlock({ tab, groups, single, tabFade, loading }) {
             </tfoot>
           </table>
         </div>
-        <PriceBreakdownNote />
         <p className="mt-3 text-xs text-zinc-400">
           El pack integral incluye integración entre los tres frentes y puesta en marcha coordinada.
         </p>
@@ -394,50 +402,36 @@ export function DeliverablesBlock({ tab, groups, single, tabFade, loading }) {
         Entregables y precio — {single?.label ?? ""}
       </h3>
       <div className="mt-4 space-y-2 md:hidden">
-        {(single?.rows ?? []).map(([name, price], i) => (
+        {(single?.rows ?? []).map((name, i) => (
           <article
             key={name}
             style={{ "--stagger-i": i }}
             className="alianza-compare-row rounded-xl border border-zinc-800 bg-gradient-to-r from-zinc-900/70 to-zinc-950/70 p-3"
           >
             <p className="text-xs leading-relaxed text-zinc-300">{name}</p>
-            <p className="mt-2 text-right text-sm font-extrabold text-teal-300">{price}</p>
           </article>
         ))}
-        <article className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3">
-          <p className="text-[11px] font-bold uppercase tracking-wide text-zinc-300">Subtotal</p>
-          <p className="alianza-money-value mt-1 text-right text-lg font-extrabold">{single?.subtotal}</p>
-        </article>
       </div>
       <div className="propuesta-compare-table mt-4 hidden overflow-x-auto rounded-xl border border-zinc-800 bg-black/30 md:block">
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="border-b border-zinc-800 bg-zinc-900/70 text-left text-[10px] uppercase tracking-wider text-zinc-500">
               <th className="px-3 py-3 sm:px-4">Entregable</th>
-              <th className="px-3 py-3 text-right sm:px-4">Precio</th>
             </tr>
           </thead>
           <tbody>
-            {(single?.rows ?? []).map(([name, price], i) => (
+            {(single?.rows ?? []).map((name, i) => (
               <tr
                 key={name}
                 style={{ "--stagger-i": i }}
                 className="alianza-compare-row border-b border-zinc-800/80 transition-colors hover:bg-zinc-900/40 last:border-0"
               >
                 <td className="px-3 py-2.5 text-zinc-300 sm:px-4">{name}</td>
-                <td className="px-3 py-2.5 text-right font-semibold text-teal-300 sm:px-4">{price}</td>
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr className="border-t border-zinc-700 bg-amber-500/10">
-              <td className="px-3 py-3 font-bold text-zinc-200 sm:px-4">SUBTOTAL</td>
-              <td className="alianza-money-value px-3 py-3 text-right font-extrabold sm:px-4">{single?.subtotal}</td>
-            </tr>
-          </tfoot>
         </table>
       </div>
-      <PriceBreakdownNote />
     </div>
   );
 }
