@@ -331,6 +331,12 @@ function GainCalculator() {
     return () => window.clearTimeout(t);
   }, [result.gain]);
 
+  const clampInt = (value, min, max) => {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return min;
+    return Math.min(max, Math.max(min, Math.round(parsed)));
+  };
+
   return (
     <div className="propuesta-card mt-6 p-5 sm:p-6">
       <h3 className="text-lg font-bold text-white">Calculadora rápida</h3>
@@ -345,7 +351,7 @@ function GainCalculator() {
           >
             {CALC_COMBOS.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.label}
+                {c.name}
               </option>
             ))}
           </select>
@@ -357,7 +363,7 @@ function GainCalculator() {
             min={1}
             max={20}
             value={qty}
-            onChange={(e) => setQty(Number(e.target.value) || 1)}
+            onChange={(e) => setQty(clampInt(e.target.value, 1, 20))}
             className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-white"
           />
         </label>
@@ -368,7 +374,7 @@ function GainCalculator() {
             min={0}
             max={10}
             value={retainers}
-            onChange={(e) => setRetainers(Number(e.target.value) || 0)}
+            onChange={(e) => setRetainers(clampInt(e.target.value, 0, 10))}
             className="mt-1 w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-white"
           />
         </label>
