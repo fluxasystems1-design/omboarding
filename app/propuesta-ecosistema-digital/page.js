@@ -103,7 +103,7 @@ const TABS = [
     label: "Pack integral",
     title: "Pack completo: 3 ecosistemas integrados",
     investment: "$4,500",
-    desc: "Por separado suman $5,700 ($2,000 + $1,800 + $1,900). En pack pagas $4,500 con integración, campañas incluidas y ahorro total de $1,550.",
+    desc: "Por separado suman $5,700 ($2,000 + $1,800 + $1,900). En pack pagas $4,500 con integración, campañas incluidas y ahorro de $1,200.",
     items: [
       "Una sola estrategia comercial para 3 fuentes de ingreso",
       "Venta cruzada entre tus marcas con menos fricción",
@@ -288,13 +288,13 @@ const PLAN_VIEWS = {
       "Precio pack integral: $4,500.",
       "Ahorro en construcción: $1,200.",
       "Setup campañas incluido: $350.",
-      "Ahorro total del pack: $1,550.",
+      "Ahorro del pack: $1,200.",
     ],
     inversion: [
       ["Desarrollo completo de los 3 ecosistemas", "$4,500"],
       ["Setup inicial de campañas publicitarias", "$350"],
       ["Precio lista construcción (referencia)", "$5,700"],
-      ["Descuento aplicado por Pack Integral", "-$1,550"],
+      ["Descuento aplicado por Pack Integral", "-$1,200"],
       ["Precio final Pack Integral", "$4,500"],
       ["Gestión mensual de pauta", "$600/mes"],
       ["Mantenimiento y soporte web", "$200/mes"],
@@ -415,7 +415,7 @@ export default function PropuestaEcosistemaDigitalPage() {
   const planView = useMemo(() => PLAN_VIEWS[tab] ?? PLAN_VIEWS.full, [tab]);
   const activeDeliverables = useMemo(() => DELIVERABLES[tab] ?? null, [tab]);
   const ctaLabel = CTA_BY_TAB[tab] ?? CTA_BY_TAB.full;
-  const planSavings = tab === "full" ? "$1,550" : null;
+  const planSavings = tab === "full" ? "$1,200" : null;
 
   useDeckReveal();
 
@@ -575,7 +575,7 @@ export default function PropuestaEcosistemaDigitalPage() {
               {t.featured ? (
                 <span className="eco-tab-badge" aria-hidden>
                   <span className="eco-tab-badge-line">Recomendado</span>
-                  <span className="eco-tab-badge-line eco-tab-badge-line--accent">Ahorro $1,550</span>
+                  <span className="eco-tab-badge-line eco-tab-badge-line--accent">Ahorro $1,200</span>
                 </span>
               ) : null}
             </button>
@@ -601,8 +601,8 @@ export default function PropuestaEcosistemaDigitalPage() {
           {active.featured ? (
             <p className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-zinc-300">
               <strong className="alianza-money-label">Pack recomendado:</strong> pagas lo
-              mismo precio que 3 proyectos sueltos ($5,700), pero pagas $4,500 con ahorro de $1,550 (incluye
-              $1,200 en construcción + $350 en setup de campañas), los 3 sistemas conectados y 4 meses coordinados.
+              mismo precio que 3 proyectos sueltos ($5,700), pero pagas $4,500 con ahorro de $1,200, los 3 sistemas
+              conectados y 4 meses coordinados.
             </p>
           ) : null}
         </div>

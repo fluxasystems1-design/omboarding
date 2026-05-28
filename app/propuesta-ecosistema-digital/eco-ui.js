@@ -114,7 +114,7 @@ export function PlanChangeHint() {
       <p className="mt-2">
         <strong className="text-teal-300">Pack integral ($4,500):</strong> los 3 frentes conectados en 4 meses.
         Incluye configuración inicial de campañas ($350 de valor) y una sola estrategia para tu audiencia.
-        Precio lista $5,700 → pagas <span className="alianza-money-label">$4,500</span> (ahorro $1,550).
+        Precio lista $5,700 → pagas <span className="alianza-money-label">$4,500</span> (ahorro $1,200).
       </p>
     </div>
   );
