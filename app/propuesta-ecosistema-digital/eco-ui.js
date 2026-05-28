@@ -136,62 +136,7 @@ export function Summary30Card() {
           <strong className="text-white">Tú:</strong> contenido, cierre y decisiones.{" "}
           <strong className="text-white">Fluxa:</strong> construye páginas, cobros, automatizaciones y medición.
         </li>
-        <li>
-          <strong className="text-white">Pack recomendado:</strong> $4,500 por los 3 frentes (ahorro $1,200 vs. $5,700
-          por separado).
-        </li>
       </ol>
-    </article>
-  );
-}
-
-export function TotalCostBox({ tab, investment, firstPayment }) {
-  const isFull = tab === "full";
-  return (
-    <article className="eco-total-cost propuesta-card mt-6 p-5 sm:p-6">
-      <h3 className="text-sm font-bold uppercase tracking-wide text-teal-300">Costo total real (sin sorpresas)</h3>
-      {isFull ? (
-        <ul className="mt-4 space-y-3 text-sm text-zinc-300">
-          <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Inversión inicial (construcción pack)</span>
-            <span className="alianza-money-value font-extrabold">$4,500</span>
-          </li>
-          <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Primer pago para arrancar (50%)</span>
-            <span className="font-bold text-white">$2,250</span>
-          </li>
-          <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Duración estimada</span>
-            <span className="text-zinc-100">4 meses</span>
-          </li>
-          <li className="flex justify-between gap-4">
-            <span>Opcional desde mes 5 (pauta + mantenimiento)</span>
-            <span className="text-zinc-100">hasta $800/mes</span>
-          </li>
-        </ul>
-      ) : (
-        <ul className="mt-4 space-y-3 text-sm text-zinc-300">
-          <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Inversión inicial (plan seleccionado)</span>
-            <span className="alianza-money-value font-extrabold">{investment}</span>
-          </li>
-          <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Primer pago para arrancar (50%)</span>
-            <span className="font-bold text-white">{firstPayment}</span>
-          </li>
-          <li className="flex justify-between gap-4 border-b border-zinc-800/80 pb-3">
-            <span>Duración estimada</span>
-            <span className="text-zinc-100">6–8 semanas</span>
-          </li>
-          <li className="flex justify-between gap-4">
-            <span>Opcional después (pauta + mantenimiento)</span>
-            <span className="text-zinc-100">hasta $800/mes</span>
-          </li>
-        </ul>
-      )}
-      <p className="mt-4 text-xs text-zinc-500">
-        La pauta y el mantenimiento son opcionales. Puedes operar el sistema sin contratarlos.
-      </p>
     </article>
   );
 }
@@ -269,44 +214,6 @@ export function SocialProofStrip() {
         <strong className="text-zinc-100">tú eres quien aparece frente a tu audiencia</strong>.
       </p>
     </article>
-  );
-}
-
-export function PackComparator() {
-  const rows = [
-    ["Precio por construir los 3 frentes", "$5,700 ($2,000 + $1,800 + $1,900)", "$4,500"],
-    ["Configuración inicial de campañas", "Se cotiza aparte", "$350 incluido en pack"],
-    ["Los 3 sistemas hablan entre sí", "No", "Sí — misma audiencia"],
-    ["Una sola estrategia de crecimiento", "No", "Sí"],
-    ["Tiempo total estimado", "3 proyectos por separado", "4 meses coordinados"],
-  ];
-  return (
-    <div className="propuesta-compare-table mt-4 overflow-x-auto rounded-xl border border-zinc-800 bg-black/30">
-      <table className="eco-pack-compare w-full border-collapse text-sm">
-        <thead>
-          <tr className="border-b border-zinc-800 bg-zinc-900/70 text-left text-[10px] uppercase tracking-wider text-zinc-500">
-            <th className="px-3 py-3">Concepto</th>
-            <th className="px-3 py-3">Por separado</th>
-            <th className="px-3 py-3 text-teal-300">Pack integral</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map(([concept, sep, pack]) => (
-            <tr key={concept} className="border-b border-zinc-800/80 last:border-0">
-              <td className="px-3 py-2.5 text-zinc-400">{concept}</td>
-              <td className="px-3 py-2.5 text-zinc-300">{sep}</td>
-              <td
-                className={`px-3 py-2.5 font-medium ${
-                  pack.startsWith("-") ? "text-emerald-300" : "text-zinc-100"
-                }`}
-              >
-                {pack}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
   );
 }
 

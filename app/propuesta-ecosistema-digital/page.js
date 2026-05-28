@@ -8,14 +8,12 @@ import {
   CronogramaTimeline,
   DeliverablesBlock,
   FaqAccordion,
-  PackComparator,
   EcoHeroBackground,
   PlanChangeHint,
   PlanRecommendations,
   PlanStickyBar,
   SocialProofStrip,
   Summary30Card,
-  TotalCostBox,
   WeekOneSteps,
 } from "./eco-ui";
 
@@ -260,20 +258,15 @@ const PLAN_VIEWS = {
   full: {
     summary: [
       "Construimos 3 ecosistemas conectados para monetizar la misma audiencia en diferentes ofertas.",
-      "Precio lista de construcción: $5,700.",
-      "Precio pack integral: $4,500.",
-      "Ahorro vs. comprar los 3 por separado: $1,200.",
+      "Desarrollo completo de los 3 frentes: $5,200.",
+      "Descuento pack: $1,200 · Precio final: $4,500.",
       "Setup de campañas incluido en el pack (valor $350, sin costo extra).",
     ],
     inversion: [
-      ["Desarrollo completo de los 3 ecosistemas", "$4,500"],
+      ["Desarrollo completo de los 3 ecosistemas", "$5,200"],
       ["Setup inicial de campañas (incluido en pack)", "Valor $350"],
-      ["Precio lista construcción (referencia)", "$5,700"],
       ["Descuento aplicado por Pack Integral", "-$1,200"],
       ["Precio final Pack Integral", "$4,500"],
-      ["Gestión mensual de pauta", "$600/mes"],
-      ["Mantenimiento y soporte web", "$200/mes"],
-      ["Total mensual recurrente desde el mes 5", "$800/mes"],
     ],
     pago: [
       ["50% al inicio para arrancar", "$2,250"],
@@ -603,10 +596,6 @@ export default function PropuestaEcosistemaDigitalPage() {
           loading={planLoading}
         />
 
-        <div className={`propuesta-card alianza-tab-panel mt-4 p-4 sm:p-6 ${tabFade ? "alianza-tab-panel--enter" : "alianza-tab-panel--exit"} ${skeleton}`}>
-          <h3 className="text-sm font-bold uppercase tracking-wide text-zinc-400">Comparación rápida</h3>
-          <PackComparator />
-        </div>
       </PropuestaSection>
 
       <PropuestaSection id="inversion" className="!max-w-3xl">
@@ -645,11 +634,6 @@ export default function PropuestaEcosistemaDigitalPage() {
             );
           })}
         </ul>
-        <TotalCostBox
-          tab={tab}
-          investment={active.investment}
-          firstPayment={planView.pago[0]?.[1] ?? ""}
-        />
       </PropuestaSection>
 
       <PropuestaSection id="pago" className="!max-w-3xl">
