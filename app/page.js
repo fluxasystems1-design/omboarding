@@ -37,9 +37,9 @@ const landings = [
     description: "Reclutamiento privado de embajadores y creadores UGC",
   },
   {
-    name: "Eco-Dreamers Curití",
-    path: "/eco-dreamers-curiti",
-    description: "Ecosistema de reservas automáticas",
+    name: "Andrés Wolves — Ecosistema digital",
+    path: "/propuesta-ecosistema-digital",
+    description: "Propuesta privada · tienda, membresía y señales integradas",
   },
   {
     name: "Tu Supermercado",
