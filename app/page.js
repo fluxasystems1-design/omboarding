@@ -22,6 +22,11 @@ const landings = [
     description: "Propuesta comercial y plan de ejecución",
   },
   {
+    name: "Seguimiento Mes 1",
+    path: "/seguimiento-bello",
+    description: "Dr. Leonardo Bello · Reporte de avance FuncionA Plus · Junio 2025",
+  },
+  {
     name: "Roadmap Dr. Leonardo Bello",
     path: "/roadmap-doctor-bello",
     description: "Kickoff estratégico y mapa ejecutivo del proyecto",
