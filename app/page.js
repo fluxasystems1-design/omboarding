@@ -47,6 +47,11 @@ const landings = [
     description: "Propuesta privada · ecommerce, asesoramiento deportivo y fondo de inversión integrados",
   },
   {
+    name: "Andrés Wolves — Trading",
+    path: "/andres-wolves-trading",
+    description: "Propuesta Andrés Wolves · Fluxa Launch $897 y Fluxa Pro $1,497 · @andres.wolves",
+  },
+  {
     name: "Tu Supermercado",
     path: "/supermercado",
     description: "Sistema digital para vender más (3 planes: Sistema, Páginas, Educación)",
