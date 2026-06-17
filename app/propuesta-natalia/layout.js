@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 const title = "Propuesta Comercial | GAL'S Studio · Natalia Galvis";
 const description =
-  "Método PDP Wellness™ — presencia digital profesional para GAL'S Studio: landings, Bewe, automatización, contenido e IA. Paquetes desde $947 USD.";
+  "Método PDP Wellness™ — presencia digital profesional para GAL'S Studio: landings, dashboard propio, automatización, contenido e IA. Paquetes desde $770 USD.";
 
 export const metadata = {
   title,

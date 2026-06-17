@@ -37,7 +37,7 @@ const TRANSFORMATIONS = [
     before: "Sin entrada única de marca en el ecosistema",
     after: "Homepage de identidad GAL'S que redirige a landings y VSLs",
   },
-  { before: "Reservas manuales por WhatsApp", after: "Landing con Bewe integrado — reservas automáticas 24/7" },
+  { before: "Reservas manuales por WhatsApp", after: "Landing conectada al dashboard — reservas automáticas 24/7" },
   { before: "Página Canva informativa", after: "Landing con VSL y CTA directo que convierte" },
   { before: "Alumna llega y no vuelve a saber de Natalia", after: "Secuencia automática de bienvenida y seguimiento" },
   { before: "Reset se vende manualmente", after: "Landing del Reset con checkout y email automático" },
@@ -49,7 +49,7 @@ const EXECUTION_PHASES = [
     num: 1,
     when: "Semanas 1–2",
     title: "Base",
-    items: "Homepage marca + hub · Landing GAL'S + Bewe · Landing Reset · WhatsApp básico",
+    items: "Homepage marca + hub · Landing GAL'S + dashboard · Landing Reset · WhatsApp básico",
     proOnly: false,
   },
   {
@@ -81,7 +81,7 @@ const PLAN_COMPARISON = [
     digital: true,
     pro: true,
   },
-  { feature: "Landing principal GAL'S Studio + integración Bewe", digital: true, pro: true },
+  { feature: "Landing principal GAL'S Studio + dashboard de reservas", digital: true, pro: true },
   { feature: "Landing GAL'S Reset", digital: true, pro: true },
   { feature: "Landing experiencias de bienestar", digital: false, pro: true },
   { feature: "Landing ebook / producto digital", digital: false, pro: true },
@@ -105,7 +105,7 @@ const DIGITAL_SECTIONS = [
     items: [
       "Homepage de marca e identidad — entrada única del ecosistema GAL'S",
       "Hub central que redirige a cada landing, VSL y oferta según el recorrido",
-      "Landing principal GAL'S Studio con integración Bewe",
+      "Landing principal GAL'S Studio conectada al dashboard de reservas",
       "Landing GAL'S Reset",
       "VSL corto para landing principal",
       "Automatización WhatsApp básica",
@@ -351,14 +351,14 @@ const JOURNEY_STEPS = [
   {
     step: "01",
     title: "Captación y marca",
-    text: "Homepage hub + landings + VSL + automatización WhatsApp. Integración con Bewe para arrancar rápido.",
+    text: "Homepage hub + landings + VSL + automatización WhatsApp para captar y convertir tráfico nuevo.",
     tag: "GAL'S DIGITAL / PRO",
   },
   {
     step: "02",
     title: "Operación y escala",
-    text: "Reservas, pagos y seguimiento de alumnas. Bewe en fase 1 o migración al dashboard propio cuando quieras.",
-    tag: "Bewe o Dashboard",
+    text: "Reservas, pagos y seguimiento de alumnas en tu dashboard propio, con portal para que cada alumna gestione su cuenta.",
+    tag: "Dashboard Pro → Enterprise",
   },
   {
     step: "03",
@@ -370,16 +370,16 @@ const JOURNEY_STEPS = [
 
 const ROUTE_OPTIONS = [
   {
-    id: "bewe",
-    title: "Ruta rápida con Bewe",
-    text: "Ideal para lanzar en 4–6 semanas. Mantienes Bewe como motor de reservas mientras el ecosistema digital captura y convierte tráfico nuevo.",
+    id: "captacion",
+    title: "Ruta captación primero",
+    text: "Ideal para lanzar en 4–6 semanas. El ecosistema digital captura y convierte tráfico hacia landings y VSLs mientras avanzamos con el dashboard.",
     fit: "GAL'S DIGITAL o PRO",
   },
   {
     id: "dashboard",
-    title: "Ruta dashboard propio",
-    text: "Sistema bajo tu marca, sin mensualidades de terceros. Evolución natural cuando quieras dejar de pagar Bewe y ser dueña del 100% de la operación.",
-    fit: "Planes Pro → Enterprise",
+    title: "Ruta sistema completo",
+    text: "Ecosistema digital + dashboard propio bajo tu marca. Captación, reservas, pagos y portal alumna sin depender de plataformas externas ni mensualidades de terceros.",
+    fit: "Combo o Dashboard Pro → Enterprise",
   },
 ];
 
@@ -525,7 +525,7 @@ function HubArchitectureCard() {
       <p className="gals-lead mt-3 max-w-3xl">
         No es otra landing suelta: es la <strong className="font-semibold text-[var(--gals-heading)]">puerta de entrada</strong>{" "}
         del ecosistema. Presenta la marca GAL&apos;S Studio con identidad visual unificada y distribuye a cada alumna
-        hacia el destino correcto — reservas Bewe, GAL&apos;S Reset, experiencias, productos digitales o el VSL que
+        hacia el destino correcto — reservas en el dashboard, GAL&apos;S Reset, experiencias, productos digitales o el VSL que
         corresponda a su momento.
       </p>
       <ul className="gals-muted mt-5 grid gap-2 text-sm leading-relaxed sm:grid-cols-2">
@@ -533,7 +533,7 @@ function HubArchitectureCard() {
           "Un solo link para bio, ads y WhatsApp",
           "Rutas claras a cada landing del sistema",
           "VSL integrado en el recorrido de conversión",
-          "Bewe conectado sin reemplazar lo que ya funciona",
+          "Dashboard propio como motor de reservas y pagos",
         ].map((item) => (
           <li key={item} className="flex gap-2">
             <span className="gals-accent-text shrink-0">·</span>
@@ -1091,14 +1091,14 @@ export default function PropuestaNataliaPage() {
         id="planes"
         eyebrow="03 — Inversión"
         title="Elige tu ruta"
-        subtitle="Dos familias de planes que se complementan: el sistema digital para captar y convertir, y el dashboard propio para operar sin depender de Bewe. Puedes empezar con uno y evolucionar al otro."
+        subtitle="Dos familias de planes que se complementan: el ecosistema digital para captar y convertir, y el dashboard propio para operar reservas, pagos y alumnas bajo tu marca."
         elevated
         alt
       >
         <div data-reveal className="gals-reveal">
           <h3 className="gals-section-label text-lg font-semibold">Cómo encaja todo</h3>
           <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
-            Primero construimos captación y marca. Luego operas con Bewe o migras al dashboard. Después, mantenimiento y
+            Primero construimos captación y marca. Luego operas con tu dashboard propio. Después, mantenimiento y
             crecimiento mensual.
           </p>
           <div className="mt-6">
@@ -1208,7 +1208,7 @@ export default function PropuestaNataliaPage() {
         <div id="planes-dashboard" className="mt-20 scroll-mt-28 border-t border-[var(--gals-border)] pt-14" data-reveal>
           <p className="gals-eyebrow">Dashboard GAL&apos;S Studio</p>
           <h3 className="gals-heading mt-2 text-2xl font-semibold sm:text-3xl">
-            Dueña de tu operación — sin Bewe, sin mensualidades
+            Dueña de tu operación — tu sistema, sin mensualidades
           </h3>
           <p className="gals-lead mt-3 max-w-3xl">
             Planes Pro → Enterprise. Panel admin para Natalia y portal propio para cada alumna: reservar clases, ver
@@ -1262,7 +1262,7 @@ export default function PropuestaNataliaPage() {
             <p className="gals-section-label mt-4 text-sm font-medium">Solo nivel técnico</p>
             <ul className="gals-muted mt-4 space-y-2 text-sm leading-relaxed">
               {[
-                "Revisión técnica mensual (landing + Bewe o dashboard)",
+                "Revisión técnica mensual (landing + dashboard)",
                 "Corrección de errores menores",
                 "Soporte WhatsApp limitado (2 consultas/mes)",
                 "Reporte básico de métricas",
@@ -1283,7 +1283,7 @@ export default function PropuestaNataliaPage() {
             <p className="gals-muted mt-1 text-sm">Disponible desde el mes 3</p>
             <ul className="gals-muted mt-6 space-y-2 text-sm leading-relaxed">
               {[
-                "Revisión y ajustes técnicos landing + Bewe",
+                "Revisión y ajustes técnicos landing + dashboard",
                 "Actualización automatizaciones WhatsApp",
                 "8 nuevas ideas de contenido mensual",
                 "1 email mensual estratégico",
