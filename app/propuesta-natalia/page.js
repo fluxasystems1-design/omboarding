@@ -176,51 +176,115 @@ const PRO_EXTRA_SECTIONS = [
   },
 ];
 
+const DASHBOARD_PRO_SECTIONS = [
+  {
+    label: "Portal alumna",
+    items: [
+      "Panel propio con perfil, historial y sesiones disponibles",
+      "Reservas online por horario desde su cuenta",
+      "Cancelación de reserva (límite de tiempo configurable)",
+      "Contador de sesiones restantes del paquete en tiempo real",
+      "Lista de espera automática si la clase está llena",
+    ],
+  },
+  {
+    label: "Operación del estudio",
+    items: [
+      "Control de alumnas (perfil, estado e historial)",
+      "Estados de alumna: activa, en pausa, inactiva, paquete por vencer",
+      "Control de asistencia por clase",
+      "Vista calendario semanal de clases (admin)",
+      "Historial de compras y paquetes por alumna",
+      "Clases fijas semanales con cupos",
+      "Bloqueo de reserva si no tiene sesiones disponibles o pago al día",
+    ],
+  },
+  {
+    label: "Pagos y ventas",
+    items: [
+      "Registro de pagos en panel admin (efectivo, transferencia y Bold)",
+      "Checkout Bold con landing pública y links de pago desde el dashboard",
+      "Links de pago compartibles por WhatsApp",
+      "Alertas de paquetes por vencer o agotados",
+    ],
+  },
+  {
+    label: "Automatización",
+    items: [
+      "Notificaciones por WhatsApp y email (recordatorio, confirmación, sesiones por vencer)",
+      "Recordatorio automático de renovación de paquete",
+      "Mensaje de bienvenida al registrar alumna nueva",
+      "Segmentación de alumnas activas vs inactivas (+30 días sin asistir)",
+    ],
+  },
+  {
+    label: "Métricas",
+    items: [
+      "Ingresos del mes y alumnas activas en un vistazo",
+      "Ocupación por clase (% de cupos llenos)",
+      "Panel de métricas (solo admin)",
+    ],
+  },
+];
+
+const DASHBOARD_ENTERPRISE_EXTRA_SECTIONS = [
+  {
+    label: "Equipo y roles",
+    items: [
+      "Multi-usuario con roles: admin, instructora y recepción",
+      "Vista por instructora: alumnas, asistencia e ingresos de sus clases",
+      "Instructora solo ve sus clases; admin controla todo el estudio",
+    ],
+  },
+  {
+    label: "Reportes y exportación",
+    items: [
+      "Exportar listas de alumnas en Excel para campañas y reactivación",
+      "Reportes de ingresos por producto, clase y período",
+      "Reporte de retención y alumnas en riesgo de abandono",
+    ],
+  },
+  {
+    label: "Métricas avanzadas y control",
+    items: [
+      "Panel de métricas avanzado con KPIs del negocio",
+      "Tasa de ocupación, churn y ticket promedio por alumna",
+      "Panel comparativo mes actual vs mes anterior",
+      "Auditoría básica: quién modificó reservas, pagos o datos sensibles",
+    ],
+  },
+];
+
 const DASHBOARD_PLANS = [
   {
     planNum: 1,
     name: "Pro",
     price: 1200,
-    inherits: false,
     recommended: true,
-    items: [
-      "Control de alumnas (perfil, estado, historial)",
-      "Registro manual de pagos",
-      "Asistencia básica por clase",
-      "Clases fijas semanales",
-      "Panel de métricas básico (solo admin)",
-      "Reservas online por horario",
-      "Portal para alumnas (perfil + reservas)",
-      "Contador de sesiones restantes del paquete",
-      "Checkout con Bold (pago online)",
-      "Notificaciones automáticas por WhatsApp y email (recordatorio de clase, confirmación de reserva, alerta de sesiones por vencer)",
-      "Lista de espera automática si la clase está llena",
-      "Cancelación de reserva por la alumna (con límite de tiempo configurable)",
-      "Checkout completo: landing pública + generación de link desde el dashboard",
-    ],
-    idealFor: "Ideal para operar el estudio completo: alumnas, reservas, pagos y automatización en un solo panel.",
+    sections: DASHBOARD_PRO_SECTIONS,
+    idealFor:
+      "Ideal para que Natalia opere el estudio y cada alumna tenga su propio panel para reservar, ver sesiones y gestionar su cuenta.",
   },
   {
     planNum: 2,
     name: "Enterprise",
     price: 1700,
-    inherits: true,
     recommended: false,
-    items: [
-      "Exportar reportes en Excel",
-      "Multi-usuario (Natalia + instructoras con roles diferenciados)",
-      "Panel de métricas avanzado",
-    ],
-    idealFor: "Ideal para escalar con equipo, reportes y métricas avanzadas.",
+    sections: [...DASHBOARD_PRO_SECTIONS, ...DASHBOARD_ENTERPRISE_EXTRA_SECTIONS],
+    idealFor:
+      "Ideal para escalar con equipo, instructoras con acceso propio, reportes exportables y métricas avanzadas del negocio.",
   },
 ];
+
+const DIGITAL_PLAN_PRICING = { original: 947, sale: 770 };
 
 const CLOSING_PLANS = {
   ecosistema: [
     {
       id: "digital",
       name: "GAL'S DIGITAL",
-      price: 947,
+      price: DIGITAL_PLAN_PRICING.sale,
+      originalPrice: DIGITAL_PLAN_PRICING.original,
       recommended: false,
       note: "Captación + landings + automatización",
     },
@@ -233,8 +297,8 @@ const CLOSING_PLANS = {
     },
   ],
   dashboard: [
-    { id: "dash-pro", name: "Pro", price: 1200, recommended: true, note: "Operación completa del estudio" },
-    { id: "enterprise", name: "Enterprise", price: 1700, recommended: false, note: "Equipo + reportes avanzados" },
+    { id: "dash-pro", name: "Pro", price: 1200, recommended: true, note: "Portal alumna + operación completa" },
+    { id: "enterprise", name: "Enterprise", price: 1700, recommended: false, note: "Todo Pro + equipo y reportes" },
   ],
 };
 
@@ -244,9 +308,13 @@ function formatUsd(amount) {
   return amount.toLocaleString("en-US", { maximumFractionDigits: 0 });
 }
 
-function planLabel(plan, group) {
-  if (group === "dashboard") return `Dashboard ${plan.name}`;
-  return plan.name;
+function ecosistemaPriceLine(plan) {
+  const label = planLabel(plan, "ecosistema");
+  const sale = `$${formatUsd(plan.price)} USD`;
+  if (plan.originalPrice && plan.originalPrice > plan.price) {
+    return `${label} — ${sale} (antes $${formatUsd(plan.originalPrice)} USD)`;
+  }
+  return `${label} — ${sale}`;
 }
 
 function closingComboWaMessage(ecosistemaPlan, dashboardPlan) {
@@ -259,7 +327,7 @@ function closingComboWaMessage(ecosistemaPlan, dashboardPlan) {
   return [
     "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y quiero avanzar con esta combinación:",
     "",
-    `• Sistema digital: ${planLabel(ecosistemaPlan, "ecosistema")} — $${formatUsd(ecosistemaPlan.price)} USD`,
+    `• Sistema digital: ${ecosistemaPriceLine(ecosistemaPlan)}`,
     `• Dashboard propio: ${planLabel(dashboardPlan, "dashboard")} — $${formatUsd(dashboardPlan.price)} USD`,
     "",
     `Subtotal: $${formatUsd(subtotal)} USD`,
@@ -272,6 +340,11 @@ function closingComboWaMessage(ecosistemaPlan, dashboardPlan) {
     "",
     "¿Coordinamos el siguiente paso?",
   ].join("\n");
+}
+
+function planLabel(plan, group) {
+  if (group === "dashboard") return `Dashboard ${plan.name}`;
+  return plan.name;
 }
 
 const JOURNEY_STEPS = [
@@ -356,6 +429,33 @@ function CountUp({ value, prefix = "$", suffix = "" }) {
   );
 }
 
+function PlanPriceDisplay({ original, sale, size = "md", align = "left", animate = false }) {
+  const hasDiscount = original && original > sale;
+  const discountPct = hasDiscount ? Math.round((1 - sale / original) * 100) : 0;
+  const sizeClass = size === "lg" ? "text-3xl" : size === "sm" ? "text-lg" : "text-2xl";
+  const alignClass = align === "right" ? "text-right" : "";
+
+  if (!hasDiscount) {
+    return (
+      <p className={`gals-price font-semibold ${sizeClass} ${alignClass}`}>
+        {animate ? <CountUp value={sale} suffix=" USD" /> : <>${formatUsd(sale)} USD</>}
+      </p>
+    );
+  }
+
+  return (
+    <div className={`gals-discount-price ${alignClass}`}>
+      <div className={`flex flex-wrap items-center gap-2 ${align === "right" ? "justify-end" : ""}`}>
+        <span className="gals-discount-badge">-{discountPct}%</span>
+        <span className="gals-price-original">${formatUsd(original)} USD</span>
+      </div>
+      <p className={`gals-price mt-1 font-semibold ${sizeClass}`}>
+        {animate ? <CountUp value={sale} suffix=" USD" /> : <>${formatUsd(sale)} USD</>}
+      </p>
+    </div>
+  );
+}
+
 function PackageMark() {
   return <span className="gals-mark" aria-hidden />;
 }
@@ -386,7 +486,10 @@ function PlanCompareTable() {
           <span>Característica</span>
           <span className="text-center">
             Digital
-            <span className="gals-compare-price mt-0.5 block font-semibold normal-case">$947</span>
+            <span className="gals-compare-price-col mt-1 block font-semibold normal-case">
+              <span className="gals-price-original text-[10px]">${formatUsd(DIGITAL_PLAN_PRICING.original)}</span>
+              <span className="mt-0.5 block">${formatUsd(DIGITAL_PLAN_PRICING.sale)}</span>
+            </span>
           </span>
           <span className="text-center">
             PRO ⭐
@@ -464,17 +567,27 @@ function DashboardPlanCard({ plan, index }) {
       </p>
       <p className="gals-muted mt-3 text-sm leading-relaxed">{plan.idealFor}</p>
 
-      <p className="gals-section-label mt-5 text-sm font-semibold">
-        {plan.inherits ? "Incluye todo lo anterior, más:" : "Incluye:"}
-      </p>
-      <ul className="gals-muted mt-2 space-y-1.5 text-sm leading-relaxed">
-        {plan.items.map((item) => (
-          <li key={item} className="flex gap-2">
-            <span className="gals-accent-text shrink-0">·</span>
-            <span>{item}</span>
-          </li>
+      <div className="mt-5 space-y-5">
+        {plan.sections.map((section, sectionIndex) => (
+          <div key={section.label}>
+            <p
+              className={`gals-section-label text-sm font-semibold ${
+                sectionIndex === 0 ? "" : "mt-1"
+              }`}
+            >
+              {section.label}
+            </p>
+            <ul className="gals-muted mt-2 space-y-1.5 text-sm leading-relaxed">
+              {section.items.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="gals-accent-text shrink-0">·</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
 
       <a
         href={waUrl(waMessage)}
@@ -600,7 +713,9 @@ function ClosingPlanPicker() {
                   </span>
                 ) : null}
               </div>
-              <p className="gals-price mt-4 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+              <div className="mt-4">
+                <PlanPriceDisplay original={plan.originalPrice} sale={plan.price} size="md" />
+              </div>
             </button>
           ))}
         </div>
@@ -646,7 +761,14 @@ function ClosingPlanPicker() {
               <p className="gals-muted text-[10px] font-medium uppercase tracking-[0.14em]">Sistema digital</p>
               <p className="gals-section-label mt-1 font-semibold">{selectedEcosistema.name}</p>
             </div>
-            <p className="gals-price shrink-0 font-semibold">${formatUsd(selectedEcosistema.price)} USD</p>
+            <div className="shrink-0">
+              <PlanPriceDisplay
+                original={selectedEcosistema.originalPrice}
+                sale={selectedEcosistema.price}
+                size="sm"
+                align="right"
+              />
+            </div>
           </div>
           <div className="flex items-start justify-between gap-4 border-b border-[var(--gals-border)] pb-3">
             <div>
@@ -866,7 +988,7 @@ export default function PropuestaNataliaPage() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2.5">
-            {["Desde $947 USD", "4–6 semanas", "Landings + automatización + IA"].map((pill, i) => (
+            {["Desde $770 USD", "4–6 semanas", "Landings + automatización + IA"].map((pill, i) => (
               <span
                 key={pill}
                 className="gals-pill gals-stagger rounded-full px-4 py-2 text-xs font-medium"
@@ -1001,9 +1123,14 @@ export default function PropuestaNataliaPage() {
             <article className="gals-card gals-stagger flex flex-col rounded-2xl p-6 sm:p-8" style={staggerStyle(0)}>
               <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 1</p>
               <h3 className="gals-section-label mt-2 text-2xl font-semibold">GAL&apos;S DIGITAL</h3>
-              <p className="mt-1 text-3xl font-semibold">
-                <CountUp value={947} suffix=" USD" />
-              </p>
+              <div className="mt-1">
+                <PlanPriceDisplay
+                  original={DIGITAL_PLAN_PRICING.original}
+                  sale={DIGITAL_PLAN_PRICING.sale}
+                  size="lg"
+                  animate
+                />
+              </div>
 
               {DIGITAL_SECTIONS.map((block) => (
                 <PackageBlock key={block.label} label={block.label} items={block.items} />
@@ -1011,13 +1138,13 @@ export default function PropuestaNataliaPage() {
 
               <div className="gals-payment-box mt-6 rounded-lg p-4">
                 <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
-                <p className="gals-card-text mt-2 text-sm">Fase 1: $474 USD al firmar</p>
-                <p className="gals-muted text-sm">Fase 2: $473 USD a los 15 días</p>
+                <p className="gals-card-text mt-2 text-sm">Fase 1: $385 USD al firmar</p>
+                <p className="gals-muted text-sm">Fase 2: $385 USD a los 15 días</p>
               </div>
 
               <a
                 href={waUrl(
-                  "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y me interesa el paquete GAL'S DIGITAL ($947 USD). Quiero coordinar el siguiente paso."
+                  "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y me interesa el paquete GAL'S DIGITAL ($770 USD, antes $947 USD). Quiero coordinar el siguiente paso."
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1084,8 +1211,8 @@ export default function PropuestaNataliaPage() {
             Dueña de tu operación — sin Bewe, sin mensualidades
           </h3>
           <p className="gals-lead mt-3 max-w-3xl">
-            Planes Pro → Enterprise. Un dashboard hecho a tu medida: alumnas, clases y pagos bajo tu marca, de tu
-            propiedad para siempre.
+            Planes Pro → Enterprise. Panel admin para Natalia y portal propio para cada alumna: reservar clases, ver
+            sesiones y pagar — todo bajo la marca GAL&apos;S Studio, de tu propiedad para siempre.
           </p>
 
           <div className="gals-stagger-group mt-8 grid gap-6 lg:grid-cols-2" data-reveal>
@@ -1230,7 +1357,7 @@ export default function PropuestaNataliaPage() {
               title: "Tres rutas",
               titleClass: "gals-muted",
               items: [
-                "GAL'S DIGITAL — desde $947 USD",
+                "GAL'S DIGITAL — $770 USD (antes $947)",
                 "GAL'S PRO — $1,497 USD (recomendado)",
                 "Dashboard propio — desde $1,200 USD",
               ],

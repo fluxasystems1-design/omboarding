@@ -494,6 +494,32 @@
   background: linear-gradient(180deg, #ffffff 0%, var(--gals-bg-alt) 55%, var(--gals-bg-soft) 100%);
 }
 
+.gals-studio-root .gals-price-original {
+  color: var(--gals-muted-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: line-through;
+  text-decoration-color: rgba(102, 102, 102, 0.65);
+}
+
+.gals-studio-root .gals-discount-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--gals-border-accent);
+  border-radius: 9999px;
+  background: var(--gals-accent-soft);
+  padding: 0.125rem 0.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gals-accent-dark);
+}
+
+.gals-studio-root .gals-compare-price-col .gals-price-original {
+  display: block;
+  font-size: 10px;
+}
+
 /* —— Plan picker (cierre) —— */
 .gals-studio-root .gals-plan-pick {
   cursor: pointer;
