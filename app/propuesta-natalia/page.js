@@ -1125,8 +1125,30 @@ export default function PropuestaNataliaPage() {
         elevated
         alt
       >
-        <div className="gals-stagger-group grid gap-6 lg:grid-cols-2" data-reveal>
+        <div className="gals-stagger-group grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal>
           <article className="gals-card gals-stagger rounded-2xl p-6 sm:p-8" style={staggerStyle(0)}>
+            <p className="gals-eyebrow tracking-[0.18em]">Esencial</p>
+            <h3 className="gals-section-label mt-2 text-2xl font-semibold">
+              <CountUp value={39} suffix=" USD/mes" />
+            </h3>
+            <p className="gals-muted mt-1 text-sm">Disponible desde el mes 3</p>
+            <p className="gals-section-label mt-4 text-sm font-medium">Solo nivel técnico</p>
+            <ul className="gals-muted mt-4 space-y-2 text-sm leading-relaxed">
+              {[
+                "Revisión técnica mensual (landing + Bewe o dashboard)",
+                "Corrección de errores menores",
+                "Soporte WhatsApp limitado (2 consultas/mes)",
+                "Reporte básico de métricas",
+              ].map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="gals-accent-text">·</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="gals-card gals-stagger rounded-2xl p-6 sm:p-8" style={staggerStyle(1, 100)}>
             <p className="gals-eyebrow tracking-[0.18em]">Mantenimiento</p>
             <h3 className="gals-section-label mt-2 text-2xl font-semibold">
               <CountUp value={97} suffix=" USD/mes" />
@@ -1151,14 +1173,14 @@ export default function PropuestaNataliaPage() {
 
           <article
             className="gals-card gals-card--featured gals-stagger rounded-2xl p-6 sm:p-8"
-            style={staggerStyle(1, 140)}
+            style={staggerStyle(2, 140)}
           >
             <p className="gals-eyebrow tracking-[0.18em]">Gestión completa</p>
             <h3 className="gals-section-label mt-2 text-2xl font-semibold">
               <CountUp value={250} suffix=" USD/mes" />
             </h3>
             <p className="gals-muted mt-1 text-sm">Disponible desde el mes 3</p>
-            <p className="gals-section-label mt-4 text-sm font-medium">Todo lo anterior más:</p>
+            <p className="gals-section-label mt-4 text-sm font-medium">Todo lo del plan Mantenimiento, más:</p>
             <ul className="gals-muted mt-4 space-y-2 text-sm leading-relaxed">
               {[
                 "Gestión activa campañas Meta Ads",
