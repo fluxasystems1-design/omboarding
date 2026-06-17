@@ -179,58 +179,29 @@ const PRO_EXTRA_SECTIONS = [
 const DASHBOARD_PLANS = [
   {
     planNum: 1,
-    name: "Starter",
-    price: 500,
+    name: "Pro",
+    price: 1200,
     inherits: false,
-    recommended: false,
+    recommended: true,
     items: [
       "Control de alumnas (perfil, estado, historial)",
       "Registro manual de pagos",
       "Asistencia básica por clase",
       "Clases fijas semanales",
       "Panel de métricas básico (solo admin)",
-    ],
-    roles: "Solo Natalia (admin)",
-    payment: "50% al firmar · 50% al entregar",
-    timeline: "3–4 semanas",
-    idealFor: "Ideal para ordenar alumnas y pagos sin depender aún de reservas online.",
-  },
-  {
-    planNum: 2,
-    name: "Growth",
-    price: 850,
-    inherits: true,
-    recommended: false,
-    items: [
       "Reservas online por horario",
       "Portal para alumnas (perfil + reservas)",
       "Contador de sesiones restantes del paquete",
       "Checkout con Bold (pago online)",
-    ],
-    roles: "Natalia + portal alumna",
-    payment: "40% al firmar · 30% semana 3 · 30% al entregar",
-    timeline: "5–6 semanas",
-    idealFor: "Ideal si quieres que las alumnas reserven solas y paguen con Bold.",
-  },
-  {
-    planNum: 3,
-    name: "Pro",
-    price: 1200,
-    inherits: true,
-    recommended: true,
-    items: [
       "Notificaciones automáticas por WhatsApp y email (recordatorio de clase, confirmación de reserva, alerta de sesiones por vencer)",
       "Lista de espera automática si la clase está llena",
       "Cancelación de reserva por la alumna (con límite de tiempo configurable)",
       "Checkout completo: landing pública + generación de link desde el dashboard",
     ],
-    roles: "Natalia + portal alumna",
-    payment: "40% al firmar · 30% semana 3 · 30% al entregar",
-    timeline: "7–8 semanas",
-    idealFor: "Ideal para operar en automático con notificaciones y checkout completo.",
+    idealFor: "Ideal para operar el estudio completo: alumnas, reservas, pagos y automatización en un solo panel.",
   },
   {
-    planNum: 4,
+    planNum: 2,
     name: "Enterprise",
     price: 1700,
     inherits: true,
@@ -240,9 +211,6 @@ const DASHBOARD_PLANS = [
       "Multi-usuario (Natalia + instructoras con roles diferenciados)",
       "Panel de métricas avanzado",
     ],
-    roles: "Admin + instructoras + portal alumna",
-    payment: "33% al firmar · 33% semana 4 · 34% al entregar",
-    timeline: "10–12 semanas",
     idealFor: "Ideal para escalar con equipo, reportes y métricas avanzadas.",
   },
 ];
@@ -265,9 +233,7 @@ const CLOSING_PLANS = {
     },
   ],
   dashboard: [
-    { id: "starter", name: "Starter", price: 500, recommended: false, note: "Ordenar alumnas y pagos" },
-    { id: "growth", name: "Growth", price: 850, recommended: false, note: "Reservas online + Bold" },
-    { id: "dash-pro", name: "Pro", price: 1200, recommended: true, note: "Operación en automático" },
+    { id: "dash-pro", name: "Pro", price: 1200, recommended: true, note: "Operación completa del estudio" },
     { id: "enterprise", name: "Enterprise", price: 1700, recommended: false, note: "Equipo + reportes avanzados" },
   ],
 };
@@ -287,6 +253,8 @@ function closingComboWaMessage(ecosistemaPlan, dashboardPlan) {
   const subtotal = ecosistemaPlan.price + dashboardPlan.price;
   const discount = Math.round(subtotal * COMBO_DISCOUNT);
   const total = subtotal - discount;
+  const phase1 = Math.round(total / 2);
+  const phase2 = total - phase1;
 
   return [
     "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y quiero avanzar con esta combinación:",
@@ -297,6 +265,10 @@ function closingComboWaMessage(ecosistemaPlan, dashboardPlan) {
     `Subtotal: $${formatUsd(subtotal)} USD`,
     `Descuento combo 20%: -$${formatUsd(discount)} USD`,
     `Total: $${formatUsd(total)} USD`,
+    "",
+    "Forma de pago:",
+    `• $${formatUsd(phase1)} USD al firmar`,
+    `• $${formatUsd(phase2)} USD a los 15 días`,
     "",
     "¿Coordinamos el siguiente paso?",
   ].join("\n");
@@ -334,7 +306,7 @@ const ROUTE_OPTIONS = [
     id: "dashboard",
     title: "Ruta dashboard propio",
     text: "Sistema bajo tu marca, sin mensualidades de terceros. Evolución natural cuando quieras dejar de pagar Bewe y ser dueña del 100% de la operación.",
-    fit: "Planes Starter → Enterprise",
+    fit: "Planes Pro → Enterprise",
   },
 ];
 
@@ -504,21 +476,6 @@ function DashboardPlanCard({ plan, index }) {
         ))}
       </ul>
 
-      <div className="gals-payment-box mt-6 space-y-2 rounded-lg p-4 text-sm">
-        <p>
-          <span className="gals-muted text-[11px] font-medium uppercase tracking-[0.14em]">Roles · </span>
-          <span className="gals-card-text">{plan.roles}</span>
-        </p>
-        <p>
-          <span className="gals-muted text-[11px] font-medium uppercase tracking-[0.14em]">Forma de pago · </span>
-          <span className="gals-card-text">{plan.payment}</span>
-        </p>
-        <p>
-          <span className="gals-muted text-[11px] font-medium uppercase tracking-[0.14em]">Plazo · </span>
-          <span className="gals-card-text">{plan.timeline}</span>
-        </p>
-      </div>
-
       <a
         href={waUrl(waMessage)}
         target="_blank"
@@ -608,6 +565,8 @@ function ClosingPlanPicker() {
   const subtotal = selectedEcosistema.price + selectedDashboard.price;
   const discount = Math.round(subtotal * COMBO_DISCOUNT);
   const total = subtotal - discount;
+  const paymentPhase1 = Math.round(total / 2);
+  const paymentPhase2 = total - paymentPhase1;
 
   return (
     <div data-reveal className="gals-reveal mt-10 text-left">
@@ -709,6 +668,12 @@ function ClosingPlanPicker() {
         <div className="mt-5 border-t border-[var(--gals-border)] pt-5 text-center">
           <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Total a pagar</p>
           <p className="gals-price mt-1 text-3xl font-semibold sm:text-4xl">${formatUsd(total)} USD</p>
+        </div>
+
+        <div className="gals-payment-box mt-5 rounded-lg p-4 text-sm">
+          <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
+          <p className="gals-card-text mt-2">Fase 1: ${formatUsd(paymentPhase1)} USD al firmar</p>
+          <p className="gals-muted mt-1">Fase 2: ${formatUsd(paymentPhase2)} USD a los 15 días</p>
         </div>
 
         <div className="mt-6 text-center">
@@ -1119,7 +1084,7 @@ export default function PropuestaNataliaPage() {
             Dueña de tu operación — sin Bewe, sin mensualidades
           </h3>
           <p className="gals-lead mt-3 max-w-3xl">
-            Planes Starter → Enterprise. Un dashboard hecho a tu medida: alumnas, clases y pagos bajo tu marca, de tu
+            Planes Pro → Enterprise. Un dashboard hecho a tu medida: alumnas, clases y pagos bajo tu marca, de tu
             propiedad para siempre.
           </p>
 
@@ -1245,7 +1210,7 @@ export default function PropuestaNataliaPage() {
               items: [
                 "GAL'S DIGITAL — desde $947 USD",
                 "GAL'S PRO — $1,497 USD (recomendado)",
-                "Dashboard propio — desde $500 USD",
+                "Dashboard propio — desde $1,200 USD",
               ],
             },
           ].map((col, i) => (
