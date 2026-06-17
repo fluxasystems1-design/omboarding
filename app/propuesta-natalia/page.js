@@ -4,14 +4,22 @@ import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const GALS_LOGO_SRC = "/imagenes/gals-studio-logo.png";
+const BEWELL_URL = "https://www.bewellclubnataliagalvis.com/";
+const INSTAGRAM_URL = "https://www.instagram.com/galstudio___/";
+const WA_BASE = "https://wa.me/573116425337?text=";
+
+function waUrl(message) {
+  return WA_BASE + encodeURIComponent(message);
+}
 
 const NAV_ITEMS = [
   { id: "hero", label: "Portada" },
   { id: "donde", label: "Dónde estás" },
   { id: "transformacion", label: "Transformación" },
-  { id: "paquetes", label: "Paquetes" },
+  { id: "planes", label: "Planes" },
   { id: "ejecucion", label: "Ejecución" },
-  { id: "reconsumo", label: "Reconsumo" },
+  { id: "reconsumo", label: "Continuidad" },
+  { id: "resumen", label: "Resumen" },
   { id: "cierre", label: "Cierre" },
 ];
 
@@ -168,6 +176,168 @@ const PRO_EXTRA_SECTIONS = [
   },
 ];
 
+const DASHBOARD_PLANS = [
+  {
+    planNum: 1,
+    name: "Starter",
+    price: 500,
+    inherits: false,
+    recommended: false,
+    items: [
+      "Control de alumnas (perfil, estado, historial)",
+      "Registro manual de pagos",
+      "Asistencia básica por clase",
+      "Clases fijas semanales",
+      "Panel de métricas básico (solo admin)",
+    ],
+    roles: "Solo Natalia (admin)",
+    payment: "50% al firmar · 50% al entregar",
+    timeline: "3–4 semanas",
+    idealFor: "Ideal para ordenar alumnas y pagos sin depender aún de reservas online.",
+  },
+  {
+    planNum: 2,
+    name: "Growth",
+    price: 850,
+    inherits: true,
+    recommended: false,
+    items: [
+      "Reservas online por horario",
+      "Portal para alumnas (perfil + reservas)",
+      "Contador de sesiones restantes del paquete",
+      "Checkout con Bold (pago online)",
+    ],
+    roles: "Natalia + portal alumna",
+    payment: "40% al firmar · 30% semana 3 · 30% al entregar",
+    timeline: "5–6 semanas",
+    idealFor: "Ideal si quieres que las alumnas reserven solas y paguen con Bold.",
+  },
+  {
+    planNum: 3,
+    name: "Pro",
+    price: 1200,
+    inherits: true,
+    recommended: true,
+    items: [
+      "Notificaciones automáticas por WhatsApp y email (recordatorio de clase, confirmación de reserva, alerta de sesiones por vencer)",
+      "Lista de espera automática si la clase está llena",
+      "Cancelación de reserva por la alumna (con límite de tiempo configurable)",
+      "Checkout completo: landing pública + generación de link desde el dashboard",
+    ],
+    roles: "Natalia + portal alumna",
+    payment: "40% al firmar · 30% semana 3 · 30% al entregar",
+    timeline: "7–8 semanas",
+    idealFor: "Ideal para operar en automático con notificaciones y checkout completo.",
+  },
+  {
+    planNum: 4,
+    name: "Enterprise",
+    price: 1700,
+    inherits: true,
+    recommended: false,
+    items: [
+      "Exportar reportes en Excel",
+      "Multi-usuario (Natalia + instructoras con roles diferenciados)",
+      "Panel de métricas avanzado",
+    ],
+    roles: "Admin + instructoras + portal alumna",
+    payment: "33% al firmar · 33% semana 4 · 34% al entregar",
+    timeline: "10–12 semanas",
+    idealFor: "Ideal para escalar con equipo, reportes y métricas avanzadas.",
+  },
+];
+
+const CLOSING_PLANS = {
+  ecosistema: [
+    {
+      id: "digital",
+      name: "GAL'S DIGITAL",
+      price: 947,
+      recommended: false,
+      note: "Captación + landings + automatización",
+    },
+    {
+      id: "pro",
+      name: "GAL'S PRO",
+      price: 1497,
+      recommended: true,
+      note: "Sistema completo con pauta y email",
+    },
+  ],
+  dashboard: [
+    { id: "starter", name: "Starter", price: 500, recommended: false, note: "Ordenar alumnas y pagos" },
+    { id: "growth", name: "Growth", price: 850, recommended: false, note: "Reservas online + Bold" },
+    { id: "dash-pro", name: "Pro", price: 1200, recommended: true, note: "Operación en automático" },
+    { id: "enterprise", name: "Enterprise", price: 1700, recommended: false, note: "Equipo + reportes avanzados" },
+  ],
+};
+
+const COMBO_DISCOUNT = 0.2;
+
+function formatUsd(amount) {
+  return amount.toLocaleString("en-US", { maximumFractionDigits: 0 });
+}
+
+function planLabel(plan, group) {
+  if (group === "dashboard") return `Dashboard ${plan.name}`;
+  return plan.name;
+}
+
+function closingComboWaMessage(ecosistemaPlan, dashboardPlan) {
+  const subtotal = ecosistemaPlan.price + dashboardPlan.price;
+  const discount = Math.round(subtotal * COMBO_DISCOUNT);
+  const total = subtotal - discount;
+
+  return [
+    "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y quiero avanzar con esta combinación:",
+    "",
+    `• Sistema digital: ${planLabel(ecosistemaPlan, "ecosistema")} — $${formatUsd(ecosistemaPlan.price)} USD`,
+    `• Dashboard propio: ${planLabel(dashboardPlan, "dashboard")} — $${formatUsd(dashboardPlan.price)} USD`,
+    "",
+    `Subtotal: $${formatUsd(subtotal)} USD`,
+    `Descuento combo 20%: -$${formatUsd(discount)} USD`,
+    `Total: $${formatUsd(total)} USD`,
+    "",
+    "¿Coordinamos el siguiente paso?",
+  ].join("\n");
+}
+
+const JOURNEY_STEPS = [
+  {
+    step: "01",
+    title: "Captación y marca",
+    text: "Homepage hub + landings + VSL + automatización WhatsApp. Integración con Bewe para arrancar rápido.",
+    tag: "GAL'S DIGITAL / PRO",
+  },
+  {
+    step: "02",
+    title: "Operación y escala",
+    text: "Reservas, pagos y seguimiento de alumnas. Bewe en fase 1 o migración al dashboard propio cuando quieras.",
+    tag: "Bewe o Dashboard",
+  },
+  {
+    step: "03",
+    title: "Crecimiento continuo",
+    text: "Mantenimiento, contenido, pauta y optimización mensual para que el sistema siga vendiendo.",
+    tag: "Desde mes 3",
+  },
+];
+
+const ROUTE_OPTIONS = [
+  {
+    id: "bewe",
+    title: "Ruta rápida con Bewe",
+    text: "Ideal para lanzar en 4–6 semanas. Mantienes Bewe como motor de reservas mientras el ecosistema digital captura y convierte tráfico nuevo.",
+    fit: "GAL'S DIGITAL o PRO",
+  },
+  {
+    id: "dashboard",
+    title: "Ruta dashboard propio",
+    text: "Sistema bajo tu marca, sin mensualidades de terceros. Evolución natural cuando quieras dejar de pagar Bewe y ser dueña del 100% de la operación.",
+    fit: "Planes Starter → Enterprise",
+  },
+];
+
 function staggerStyle(index, step = 90) {
   return { "--delay": `${index * step}ms` };
 }
@@ -300,6 +470,262 @@ function HubArchitectureCard() {
   );
 }
 
+function DashboardPlanCard({ plan, index }) {
+  const waMessage = `Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y me interesa el plan Dashboard ${plan.name} ($${plan.price} USD). Quiero coordinar el siguiente paso.`;
+
+  return (
+    <article
+      className={`gals-card gals-stagger flex flex-col rounded-2xl p-6 sm:p-8 ${
+        plan.recommended ? "gals-card--featured relative" : ""
+      }`}
+      style={staggerStyle(index, 100)}
+    >
+      {plan.recommended ? (
+        <span className="gals-badge gals-badge--pulse absolute right-5 top-5 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider">
+          Recomendado
+        </span>
+      ) : null}
+      <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">Plan {plan.planNum}</p>
+      <h3 className="gals-section-label mt-2 text-2xl font-semibold">{plan.name}</h3>
+      <p className="mt-1 text-3xl font-semibold">
+        <CountUp value={plan.price} suffix=" USD" />
+      </p>
+      <p className="gals-muted mt-3 text-sm leading-relaxed">{plan.idealFor}</p>
+
+      <p className="gals-section-label mt-5 text-sm font-semibold">
+        {plan.inherits ? "Incluye todo lo anterior, más:" : "Incluye:"}
+      </p>
+      <ul className="gals-muted mt-2 space-y-1.5 text-sm leading-relaxed">
+        {plan.items.map((item) => (
+          <li key={item} className="flex gap-2">
+            <span className="gals-accent-text shrink-0">·</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="gals-payment-box mt-6 space-y-2 rounded-lg p-4 text-sm">
+        <p>
+          <span className="gals-muted text-[11px] font-medium uppercase tracking-[0.14em]">Roles · </span>
+          <span className="gals-card-text">{plan.roles}</span>
+        </p>
+        <p>
+          <span className="gals-muted text-[11px] font-medium uppercase tracking-[0.14em]">Forma de pago · </span>
+          <span className="gals-card-text">{plan.payment}</span>
+        </p>
+        <p>
+          <span className="gals-muted text-[11px] font-medium uppercase tracking-[0.14em]">Plazo · </span>
+          <span className="gals-card-text">{plan.timeline}</span>
+        </p>
+      </div>
+
+      <a
+        href={waUrl(waMessage)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${plan.recommended ? "gals-btn-solid" : "gals-btn-outline"} mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium`}
+      >
+        Quiero Dashboard {plan.name}
+      </a>
+    </article>
+  );
+}
+
+function JourneyBlock() {
+  return (
+    <div className="gals-stagger-group grid gap-4 md:grid-cols-3" data-reveal>
+      {JOURNEY_STEPS.map((item, i) => (
+        <article key={item.step} className="gals-card gals-stagger rounded-xl p-5" style={staggerStyle(i, 100)}>
+          <p className="gals-eyebrow">{item.step}</p>
+          <h3 className="gals-section-label mt-2 text-lg font-semibold">{item.title}</h3>
+          <p className="gals-muted mt-2 text-sm leading-relaxed">{item.text}</p>
+          <span className="gals-badge mt-4 inline-block rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider">
+            {item.tag}
+          </span>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function RouteOptionsBlock() {
+  return (
+    <div className="gals-stagger-group mt-8 grid gap-4 md:grid-cols-2" data-reveal>
+      {ROUTE_OPTIONS.map((route, i) => (
+        <article key={route.id} className="gals-card gals-stagger rounded-xl p-5 sm:p-6" style={staggerStyle(i, 90)}>
+          <h3 className="gals-section-label text-lg font-semibold">{route.title}</h3>
+          <p className="gals-muted mt-2 text-sm leading-relaxed">{route.text}</p>
+          <p className="gals-accent-text mt-4 text-xs font-semibold uppercase tracking-[0.14em]">{route.fit}</p>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function TrustStrip() {
+  return (
+    <div
+      data-reveal
+      className="gals-reveal gals-card mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 rounded-xl px-5 py-4 text-center text-xs sm:text-sm"
+    >
+      <span className="gals-muted">
+        Comunidad{" "}
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="gals-accent-text font-semibold">
+          @galstudio___
+        </a>{" "}
+        · 16K seguidores
+      </span>
+      <span className="hidden h-4 w-px bg-[var(--gals-border)] sm:block" aria-hidden />
+      <span className="gals-muted">
+        Sitio actual{" "}
+        <a href={BEWELL_URL} target="_blank" rel="noopener noreferrer" className="gals-accent-text font-semibold">
+          Be Well Club
+        </a>
+      </span>
+      <span className="hidden h-4 w-px bg-[var(--gals-border)] sm:block" aria-hidden />
+      <span className="gals-muted">Propuesta por Fluxa Method · Cúcuta, Colombia</span>
+    </div>
+  );
+}
+
+function FloatingCta() {
+  return (
+    <a href="#planes" className="gals-floating-cta">
+      Ver planes
+    </a>
+  );
+}
+
+function ClosingPlanPicker() {
+  const [selectedEcosistemaId, setSelectedEcosistemaId] = useState("pro");
+  const [selectedDashboardId, setSelectedDashboardId] = useState("dash-pro");
+
+  const selectedEcosistema =
+    CLOSING_PLANS.ecosistema.find((plan) => plan.id === selectedEcosistemaId) ?? CLOSING_PLANS.ecosistema[0];
+  const selectedDashboard =
+    CLOSING_PLANS.dashboard.find((plan) => plan.id === selectedDashboardId) ?? CLOSING_PLANS.dashboard[0];
+
+  const subtotal = selectedEcosistema.price + selectedDashboard.price;
+  const discount = Math.round(subtotal * COMBO_DISCOUNT);
+  const total = subtotal - discount;
+
+  return (
+    <div data-reveal className="gals-reveal mt-10 text-left">
+      <p className="gals-eyebrow text-center">Tu elección</p>
+      <h3 className="gals-heading mt-2 text-center text-xl sm:text-2xl">¿Qué planes eliges?</h3>
+      <p className="gals-muted mx-auto mt-2 max-w-xl text-center text-sm leading-relaxed">
+        Elige un plan del sistema digital y otro del dashboard propio. Al combinar ambos, aplicamos{" "}
+        <span className="gals-accent-text font-semibold">20% de descuento</span> sobre el total.
+      </p>
+
+      <div className="mt-10">
+        <p className="gals-section-label text-sm font-semibold">1 · Sistema digital</p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {CLOSING_PLANS.ecosistema.map((plan) => (
+            <button
+              key={plan.id}
+              type="button"
+              onClick={() => setSelectedEcosistemaId(plan.id)}
+              className={`gals-plan-pick gals-card rounded-xl p-4 text-left sm:p-5 ${
+                selectedEcosistemaId === plan.id ? "gals-plan-pick--selected" : ""
+              }`}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="gals-section-label text-sm font-semibold sm:text-base">{plan.name}</p>
+                  <p className="gals-muted mt-1 text-xs leading-relaxed">{plan.note}</p>
+                </div>
+                {plan.recommended ? (
+                  <span className="gals-badge shrink-0 rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider">
+                    Top
+                  </span>
+                ) : null}
+              </div>
+              <p className="gals-price mt-4 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <p className="gals-section-label text-sm font-semibold">2 · Dashboard propio</p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {CLOSING_PLANS.dashboard.map((plan) => (
+            <button
+              key={plan.id}
+              type="button"
+              onClick={() => setSelectedDashboardId(plan.id)}
+              className={`gals-plan-pick gals-card rounded-xl p-4 text-left sm:p-5 ${
+                selectedDashboardId === plan.id ? "gals-plan-pick--selected" : ""
+              }`}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="gals-section-label text-sm font-semibold sm:text-base">Dashboard {plan.name}</p>
+                  <p className="gals-muted mt-1 text-xs leading-relaxed">{plan.note}</p>
+                </div>
+                {plan.recommended ? (
+                  <span className="gals-badge shrink-0 rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider">
+                    Top
+                  </span>
+                ) : null}
+              </div>
+              <p className="gals-price mt-4 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="gals-payment-box mt-10 rounded-xl p-5 sm:p-6">
+        <p className="gals-muted text-center text-[11px] font-medium uppercase tracking-[0.16em]">
+          Resumen de tu combo
+        </p>
+
+        <div className="mt-5 space-y-3 text-sm">
+          <div className="flex items-start justify-between gap-4 border-b border-[var(--gals-border)] pb-3">
+            <div>
+              <p className="gals-muted text-[10px] font-medium uppercase tracking-[0.14em]">Sistema digital</p>
+              <p className="gals-section-label mt-1 font-semibold">{selectedEcosistema.name}</p>
+            </div>
+            <p className="gals-price shrink-0 font-semibold">${formatUsd(selectedEcosistema.price)} USD</p>
+          </div>
+          <div className="flex items-start justify-between gap-4 border-b border-[var(--gals-border)] pb-3">
+            <div>
+              <p className="gals-muted text-[10px] font-medium uppercase tracking-[0.14em]">Dashboard propio</p>
+              <p className="gals-section-label mt-1 font-semibold">Dashboard {selectedDashboard.name}</p>
+            </div>
+            <p className="gals-price shrink-0 font-semibold">${formatUsd(selectedDashboard.price)} USD</p>
+          </div>
+          <div className="flex items-center justify-between gap-4 pt-1">
+            <p className="gals-muted">Subtotal</p>
+            <p className="gals-card-text font-medium">${formatUsd(subtotal)} USD</p>
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <p className="gals-accent-text font-medium">Descuento combo 20%</p>
+            <p className="gals-accent-text font-semibold">-${formatUsd(discount)} USD</p>
+          </div>
+        </div>
+
+        <div className="mt-5 border-t border-[var(--gals-border)] pt-5 text-center">
+          <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Total a pagar</p>
+          <p className="gals-price mt-1 text-3xl font-semibold sm:text-4xl">${formatUsd(total)} USD</p>
+        </div>
+
+        <div className="mt-6 text-center">
+          <a
+            href={waUrl(closingComboWaMessage(selectedEcosistema, selectedDashboard))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gals-btn-solid inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold sm:w-auto sm:min-w-[300px]"
+          >
+            Confirmar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SectionBlock({
   id,
   eyebrow,
@@ -384,7 +810,7 @@ function TimelinePhase({ phase, isLast, index }) {
 export default function PropuestaNataliaPage() {
   const [progress, setProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
-  const sectionIds = useMemo(() => [...NAV_ITEMS.map((item) => item.id), "resumen"], []);
+  const sectionIds = useMemo(() => NAV_ITEMS.map((item) => item.id), []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -501,15 +927,26 @@ export default function PropuestaNataliaPage() {
           </div>
         </div>
 
+        <div className="mx-auto mt-8 max-w-6xl px-4 sm:px-6">
+          <TrustStrip />
+        </div>
+
         <p
           data-reveal
           className="gals-reveal gals-accent-text mx-auto mt-8 max-w-6xl px-4 text-sm font-medium sm:px-6"
         >
           Natalia Galvis <span className="gals-muted">/</span> GAL&apos;S Studio
         </p>
-      </section>
 
-      {/* 2 — DÓNDE ESTÁ */}
+        <div className="mx-auto mt-10 flex max-w-6xl flex-wrap gap-3 px-4 sm:px-6" data-reveal>
+          <a
+            href="#planes"
+            className="gals-btn-solid inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Ver planes
+          </a>
+        </div>
+      </section>
       <SectionBlock
         id="donde"
         eyebrow="01 — Punto de partida"
@@ -562,89 +999,135 @@ export default function PropuestaNataliaPage() {
         </div>
       </SectionBlock>
 
-      {/* 4 — PAQUETES */}
+      {/* 3 — PLANES (ecosistema + dashboard) */}
       <SectionBlock
-        id="paquetes"
+        id="planes"
         eyebrow="03 — Inversión"
-        title="Elige el sistema que necesitas"
-        subtitle="Ambos planes incluyen la homepage de marca como centro del ecosistema. La diferencia está en cuántas landings, VSLs y automatizaciones se conectan a ese hub."
+        title="Elige tu ruta"
+        subtitle="Dos familias de planes que se complementan: el sistema digital para captar y convertir, y el dashboard propio para operar sin depender de Bewe. Puedes empezar con uno y evolucionar al otro."
         elevated
         alt
       >
-        <HubArchitectureCard />
-
-        <div className="gals-stagger-group mt-8 grid gap-6 lg:grid-cols-2" data-reveal>
-          <article className="gals-card gals-stagger flex flex-col rounded-2xl p-6 sm:p-8" style={staggerStyle(0)}>
-            <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 1</p>
-            <h3 className="gals-section-label mt-2 text-2xl font-semibold">GAL&apos;S DIGITAL</h3>
-            <p className="mt-1 text-3xl font-semibold">
-              <CountUp value={947} suffix=" USD" />
-            </p>
-
-            {DIGITAL_SECTIONS.map((block) => (
-              <PackageBlock key={block.label} label={block.label} items={block.items} />
-            ))}
-
-            <div className="gals-payment-box mt-6 rounded-lg p-4">
-              <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
-              <p className="gals-card-text mt-2 text-sm">Fase 1: $474 USD al firmar</p>
-              <p className="gals-muted text-sm">Fase 2: $473 USD a los 15 días</p>
-            </div>
-
-            {/* TODO: agregar link de cierre */}
-            <a
-              href="#"
-              className="gals-btn-outline mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium"
-            >
-              Quiero GAL&apos;S DIGITAL
-            </a>
-          </article>
-
-          <article
-            className="gals-card gals-card--featured gals-stagger relative flex flex-col rounded-2xl p-6 sm:p-8"
-            style={staggerStyle(1, 140)}
-          >
-            <span className="gals-badge gals-badge--pulse absolute right-5 top-5 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider">
-              Recomendado
-            </span>
-            <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 2</p>
-            <h3 className="gals-section-label mt-2 text-2xl font-semibold">GAL&apos;S PRO</h3>
-            <p className="mt-1 text-3xl font-semibold">
-              <CountUp value={1497} suffix=" USD" />
-            </p>
-
-            <p className="gals-section-label mt-4 text-sm font-medium">Todo lo del paquete anterior, más:</p>
-
-            {PRO_EXTRA_SECTIONS.map((block) => (
-              <PackageBlock key={block.label} label={block.label} items={block.items} />
-            ))}
-
-            <PackageBlock label="Capacitación IA" items={["Igual al paquete GAL'S DIGITAL"]} />
-
-            <div className="gals-payment-box mt-6 rounded-lg p-4">
-              <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
-              <p className="gals-card-text mt-2 text-sm">Fase 1: $749 USD al firmar</p>
-              <p className="gals-muted text-sm">Fase 2: $748 USD a los 15 días</p>
-            </div>
-
-            {/* TODO: agregar link de cierre */}
-            <a
-              href="#"
-              className="gals-btn-solid mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-            >
-              Quiero GAL&apos;S PRO
-            </a>
-          </article>
+        <div data-reveal className="gals-reveal">
+          <h3 className="gals-section-label text-lg font-semibold">Cómo encaja todo</h3>
+          <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
+            Primero construimos captación y marca. Luego operas con Bewe o migras al dashboard. Después, mantenimiento y
+            crecimiento mensual.
+          </p>
+          <div className="mt-6">
+            <JourneyBlock />
+          </div>
         </div>
 
-        <div className="gals-reveal mt-12" data-reveal>
-          <h3 className="gals-section-label text-center text-lg font-semibold sm:text-xl">
-            Comparativa lado a lado
-          </h3>
-          <p className="gals-muted mx-auto mt-2 max-w-2xl text-center text-sm leading-relaxed">
-            Qué incluye cada plan en arquitectura, contenido, pauta y automatización.
+        <RouteOptionsBlock />
+
+        <div className="mt-14" data-reveal>
+          <p className="gals-eyebrow">Sistema digital</p>
+          <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">GAL&apos;S DIGITAL · PRO</h3>
+          <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
+            Homepage hub, landings, VSL y automatización para captar y convertir tráfico nuevo.
           </p>
-          <PlanCompareTable />
+        </div>
+
+        <div className="mt-8">
+          <HubArchitectureCard />
+
+          <div className="gals-stagger-group mt-8 grid gap-6 lg:grid-cols-2" data-reveal>
+            <article className="gals-card gals-stagger flex flex-col rounded-2xl p-6 sm:p-8" style={staggerStyle(0)}>
+              <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 1</p>
+              <h3 className="gals-section-label mt-2 text-2xl font-semibold">GAL&apos;S DIGITAL</h3>
+              <p className="mt-1 text-3xl font-semibold">
+                <CountUp value={947} suffix=" USD" />
+              </p>
+
+              {DIGITAL_SECTIONS.map((block) => (
+                <PackageBlock key={block.label} label={block.label} items={block.items} />
+              ))}
+
+              <div className="gals-payment-box mt-6 rounded-lg p-4">
+                <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
+                <p className="gals-card-text mt-2 text-sm">Fase 1: $474 USD al firmar</p>
+                <p className="gals-muted text-sm">Fase 2: $473 USD a los 15 días</p>
+              </div>
+
+              <a
+                href={waUrl(
+                  "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y me interesa el paquete GAL'S DIGITAL ($947 USD). Quiero coordinar el siguiente paso."
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gals-btn-outline mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium"
+              >
+                Quiero GAL&apos;S DIGITAL
+              </a>
+            </article>
+
+            <article
+              className="gals-card gals-card--featured gals-stagger relative flex flex-col rounded-2xl p-6 sm:p-8"
+              style={staggerStyle(1, 140)}
+            >
+              <span className="gals-badge gals-badge--pulse absolute right-5 top-5 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider">
+                Recomendado
+              </span>
+              <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 2</p>
+              <h3 className="gals-section-label mt-2 text-2xl font-semibold">GAL&apos;S PRO</h3>
+              <p className="mt-1 text-3xl font-semibold">
+                <CountUp value={1497} suffix=" USD" />
+              </p>
+
+              <p className="gals-section-label mt-4 text-sm font-medium">Todo lo del paquete anterior, más:</p>
+
+              {PRO_EXTRA_SECTIONS.map((block) => (
+                <PackageBlock key={block.label} label={block.label} items={block.items} />
+              ))}
+
+              <PackageBlock label="Capacitación IA" items={["Igual al paquete GAL'S DIGITAL"]} />
+
+              <div className="gals-payment-box mt-6 rounded-lg p-4">
+                <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
+                <p className="gals-card-text mt-2 text-sm">Fase 1: $749 USD al firmar</p>
+                <p className="gals-muted text-sm">Fase 2: $748 USD a los 15 días</p>
+              </div>
+
+              <a
+                href={waUrl(
+                  "Hola Fluxa Method. Soy Natalia de GAL'S Studio, revisé la propuesta y me interesa el paquete GAL'S PRO ($1,497 USD). Quiero coordinar el siguiente paso."
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gals-btn-solid mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+              >
+                Quiero GAL&apos;S PRO
+              </a>
+            </article>
+          </div>
+
+          <div className="gals-reveal mt-12" data-reveal>
+            <h3 className="gals-section-label text-center text-lg font-semibold sm:text-xl">
+              Comparativa lado a lado
+            </h3>
+            <p className="gals-muted mx-auto mt-2 max-w-2xl text-center text-sm leading-relaxed">
+              Qué incluye cada plan en arquitectura, contenido, pauta y automatización.
+            </p>
+            <PlanCompareTable />
+          </div>
+        </div>
+
+        <div id="planes-dashboard" className="mt-20 scroll-mt-28 border-t border-[var(--gals-border)] pt-14" data-reveal>
+          <p className="gals-eyebrow">Dashboard GAL&apos;S Studio</p>
+          <h3 className="gals-heading mt-2 text-2xl font-semibold sm:text-3xl">
+            Dueña de tu operación — sin Bewe, sin mensualidades
+          </h3>
+          <p className="gals-lead mt-3 max-w-3xl">
+            Planes Starter → Enterprise. Un dashboard hecho a tu medida: alumnas, clases y pagos bajo tu marca, de tu
+            propiedad para siempre.
+          </p>
+
+          <div className="gals-stagger-group mt-8 grid gap-6 lg:grid-cols-2" data-reveal>
+            {DASHBOARD_PLANS.map((plan, i) => (
+              <DashboardPlanCard key={plan.name} plan={plan} index={i} />
+            ))}
+          </div>
         </div>
       </SectionBlock>
 
@@ -729,8 +1212,13 @@ export default function PropuestaNataliaPage() {
         </div>
       </SectionBlock>
 
-      {/* 7 — RESUMEN */}
-      <SectionBlock id="resumen" eyebrow="06 — Resumen" title="Resumen ejecutivo">
+      {/* 6 — RESUMEN */}
+      <SectionBlock
+        id="resumen"
+        eyebrow="06 — Resumen"
+        title="Resumen ejecutivo"
+        subtitle="Tres rutas posibles según dónde estés hoy y hacia dónde quieras llegar."
+      >
         <div className="gals-stagger-group grid gap-5 md:grid-cols-3" data-reveal>
           {[
             {
@@ -752,13 +1240,12 @@ export default function PropuestaNataliaPage() {
               ],
             },
             {
-              title: "Inversión",
+              title: "Tres rutas",
               titleClass: "gals-muted",
               items: [
-                "Desde $947 USD",
-                "2 fases de pago",
-                "Activos quedan en tus cuentas",
-                "30 días soporte post-entrega",
+                "GAL'S DIGITAL — desde $947 USD",
+                "GAL'S PRO — $1,497 USD (recomendado)",
+                "Dashboard propio — desde $500 USD",
               ],
             },
           ].map((col, i) => (
@@ -778,43 +1265,31 @@ export default function PropuestaNataliaPage() {
             </article>
           ))}
         </div>
+
+        <p className="gals-muted mt-8 text-center text-sm" data-reveal>
+          Activos quedan en tus cuentas · Pagos en fases · 30 días de soporte post-entrega
+        </p>
       </SectionBlock>
 
-      {/* 8 — CIERRE */}
+      {/* 7 — CIERRE */}
       <SectionBlock id="cierre" elevated alt>
         <div className="text-center">
           <header data-reveal className="gals-reveal gals-reveal-header">
             <h2 className="gals-heading text-2xl sm:text-3xl md:text-4xl">¿Lista para construir el sistema?</h2>
             <p className="gals-lead mx-auto mt-4 max-w-xl">
-              Si cerramos esta semana, arrancamos de inmediato con la fase 1 del sistema.
+              Si cerramos esta semana, arrancamos de inmediato con la fase 1 del proyecto.
             </p>
           </header>
 
-          <div
-            data-reveal
-            className="gals-reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
-            {/* TODO: agregar link de cierre */}
-            <a
-              href="#"
-              className="gals-btn-outline inline-flex w-full max-w-xs items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium sm:w-auto"
-            >
-              Quiero GAL&apos;S DIGITAL — $947 USD
-            </a>
-            {/* TODO: agregar link de cierre */}
-            <a
-              href="#"
-              className="gals-btn-solid inline-flex w-full max-w-xs items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold sm:w-auto"
-            >
-              Quiero GAL&apos;S PRO — $1.497 USD
-            </a>
-          </div>
+          <ClosingPlanPicker />
 
           <p className="gals-muted mt-12 text-[11px] font-medium uppercase tracking-[0.2em]">
             Fluxa Method · Método PDP Wellness™
           </p>
         </div>
       </SectionBlock>
+
+      <FloatingCta />
     </main>
   );
 }

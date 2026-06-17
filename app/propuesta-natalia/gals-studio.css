@@ -494,6 +494,57 @@
   background: linear-gradient(180deg, #ffffff 0%, var(--gals-bg-alt) 55%, var(--gals-bg-soft) 100%);
 }
 
+/* —— Plan picker (cierre) —— */
+.gals-studio-root .gals-plan-pick {
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid var(--gals-border);
+  background: var(--gals-surface);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gals-studio-root .gals-plan-pick:hover {
+  border-color: var(--gals-border-accent);
+  transform: translateY(-1px);
+}
+
+.gals-studio-root .gals-plan-pick--selected {
+  border-color: var(--gals-border-accent);
+  box-shadow: 0 0 0 1px var(--gals-border-accent), 0 8px 24px var(--gals-glow);
+  background: linear-gradient(160deg, #ffffff 0%, var(--gals-bg-alt) 100%);
+}
+
+/* —— Floating CTA —— */
+.gals-studio-root .gals-floating-cta {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.25rem;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--gals-accent);
+  box-shadow: 0 8px 28px var(--gals-glow);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.gals-studio-root .gals-floating-cta:hover {
+  transform: translateY(-2px);
+  background: var(--gals-accent-dark);
+  box-shadow: 0 12px 32px var(--gals-glow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gals-studio-root .gals-hero-mesh::before,
   .gals-studio-root .gals-hero-logo,
@@ -518,6 +569,14 @@
   .gals-studio-root .gals-btn-outline:hover,
   .gals-studio-root .gals-btn-solid:hover,
   .gals-studio-root .gals-pill:hover {
+    transform: none;
+  }
+
+  .gals-studio-root .gals-plan-pick:hover {
+    transform: none;
+  }
+
+  .gals-studio-root .gals-floating-cta:hover {
     transform: none;
   }
 }
