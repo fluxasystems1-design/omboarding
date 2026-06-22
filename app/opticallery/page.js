@@ -45,6 +45,7 @@ const WHATSAPP_SCHEDULE_MESSAGE =
   "Hola, soy Opticallery. Revisé la propuesta Fluxa y quiero agendar una llamada.";
 const OPTICALLERY_LOGO = "/imagenes/opticallery/logo.png";
 const FLUXA_PARTNERS_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
+const CONNECT_360_LOGO = "/imagenes/opticallery/logo2.png";
 
 function waUrl(message) {
   return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
@@ -694,7 +695,7 @@ export default function OpticalleryPage() {
       {/* 1 — HEADER */}
       <section id="hero" className="gals-hero-mesh scroll-mt-28 pb-20 pt-14 lg:pb-24 lg:pt-20">
         <div data-reveal className="gals-reveal gals-stagger-group mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <div className="gals-hero-partners mb-10 flex w-full max-w-3xl flex-row items-center gap-2 sm:mb-12 sm:gap-4">
+          <div className="gals-hero-partners mb-10 flex w-full max-w-4xl flex-row items-center gap-2 sm:mb-12 sm:gap-3 lg:max-w-5xl lg:gap-4">
             <div className="gals-hero-logo-wrap flex min-w-0 flex-1 items-center justify-center overflow-hidden rounded-2xl">
               <Image
                 src={OPTICALLERY_LOGO}
@@ -719,6 +720,22 @@ export default function OpticalleryPage() {
                 height={480}
                 priority
                 className="gals-hero-logo h-20 w-full max-w-full object-contain p-3 sm:h-36 sm:p-4 md:h-44 lg:h-48"
+              />
+            </div>
+            <span
+              className="gals-hero-partners-plus flex shrink-0 items-center justify-center px-0.5 text-2xl font-light leading-none sm:px-1 sm:text-4xl"
+              aria-hidden
+            >
+              +
+            </span>
+            <div className="gals-hero-logo-wrap flex min-w-0 flex-1 items-center justify-center overflow-hidden rounded-2xl">
+              <Image
+                src={CONNECT_360_LOGO}
+                alt="360 Connect"
+                width={720}
+                height={216}
+                priority
+                className="gals-hero-logo h-20 w-full object-contain p-2 sm:h-36 sm:p-3 md:h-44 lg:h-48"
               />
             </div>
           </div>
