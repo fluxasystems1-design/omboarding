@@ -122,7 +122,6 @@ const PACKAGES = [
     tier: "Paquete 1",
     name: "FLUXA ESENCIAL",
     subtitle: "Arranque de conversión",
-    price: 945,
     idealFor:
       "Para activar captación y venta online con lentes de sol como producto de entrada — landings, bots, Meta Ads y contenido conectados.",
     recommended: false,
@@ -171,7 +170,6 @@ const PACKAGES = [
     tier: "Paquete 2",
     name: "FLUXA SISTEMA COMPLETO",
     subtitle: "Ecosistema digital activado",
-    price: 1697,
     idealFor:
       "Para conectar e-commerce, membresía, B2B, UGC, automatización y Meta Ads en un solo sistema — cada línea de negocio con su landing, su bot y su campaña.",
     recommended: true,
@@ -521,10 +519,6 @@ function ServiceIcon({ name }) {
 
 function flattenPackageSections(sections) {
   return sections.flatMap((section) => section.items);
-}
-
-function formatUsd(value) {
-  return value.toLocaleString("en-US");
 }
 
 function PackageCheckList({ items }) {
@@ -985,9 +979,6 @@ export default function OpticalleryPage() {
               ) : null}
               <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">{pkg.tier}</p>
               <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">{pkg.name}</h3>
-              {pkg.price ? (
-                <p className="gals-price mt-2 text-2xl font-semibold sm:text-3xl">${formatUsd(pkg.price)} USD</p>
-              ) : null}
               <p className="gals-eyebrow mt-1 text-xs tracking-[0.16em]">{pkg.subtitle}</p>
               <p className="gals-muted mt-3 text-sm leading-relaxed">{pkg.idealFor}</p>
               <PackageIncludes pkg={pkg} essentialSections={PACKAGES[0].sections} />
