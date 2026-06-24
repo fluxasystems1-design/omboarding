@@ -1,0 +1,408 @@
+/* GAL'S Studio — brief (colores de marca) */
+.gals-brief-root {
+  --gals-purple: #8da0c6;
+  --gals-purple-dark: #6f84ad;
+  --gals-purple-deep: #5a6f96;
+  --gals-bg: #ffffff;
+  --gals-bg-alt: #f0edf6;
+  --gals-bg-soft: #e8e4f0;
+  --gals-text: #454545;
+  --gals-heading: #463939;
+  --gals-muted: #666666;
+  --gals-border: #e4e0ec;
+  --gals-glow: rgba(141, 160, 198, 0.35);
+  --gals-accent-soft: rgba(141, 160, 198, 0.16);
+  min-height: 100vh;
+  background-color: var(--gals-bg);
+  color: var(--gals-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.gals-brief-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.gals-brief-ambient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.gals-brief-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.55;
+  animation: galsBriefOrb 18s ease-in-out infinite alternate;
+}
+
+.gals-brief-orb--1 {
+  top: -8%;
+  left: -5%;
+  width: 280px;
+  height: 280px;
+  background: rgba(141, 160, 198, 0.35);
+}
+
+.gals-brief-orb--2 {
+  top: 35%;
+  right: -8%;
+  width: 320px;
+  height: 320px;
+  background: rgba(232, 228, 240, 0.95);
+  animation-delay: -6s;
+}
+
+.gals-brief-orb--3 {
+  bottom: -10%;
+  left: 20%;
+  width: 240px;
+  height: 240px;
+  background: rgba(111, 132, 173, 0.22);
+  animation-delay: -12s;
+}
+
+@keyframes galsBriefOrb {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(3%, -4%) scale(1.08);
+  }
+}
+
+.gals-brief-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.gals-brief-partners {
+  display: flex;
+  width: 100%;
+  max-width: 28rem;
+  align-items: center;
+  gap: 0.5rem;
+  animation: galsBriefLogoIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (min-width: 640px) {
+  .gals-brief-partners {
+    max-width: 34rem;
+    gap: 0.75rem;
+  }
+}
+
+.gals-brief-logo-wrap {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  height: 5.5rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(141, 160, 198, 0.28);
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 8px 28px rgba(141, 160, 198, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (min-width: 640px) {
+  .gals-brief-logo-wrap {
+    height: 7rem;
+    border-radius: 1.125rem;
+  }
+}
+
+.gals-brief-logo-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.gals-brief-logo-img--gals {
+  transform: scale(1.18);
+}
+
+.gals-brief-logo-img--fluxa {
+  transform: scale(1.28);
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  .gals-brief-logo-img--gals {
+    transform: scale(1.24);
+  }
+
+  .gals-brief-logo-img--fluxa {
+    transform: scale(1.38);
+  }
+}
+
+.gals-brief-partners-plus {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: #999;
+}
+
+@media (min-width: 640px) {
+  .gals-brief-partners-plus {
+    font-size: 2rem;
+  }
+}
+
+@keyframes galsBriefLogoIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gals-brief-progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--gals-bg-soft);
+  overflow: hidden;
+}
+
+.gals-brief-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--gals-purple-dark), var(--gals-purple));
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.gals-brief-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  animation: galsBriefShimmer 2.2s ease-in-out infinite;
+}
+
+@keyframes galsBriefShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.gals-brief-step {
+  animation: galsBriefStepIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gals-brief-step--back {
+  animation-name: galsBriefStepBack;
+}
+
+@keyframes galsBriefStepIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes galsBriefStepBack {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.gals-brief-field {
+  animation: galsBriefFieldIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--field-i, 0) * 55ms);
+}
+
+@keyframes galsBriefFieldIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gals-brief-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--gals-border);
+  background: var(--gals-bg);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  color: var(--gals-heading);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.gals-brief-input::placeholder {
+  color: #999;
+}
+
+.gals-brief-input:focus {
+  outline: none;
+  border-color: var(--gals-purple);
+  box-shadow: 0 0 0 3px var(--gals-accent-soft);
+}
+
+.gals-brief-input--error {
+  border-color: #e57373;
+  box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.15);
+}
+
+.gals-brief-radio {
+  display: flex;
+  cursor: pointer;
+  align-items: flex-start;
+  gap: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--gals-border);
+  background: var(--gals-bg);
+  padding: 0.625rem 0.875rem;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.gals-brief-radio:has(:checked) {
+  border-color: var(--gals-purple);
+  background: var(--gals-accent-soft);
+  box-shadow: 0 4px 16px var(--gals-glow);
+}
+
+.gals-brief-btn-primary {
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--gals-purple-dark), var(--gals-purple-deep));
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 8px 24px var(--gals-glow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.gals-brief-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px var(--gals-glow);
+}
+
+.gals-brief-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.gals-brief-btn-ghost {
+  border-radius: 9999px;
+  border: 1px solid var(--gals-border);
+  background: transparent;
+  color: var(--gals-heading);
+  font-weight: 600;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.gals-brief-btn-ghost:hover:not(:disabled) {
+  border-color: var(--gals-purple);
+  background: var(--gals-accent-soft);
+}
+
+.gals-brief-btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.gals-brief-success-ring {
+  animation: galsBriefSuccessPop 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes galsBriefSuccessPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  65% {
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gals-brief-check-draw {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: galsBriefCheckDraw 0.5s ease-out 0.3s forwards;
+}
+
+@keyframes galsBriefCheckDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gals-brief-pulse-dot {
+  animation: galsBriefPulse 2s ease-in-out infinite;
+}
+
+@keyframes galsBriefPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gals-brief-orb,
+  .gals-brief-progress-fill::after,
+  .gals-brief-step,
+  .gals-brief-field,
+  .gals-brief-partners,
+  .gals-brief-success-ring,
+  .gals-brief-check-draw,
+  .gals-brief-pulse-dot {
+    animation: none !important;
+  }
+
+  .gals-brief-check-draw {
+    stroke-dashoffset: 0;
+  }
+}
