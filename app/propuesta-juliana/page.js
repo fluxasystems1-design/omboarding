@@ -1,125 +1,276 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-function fluxaMediaAfterIndex(media = []) {
-  return media.reduce((acc, item) => {
-    if (!acc[item.afterIndex]) acc[item.afterIndex] = [];
-    acc[item.afterIndex].push(item);
-    return acc;
-  }, {});
+const SITE_URL = "https://drajulianameneses.com/";
+const INSTAGRAM_URL = "https://www.instagram.com/drajulianameneses/";
+const WA_BASE = "https://wa.me/573116425337?text=";
+const FLUXA_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
+
+function waUrl(message) {
+  return WA_BASE + encodeURIComponent(message);
 }
 
-function FluxaInlineList({ items, media = [] }) {
-  const mediaByIndex = fluxaMediaAfterIndex(media);
-
+function AreaTag({ type, short = false }) {
+  const meta = AREA_TAG_META[type];
+  if (!meta) return null;
   return (
-    <div className="gals-muted mt-4 space-y-2 text-sm leading-relaxed">
-      {items.map((item, idx) => (
-        <div key={item} className="space-y-3">
-          <p className="flex gap-2">
-            <span className="gals-accent-text shrink-0">·</span>
-            <span>{item}</span>
-          </p>
-          {(mediaByIndex[idx] || []).map((entry) => (
-            <div key={entry.src} className="gals-fluxa-visual pl-4 sm:pl-5">
-              <Image
-                src={entry.src}
-                alt={entry.alt}
-                width={1200}
-                height={675}
-                className="h-auto w-full object-contain"
-                sizes="(max-width: 768px) 100vw, 480px"
-              />
-            </div>
-          ))}
-        </div>
+    <span className={`juliana-tag ${meta.className}`}>{short ? meta.shortLabel : meta.label}</span>
+  );
+}
+
+function TaggedItemRow({ item }) {
+  return (
+    <div className="juliana-build-row">
+      <p className="juliana-build-row-text">{item.text}</p>
+      <div className="juliana-build-row-tags">
+        {item.tags.map((tag) => (
+          <AreaTag key={tag} type={tag} short />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TaggedItemList({ items }) {
+  return (
+    <div className="juliana-build-list">
+      {items.map((item) => (
+        <TaggedItemRow key={item.text} item={item} />
       ))}
     </div>
   );
 }
 
-const WHATSAPP_URL = "https://wa.me/573116425337";
-
-function waUrl(message) {
-  return `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`;
+function BuildGallery({ slides }) {
+  if (!slides?.length) return null;
+  return (
+    <div className="juliana-build-gallery">
+      {slides.map((slide) => (
+        <figure key={slide.src} className="juliana-build-gallery-item">
+          <div className="juliana-build-gallery-frame">
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              width={1200}
+              height={675}
+              className="h-auto w-full object-contain"
+              sizes="(max-width: 768px) 100vw, 420px"
+            />
+          </div>
+          <figcaption className="juliana-build-gallery-caption">
+            <span>{slide.caption}</span>
+            {slide.tag ? <AreaTag type={slide.tag} short /> : null}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
 }
 
 const NAV_ITEMS = [
   { id: "hero", label: "Portada" },
-  { id: "beneficios", label: "Beneficios" },
-  { id: "servicios", label: "Su práctica" },
-  { id: "fluxa", label: "Ecosistema" },
-  { id: "solucion", label: "Cómo funciona" },
-  { id: "comparativa", label: "Diagnóstico" },
-  { id: "inversion", label: "Inversión" },
+  { id: "diagnostico", label: "Diagnóstico" },
+  { id: "transformacion", label: "Transformación" },
+  { id: "ecosistemas", label: "Ecosistemas" },
+  { id: "combo", label: "Combo" },
   { id: "cierre", label: "Cierre" },
 ];
 
-const DIAGNOSIS_CARDS = [
+const DIAGNOSTIC_CARDS = [
+  "Marca visual consolidada pero sin sistema de conversión",
+  "Leads que dependen de respuesta manual",
+  "Servicios sin funnels propios",
+  "Contenido que educa pero no activa",
+  "Turismo médico sin explotar",
+  "Sin seguimiento post-interés",
+];
+
+const TRANSFORMATIONS = [
   {
-    title: "El sitio web no convierte",
-    desc: "Existe pero no captura. No hay ruta clara para que el visitante agende una valoración.",
+    before: "Marca reconocida sin embudo de conversión",
+    after: "Sistema digital que captura y guía hasta la valoración",
   },
   {
-    title: "Leads que se enfrían",
-    desc: "Cada respuesta depende de disponibilidad humana. Si tarda, el paciente busca otra opción.",
+    before: "Consultas que dependen de tu respuesta inmediata",
+    after: "Captación y seguimiento automático las 24 horas",
   },
   {
-    title: "Sin diferenciación por servicio",
-    desc: "Blefaroplastia, cirugía funcional y turismo médico llegan al mismo punto de contacto.",
+    before: "Servicios sin landing ni recorrido propio",
+    after: "Funnel dedicado por línea de servicio",
   },
   {
-    title: "Contenido que educa pero no convierte",
-    desc: "El perfil construye autoridad real, pero sin llamados a la acción concretos.",
+    before: "Contenido que informa pero no convierte",
+    after: "Calendario y guiones que activan citas",
   },
   {
-    title: "Turismo médico sin activar",
-    desc: "Su mayor diferencial no tiene sistema de captura propio.",
+    before: "Turismo médico sin canal de captación",
+    after: "Landing internacional lista para escalar",
   },
   {
-    title: "Sin seguimiento post-interés",
-    desc: "Sin acompañamiento, el lead termina con otra clínica que sí estuvo presente.",
+    before: "Interés que se enfría sin seguimiento",
+    after: "Secuencia que mantiene el contacto hasta el cierre",
   },
 ];
 
-const ROADMAP_ITEMS = [
+const AREA_TAG_META = {
+  ocular: { label: "Cirugía plástica ocular", shortLabel: "Ocular", className: "juliana-tag--ocular" },
+  armon: { label: "Armonización facial", shortLabel: "Armonización", className: "juliana-tag--armon" },
+  both: { label: "Ambas líneas", shortLabel: "Ambas", className: "juliana-tag--both" },
+};
+
+const UNIFIED_BUILD_BLOCKS = [
   {
-    num: 1,
-    title: "Captura automática de interés",
-    desc: "ManyChat en Instagram: respuesta inmediata al DM con info del procedimiento e invitación a valoración. Sin depender de disponibilidad humana.",
+    title: "Web y presencia",
+    items: [
+      { text: "Homepage rediseñada bajo su marca", tags: ["ocular"] },
+      { text: "Landing por procedimiento: blefaroplastia, ojo seco, turismo médico", tags: ["ocular"] },
+      { text: "Landing de captura dedicada a armonización facial", tags: ["armon"] },
+      { text: "Link in bio optimizado con acceso directo a cada servicio", tags: ["both"] },
+    ],
+    gallery: [
+      {
+        src: "/imagenes/propuesta-juliana/homepage.png",
+        alt: "Homepage rediseñada bajo la marca de la Dra. Juliana Meneses",
+        caption: "Homepage de marca",
+        tag: "ocular",
+      },
+      {
+        src: "/imagenes/propuesta-juliana/landing.png",
+        alt: "Landing por procedimiento — blefaroplastia, ojo seco y turismo médico",
+        caption: "Landings por procedimiento",
+        tag: "ocular",
+      },
+    ],
   },
   {
-    num: 2,
-    title: "Funnel de conversión por procedimiento",
-    desc: "Landing page para blefaroplastia estética con pauta segmentada. El lead llega calificado, no frío.",
+    title: "Marca, Instagram y presencia",
+    items: [
+      { text: "Nombre y concepto de marca para armonización facial", tags: ["armon"] },
+      { text: "Identidad visual completa: paleta, tipografía y aplicaciones", tags: ["armon"] },
+      { text: "Perfil de Instagram configurado bajo la nueva línea", tags: ["armon"] },
+      { text: "Highlights y estructura de contenido para armonización", tags: ["armon"] },
+    ],
   },
   {
-    num: 3,
-    title: "Turismo médico activado",
-    desc: "Landing dedicada + flujo de contacto directo + pauta orientada a pacientes fuera de Cúcuta.",
+    title: "Automatización e IA",
+    image: "/imagenes/propuesta-juliana/bot-citas.png",
+    imageAlt: "Bot de agendamiento de citas — asistente virtual de la Dra. Juliana Meneses",
+    imageCaption: "Bot de captura y agendamiento",
+    items: [
+      { text: "Bot Instagram: responde DMs, clasifica por procedimiento e invita a valoración", tags: ["both"] },
+      { text: "Bot WhatsApp: recordatorio de citas y seguimiento post-consulta", tags: ["ocular"] },
+      { text: "Bot de agendamiento: el paciente agenda solo, sin intervención humana", tags: ["both"] },
+      { text: "Secuencia de nurturing: acompaña al lead desde el interés hasta la cita", tags: ["both"] },
+      { text: "Flujo de captación básica conectado a la landing de armonización", tags: ["armon"] },
+      { text: "Respuestas automáticas a comentarios en posts", tags: ["both"] },
+    ],
   },
   {
-    num: 4,
-    title: "Sistema de seguimiento inteligente",
-    desc: "Secuencia de comunicación distribuida en el tiempo que acompaña al paciente hasta la cita. Funciona solo.",
-  },
-  {
-    num: 5,
-    title: "Contenido estratégico",
-    desc: "Calendario editorial conectado al sistema de captura. Cada pieza tiene un objetivo de conversión.",
+    title: "Contenido y pauta",
+    items: [
+      { text: "Calendario editorial alineado a cada línea de servicio", tags: ["both"] },
+      { text: "Guiones de reels especializados en cirugía plástica ocular", tags: ["ocular"] },
+      { text: "Guiones de reels especializados en armonización facial", tags: ["armon"] },
+      { text: "VSL corto para conversión en landing", tags: ["both"] },
+      { text: "Pauta turismo médico segmentada fuera de Cúcuta y Venezuela", tags: ["ocular"] },
+      { text: "Gestión de pauta pagada — estrategia, configuración y primer mes", tags: ["both"] },
+    ],
   },
 ];
 
-const PACKAGES = [
+const DASHBOARD_FEATURES = [
   {
-    tier: "Paquete 1",
-    name: "FLUXA ESENCIAL",
-    subtitle: "Arranque de captación",
+    label: "Panel de pacientes",
+    items: [
+      "Ficha completa por paciente: datos, procedimientos e historial clínico",
+      "Estados: prospecto, valoración agendada, en tratamiento, post-operatorio, inactivo",
+      "Clasificación por área y procedimiento de interés",
+      "Historial de consultas, valoraciones y seguimiento post-procedimiento",
+    ],
+  },
+  {
+    label: "Leads y captación",
+    items: [
+      "Panel de leads: origen, etapa y canal de entrada en tiempo real",
+      "Embudo visual desde el primer contacto hasta la valoración",
+      "Alertas de leads sin respuesta o estancados en una etapa",
+      "Etiquetas por procedimiento: blefaroplastia, ojo seco, turismo médico, armonización",
+    ],
+  },
+  {
+    label: "Agenda y citas",
+    items: [
+      "Calendario de valoraciones y procedimientos",
+      "Recordatorios automáticos de cita por WhatsApp",
+      "Vista diaria y semanal para el equipo",
+      "Control de disponibilidad y bloqueo de horarios",
+    ],
+  },
+  {
+    label: "Finanzas y operación",
+    items: [
+      "Ingresos por procedimiento y por línea de servicio",
+      "Registro de pagos, abonos y proyecciones mensuales",
+      "Ticket promedio y conversión por canal de captación",
+      "Reportes exportables para contabilidad y análisis",
+    ],
+  },
+  {
+    label: "Métricas",
+    items: [
+      "Leads por canal, campaña y landing de origen",
+      "Tasa de conversión de prospecto a valoración",
+      "Rendimiento comparativo por área: ocular vs armonización",
+      "Panel con filtros por línea de negocio y período",
+    ],
+  },
+];
+
+const DASHBOARD_PLANS = [
+  {
+    id: "ocular",
+    name: "Dashboard · Cirugía plástica ocular",
+    price: 897,
+    note: "Operación y seguimiento solo para la línea ocular",
+    areaTag: "ocular",
+    recommended: false,
+    waMessage:
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el Dashboard de cirugía plástica ocular ($897 USD). Quiero coordinar el siguiente paso.",
+  },
+  {
+    id: "armon",
+    name: "Dashboard · Armonización facial",
+    price: 697,
+    note: "Operación y seguimiento solo para la línea de armonización",
+    areaTag: "armon",
+    recommended: false,
+    waMessage:
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el Dashboard de armonización facial ($697 USD). Quiero coordinar el siguiente paso.",
+  },
+  {
+    id: "unificado",
+    name: "Dashboard · Unificado",
+    price: 1297,
+    comparePrice: 1594,
+    note: "Un solo panel para ambas áreas — menor que contratar los dos por separado",
+    areaTag: "both",
+    recommended: true,
+    waMessage:
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el Dashboard Unificado para ambas líneas ($1,297 USD). Quiero coordinar el siguiente paso.",
+  },
+];
+
+const OCULAR_PACKAGES = [
+  {
+    tier: "Plan esencial",
+    name: "Ocular · Esencial",
+    price: 945,
+    payment: [472, 473],
+    recommended: false,
     idealFor:
       "Para activar respuesta automática y convertir el interés en blefaroplastia — su procedimiento ancla — sin esperar a tener todo el ecosistema listo.",
-    recommended: false,
     sections: [
       {
         label: "Web y presencia",
@@ -131,7 +282,7 @@ const PACKAGES = [
       {
         label: "Automatización e IA",
         items: [
-          "Bot Instagram (ManyChat): responde DMs, clasifica interés e invita a valoración",
+          "Bot Instagram: responde DMs, clasifica interés e invita a valoración",
           "Flujo de seguimiento básico post-interés",
           "Configuración Meta Pixel para medir conversiones",
         ],
@@ -140,7 +291,7 @@ const PACKAGES = [
         label: "Contenido que convierte",
         items: [
           "Calendario de contenido mes 1 — blefaroplastia",
-          "Guiones especializados conectados al bot y la landing",
+          "15 guiones de reels especializados conectados al bot y la landing",
         ],
       },
       {
@@ -148,18 +299,19 @@ const PACKAGES = [
         items: ["Reporte mensual de resultados", "Sesión de revisión estratégica al lanzar"],
       },
     ],
-    cta: "Quiero FLUXA ESENCIAL",
+    cta: "Quiero Ocular Esencial",
     waMessage:
-      "Hola Fluxa Method. Soy la Dra. Juliana Meneses, revisé la propuesta y me interesa el paquete FLUXA ESENCIAL. Quiero coordinar el siguiente paso.",
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el plan Ocular Esencial ($945 USD). Quiero coordinar el siguiente paso.",
   },
   {
-    tier: "Paquete 2",
-    name: "FLUXA SISTEMA COMPLETO",
-    subtitle: "Ecosistema digital activado",
-    idealFor:
-      "Para captar, convertir y operar con sistema propio: web completa, automatización total, pauta, CRM y contenido alineados a su práctica.",
+    tier: "Plan completo",
+    name: "Ocular · Completo",
+    price: 1697,
+    payment: [848, 849],
     recommended: true,
     includesPrevious: true,
+    idealFor:
+      "Para captar, convertir y operar con sistema propio: web completa, automatización total, pauta, CRM y contenido alineados a su práctica.",
     sections: [
       {
         label: "Web y presencia",
@@ -186,18 +338,11 @@ const PACKAGES = [
         ],
       },
       {
-        label: "Sistemas internos",
-        items: [
-          "Dashboard CRM de pacientes bajo su marca",
-          "Panel de leads: origen, etapa y estado",
-          "Control financiero por procedimiento",
-        ],
-      },
-      {
         label: "Contenido que convierte",
         items: [
           "Calendario de contenido estratégico por procedimiento",
-          "Guiones de conversión especializados en cirugía plástica ocular",
+          "25 guiones de reels especializados en cirugía plástica ocular",
+          "VSL corto",
           "Piezas alineadas al bot, landings y secuencia de nurturing",
         ],
       },
@@ -206,168 +351,225 @@ const PACKAGES = [
         items: ["Sesión estratégica mensual"],
       },
     ],
-    cta: "Quiero FLUXA SISTEMA COMPLETO",
+    cta: "Quiero Ocular Completo",
     waMessage:
-      "Hola Fluxa Method. Soy la Dra. Juliana Meneses, revisé la propuesta y me interesa el paquete FLUXA SISTEMA COMPLETO. Quiero coordinar el siguiente paso.",
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el plan Ocular Completo ($1,697 USD). Quiero coordinar el siguiente paso.",
   },
 ];
 
-const RESULT_ITEMS = [
-  "Una práctica que capta pacientes mientras usted opera",
-  "Turismo médico activado con sistema propio",
-  "Cero leads perdidos por falta de respuesta",
-];
-
-const PRACTICE_STRENGTHS = [
+const ARMON_PACKAGES = [
   {
-    icon: "eye",
-    title: "Cirugía estética ocular",
-    skills: ["Blefaroplastia", "Frontoplastia", "Lipofilling", "No quirúrgicos"],
-    system: "Landing y bot por procedimiento — el paciente llega clasificado, no frío.",
-  },
-  {
-    icon: "spa",
-    title: "Salud y función del párpado",
-    skills: ["Spa de párpados", "Ojo seco", "Cirugía funcional"],
-    system: "Contenido educativo + nurturing que convierte interés en valoración.",
-  },
-  {
-    icon: "globe",
-    title: "Turismo médico",
-    skills: ["Venezuela", "Bogotá", "Medellín", "Fuera de Cúcuta"],
-    system: "Captación dedicada + pauta geolocalizada para pacientes de otras ciudades.",
-  },
-];
-
-const FLUXA_BLOCKS = [
-  {
-    title: "Web y presencia",
-    items: [
-      "Homepage rediseñada bajo su marca",
-      "Landing por procedimiento: blefaroplastia, ojo seco, turismo médico",
-      "Link in bio optimizado con acceso directo a cada servicio",
-    ],
-    media: [
+    tier: "Plan esencial",
+    name: "Armonización · Esencial",
+    price: 750,
+    payment: [375, 375],
+    recommended: false,
+    idealFor:
+      "Para lanzar la línea de armonización facial con marca, captación y contenido base — sin esperar a tener todo el ecosistema de escala listo.",
+    sections: [
       {
-        afterIndex: 0,
-        src: "/imagenes/propuesta-juliana/homepage.png",
-        alt: "Homepage rediseñada bajo la marca de la Dra. Juliana Meneses",
+        label: "Marca e identidad",
+        items: ["Nombre y concepto de marca", "Landing de captura dedicada"],
       },
       {
-        afterIndex: 1,
-        src: "/imagenes/propuesta-juliana/landing.png",
-        alt: "Landing por procedimiento — blefaroplastia, ojo seco y turismo médico",
+        label: "Instagram y presencia",
+        items: ["Perfil de Instagram configurado", "Link in bio hacia la landing"],
+      },
+      {
+        label: "Automatización",
+        items: ["Captación básica de leads", "Flujo de seguimiento post-interés"],
+      },
+      {
+        label: "Contenido",
+        items: ["Calendario editorial mes 1", "10 guiones de reels especializados"],
       },
     ],
+    cta: "Quiero Armonización Esencial",
+    waMessage:
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el plan Armonización Esencial ($750 USD). Quiero coordinar el siguiente paso.",
   },
   {
-    title: "Automatización e IA",
-    image: "/imagenes/propuesta-juliana/bot-citas.png",
-    imageAlt: "Bot de agendamiento de citas — asistente virtual de la Dra. Juliana Meneses",
-    items: [
-      "Bot Instagram (ManyChat): responde DMs, clasifica por procedimiento e invita a valoración",
-      "Bot WhatsApp: recordatorio de citas y seguimiento post-consulta",
-      "Bot de agendamiento: el paciente agenda solo, sin intervención humana",
-      "Secuencia de nurturing: acompaña al lead desde el interés hasta la cita",
-      "Respuestas automáticas a comentarios en posts",
+    tier: "Plan completo",
+    name: "Armonización · Completo",
+    price: 1297,
+    payment: [648, 649],
+    recommended: true,
+    includesPrevious: true,
+    idealFor:
+      "Para construir la línea completa: identidad visual, pauta, VSL, seguimiento de leads y estrategia de 90 días bajo una marca propia.",
+    sections: [
+      {
+        label: "Marca e identidad",
+        items: ["Identidad visual completa", "Aplicaciones de marca para web y redes"],
+      },
+      {
+        label: "Pauta y escala",
+        items: ["Meta Ads gestionados — mes 1", "Campañas segmentadas para armonización facial"],
+      },
+      {
+        label: "Contenido ampliado",
+        items: ["20 guiones de reels", "VSL corto", "Estrategia de contenido 90 días"],
+      },
+      {
+        label: "Seguimiento",
+        items: ["Secuencia de seguimiento de leads integrada al embudo", "Panel por etapa y origen del paciente"],
+      },
     ],
-  },
-  {
-    title: "Pauta y captación",
-    items: [
-      "Gestión Meta Ads con campañas por procedimiento",
-      "Pauta turismo médico segmentada fuera de Cúcuta y Venezuela",
-    ],
-  },
-  {
-    title: "Sistemas internos",
-    image: "/imagenes/propuesta-juliana/dashboard.png",
-    imageAlt: "Dashboard CRM — panel de pacientes, leads y control financiero de la Dra. Juliana Meneses",
-    items: [
-      "Dashboard CRM de pacientes bajo su marca",
-      "Control financiero: ingresos por procedimiento y proyecciones",
-      "Panel de leads: origen, etapa y estado de cada paciente",
-    ],
+    cta: "Quiero Armonización Completo",
+    waMessage:
+      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el plan Armonización Completo ($1,297 USD). Quiero coordinar el siguiente paso.",
   },
 ];
 
-function ServiceIcon({ name }) {
-  const props = {
-    className: "h-6 w-6 shrink-0 text-[var(--gals-accent-dark)]",
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "1.75",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    "aria-hidden": true,
-  };
+const CLOSING_PLANS = {
+  ocular: [
+    {
+      id: "esencial",
+      name: "Ocular · Esencial",
+      price: 945,
+      recommended: false,
+      note: "Funnel blefaroplastia + captación + seguimiento",
+      payment: [472, 473],
+    },
+    {
+      id: "completo",
+      name: "Ocular · Completo",
+      price: 1697,
+      recommended: true,
+      note: "Turismo médico + pauta + VSL",
+      payment: [848, 849],
+    },
+  ],
+  armonizacion: [
+    {
+      id: "esencial",
+      name: "Armonización · Esencial",
+      price: 750,
+      recommended: false,
+      note: "Marca nueva + landing + contenido base",
+      payment: [375, 375],
+    },
+    {
+      id: "completo",
+      name: "Armonización · Completo",
+      price: 1297,
+      recommended: true,
+      note: "Identidad visual + pauta + estrategia 90 días",
+      payment: [648, 649],
+    },
+  ],
+};
 
-  switch (name) {
-    case "eye":
-      return (
-        <svg {...props}>
-          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
-          <circle cx="12" cy="12" r="3" />
-        </svg>
-      );
-    case "brow":
-      return (
-        <svg {...props}>
-          <path d="M4 14c2.5-3 5.5-4 8-4s5.5 1 8 4" />
-          <path d="M6 10V8M10 9V7M14 9V7M18 10V8" />
-        </svg>
-      );
-    case "droplet":
-      return (
-        <svg {...props}>
-          <path d="M12 3c3 4.5 6 8 6 11a6 6 0 1 1-12 0c0-3 3-6.5 6-11Z" />
-        </svg>
-      );
-    case "spa":
-      return (
-        <svg {...props}>
-          <path d="M12 3v18M8 7c0 2 1.5 3 4 3s4-1 4-3M6 12h12M8 17h8" />
-        </svg>
-      );
-    case "dry-eye":
-      return (
-        <svg {...props}>
-          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
-          <path d="M12 9v6M9 12h6" />
-        </svg>
-      );
-    case "scalpel":
-      return (
-        <svg {...props}>
-          <path d="m14 4 6 6M8 20l-1.5-1.5a2.1 2.1 0 0 1 0-3L14 8l3 3-6.5 6.5a2.1 2.1 0 0 1-3 0L8 16" />
-        </svg>
-      );
-    case "syringe":
-      return (
-        <svg {...props}>
-          <path d="m18 2 4 4M7 17l8-8M3 21l2-2M15 7l2 2" />
-          <path d="M11 11 5 17a2.8 2.8 0 1 0 4 4l6-6" />
-        </svg>
-      );
-    case "globe":
-      return (
-        <svg {...props}>
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
-        </svg>
-      );
-    default:
-      return (
-        <svg {...props}>
-          <circle cx="12" cy="12" r="9" />
-        </svg>
-      );
-  }
+const SUGGESTED_COMBOS = [
+  {
+    label: "Esencial + Esencial",
+    ocularId: "esencial",
+    armonId: "esencial",
+    subtotal: 1695,
+    total: 1440,
+  },
+  {
+    label: "Completo + Completo",
+    ocularId: "completo",
+    armonId: "completo",
+    subtotal: 2994,
+    total: 2545,
+  },
+  {
+    label: "Esencial Ocular + Completo Armonización",
+    ocularId: "esencial",
+    armonId: "completo",
+    subtotal: 2242,
+    total: 1906,
+  },
+  {
+    label: "Completo Ocular + Esencial Armonización",
+    ocularId: "completo",
+    armonId: "esencial",
+    subtotal: 2447,
+    total: 2080,
+  },
+];
+
+const COMBO_DISCOUNT = 0.15;
+
+function formatUsd(amount) {
+  return amount.toLocaleString("en-US", { maximumFractionDigits: 0 });
 }
 
-function flattenPackageSections(sections) {
-  return sections.flatMap((section) => section.items);
+function planLabel(plan) {
+  return plan.name;
+}
+
+function closingComboWaMessage(ocularPlan, armonPlan) {
+  const subtotal = ocularPlan.price + armonPlan.price;
+  const discount = Math.round(subtotal * COMBO_DISCOUNT);
+  const total = subtotal - discount;
+  const phase1 = Math.round(total / 2);
+  const phase2 = total - phase1;
+
+  return [
+    "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y quiero avanzar con esta combinación:",
+    "",
+    `• Cirugía plástica ocular: ${planLabel(ocularPlan)} — $${formatUsd(ocularPlan.price)} USD`,
+    `• Armonización facial: ${planLabel(armonPlan)} — $${formatUsd(armonPlan.price)} USD`,
+    "",
+    `Subtotal: $${formatUsd(subtotal)} USD`,
+    `Descuento combo 15%: -$${formatUsd(discount)} USD`,
+    `Total: $${formatUsd(total)} USD`,
+    "",
+    "Forma de pago:",
+    `• $${formatUsd(phase1)} USD al firmar`,
+    `• $${formatUsd(phase2)} USD a los 15 días`,
+    "",
+    "¿Coordinamos el siguiente paso?",
+  ].join("\n");
+}
+
+function staggerStyle(index, step = 90) {
+  return { "--delay": `${index * step}ms` };
+}
+
+function CountUp({ value, prefix = "$", suffix = "" }) {
+  const ref = useRef(null);
+  const [display, setDisplay] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStarted(true);
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return undefined;
+    const duration = 1100;
+    const start = performance.now();
+    let frameId = 0;
+    const tick = (now) => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - (1 - progress) ** 3;
+      setDisplay(Math.round(value * eased));
+      if (progress < 1) frameId = requestAnimationFrame(tick);
+    };
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
+  }, [started, value]);
+
+  return (
+    <span ref={ref} className="gals-price">
+      {prefix}
+      {display.toLocaleString("en-US")}
+      {suffix}
+    </span>
+  );
 }
 
 function PackageCheckList({ items }) {
@@ -385,6 +587,10 @@ function PackageCheckList({ items }) {
   );
 }
 
+function flattenPackageSections(sections) {
+  return sections.flatMap((section) => section.items);
+}
+
 function PackageIncludes({ pkg, essentialSections }) {
   const totalItems = pkg.includesPrevious
     ? flattenPackageSections(essentialSections).length + flattenPackageSections(pkg.sections).length
@@ -400,7 +606,7 @@ function PackageIncludes({ pkg, essentialSections }) {
       {pkg.includesPrevious ? (
         <>
           <div className="gals-package-section gals-package-section--base">
-            <p className="gals-package-section-label">Base — FLUXA ESENCIAL</p>
+            <p className="gals-package-section-label">Base — Ocular Esencial</p>
             <PackageCheckList items={flattenPackageSections(essentialSections)} />
           </div>
           <p className="gals-package-plus">Además incluye</p>
@@ -419,8 +625,173 @@ function PackageIncludes({ pkg, essentialSections }) {
   );
 }
 
-function staggerStyle(index, step = 90) {
-  return { "--delay": `${index * step}ms` };
+function UnifiedBuildGrid() {
+  return (
+    <div className="juliana-build-stack gals-stagger-group mt-8" data-reveal>
+      {UNIFIED_BUILD_BLOCKS.map((block, i) => (
+        <article
+          key={block.title}
+          className="gals-card gals-stagger juliana-build-card rounded-2xl p-5 sm:p-7"
+          style={staggerStyle(i, 80)}
+        >
+          <p className="gals-eyebrow tracking-[0.18em]">{block.title}</p>
+
+          {block.image ? (
+            <div className="juliana-build-split mt-5">
+              <figure className="juliana-build-split-visual">
+                <div className="juliana-build-gallery-frame">
+                  <Image
+                    src={block.image}
+                    alt={block.imageAlt}
+                    width={1200}
+                    height={675}
+                    className="h-auto w-full object-contain"
+                    sizes="(max-width: 768px) 100vw, 320px"
+                  />
+                </div>
+                {block.imageCaption ? (
+                  <figcaption className="juliana-build-gallery-caption">
+                    <span>{block.imageCaption}</span>
+                    <AreaTag type="both" short />
+                  </figcaption>
+                ) : null}
+              </figure>
+              <TaggedItemList items={block.items} />
+            </div>
+          ) : (
+            <>
+              <TaggedItemList items={block.items} />
+              {block.gallery?.length ? <BuildGallery slides={block.gallery} /> : null}
+            </>
+          )}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function DashboardSection() {
+  return (
+    <div className="mt-16 border-t border-[var(--gals-border)] pt-14" data-reveal>
+      <p className="gals-eyebrow">Adicional · aparte de los planes</p>
+      <h4 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">Dashboard propio bajo su marca</h4>
+      <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
+        El dashboard es independiente de los planes de ecosistema. Puedes contratarlo por área o en versión unificada
+        para operar cirugía plástica ocular y armonización facial desde un solo panel — con un precio menor que tener
+        los dos separados.
+      </p>
+
+      <div className="gals-card mt-8 overflow-hidden rounded-2xl p-5 sm:p-8">
+        <div className="juliana-dashboard-layout">
+          <figure className="juliana-dashboard-visual">
+            <div className="juliana-build-gallery-frame">
+              <Image
+                src="/imagenes/propuesta-juliana/dashboard.png"
+                alt="Dashboard CRM — panel de pacientes, leads y control financiero de la Dra. Juliana Meneses"
+                width={1200}
+                height={675}
+                className="h-auto w-full object-contain"
+                sizes="(max-width: 768px) 100vw, 380px"
+              />
+            </div>
+          </figure>
+          <div className="juliana-dashboard-features">
+            <p className="gals-eyebrow tracking-[0.18em]">Funciones incluidas</p>
+            <div className="juliana-dashboard-feature-grid">
+              {DASHBOARD_FEATURES.map((section) => (
+                <div key={section.label} className="gals-package-section">
+                  <p className="gals-package-section-label">{section.label}</p>
+                  <ul className="gals-muted mt-2 space-y-1.5 text-sm leading-relaxed">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="gals-accent-text shrink-0">·</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="gals-stagger-group mt-8 grid gap-4 lg:grid-cols-3" data-reveal>
+        {DASHBOARD_PLANS.map((plan, i) => (
+          <article
+            key={plan.id}
+            className={`gals-card gals-stagger flex flex-col rounded-2xl p-5 sm:p-6 ${
+              plan.recommended ? "gals-card--featured relative" : ""
+            }`}
+            style={staggerStyle(i, 100)}
+          >
+            {plan.recommended ? (
+              <span className="gals-badge gals-badge--pulse absolute right-4 top-4 rounded-full px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-wider">
+                Mejor valor
+              </span>
+            ) : null}
+            <AreaTag type={plan.areaTag} />
+            <h5 className="gals-section-label mt-3 text-lg font-semibold">{plan.name}</h5>
+            <p className="gals-muted mt-2 text-xs leading-relaxed">{plan.note}</p>
+            <div className="mt-4">
+              {plan.comparePrice ? (
+                <div className="gals-discount-price">
+                  <span className="gals-price-original text-sm">${formatUsd(plan.comparePrice)} USD</span>
+                  <p className="gals-price mt-1 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+                  <p className="gals-muted mt-1 text-xs">
+                    Ahorro de ${formatUsd(plan.comparePrice - plan.price)} vs dos dashboards separados
+                  </p>
+                </div>
+              ) : (
+                <p className="gals-price text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+              )}
+            </div>
+            <PaymentBox
+              phase1={Math.round(plan.price / 2)}
+              phase2={plan.price - Math.round(plan.price / 2)}
+            />
+            <a
+              href={waUrl(plan.waMessage)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium ${
+                plan.recommended ? "gals-btn-solid font-semibold" : "gals-btn-outline"
+              }`}
+            >
+              Quiero este dashboard
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AreaLegend() {
+  return (
+    <div className="juliana-area-legend" data-reveal>
+      {Object.entries(AREA_TAG_META).map(([key, meta]) => (
+        <div key={key} className="juliana-area-legend-item">
+          <AreaTag type={key} />
+          <span className="juliana-area-legend-hint">
+            {key === "both" ? "Aplica a las dos líneas de servicio" : `Solo ${meta.label.toLowerCase()}`}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PaymentBox({ phase1, phase2, dayLabel = "15 días" }) {
+  return (
+    <div className="gals-payment-box mt-6 rounded-lg p-4">
+      <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
+      <p className="gals-card-text mt-2 text-sm">Fase 1: ${formatUsd(phase1)} USD al firmar</p>
+      <p className="gals-muted text-sm">
+        Fase 2: ${formatUsd(phase2)} USD a los {dayLabel}
+      </p>
+    </div>
+  );
 }
 
 function SectionBlock({ id, eyebrow, title, subtitle, children, elevated = false, alt = false }) {
@@ -443,22 +814,161 @@ function SectionBlock({ id, eyebrow, title, subtitle, children, elevated = false
   );
 }
 
-function RoadmapPhase({ item, index, isLast }) {
+function ComboPicker() {
+  const [selectedOcularId, setSelectedOcularId] = useState("completo");
+  const [selectedArmonId, setSelectedArmonId] = useState("completo");
+
+  const selectedOcular =
+    CLOSING_PLANS.ocular.find((plan) => plan.id === selectedOcularId) ?? CLOSING_PLANS.ocular[0];
+  const selectedArmon =
+    CLOSING_PLANS.armonizacion.find((plan) => plan.id === selectedArmonId) ?? CLOSING_PLANS.armonizacion[0];
+
+  const subtotal = selectedOcular.price + selectedArmon.price;
+  const discount = Math.round(subtotal * COMBO_DISCOUNT);
+  const total = subtotal - discount;
+  const paymentPhase1 = Math.round(total / 2);
+  const paymentPhase2 = total - paymentPhase1;
+
   return (
-    <div
-      className="gals-timeline-phase gals-stagger relative flex gap-5 pb-10 last:pb-0"
-      style={staggerStyle(index, 120)}
-    >
-      {!isLast ? (
-        <span className="gals-timeline-line absolute left-[15px] top-9 bottom-0 w-px" aria-hidden />
-      ) : null}
-      <span className="gals-timeline-dot relative z-[1] flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold">
-        {item.num}
-      </span>
-      <article className="gals-card min-w-0 flex-1 rounded-xl p-5">
-        <h3 className="gals-section-label text-lg font-semibold">{item.title}</h3>
-        <p className="gals-muted mt-2 text-sm leading-relaxed">{item.desc}</p>
-      </article>
+    <div data-reveal className="gals-reveal mt-10 text-left">
+      <p className="gals-eyebrow text-center">Combo interactivo</p>
+      <h3 className="gals-heading mt-2 text-center text-xl sm:text-2xl">Arma tu combinación</h3>
+      <p className="gals-muted mx-auto mt-2 max-w-xl text-center text-sm leading-relaxed">
+        Elige un plan de cada ecosistema. Al combinar ambos, aplicamos{" "}
+        <span className="gals-accent-text font-semibold">15% de descuento</span> sobre el total.
+      </p>
+
+      <div className="mt-8">
+        <p className="gals-muted text-center text-xs font-medium uppercase tracking-[0.16em]">
+          Combinaciones sugeridas
+        </p>
+        <div className="mt-3 flex flex-wrap justify-center gap-2">
+          {SUGGESTED_COMBOS.map((combo) => (
+            <button
+              key={combo.label}
+              type="button"
+              onClick={() => {
+                setSelectedOcularId(combo.ocularId);
+                setSelectedArmonId(combo.armonId);
+              }}
+              className="gals-pill rounded-full px-3 py-1.5 text-[11px] font-medium"
+            >
+              {combo.label} · ${formatUsd(combo.total)}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <p className="gals-section-label text-sm font-semibold">1 · Cirugía plástica ocular</p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {CLOSING_PLANS.ocular.map((plan) => (
+            <button
+              key={plan.id}
+              type="button"
+              onClick={() => setSelectedOcularId(plan.id)}
+              className={`gals-plan-pick gals-card rounded-xl p-4 text-left sm:p-5 ${
+                selectedOcularId === plan.id ? "gals-plan-pick--selected" : ""
+              }`}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="gals-section-label text-sm font-semibold sm:text-base">{plan.name}</p>
+                  <p className="gals-muted mt-1 text-xs leading-relaxed">{plan.note}</p>
+                </div>
+                {plan.recommended ? (
+                  <span className="gals-badge shrink-0 rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider">
+                    Top
+                  </span>
+                ) : null}
+              </div>
+              <p className="gals-price mt-4 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <p className="gals-section-label text-sm font-semibold">2 · Armonización facial</p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          {CLOSING_PLANS.armonizacion.map((plan) => (
+            <button
+              key={plan.id}
+              type="button"
+              onClick={() => setSelectedArmonId(plan.id)}
+              className={`gals-plan-pick gals-card rounded-xl p-4 text-left sm:p-5 ${
+                selectedArmonId === plan.id ? "gals-plan-pick--selected" : ""
+              }`}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="gals-section-label text-sm font-semibold sm:text-base">{plan.name}</p>
+                  <p className="gals-muted mt-1 text-xs leading-relaxed">{plan.note}</p>
+                </div>
+                {plan.recommended ? (
+                  <span className="gals-badge shrink-0 rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-wider">
+                    Top
+                  </span>
+                ) : null}
+              </div>
+              <p className="gals-price mt-4 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="gals-payment-box mt-10 rounded-xl p-5 sm:p-6">
+        <p className="gals-muted text-center text-[11px] font-medium uppercase tracking-[0.16em]">
+          Resumen de tu combo
+        </p>
+
+        <div className="mt-5 space-y-3 text-sm">
+          <div className="flex items-start justify-between gap-4 border-b border-[var(--gals-border)] pb-3">
+            <div>
+              <p className="gals-muted text-[10px] font-medium uppercase tracking-[0.14em]">Ocular</p>
+              <p className="gals-section-label mt-1 font-semibold">{selectedOcular.name}</p>
+            </div>
+            <p className="gals-price shrink-0 font-semibold">${formatUsd(selectedOcular.price)} USD</p>
+          </div>
+          <div className="flex items-start justify-between gap-4 border-b border-[var(--gals-border)] pb-3">
+            <div>
+              <p className="gals-muted text-[10px] font-medium uppercase tracking-[0.14em]">Armonización</p>
+              <p className="gals-section-label mt-1 font-semibold">{selectedArmon.name}</p>
+            </div>
+            <p className="gals-price shrink-0 font-semibold">${formatUsd(selectedArmon.price)} USD</p>
+          </div>
+          <div className="flex items-center justify-between gap-4 pt-1">
+            <p className="gals-muted">Subtotal</p>
+            <p className="gals-card-text font-medium">${formatUsd(subtotal)} USD</p>
+          </div>
+          <div className="flex items-center justify-between gap-4">
+            <p className="gals-accent-text font-medium">Descuento combo 15%</p>
+            <p className="gals-accent-text font-semibold">-${formatUsd(discount)} USD</p>
+          </div>
+        </div>
+
+        <div className="mt-5 border-t border-[var(--gals-border)] pt-5 text-center">
+          <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Total a pagar</p>
+          <p className="gals-price mt-1 text-3xl font-semibold sm:text-4xl">${formatUsd(total)} USD</p>
+        </div>
+
+        <div className="gals-payment-box mt-5 rounded-lg p-4 text-sm">
+          <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago combo</p>
+          <p className="gals-card-text mt-2">50% al firmar: ${formatUsd(paymentPhase1)} USD</p>
+          <p className="gals-muted mt-1">50% a los 15 días: ${formatUsd(paymentPhase2)} USD</p>
+        </div>
+
+        <div className="mt-6 text-center">
+          <a
+            href={waUrl(closingComboWaMessage(selectedOcular, selectedArmon))}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gals-btn-solid inline-flex w-full items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold sm:w-auto sm:min-w-[300px]"
+          >
+            Confirmar combo por WhatsApp
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
@@ -522,7 +1032,7 @@ export default function PropuestaJulianaPage() {
       <nav className="gals-nav sticky top-0 z-40">
         <div className="mx-auto flex w-full max-w-6xl items-center gap-2 overflow-x-auto px-4 py-3.5 sm:gap-3 sm:px-6">
           <span className="gals-nav-brand mr-1 shrink-0 text-[10px] font-medium uppercase tracking-[0.2em]">
-            Fluxa Systems
+            Dra. Juliana Meneses
           </span>
           {NAV_ITEMS.map((item) => (
             <a
@@ -538,24 +1048,22 @@ export default function PropuestaJulianaPage() {
         </div>
       </nav>
 
-      {/* 1 — HEADER */}
+      {/* 1 — PORTADA */}
       <section id="hero" className="gals-hero-mesh scroll-mt-28 pb-20 pt-14 lg:pb-24 lg:pt-20">
         <div data-reveal className="gals-reveal gals-stagger-group mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <p className="gals-eyebrow tracking-[0.24em]">Propuesta Fluxa · Cirugía plástica ocular</p>
+          <p className="gals-eyebrow tracking-[0.24em]">Propuesta comercial · Fluxa Systems</p>
           <h1 className="gals-hero-title">
-            Dra. Juliana Meneses, el ecosistema digital que convierte su expertise en pacientes.
+            Presencia digital que convierte
+            <br />
+            confianza en valoraciones
           </h1>
           <p className="gals-lead mt-6 max-w-2xl sm:text-lg">
-            Supraespecialista única en Cúcuta, con blefaroplastia, turismo médico y ocho líneas de servicio que hoy
-            compiten por la misma atención. Esta propuesta muestra cómo activar web, automatización, pauta, CRM y
-            contenido especializado — para que ningún interés se pierda en el camino.
+            Dos ecosistemas digitales independientes — cirugía plástica ocular y armonización facial — con la opción de
+            combinarlos y escalar tu práctica en Cúcuta y más allá.
           </p>
+
           <div className="mt-10 flex flex-wrap gap-2.5">
-            {[
-              "Web + landings por procedimiento",
-              "Bots, nurturing y CRM",
-              "Turismo médico + pauta",
-            ].map((pill, i) => (
+            {["Desde $750 USD", "4–6 semanas", "Combo con 15% off"].map((pill, i) => (
               <span
                 key={pill}
                 className="gals-pill gals-stagger rounded-full px-4 py-2 text-xs font-medium"
@@ -565,200 +1073,144 @@ export default function PropuestaJulianaPage() {
               </span>
             ))}
           </div>
-          <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center" data-reveal>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gals-btn-solid inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold"
-            >
-              Agendar llamada
-            </a>
-            <a
-              href="#fluxa"
-              className="gals-btn-outline inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium"
-            >
-              Ver el ecosistema
-            </a>
+        </div>
+
+        <div data-reveal className="gals-reveal gals-hero-band mt-14 w-full">
+          <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-10 sm:px-6 sm:py-12">
+            <p className="gals-hero-title text-center text-3xl text-white sm:text-4xl md:text-5xl">
+              Dra. Juliana Meneses
+            </p>
+            <p className="gals-hero-band-handle mt-3 text-center text-sm font-medium sm:text-base">
+              Cirugía Plástica Ocular · Armonización Facial
+            </p>
+            <p className="gals-hero-band-handle mt-1 text-center text-xs opacity-90 sm:text-sm">Cúcuta, Colombia</p>
           </div>
-          <p data-reveal className="gals-reveal gals-accent-text mt-8 text-sm font-medium">
-            Dra. Juliana Meneses <span className="gals-muted">/</span> Fluxa Systems
-          </p>
+        </div>
+
+        <div className="mx-auto mt-8 flex max-w-6xl flex-wrap items-center justify-center gap-4 px-4 sm:px-6">
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gals-muted text-sm font-medium hover:text-[var(--gals-heading)]"
+          >
+            @drajulianameneses
+          </a>
+          <span className="hidden h-4 w-px bg-[var(--gals-border)] sm:block" aria-hidden />
+          <a
+            href={SITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gals-muted text-sm font-medium hover:text-[var(--gals-heading)]"
+          >
+            drajulianameneses.com
+          </a>
+          <span className="hidden h-4 w-px bg-[var(--gals-border)] sm:block" aria-hidden />
+          <Image src={FLUXA_LOGO} alt="Fluxa Systems" width={120} height={32} className="h-7 w-auto opacity-80" />
+        </div>
+
+        <div className="mx-auto mt-10 flex max-w-6xl flex-wrap gap-3 px-4 sm:px-6" data-reveal>
+          <a
+            href="#ecosistemas"
+            className="gals-btn-solid inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Ver ecosistemas
+          </a>
+          <a
+            href="#combo"
+            className="gals-btn-outline inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium"
+          >
+            Armar combo
+          </a>
         </div>
       </section>
 
-      {/* 2 — BENEFICIOS VISUALES */}
+      {/* 2 — DIAGNÓSTICO */}
       <SectionBlock
-        id="beneficios"
-        eyebrow="El resultado"
-        title="Lo que cambia cuando el sistema está activo"
-        alt
-      >
-        <div className="gals-stagger-group grid gap-5 md:grid-cols-3" data-reveal>
-          {RESULT_ITEMS.map((text, i) => (
-            <article
-              key={text}
-              className="gals-card gals-stagger rounded-xl p-6 text-center sm:p-8"
-              style={staggerStyle(i, 110)}
-            >
-              <p className="gals-card-text text-sm font-medium leading-relaxed sm:text-base">{text}</p>
-            </article>
-          ))}
-        </div>
-      </SectionBlock>
-
-      {/* Ventaja clínica — puente hacia el ecosistema Fluxa */}
-      <SectionBlock
-        id="servicios"
-        eyebrow="Su ventaja clínica"
-        title="Su expertise es el activo. El sistema es lo que convierte."
-        subtitle="Ocho líneas de servicio, pacientes distintos en cada una. Hoy compiten por la misma atención. Fluxa construye el canal digital que corresponde a lo que usted ya domina."
-        elevated
-      >
-        <div className="gals-stagger-group grid gap-4 lg:grid-cols-3" data-reveal>
-          {PRACTICE_STRENGTHS.map((strength, i) => (
-            <article
-              key={strength.title}
-              className="gals-card gals-service-card gals-stagger flex flex-col rounded-xl p-5 sm:p-6"
-              style={staggerStyle(i, 90)}
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--gals-accent-soft)]">
-                  <ServiceIcon name={strength.icon} />
-                </span>
-                <h3 className="gals-section-label text-base font-semibold">{strength.title}</h3>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {strength.skills.map((skill) => (
-                  <span key={skill} className="gals-skill-pill">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-5 border-t border-[var(--gals-border)] pt-4">
-                <p className="gals-eyebrow text-[10px] tracking-[0.18em]">Sistema Fluxa</p>
-                <p className="gals-card-text mt-1.5 text-sm leading-relaxed">{strength.system}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <p className="gals-muted mx-auto mt-8 max-w-2xl text-center text-sm leading-relaxed" data-reveal>
-          No es un catálogo médico: es la base sobre la que diseñamos web, automatización, pauta y CRM bajo su
-          marca.
-        </p>
-      </SectionBlock>
-
-      {/* Ecosistema Fluxa — qué construimos antes del roadmap */}
-      <SectionBlock
-        id="fluxa"
-        eyebrow="Servicios Fluxa para su práctica"
-        title="Un ecosistema construido para cirugía plástica ocular"
-        alt
-      >
-        <div className="gals-stagger-group grid gap-6 sm:grid-cols-2" data-reveal>
-          {FLUXA_BLOCKS.map((block, i) => (
-            <article
-              key={block.title}
-              className={`gals-card gals-stagger rounded-xl p-5 sm:p-6 ${
-                block.image ? "sm:col-span-2" : ""
-              }`}
-              style={staggerStyle(i, 100)}
-            >
-              <p className="gals-eyebrow tracking-[0.18em]">{block.title}</p>
-              {block.image ? (
-                <div className="mt-4 grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:items-center">
-                  <div className="gals-fluxa-visual">
-                    <Image
-                      src={block.image}
-                      alt={block.imageAlt}
-                      width={1200}
-                      height={675}
-                      className="h-auto w-full object-contain"
-                      sizes="(max-width: 768px) 100vw, 360px"
-                    />
-                  </div>
-                  <ul className="gals-muted space-y-2 text-sm leading-relaxed">
-                    {block.items.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="gals-accent-text shrink-0">·</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : block.media?.length ? (
-                <FluxaInlineList items={block.items} media={block.media} />
-              ) : (
-                <ul className="gals-muted mt-4 space-y-2 text-sm leading-relaxed">
-                  {block.items.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="gals-accent-text shrink-0">·</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </article>
-          ))}
-        </div>
-      </SectionBlock>
-
-      {/* 3 — PRUEBA SOCIAL Y USO REAL */}
-      <SectionBlock id="solucion" eyebrow="Solución Fluxa" title="El ecosistema digital de la Dra. Juliana">
-        <div className="gals-timeline-group gals-stagger-group max-w-2xl" data-reveal>
-          {ROADMAP_ITEMS.map((item, i) => (
-            <RoadmapPhase
-              key={item.num}
-              item={item}
-              index={i}
-              isLast={i === ROADMAP_ITEMS.length - 1}
-            />
-          ))}
-        </div>
-      </SectionBlock>
-
-      {/* 4 — COMPARATIVA Y DIFERENCIACIÓN */}
-      <SectionBlock
-        id="comparativa"
-        eyebrow="Diagnóstico digital"
-        title="Lo que está pasando hoy"
+        id="diagnostico"
+        eyebrow="01 — Diagnóstico"
+        title="Tienes marca, autoridad y pacientes reales."
+        subtitle="Pero el sistema comercial todavía depende de tu presencia manual para convertir interés en valoraciones."
         elevated
         alt
       >
         <div className="gals-stagger-group grid gap-4 sm:grid-cols-2" data-reveal>
-          {DIAGNOSIS_CARDS.map((card, i) => (
+          {DIAGNOSTIC_CARDS.map((text, i) => (
             <article
-              key={card.title}
+              key={text}
               className="gals-card gals-stagger rounded-xl p-5 sm:p-6"
               style={staggerStyle(i, 90)}
             >
-              <h3 className="gals-section-label text-base font-semibold sm:text-lg">{card.title}</h3>
-              <p className="gals-muted mt-2 text-sm leading-relaxed">{card.desc}</p>
+              <p className="gals-card-text text-sm leading-relaxed">{text}</p>
             </article>
           ))}
         </div>
+      </SectionBlock>
 
-        <div data-reveal className="gals-reveal mt-12 text-center">
-          <p className="gals-callout inline-block rounded-2xl px-6 py-8 text-lg font-medium leading-relaxed sm:px-10 sm:text-xl">
-            Su especialización es única en la región. La demanda existe. Lo que falta es el sistema que la capture.
-          </p>
-          <p className="gals-muted mt-6 text-sm sm:text-base">
-            Cada día sin ese sistema es un lead que no regresa.
-          </p>
+      {/* 3 — TRANSFORMACIÓN */}
+      <SectionBlock
+        id="transformacion"
+        eyebrow="02 — Transformación"
+        title="De presencia manual a sistema que convierte 24/7"
+      >
+        <div className="gals-stagger-group gals-table-wrap overflow-hidden rounded-xl" data-reveal>
+          <div className="gals-table-head grid grid-cols-2 px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] sm:px-6">
+            <span>Antes</span>
+            <span className="gals-accent-text">Después</span>
+          </div>
+          {TRANSFORMATIONS.map((row, i) => (
+            <div
+              key={row.before}
+              className={`gals-stagger grid grid-cols-2 gap-3 px-4 py-4 sm:gap-6 sm:px-6 sm:py-5 ${
+                i < TRANSFORMATIONS.length - 1 ? "gals-table-row" : ""
+              }`}
+              style={staggerStyle(i, 100)}
+            >
+              <p className="gals-muted text-sm leading-relaxed">{row.before}</p>
+              <p
+                className="gals-table-after gals-table-after-cell text-sm leading-relaxed"
+                style={{ "--after-delay": `${i * 100 + 140}ms` }}
+              >
+                {row.after}
+              </p>
+            </div>
+          ))}
         </div>
       </SectionBlock>
 
-      {/* 5 — CHECKOUT VISUAL */}
+      {/* 4 — ECOSISTEMAS */}
       <SectionBlock
-        id="inversion"
-        eyebrow="Inversión"
-        title="Dos caminos para activar su sistema"
-        subtitle="El Esencial activa captación con su procedimiento ancla. El Sistema Completo despliega web, automatización, pauta, CRM y contenido como un solo ecosistema."
+        id="ecosistemas"
+        eyebrow="03 — Inversión"
+        title="Qué construimos y cómo se invierte"
+        subtitle="Un solo mapa de entregables para ambas líneas. Cada ítem está etiquetado por área. Los planes y el dashboard se contratan por separado."
         elevated
         alt
       >
-        <div className="gals-stagger-group grid gap-6 lg:grid-cols-2" data-reveal>
-          {PACKAGES.map((pkg, i) => (
+        <div data-reveal className="gals-reveal">
+          <p className="gals-eyebrow">Qué construimos</p>
+          <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">
+            Ecosistema digital con creativos de referencia
+          </h3>
+          <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
+            Web, automatización, contenido y pauta bajo su marca — organizados por línea de servicio para que veas qué
+            corresponde a cada área.
+          </p>
+          <AreaLegend />
+          <UnifiedBuildGrid />
+          <DashboardSection />
+        </div>
+
+        <div className="mt-20 border-t border-[var(--gals-border)] pt-14" data-reveal>
+          <p className="gals-eyebrow">Planes · Ecosistema 1</p>
+          <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">Cirugía plástica ocular</h3>
+          <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
+            Tu práctica consolidada, lista para convertir blefaroplastia y turismo médico con funnels propios.
+          </p>
+        </div>
+
+        <div className="gals-stagger-group mt-8 grid gap-6 lg:grid-cols-2" data-reveal>
+          {OCULAR_PACKAGES.map((pkg, i) => (
             <article
               key={pkg.name}
               className={`gals-card gals-stagger flex flex-col rounded-2xl p-6 sm:p-8 ${
@@ -772,15 +1224,18 @@ export default function PropuestaJulianaPage() {
                 </span>
               ) : null}
               <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">{pkg.tier}</p>
-              <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">{pkg.name}</h3>
-              <p className="gals-eyebrow mt-1 text-xs tracking-[0.16em]">{pkg.subtitle}</p>
+              <h3 className="gals-section-label mt-2 text-2xl font-semibold">{pkg.name}</h3>
+              <p className="mt-1 text-3xl font-semibold">
+                <CountUp value={pkg.price} suffix=" USD" />
+              </p>
               <p className="gals-muted mt-3 text-sm leading-relaxed">{pkg.idealFor}</p>
-              <PackageIncludes pkg={pkg} essentialSections={PACKAGES[0].sections} />
+              <PackageIncludes pkg={pkg} essentialSections={OCULAR_PACKAGES[0].sections} />
+              <PaymentBox phase1={pkg.payment[0]} phase2={pkg.payment[1]} />
               <a
                 href={waUrl(pkg.waMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium ${
+                className={`mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium ${
                   pkg.recommended ? "gals-btn-solid font-semibold" : "gals-btn-outline"
                 }`}
               >
@@ -789,59 +1244,116 @@ export default function PropuestaJulianaPage() {
             </article>
           ))}
         </div>
-        <p className="gals-muted mt-8 text-center text-sm" data-reveal>
-          Inversión personalizada según alcance y prioridades — la definimos en la llamada estratégica.
-        </p>
-        <div className="mt-8 flex justify-center" data-reveal>
+
+        <div className="mt-20 border-t border-[var(--gals-border)] pt-14" data-reveal>
+          <p className="gals-eyebrow">Planes · Ecosistema 2</p>
+          <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">Armonización facial</h3>
+          <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
+            Construcción desde cero: marca, captación y contenido para una nueva línea de servicio con identidad propia.
+          </p>
+        </div>
+
+        <div className="gals-stagger-group mt-8 grid gap-6 lg:grid-cols-2" data-reveal>
+          {ARMON_PACKAGES.map((pkg, i) => (
+            <article
+              key={pkg.name}
+              className={`gals-card gals-stagger flex flex-col rounded-2xl p-6 sm:p-8 ${
+                pkg.recommended ? "gals-card--featured relative" : ""
+              }`}
+              style={staggerStyle(i, pkg.recommended ? 140 : 0)}
+            >
+              {pkg.recommended ? (
+                <span className="gals-badge gals-badge--pulse absolute right-5 top-5 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider">
+                  Recomendado
+                </span>
+              ) : null}
+              <p className="gals-muted text-[11px] font-medium uppercase tracking-[0.2em]">{pkg.tier}</p>
+              <h3 className="gals-section-label mt-2 text-2xl font-semibold">{pkg.name}</h3>
+              <p className="mt-1 text-3xl font-semibold">
+                <CountUp value={pkg.price} suffix=" USD" />
+              </p>
+              <p className="gals-muted mt-3 text-sm leading-relaxed">{pkg.idealFor}</p>
+              <PackageIncludes pkg={pkg} essentialSections={ARMON_PACKAGES[0].sections} />
+              <PaymentBox phase1={pkg.payment[0]} phase2={pkg.payment[1]} />
+              <a
+                href={waUrl(pkg.waMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium ${
+                  pkg.recommended ? "gals-btn-solid font-semibold" : "gals-btn-outline"
+                }`}
+              >
+                {pkg.cta}
+              </a>
+            </article>
+          ))}
+        </div>
+      </SectionBlock>
+
+      {/* 5 — COMBO */}
+      <SectionBlock
+        id="combo"
+        eyebrow="04 — Combo"
+        title="Combina ambos ecosistemas y ahorra 15%"
+        subtitle="Selecciona un plan de cada línea. El descuento se calcula en tiempo real sobre la suma de ambos."
+        elevated
+      >
+        <ComboPicker />
+      </SectionBlock>
+
+      {/* 6 — CIERRE */}
+      <SectionBlock
+        id="cierre"
+        eyebrow="05 — Cierre"
+        title="Tu práctica merece un sistema que trabaje contigo"
+        subtitle="Elige el ecosistema que necesitas hoy — o combínalos — y construimos juntas la infraestructura digital que convierte confianza en pacientes."
+        alt
+      >
+        <div className="gals-stagger-group grid gap-4 sm:grid-cols-3" data-reveal>
+          {[
+            { step: "01", title: "Revisión", text: "Afinamos el plan según tu prioridad: ocular, armonización o combo." },
+            { step: "02", title: "Construcción", text: "4 a 6 semanas para base, contenido y escala según el plan elegido." },
+            { step: "03", title: "Lanzamiento", text: "Sistema activo captando, siguiendo y convirtiendo sin depender de tu tiempo." },
+          ].map((item, i) => (
+            <article
+              key={item.step}
+              className="gals-card gals-stagger rounded-xl p-5 sm:p-6"
+              style={staggerStyle(i, 100)}
+            >
+              <p className="gals-eyebrow">{item.step}</p>
+              <h3 className="gals-section-label mt-2 text-lg font-semibold">{item.title}</h3>
+              <p className="gals-muted mt-2 text-sm leading-relaxed">{item.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-3" data-reveal>
           <a
-            href={WHATSAPP_URL}
+            href="#combo"
+            className="gals-btn-solid inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Armar mi combo
+          </a>
+          <a
+            href={waUrl(
+              "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me gustaría coordinar una reunión para definir el siguiente paso."
+            )}
             target="_blank"
             rel="noopener noreferrer"
-            className="gals-btn-solid inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold"
+            className="gals-btn-outline inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium"
           >
-            Agendar llamada
+            Escribir por WhatsApp
           </a>
         </div>
+
+        <p className="gals-muted mx-auto mt-12 max-w-lg text-center text-xs leading-relaxed">
+          Propuesta confidencial preparada por Fluxa Systems para la Dra. Juliana Meneses. Precios en USD. La
+          continuidad mensual se define después de la reunión de alineación.
+        </p>
       </SectionBlock>
 
-      {/* 6 — CIERRE FINAL */}
-      <SectionBlock id="cierre" elevated alt>
-        <div className="text-center">
-          <header data-reveal className="gals-reveal gals-reveal-header">
-            <h2 className="gals-heading text-2xl sm:text-3xl md:text-4xl">
-              ¿Lista para activar su ecosistema digital?
-            </h2>
-            <p className="gals-lead mx-auto mt-4 max-w-xl">
-              Agendemos una llamada para definir el plan ideal según su práctica y objetivos de captación.
-            </p>
-          </header>
-          <div data-reveal className="gals-reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gals-btn-solid inline-flex w-full max-w-xs items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold sm:w-auto"
-            >
-              Agendar llamada
-            </a>
-            <a
-              href="#inversion"
-              className="gals-btn-outline inline-flex w-full max-w-xs items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium sm:w-auto"
-            >
-              Ver planes
-            </a>
-          </div>
-          <p className="gals-muted mt-12 text-[11px] font-medium uppercase tracking-[0.2em]">
-            Fluxa Systems · fluxamethod.com
-          </p>
-          <p className="gals-muted mx-auto mt-3 max-w-lg text-xs leading-relaxed">
-            Este documento es confidencial y fue preparado exclusivamente para la Dra. Juliana Meneses.
-          </p>
-        </div>
-      </SectionBlock>
-
-      <a href="#inversion" className="gals-floating-cta">
-        Ver planes
+      <a href="#combo" className="gals-floating-cta">
+        Ver combo
       </a>
     </main>
   );

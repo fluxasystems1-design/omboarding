@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import "./juliana-studio.css";
+import "../propuesta-juliana/juliana-studio.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -14,11 +14,11 @@ const description =
 export const metadata = {
   title,
   description,
-  alternates: { canonical: "/propuesta-juliana" },
+  alternates: { canonical: "/juliana-meneses" },
   robots: { index: false, follow: false },
   openGraph: { title, description, type: "website" },
 };
 
-export default function PropuestaJulianaLayout({ children }) {
+export default function JulianaMenesesLayout({ children }) {
   return <div className={`gals-studio-root ${poppins.className}`}>{children}</div>;
 }

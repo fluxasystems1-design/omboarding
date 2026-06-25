@@ -724,3 +724,195 @@
   letter-spacing: 0.16em;
   color: var(--gals-muted);
 }
+
+/* —— Etiquetas por área —— */
+.gals-studio-root .juliana-tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  padding: 0.2rem 0.55rem;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.gals-studio-root .juliana-tag--ocular {
+  border-color: rgba(111, 132, 173, 0.45);
+  background: rgba(111, 132, 173, 0.14);
+  color: #5a6f96;
+}
+
+.gals-studio-root .juliana-tag--armon {
+  border-color: rgba(196, 154, 108, 0.5);
+  background: rgba(196, 154, 108, 0.16);
+  color: #9a7348;
+}
+
+.gals-studio-root .juliana-tag--both {
+  border-color: rgba(141, 160, 198, 0.42);
+  background: linear-gradient(135deg, rgba(111, 132, 173, 0.12) 0%, rgba(196, 154, 108, 0.14) 100%);
+  color: #6b5f52;
+}
+
+/* —— Qué construimos: layout unificado —— */
+.gals-studio-root .juliana-build-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 52rem;
+}
+
+.gals-studio-root .juliana-build-card {
+  width: 100%;
+}
+
+.gals-studio-root .juliana-build-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.gals-studio-root .juliana-build-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--gals-border);
+  background: var(--gals-bg-alt);
+}
+
+.gals-studio-root .juliana-build-row-text {
+  flex: 1 1 14rem;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--gals-text);
+}
+
+.gals-studio-root .juliana-build-row-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.gals-studio-root .juliana-area-legend {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.125rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--gals-border);
+  background: var(--gals-bg-alt);
+}
+
+@media (min-width: 640px) {
+  .gals-studio-root .juliana-area-legend {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.gals-studio-root .juliana-area-legend-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
+.gals-studio-root .juliana-area-legend-hint {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--gals-muted);
+}
+
+.gals-studio-root .juliana-build-gallery {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--gals-border);
+}
+
+@media (min-width: 768px) {
+  .gals-studio-root .juliana-build-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.gals-studio-root .juliana-build-gallery-item {
+  margin: 0;
+}
+
+.gals-studio-root .juliana-build-gallery-frame {
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--gals-border);
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.gals-studio-root .juliana-build-gallery-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--gals-muted);
+}
+
+.gals-studio-root .juliana-build-split {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .gals-studio-root .juliana-build-split {
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .gals-studio-root .juliana-build-split .juliana-build-list {
+    margin-top: 0;
+  }
+}
+
+.gals-studio-root .juliana-build-split-visual {
+  margin: 0;
+}
+
+.gals-studio-root .juliana-dashboard-layout {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .gals-studio-root .juliana-dashboard-layout {
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.gals-studio-root .juliana-dashboard-visual {
+  margin: 0;
+}
+
+.gals-studio-root .juliana-dashboard-feature-grid {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .gals-studio-root .juliana-dashboard-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
