@@ -6,7 +6,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const SITE_URL = "https://drajulianameneses.com/";
 const INSTAGRAM_URL = "https://www.instagram.com/drajulianameneses/";
 const WA_BASE = "https://wa.me/573116425337?text=";
-const FLUXA_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
 
 function waUrl(message) {
   return WA_BASE + encodeURIComponent(message);
@@ -1004,18 +1003,26 @@ export default function PropuestaJulianaPage() {
       if (el) sectionObserver.observe(el);
     });
 
+    const revealTargets = document.querySelectorAll(
+      "[data-reveal], .gals-stagger-group, .gals-timeline-group"
+    );
+
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add("is-visible");
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px -4% 0px" }
     );
 
-    document
-      .querySelectorAll("[data-reveal], .gals-stagger-group, .gals-timeline-group")
-      .forEach((el) => revealObserver.observe(el));
+    revealTargets.forEach((el) => {
+      revealObserver.observe(el);
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+        el.classList.add("is-visible");
+      }
+    });
 
     return () => {
       sectionObserver.disconnect();
@@ -1050,7 +1057,7 @@ export default function PropuestaJulianaPage() {
 
       {/* 1 — PORTADA */}
       <section id="hero" className="gals-hero-mesh scroll-mt-28 pb-20 pt-14 lg:pb-24 lg:pt-20">
-        <div data-reveal className="gals-reveal gals-stagger-group mx-auto w-full max-w-6xl px-4 sm:px-6">
+        <div data-reveal className="gals-reveal gals-stagger-group is-visible mx-auto w-full max-w-6xl px-4 sm:px-6">
           <p className="gals-eyebrow tracking-[0.24em]">Propuesta comercial · Fluxa Systems</p>
           <h1 className="gals-hero-title">
             Presencia digital que convierte
@@ -1075,7 +1082,7 @@ export default function PropuestaJulianaPage() {
           </div>
         </div>
 
-        <div data-reveal className="gals-reveal gals-hero-band mt-14 w-full">
+        <div data-reveal className="gals-reveal gals-hero-band is-visible mt-14 w-full">
           <div className="mx-auto flex max-w-6xl flex-col items-center px-4 py-10 sm:px-6 sm:py-12">
             <p className="gals-hero-title text-center text-3xl text-white sm:text-4xl md:text-5xl">
               Dra. Juliana Meneses
@@ -1105,8 +1112,6 @@ export default function PropuestaJulianaPage() {
           >
             drajulianameneses.com
           </a>
-          <span className="hidden h-4 w-px bg-[var(--gals-border)] sm:block" aria-hidden />
-          <Image src={FLUXA_LOGO} alt="Fluxa Systems" width={120} height={32} className="h-7 w-auto opacity-80" />
         </div>
 
         <div className="mx-auto mt-10 flex max-w-6xl flex-wrap gap-3 px-4 sm:px-6" data-reveal>

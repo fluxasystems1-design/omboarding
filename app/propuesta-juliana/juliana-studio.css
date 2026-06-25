@@ -460,7 +460,7 @@
 }
 
 /* —— Reveal & stagger —— */
-.gals-studio-root .gals-reveal {
+.gals-studio-root .gals-reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -477,7 +477,7 @@
   transform: translateY(14px);
 }
 
-.gals-studio-root .gals-stagger {
+.gals-studio-root .gals-stagger-group:not(.is-visible) .gals-stagger {
   opacity: 0;
   transform: translateY(16px);
   transition:
