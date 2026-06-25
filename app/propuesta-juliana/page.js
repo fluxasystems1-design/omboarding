@@ -179,88 +179,6 @@ const UNIFIED_BUILD_BLOCKS = [
   },
 ];
 
-const DASHBOARD_FEATURES = [
-  {
-    label: "Panel de pacientes",
-    items: [
-      "Ficha completa por paciente: datos, procedimientos e historial clínico",
-      "Estados: prospecto, valoración agendada, en tratamiento, post-operatorio, inactivo",
-      "Clasificación por área y procedimiento de interés",
-      "Historial de consultas, valoraciones y seguimiento post-procedimiento",
-    ],
-  },
-  {
-    label: "Leads y captación",
-    items: [
-      "Panel de leads: origen, etapa y canal de entrada en tiempo real",
-      "Embudo visual desde el primer contacto hasta la valoración",
-      "Alertas de leads sin respuesta o estancados en una etapa",
-      "Etiquetas por procedimiento: blefaroplastia, ojo seco, turismo médico, armonización",
-    ],
-  },
-  {
-    label: "Agenda y citas",
-    items: [
-      "Calendario de valoraciones y procedimientos",
-      "Recordatorios automáticos de cita por WhatsApp",
-      "Vista diaria y semanal para el equipo",
-      "Control de disponibilidad y bloqueo de horarios",
-    ],
-  },
-  {
-    label: "Finanzas y operación",
-    items: [
-      "Ingresos por procedimiento y por línea de servicio",
-      "Registro de pagos, abonos y proyecciones mensuales",
-      "Ticket promedio y conversión por canal de captación",
-      "Reportes exportables para contabilidad y análisis",
-    ],
-  },
-  {
-    label: "Métricas",
-    items: [
-      "Leads por canal, campaña y landing de origen",
-      "Tasa de conversión de prospecto a valoración",
-      "Rendimiento comparativo por área: ocular vs armonización",
-      "Panel con filtros por línea de negocio y período",
-    ],
-  },
-];
-
-const DASHBOARD_PLANS = [
-  {
-    id: "ocular",
-    name: "Dashboard · Cirugía plástica ocular",
-    price: 897,
-    note: "Operación y seguimiento solo para la línea ocular",
-    areaTag: "ocular",
-    recommended: false,
-    waMessage:
-      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el Dashboard de cirugía plástica ocular ($897 USD). Quiero coordinar el siguiente paso.",
-  },
-  {
-    id: "armon",
-    name: "Dashboard · Armonización facial",
-    price: 697,
-    note: "Operación y seguimiento solo para la línea de armonización",
-    areaTag: "armon",
-    recommended: false,
-    waMessage:
-      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el Dashboard de armonización facial ($697 USD). Quiero coordinar el siguiente paso.",
-  },
-  {
-    id: "unificado",
-    name: "Dashboard · Unificado",
-    price: 1297,
-    comparePrice: 1594,
-    note: "Un solo panel para ambas áreas — menor que contratar los dos por separado",
-    areaTag: "both",
-    recommended: true,
-    waMessage:
-      "Hola Jessica, soy la Dra. Juliana Meneses. Revisé la propuesta de Fluxa y me interesa el Dashboard Unificado para ambas líneas ($1,297 USD). Quiero coordinar el siguiente paso.",
-  },
-];
-
 const OCULAR_PACKAGES = [
   {
     tier: "Plan esencial",
@@ -310,7 +228,7 @@ const OCULAR_PACKAGES = [
     recommended: true,
     includesPrevious: true,
     idealFor:
-      "Para captar, convertir y operar con sistema propio: web completa, automatización total, pauta, CRM y contenido alineados a su práctica.",
+      "Para captar, convertir y escalar con sistema propio: web completa, automatización total, pauta y contenido alineados a su práctica.",
     sections: [
       {
         label: "Web y presencia",
@@ -665,103 +583,6 @@ function UnifiedBuildGrid() {
           )}
         </article>
       ))}
-    </div>
-  );
-}
-
-function DashboardSection() {
-  return (
-    <div className="mt-16 border-t border-[var(--gals-border)] pt-14" data-reveal>
-      <p className="gals-eyebrow">Adicional · aparte de los planes</p>
-      <h4 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">Dashboard propio bajo su marca</h4>
-      <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
-        El dashboard es independiente de los planes de ecosistema. Puedes contratarlo por área o en versión unificada
-        para operar cirugía plástica ocular y armonización facial desde un solo panel — con un precio menor que tener
-        los dos separados.
-      </p>
-
-      <div className="gals-card mt-8 overflow-hidden rounded-2xl p-5 sm:p-8">
-        <div className="juliana-dashboard-layout">
-          <figure className="juliana-dashboard-visual">
-            <div className="juliana-build-gallery-frame">
-              <Image
-                src="/imagenes/propuesta-juliana/dashboard.png"
-                alt="Dashboard CRM — panel de pacientes, leads y control financiero de la Dra. Juliana Meneses"
-                width={1200}
-                height={675}
-                className="h-auto w-full object-contain"
-                sizes="(max-width: 768px) 100vw, 380px"
-              />
-            </div>
-          </figure>
-          <div className="juliana-dashboard-features">
-            <p className="gals-eyebrow tracking-[0.18em]">Funciones incluidas</p>
-            <div className="juliana-dashboard-feature-grid">
-              {DASHBOARD_FEATURES.map((section) => (
-                <div key={section.label} className="gals-package-section">
-                  <p className="gals-package-section-label">{section.label}</p>
-                  <ul className="gals-muted mt-2 space-y-1.5 text-sm leading-relaxed">
-                    {section.items.map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="gals-accent-text shrink-0">·</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="gals-stagger-group mt-8 grid gap-4 lg:grid-cols-3" data-reveal>
-        {DASHBOARD_PLANS.map((plan, i) => (
-          <article
-            key={plan.id}
-            className={`gals-card gals-stagger flex flex-col rounded-2xl p-5 sm:p-6 ${
-              plan.recommended ? "gals-card--featured relative" : ""
-            }`}
-            style={staggerStyle(i, 100)}
-          >
-            {plan.recommended ? (
-              <span className="gals-badge gals-badge--pulse absolute right-4 top-4 rounded-full px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-wider">
-                Mejor valor
-              </span>
-            ) : null}
-            <AreaTag type={plan.areaTag} />
-            <h5 className="gals-section-label mt-3 text-lg font-semibold">{plan.name}</h5>
-            <p className="gals-muted mt-2 text-xs leading-relaxed">{plan.note}</p>
-            <div className="mt-4">
-              {plan.comparePrice ? (
-                <div className="gals-discount-price">
-                  <span className="gals-price-original text-sm">${formatUsd(plan.comparePrice)} USD</span>
-                  <p className="gals-price mt-1 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
-                  <p className="gals-muted mt-1 text-xs">
-                    Ahorro de ${formatUsd(plan.comparePrice - plan.price)} vs dos dashboards separados
-                  </p>
-                </div>
-              ) : (
-                <p className="gals-price text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
-              )}
-            </div>
-            <PaymentBox
-              phase1={Math.round(plan.price / 2)}
-              phase2={plan.price - Math.round(plan.price / 2)}
-            />
-            <a
-              href={waUrl(plan.waMessage)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`mt-5 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium ${
-                plan.recommended ? "gals-btn-solid font-semibold" : "gals-btn-outline"
-              }`}
-            >
-              Quiero este dashboard
-            </a>
-          </article>
-        ))}
-      </div>
     </div>
   );
 }
@@ -1188,7 +1009,7 @@ export default function PropuestaJulianaPage() {
         id="ecosistemas"
         eyebrow="03 — Inversión"
         title="Qué construimos y cómo se invierte"
-        subtitle="Un solo mapa de entregables para ambas líneas. Cada ítem está etiquetado por área. Los planes y el dashboard se contratan por separado."
+        subtitle="Un solo mapa de entregables para ambas líneas. Cada ítem está etiquetado por área."
         elevated
         alt
       >
@@ -1203,7 +1024,6 @@ export default function PropuestaJulianaPage() {
           </p>
           <AreaLegend />
           <UnifiedBuildGrid />
-          <DashboardSection />
         </div>
 
         <div className="mt-20 border-t border-[var(--gals-border)] pt-14" data-reveal>

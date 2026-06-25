@@ -888,31 +888,3 @@
 .gals-studio-root .juliana-build-split-visual {
   margin: 0;
 }
-
-.gals-studio-root .juliana-dashboard-layout {
-  display: grid;
-  gap: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .gals-studio-root .juliana-dashboard-layout {
-    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
-    align-items: start;
-  }
-}
-
-.gals-studio-root .juliana-dashboard-visual {
-  margin: 0;
-}
-
-.gals-studio-root .juliana-dashboard-feature-grid {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-@media (min-width: 768px) {
-  .gals-studio-root .juliana-dashboard-feature-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
