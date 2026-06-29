@@ -17,6 +17,11 @@ const landings = [
     description: "Método PDP Wellness™ · GAL'S DIGITAL $947 y GAL'S PRO $1,497 · @galstudio___",
   },
   {
+    name: "ANAK — Barre by Anak",
+    path: "/prototipoanak",
+    description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",
+  },
+  {
     name: "Ronaldo Escandón — Alianza Chile",
     path: "/alianza-chile",
     description: "Alianza comercial B2B · Fluxa × Chile 2026 · Tú cierras, nosotros ejecutamos",

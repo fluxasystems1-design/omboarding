@@ -1,0 +1,1268 @@
+/* ANAK — Barre by Anak · scoped to .anak-root */
+.anak-root {
+  --pink: #f7e8ec;
+  --pink-border: #edd6de;
+  --white: #ffffff;
+  --black: #000000;
+  --muted: #8e8e8e;
+  color: var(--black);
+  background: var(--pink);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.anak-root *,
+.anak-root *::before,
+.anak-root *::after {
+  box-sizing: border-box;
+}
+
+.anak-root img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.anak-root a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.anak-root button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.anak-root .anak-container {
+  width: min(100% - 2.5rem, 72rem);
+  margin-inline: auto;
+}
+
+.anak-root .anak-display {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.anak-root .anak-eyebrow {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.anak-root .anak-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.75rem;
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.anak-root .anak-btn-dark:hover {
+  background: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.anak-root .anak-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--black);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--black);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.anak-root .anak-btn-ghost:hover {
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* —— Nav —— */
+.anak-root .anak-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 0.5px solid var(--pink);
+}
+
+.anak-root .anak-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+}
+
+.anak-root .anak-nav__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.anak-root .anak-nav__logo {
+  width: auto;
+  height: 2rem;
+  object-fit: contain;
+}
+
+.anak-root .anak-nav__brand-title {
+  font-family: var(--font-poppins);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--black);
+}
+
+.anak-root .anak-nav__brand-sub {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.anak-root .anak-nav__links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.anak-root .anak-nav__links a:hover {
+  color: var(--black);
+}
+
+.anak-root .anak-nav__cta {
+  display: none;
+}
+
+.anak-root .anak-nav__burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.35rem;
+}
+
+.anak-root .anak-nav__burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--black);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.anak-root .anak-nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.anak-root .anak-nav__drawer.is-open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.anak-root .anak-nav__drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 31, 26, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.anak-root .anak-nav__drawer.is-open .anak-nav__drawer-backdrop {
+  opacity: 1;
+}
+
+.anak-root .anak-nav__drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(18rem, 85vw);
+  height: 100%;
+  background: var(--white);
+  padding: 5rem 1.75rem 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: -8px 0 32px rgba(44, 31, 26, 0.12);
+}
+
+.anak-root .anak-nav__drawer.is-open .anak-nav__drawer-panel {
+  transform: translateX(0);
+}
+
+.anak-root .anak-nav__drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.anak-root .anak-nav__drawer-cta {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-nav__links,
+  .anak-root .anak-nav__cta {
+    display: flex;
+  }
+
+  .anak-root .anak-nav__burger {
+    display: none;
+  }
+}
+
+/* —— Ticker —— */
+.anak-root .anak-ticker {
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  padding: 0.65rem 0;
+}
+
+.anak-root .anak-ticker__track {
+  display: flex;
+  width: max-content;
+  animation: anakTicker 28s linear infinite;
+}
+
+.anak-root .anak-ticker__text {
+  flex-shrink: 0;
+  padding-right: 3rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes anakTicker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* —— Hero —— */
+.anak-root .anak-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 1023px) {
+  .anak-root .anak-hero__visual {
+    order: -1;
+  }
+}
+
+.anak-root .anak-hero__copy {
+  background: transparent;
+  padding: 3rem 1.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.anak-root .anak-hero__title {
+  margin-top: 1rem;
+  font-family: var(--font-poppins);
+  font-size: clamp(2.5rem, 8vw, 4.25rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+
+.anak-root .anak-hero__title em {
+  font-style: italic;
+}
+
+.anak-root .anak-hero__lead {
+  margin-top: 1.25rem;
+  max-width: 26rem;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.anak-root .anak-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.anak-root .anak-hero__visual {
+  position: relative;
+  background: var(--white);
+  min-height: 22rem;
+}
+
+.anak-root .anak-hero__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+}
+
+.anak-root .anak-hero__image-wrap img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+}
+
+.anak-root .anak-hero__pill {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 20rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(250, 247, 244, 0.92);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--black);
+}
+
+@media (min-width: 1024px) {
+  .anak-root .anak-hero {
+    grid-template-columns: 1fr 1fr;
+    min-height: 34rem;
+  }
+
+  .anak-root .anak-hero__copy {
+    padding: 4rem 3rem;
+  }
+
+  .anak-root .anak-hero__visual,
+  .anak-root .anak-hero__image-wrap,
+  .anak-root .anak-hero__image-wrap img {
+    min-height: 34rem;
+  }
+
+  .anak-root .anak-hero__pill {
+    left: auto;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    transform: none;
+  }
+}
+
+/* —— Barre line —— */
+.anak-root .anak-barre-line {
+  position: relative;
+  height: 1px;
+  margin: 0;
+  border: none;
+  background: var(--black);
+  overflow: visible;
+}
+
+.anak-root .anak-barre-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--black);
+  transform: translate(-50%, -50%);
+  animation: anakBarreDot 4s ease-in-out infinite;
+}
+
+@keyframes anakBarreDot {
+  0%,
+  100% {
+    left: 0;
+  }
+  50% {
+    left: 100%;
+  }
+}
+
+/* —— Social proof —— */
+.anak-root .anak-social {
+  background: var(--white);
+  padding: 2.5rem 0;
+}
+
+.anak-root .anak-social__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.anak-root .anak-social__num {
+  font-family: var(--font-poppins);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--black);
+}
+
+.anak-root .anak-social__label {
+  margin-top: 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-social__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .anak-root .anak-social__item:not(:last-child) {
+    border-right: 0.5px solid var(--pink);
+  }
+}
+
+/* —— Editorial —— */
+.anak-root .anak-editorial {
+  background: var(--pink);
+  padding: 4rem 0;
+}
+
+.anak-root .anak-editorial__grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.anak-root .anak-editorial__title {
+  font-family: var(--font-poppins);
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--black);
+}
+
+.anak-root .anak-editorial__body {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-editorial__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .anak-root .anak-editorial__right {
+    padding-left: 3rem;
+    border-left: 0.5px solid var(--pink);
+  }
+}
+
+/* —— Clases —— */
+.anak-root .anak-clases {
+  background: var(--pink);
+  padding: 0;
+}
+
+.anak-root .anak-clases__head {
+  background: var(--white);
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+
+.anak-root .anak-clases__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--pink);
+}
+
+.anak-root .anak-clase-card {
+  position: relative;
+  background: var(--white);
+  padding: 2rem 1.5rem 2.25rem;
+  overflow: hidden;
+}
+
+.anak-root .anak-clase-card__num {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-family: var(--font-poppins);
+  font-size: 5.5rem;
+  line-height: 1;
+  color: var(--pink);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.anak-root .anak-clase-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  color: var(--black);
+  font-size: 0.75rem;
+}
+
+.anak-root .anak-clase-card__title {
+  margin-top: 1.25rem;
+  font-family: var(--font-poppins);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.anak-root .anak-clase-card__desc {
+  margin-top: 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-clases__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* —— Método —— */
+.anak-root .anak-metodo {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.anak-root .anak-metodo__visual {
+  position: relative;
+  min-height: 20rem;
+  background: var(--pink);
+}
+
+.anak-root .anak-metodo__visual img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+}
+
+.anak-root .anak-metodo__content {
+  background: var(--white);
+  padding: 3rem 1.25rem;
+}
+
+.anak-root .anak-metodo__title {
+  margin-top: 0.75rem;
+  font-family: var(--font-poppins);
+  font-size: clamp(1.65rem, 4vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--black);
+}
+
+.anak-root .anak-metodo__step {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 0.5px solid var(--pink);
+}
+
+.anak-root .anak-metodo__step-num {
+  font-family: var(--font-poppins);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--black);
+}
+
+.anak-root .anak-metodo__step-title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.anak-root .anak-metodo__step-desc {
+  grid-column: 2;
+  margin-top: -0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+@media (min-width: 1024px) {
+  .anak-root .anak-metodo {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .anak-root .anak-metodo__visual,
+  .anak-root .anak-metodo__visual img {
+    min-height: 100%;
+  }
+
+  .anak-root .anak-metodo__content {
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* —— Beneficios —— */
+.anak-root .anak-beneficios {
+  background: var(--black);
+  padding: 4rem 0;
+}
+
+.anak-root .anak-beneficios__title {
+  text-align: center;
+  font-family: var(--font-poppins);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  color: var(--white);
+  margin-bottom: 2.5rem;
+}
+
+.anak-root .anak-beneficios__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.anak-root .anak-beneficio {
+  padding: 1.5rem 0;
+  border-top: 0.5px solid #222222;
+}
+
+.anak-root .anak-beneficio__title {
+  font-family: var(--font-poppins);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--white);
+}
+
+.anak-root .anak-beneficio__desc {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  color: #b0b0b0;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-beneficios__grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    row-gap: 0;
+  }
+}
+
+/* —— Testimonios —— */
+.anak-root .anak-testimonios {
+  background: var(--pink);
+  padding: 0 0 4rem;
+}
+
+.anak-root .anak-testimonios__head {
+  background: var(--pink);
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+
+.anak-root .anak-testimonios__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--pink);
+}
+
+.anak-root .anak-testimonio {
+  background: var(--white);
+  padding: 2rem 1.5rem;
+}
+
+.anak-root .anak-testimonio__stars {
+  color: var(--black);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.anak-root .anak-testimonio__quote {
+  margin-top: 1rem;
+  font-family: var(--font-poppins);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--black);
+}
+
+.anak-root .anak-testimonio__author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.anak-root .anak-testimonio__avatar {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--black);
+  overflow: hidden;
+  background: var(--pink);
+  flex-shrink: 0;
+}
+
+.anak-root .anak-testimonio__handle {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.anak-root .anak-testimonio__meta {
+  font-size: 0.6875rem;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-testimonios__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* —— Pricing —— */
+.anak-root .anak-pricing {
+  background: var(--pink);
+  padding: 4rem 0 0;
+}
+
+.anak-root .anak-pricing__head {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.anak-root .anak-pricing__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--pink);
+}
+
+.anak-root .anak-pricing__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .anak-root .anak-pricing__grid {
+    grid-template-columns: repeat(3, minmax(16rem, 1fr));
+    width: max-content;
+    min-width: 100%;
+  }
+}
+
+.anak-root .anak-plan {
+  position: relative;
+  background: var(--white);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.anak-root .anak-plan--featured {
+  background: var(--black);
+  color: var(--white);
+}
+
+.anak-root .anak-plan__badge {
+  position: absolute;
+  top: -0.65rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.25rem 0.75rem;
+  background: var(--white);
+  color: var(--black);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.anak-root .anak-plan__name {
+  font-family: var(--font-poppins);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.anak-root .anak-plan__price {
+  margin-top: 0.5rem;
+  font-family: var(--font-poppins);
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.anak-root .anak-plan__period {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.anak-root .anak-plan--featured .anak-plan__period {
+  color: #b0b0b0;
+}
+
+.anak-root .anak-plan__features {
+  margin-top: 1.5rem;
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.anak-root .anak-plan__features li::before {
+  content: "✓ ";
+  color: var(--black);
+  font-weight: 500;
+}
+
+.anak-root .anak-plan__btn {
+  margin-top: 1.75rem;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 1px solid var(--black);
+  background: transparent;
+  color: var(--black);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.anak-root .anak-plan__btn:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.anak-root .anak-plan--featured .anak-plan__btn {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--black);
+}
+
+.anak-root .anak-plan--featured .anak-plan__btn:hover {
+  background: var(--pink);
+  border-color: var(--pink);
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-pricing__grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: auto;
+  }
+
+  .anak-root .anak-pricing__scroll {
+    overflow: visible;
+  }
+}
+
+/* —— CTA final —— */
+.anak-root .anak-cta-final {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.anak-root .anak-cta-final__bg-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-poppins);
+  font-size: clamp(8rem, 28vw, 12.5rem);
+  font-weight: 700;
+  color: var(--white);
+  opacity: 0.1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.anak-root .anak-cta-final__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.anak-root .anak-cta-final__title {
+  font-family: var(--font-poppins);
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+.anak-root .anak-cta-final__lead {
+  margin-top: 1rem;
+  max-width: 24rem;
+  margin-inline: auto;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: var(--white);
+  opacity: 0.75;
+}
+
+.anak-root .anak-cta-final__btn {
+  display: inline-flex;
+  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+  background: var(--white);
+  color: var(--black);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.anak-root .anak-cta-final__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(44, 31, 26, 0.15);
+}
+
+/* —— Footer —— */
+.anak-root .anak-footer {
+  background: var(--black);
+  padding: 3.5rem 0 2rem;
+  color: var(--white);
+}
+
+.anak-root .anak-footer__grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.anak-root .anak-footer__logo {
+  font-family: var(--font-poppins);
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.anak-root .anak-footer__tagline {
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  color: var(--pink);
+}
+
+.anak-root .anak-footer__col-title {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 1rem;
+}
+
+.anak-root .anak-footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.8125rem;
+  color: #aaaaaa;
+}
+
+.anak-root .anak-footer__links a:hover {
+  color: var(--pink);
+}
+
+.anak-root .anak-footer__bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 0.5px solid #222222;
+  font-size: 0.6875rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-footer__grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anak-root .anak-ticker__track,
+  .anak-root .anak-barre-line::after,
+  .anak-root .anak-decor__organic,
+  .anak-root .anak-decor__shell {
+    animation: none;
+  }
+}
+
+/* —— Hero decor (flores GAL'S style) —— */
+.anak-root .anak-hero-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--pink);
+}
+
+.anak-root .anak-hero-wrap .anak-hero {
+  position: relative;
+  z-index: 1;
+}
+
+.anak-root .anak-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.anak-root .anak-decor__organic {
+  position: absolute;
+  color: #e8b8c8;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.06));
+  opacity: 0.55;
+}
+
+.anak-root .anak-decor__organic--1 {
+  top: -2rem;
+  left: -2.5rem;
+  width: 9rem;
+  transform: rotate(-18deg);
+  animation: anakDecorFloat 22s ease-in-out infinite alternate;
+}
+
+.anak-root .anak-decor__organic--2 {
+  top: 8%;
+  right: -2rem;
+  width: 8rem;
+  color: #f0c4d4;
+  animation: anakDecorFloat 26s ease-in-out infinite alternate-reverse;
+}
+
+.anak-root .anak-decor__organic--3 {
+  top: 42%;
+  left: -3rem;
+  width: 7.5rem;
+  color: #edc0d0;
+  animation: anakDecorFloat 24s ease-in-out infinite alternate;
+}
+
+.anak-root .anak-decor__organic--4 {
+  right: 5%;
+  top: 55%;
+  width: 6.5rem;
+  animation: anakDecorFloat 28s ease-in-out infinite alternate-reverse;
+}
+
+.anak-root .anak-decor__organic--5 {
+  bottom: 10%;
+  left: 8%;
+  width: 6rem;
+  color: #f5d0dc;
+  animation: anakDecorFloat 20s ease-in-out infinite alternate;
+}
+
+.anak-root .anak-decor__organic--6 {
+  bottom: 5%;
+  right: 12%;
+  width: 7rem;
+  animation: anakDecorFloat 25s ease-in-out infinite alternate-reverse;
+}
+
+.anak-root .anak-decor__shell {
+  position: absolute;
+  opacity: 0.45;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.05));
+}
+
+.anak-root .anak-decor__shell--1 {
+  top: 20%;
+  left: 6%;
+  width: 4.5rem;
+  transform: rotate(-20deg);
+  animation: anakDecorFloat 18s ease-in-out infinite alternate;
+}
+
+.anak-root .anak-decor__shell--2 {
+  top: 68%;
+  right: 8%;
+  width: 4rem;
+  transform: rotate(30deg) scaleX(-1);
+  animation: anakDecorFloat 21s ease-in-out infinite alternate-reverse;
+}
+
+.anak-root .anak-decor__shell--3 {
+  bottom: 18%;
+  left: 14%;
+  width: 3.5rem;
+  animation: anakDecorFloat 23s ease-in-out infinite alternate;
+}
+
+@keyframes anakDecorFloat {
+  0% {
+    transform: translateY(0) rotate(var(--anak-rot, 0deg));
+  }
+  100% {
+    transform: translateY(-10px) rotate(calc(var(--anak-rot, 0deg) + 3deg));
+  }
+}
+
+/* —— Video library (membresía) —— */
+.anak-root .anak-library {
+  background: var(--black);
+  padding: 3.5rem 0 4rem;
+  margin-top: 3rem;
+}
+
+.anak-root .anak-library__episode {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: #888888;
+  margin-bottom: 0.35rem;
+}
+
+.anak-root .anak-library__week {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 2rem;
+}
+
+.anak-root .anak-library__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1rem;
+}
+
+.anak-root .anak-library__thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #111111;
+  overflow: hidden;
+}
+
+.anak-root .anak-library__thumb img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.anak-root .anak-library__lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--white);
+}
+
+.anak-root .anak-library__duration {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.2rem 0.45rem;
+  background: rgba(0, 0, 0, 0.72);
+  color: var(--white);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.anak-root .anak-library__title {
+  margin-top: 0.65rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.anak-root .anak-library__more {
+  display: block;
+  margin: 2.5rem auto 0;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid #333333;
+  background: transparent;
+  color: var(--white);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.anak-root .anak-library__more:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (min-width: 768px) {
+  .anak-root .anak-library__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .anak-root .anak-decor__organic--3,
+  .anak-root .anak-decor__organic--4 {
+    opacity: 0.3;
+  }
+}
