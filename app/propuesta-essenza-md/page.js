@@ -30,7 +30,7 @@ function PartnersLogos({ size = "hero", animate = false }) {
         href="#hero"
         className={`essenza-partners-logo-wrap ${stagger ? "gals-stagger" : ""}`}
         style={stagger ? staggerStyle(0, 90) : undefined}
-        aria-label="Essenza MD — inicio"
+        aria-label="Essenza MD, inicio"
       >
         <Image
           src={ESSENZA_LOGO}
@@ -70,43 +70,109 @@ const NAV_ITEMS = [
   { id: "marca", label: "La marca" },
   { id: "diagnostico", label: "Diagnóstico" },
   { id: "transformacion", label: "Transformación" },
-  { id: "construir", label: "Qué construimos" },
+  { id: "ecosistema", label: "Ecosistema" },
+  { id: "fases", label: "Fases" },
   { id: "cierre", label: "Cierre" },
 ];
 
-const MARCA_COLLECTIONS = [
+const MARCA_TREE = [
   {
-    title: "BE YOU — perfilamiento y antiedad clásica",
-    highlight: true,
-    text: "Define tu Perfil (rinomodelación, labios, mentón, Perfil Ziul / Perfil Ziul MD) · Keep Young (Radiesse, hilos, toxina, ácido hialurónico) · Renova (sonrisa, mirada, Full Face).",
-  },
-  {
-    title: "BE YOU+ — regeneración avanzada",
-    highlight: true,
-    text: "Nanopore · PDRN (Esperma de Salmón) · Exosomas · PRP (Essenza) · Peeling · Skin Hair.",
-  },
-  {
+    id: "hydrash",
+    tag: "hydrash",
     title: "Hydrash",
-    text: "Limpieza facial y tecnología — puerta de entrada de bajo compromiso.",
+    tagline: "Entrada de bajo compromiso",
+    chips: ["Limpieza facial", "Biomask", "Hydrash Advanced"],
   },
   {
+    id: "beyou",
+    tag: "beyou",
+    title: "BE YOU",
+    tagline: "Antiedad y perfilamiento",
+    highlight: true,
+    anchor: true,
+    chips: ["Keep Young", "Renova"],
+    extraLabel: "Define tu Perfil",
+    extraChips: ["Perfil Ziul", "Perfil Ziul MD", "Labios", "Mentón"],
+  },
+  {
+    id: "beyouplus",
+    tag: "beyouplus",
+    title: "BE YOU+",
+    tagline: "Regeneración avanzada",
+    highlight: true,
+    chips: ["Nanopore / PDRN", "Exosomas", "PRP", "Peeling", "Skin Hair"],
+  },
+  {
+    id: "derma",
+    tag: "derma",
     title: "Dermatología clínica",
-    text: "Acné, rosácea, psoriasis — combina Hydrash + Nanopore + Bioreguladora.",
+    tagline: "Acné, rosácea, psoriasis",
+    chips: ["Hydrash + Nanopore", "Medicina bioreguladora"],
   },
   {
-    title: "Medicina Bioreguladora / Heel",
-    text: "Sueros terapéuticos — energía, sueño, dolor, inmunidad y más. Una categoría con muchas variantes internas, no una línea de negocio aparte.",
+    id: "sueros",
+    tag: "sueros",
+    title: "Medicina Bioreguladora",
+    tagline: "Sueros agrupados por necesidad",
+    chips: ["Energía", "Sueño", "Dolor", "Piel", "Deporte", "Detox"],
+  },
+];
+
+const SUGGESTED_PHASES = [
+  {
+    id: "fase-1",
+    phase: "Fase 1",
+    title: "Arranque",
+    subtitle: "Hydrash y Perfil Ziul",
+    summary: "Lo que más convierte primero: la entrada accesible y el producto con nombre de la doctora.",
+    weeks: "4 a 5 semanas",
+    count: 8,
+    items: ["Landing Hydrash", "Landing Perfil Ziul", "Link in bio", "Bot de Instagram", "WhatsApp", "Agendamiento", "Reels del mes 1", "Meta Pixel"],
+    recommended: true,
+    waLine: "la Fase 1 (Hydrash y Perfil Ziul)",
+  },
+  {
+    id: "fase-2",
+    phase: "Fase 2",
+    title: "BE YOU",
+    subtitle: "Keep Young, Define y Renova",
+    summary: "El catálogo BE YOU sale del PDF y pasa a web navegable por subcolección.",
+    weeks: "4 a 6 semanas",
+    count: 10,
+    items: ["Landings por subcolección", "Catálogo web", "Bot clasifica BE YOU", "Guiones de reels", "Nurturing", "VSL corto"],
+    waLine: "la Fase 2 (catálogo BE YOU)",
+  },
+  {
+    id: "fase-3",
+    phase: "Fase 3",
+    title: "BE YOU+",
+    subtitle: "Nanopore, PRP y Exosomas",
+    summary: "Regeneración avanzada con landings y contenido propio para BE YOU+.",
+    weeks: "4 a 6 semanas",
+    count: 9,
+    items: ["Landings regenerativas", "Contenido BE YOU+", "Pauta segmentada", "Secuencia post interés"],
+    waLine: "la Fase 3 (BE YOU+)",
+  },
+  {
+    id: "fase-4",
+    phase: "Fase 4",
+    title: "Sueros y derma",
+    subtitle: "Selector guiado",
+    summary: "El paciente elige por necesidad. Menos consultas manuales en sueros y dermatología.",
+    weeks: "3 a 5 semanas",
+    count: 7,
+    items: ["Selector por síntoma", "Flujos de dermatología", "Sueros en el bot", "Venta cruzada con bioreguladora"],
+    waLine: "la Fase 4 (sueros y dermatología)",
   },
 ];
 
 const DIAGNOSTIC_CARDS = [
-  "Autoridad médica real (AMWC Miami, ACIME, formación en 3 países) sin sistema que la capitalice",
-  "Dos perfiles de Instagram (@essenzamd, @ziulperezmd) sin destino digital compartido",
-  "Catálogo con dos colecciones propias (BE YOU / BE YOU+) que nunca migraron de PDF a web",
-  "Perfil Ziul — el producto ancla con nombre propio de la doctora — enterrado en la página 3 de un PDF",
-  "La categoría de sueros tiene tantas variantes que exige asesoría manual para cada consulta",
-  "Cero automatización: todo el flujo de conversión depende de que alguien responda WhatsApp",
-  "Sin sistema de reservas digital",
+  "Autoridad AMWC y ACIME sin sistema que la capitalice",
+  "Dos Instagram sin destino digital compartido",
+  "BE YOU y BE YOU+ atrapadas en un PDF de 7 páginas",
+  "Perfil Ziul enterrado en la página 3 del catálogo",
+  "Sueros con demasiadas variantes, todo es manual",
+  "Cero automatización en WhatsApp y reservas",
 ];
 
 const TRANSFORMATIONS = [
@@ -115,7 +181,7 @@ const TRANSFORMATIONS = [
     after: "Landing única que unifica ambos y dirige por línea",
   },
   {
-    before: "BE YOU / BE YOU+ atrapadas en un PDF de 7 páginas",
+    before: "BE YOU y BE YOU+ atrapadas en un PDF de 7 páginas",
     after: "Catálogo web navegable por colección",
   },
   {
@@ -144,56 +210,53 @@ const AREA_TAG_META = {
   hydrash: { label: "Hydrash", shortLabel: "Hydrash", className: "essenza-tag--hydrash" },
   beyou: { label: "BE YOU", shortLabel: "BE YOU", className: "essenza-tag--beyou" },
   beyouplus: { label: "BE YOU+", shortLabel: "BE YOU+", className: "essenza-tag--beyouplus" },
+  derma: { label: "Dermatología", shortLabel: "Derma", className: "essenza-tag--derma" },
   sueros: { label: "Sueros", shortLabel: "Sueros", className: "essenza-tag--sueros" },
-  ambas: { label: "Ambas cuentas / transversal", shortLabel: "Ambas", className: "essenza-tag--ambas" },
+  ambas: { label: "Transversal", shortLabel: "Ambas", className: "essenza-tag--ambas" },
 };
 
 const UNIFIED_BUILD_BLOCKS = [
   {
     title: "Web y presencia",
     items: [
-      { text: "Landing única bajo identidad Essenza, que unifica @essenzamd y @ziulperezmd", tags: ["ambas"] },
-      { text: "Landing de Hydrash como puerta de entrada", tags: ["hydrash"] },
-      { text: "Sección/landing dedicada a Perfil Ziul y Perfil Ziul MD", tags: ["beyou"] },
-      { text: "Catálogo web de Keep Young, Define tu Perfil y Renova", tags: ["beyou"] },
-      { text: "Catálogo web de Nanopore, PRP, Exosomas y Skin Hair", tags: ["beyouplus"] },
-      { text: "Selector guiado para la categoría de sueros", tags: ["sueros"] },
-      { text: "Hoja de vida médica integrada, cruzada con Medicina Bioreguladora", tags: ["ambas"] },
+      { text: "Home que unifica @essenzamd y @ziulperezmd", tags: ["ambas"] },
+      { text: "Landing Hydrash, puerta de entrada", tags: ["hydrash"] },
+      { text: "Landing Perfil Ziul y Perfil Ziul MD", tags: ["beyou"] },
+      { text: "Catálogo Keep Young, Define y Renova", tags: ["beyou"] },
+      { text: "Catálogo Nanopore, PRP, Exosomas y Skin Hair", tags: ["beyouplus"] },
+      { text: "Rutas dermatología: acné, rosácea, psoriasis", tags: ["derma"] },
+      { text: "Selector de sueros por necesidad", tags: ["sueros"] },
     ],
   },
   {
     title: "Marca e Instagram",
     items: [
-      {
-        text: "Arquitectura de highlights alineada a los pilares ya existentes (Péptidos, ZiulMD, Toxina, Sueros, Tips)",
-        tags: ["ambas"],
-      },
-      { text: "Link in bio con acceso directo por colección", tags: ["ambas"] },
+      { text: "Highlights: Péptidos, ZiulMD, Toxina, Sueros, Tips", tags: ["ambas"] },
+      { text: "Link in bio por colección", tags: ["ambas"] },
     ],
   },
   {
     title: "Automatización e IA",
     items: [
-      { text: "Bot Instagram: responde DMs, clasifica por línea, invita a valoración", tags: ["ambas"] },
-      { text: "Bot WhatsApp: seguimiento post-interés", tags: ["ambas"] },
-      { text: "Bot de agendamiento sin intervención humana", tags: ["ambas"] },
-      { text: "Triggers evergreen por tratamiento ancla (Hydrash, Perfil Ziul)", tags: ["hydrash", "beyou"] },
+      { text: "Bot IG: clasifica por colección e invita a valoración", tags: ["ambas"] },
+      { text: "Bot WhatsApp + agendamiento 24/7", tags: ["ambas"] },
+      { text: "Triggers Hydrash y Perfil Ziul", tags: ["hydrash", "beyou"] },
+      { text: "Flujo de sueros: pregunta necesidad y sugiere tratamiento", tags: ["sueros"] },
     ],
   },
   {
-    title: "Contenido y pauta",
+    title: "Contenido",
     items: [
-      { text: "Calendario editorial por colección", tags: ["ambas"] },
-      { text: "Guiones de reels para Hydrash", tags: ["hydrash"] },
-      { text: "Guiones de reels para Perfil Ziul", tags: ["beyou"] },
-      { text: "VSL corto para conversión en landing", tags: ["ambas"] },
+      { text: "Calendario por colección", tags: ["ambas"] },
+      { text: "Reels Hydrash y Perfil Ziul", tags: ["hydrash", "beyou"] },
+      { text: "VSL corto en landing ancla", tags: ["ambas"] },
     ],
   },
 ];
 
 const CLOSING_STEPS = [
   { step: "01", title: "Diagnóstico", text: "Llamada con la Dra. Ziul para priorizar líneas y definir el mapa real." },
-  { step: "02", title: "Propuesta a medida", text: "Fases según prioridad real — no según el orden del catálogo PDF." },
+  { step: "02", title: "Propuesta a medida", text: "Fases según prioridad real, no según el orden del catálogo PDF." },
   { step: "03", title: "Construcción", text: "Ejecución por impacto: Hydrash y Perfil Ziul primero, luego escala por colección." },
 ];
 
@@ -255,16 +318,148 @@ function BuildGallery({ slides }) {
 }
 
 function AreaLegend() {
+  const hints = {
+    ambas: "Transversal a ambas cuentas",
+    hydrash: "Entrada",
+    beyou: "Colección BE YOU",
+    beyouplus: "Colección BE YOU+",
+    derma: "Dermatología clínica",
+    sueros: "Bioreguladora",
+  };
+
   return (
     <div className="essenza-area-legend" data-reveal>
       {Object.entries(AREA_TAG_META).map(([key, meta]) => (
         <div key={key} className="essenza-area-legend-item">
           <AreaTag type={key} />
-          <span className="essenza-area-legend-hint">
-            {key === "ambas" ? "Transversal a @essenzamd y @ziulperezmd" : `Línea ${meta.label}`}
-          </span>
+          <span className="essenza-area-legend-hint">{hints[key]}</span>
         </div>
       ))}
+    </div>
+  );
+}
+
+function MarcaTree() {
+  return (
+    <div className="essenza-marca-tree gals-stagger-group" data-reveal>
+      {MARCA_TREE.map((block, i) => (
+        <article
+          key={block.id}
+          className={`essenza-marca-block gals-stagger ${block.highlight ? "essenza-marca-block--highlight" : ""}`}
+          style={staggerStyle(i, 70)}
+        >
+          <div className="essenza-marca-block-head">
+            <AreaTag type={block.tag} short />
+            {block.anchor ? (
+              <span className="essenza-anchor-badge gals-badge--pulse">Producto ancla</span>
+            ) : null}
+          </div>
+          <h3 className="essenza-marca-block-title">{block.title}</h3>
+          <p className="essenza-marca-tagline">{block.tagline}</p>
+          <div className="essenza-chip-row">
+            {block.chips.map((chip) => (
+              <span key={chip} className="essenza-chip">
+                {chip}
+              </span>
+            ))}
+          </div>
+          {block.extraChips ? (
+            <div className="essenza-marca-sub">
+              <p className="essenza-marca-sub-label">{block.extraLabel}</p>
+              <div className="essenza-chip-row">
+                {block.extraChips.map((chip) => (
+                  <span
+                    key={chip}
+                    className={`essenza-chip ${chip.includes("Ziul") ? "essenza-chip--anchor" : ""}`}
+                  >
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function PhaseIncludes({ items }) {
+  return (
+    <ul className="essenza-phase-list">
+      {items.map((item) => (
+        <li key={item} className="essenza-phase-list-item">
+          <span className="gals-package-check" aria-hidden>
+            ✓
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function PhasePicker() {
+  const [selectedId, setSelectedId] = useState("fase-1");
+  const selected = SUGGESTED_PHASES.find((p) => p.id === selectedId) ?? SUGGESTED_PHASES[0];
+
+  return (
+    <div className="essenza-phase-picker" data-reveal>
+      <p className="essenza-phase-hint">
+        <span className="essenza-phase-hint-step">1</span> Elige una fase
+        <span className="essenza-phase-hint-sep" aria-hidden />
+        <span className="essenza-phase-hint-step">2</span> Revisa qué incluye
+        <span className="essenza-phase-hint-sep" aria-hidden />
+        <span className="essenza-phase-hint-step">3</span> La llevamos a la llamada
+      </p>
+
+      <div className="essenza-phase-tabs" role="tablist" aria-label="Fases sugeridas">
+        {SUGGESTED_PHASES.map((phase) => (
+          <button
+            key={phase.id}
+            type="button"
+            role="tab"
+            aria-selected={selectedId === phase.id}
+            aria-controls="essenza-phase-panel"
+            onClick={() => setSelectedId(phase.id)}
+            className={`essenza-phase-tab ${selectedId === phase.id ? "essenza-phase-tab--active" : ""}`}
+          >
+            <span className="essenza-phase-tab-num">{phase.phase.replace("Fase ", "")}</span>
+            <span className="essenza-phase-tab-label">{phase.title}</span>
+            {phase.recommended ? <span className="essenza-phase-tab-flag">Ideal para empezar</span> : null}
+          </button>
+        ))}
+      </div>
+
+      <div
+        id="essenza-phase-panel"
+        role="tabpanel"
+        className="essenza-phase-detail gals-card rounded-2xl p-6 sm:p-8"
+      >
+        <p className="gals-eyebrow">Qué incluye {selected.phase.toLowerCase()}</p>
+        <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">{selected.title}</h3>
+        <p className="essenza-phase-detail-sub">{selected.subtitle}</p>
+        <p className="essenza-phase-detail-summary">{selected.summary}</p>
+
+        <div className="essenza-phase-detail-meta">
+          <span>{selected.weeks}</span>
+          <span>{selected.count} entregables</span>
+        </div>
+
+        <p className="essenza-phase-includes-label">Incluye</p>
+        <PhaseIncludes items={selected.items} />
+
+        <a
+          href={waUrl(
+            `Hola Fluxa Method. Revisé la propuesta de Essenza MD y quiero priorizar ${selected.waLine} en la llamada con la Dra. Ziul.`
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="gals-btn-solid mt-6 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold sm:w-auto"
+        >
+          Quiero empezar con {selected.phase.toLowerCase()}
+        </a>
+      </div>
     </div>
   );
 }
@@ -420,18 +615,18 @@ export default function PropuestaEssenzaPage() {
         >
           <PartnersLogos size="hero" animate />
           <p className="gals-stagger gals-eyebrow mt-8 tracking-[0.24em]" style={staggerStyle(3, 90)}>
-            Fluxa Systems · Documento estratégico preliminar
+            Fluxa Systems. Documento estratégico preliminar
           </p>
           <h1 className="gals-stagger gals-hero-title" style={staggerStyle(4, 90)}>
             Arquitectura digital y sistema de captación
           </h1>
           <p className="gals-stagger gals-lead mt-6 max-w-2xl sm:text-lg" style={staggerStyle(5, 90)}>
-            Un ecosistema que unifica @essenzamd y @ziulperezmd, convierte el catálogo BE YOU / BE YOU+ en web navegable
-            y automatiza la captación hasta la reserva — sin depender de respuesta manual.
+            Un ecosistema que unifica @essenzamd y @ziulperezmd, convierte el catálogo BE YOU y BE YOU+ en web navegable
+            y automatiza la captación hasta la reserva, sin depender de respuesta manual.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-2.5">
-            {["Medicina estética", "BE YOU · BE YOU+", "Hydrash + Bioreguladora"].map((pill, i) => (
+            {["Hydrash, entrada", "Perfil Ziul, ancla", "Diagnóstico sin compromiso"].map((pill, i) => (
               <span
                 key={pill}
                 className="gals-pill gals-stagger rounded-full px-4 py-2 text-xs font-medium"
@@ -452,10 +647,10 @@ export default function PropuestaEssenzaPage() {
               Dra. Ziul Pérez
             </p>
             <p className="gals-hero-band-handle mt-3 text-center text-sm font-medium sm:text-base">
-              Directora Médica · Essenza MD
+              Directora Médica, Essenza MD
             </p>
             <p className="gals-hero-band-handle mt-1 text-center text-xs opacity-90 sm:text-sm">
-              Medicina Estética · AMWC · ACIME
+              Medicina Estética, AMWC, ACIME
             </p>
           </div>
         </div>
@@ -497,10 +692,10 @@ export default function PropuestaEssenzaPage() {
           className={`gals-reveal gals-reveal--delayed mx-auto mt-10 flex max-w-6xl flex-wrap gap-3 px-4 sm:px-6 ${heroReady ? "is-visible" : ""}`}
         >
           <a
-            href="#construir"
+            href="#fases"
             className="gals-btn-solid inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
           >
-            Ver qué construimos
+            Ver fases sugeridas
           </a>
           <a
             href="#marca"
@@ -514,30 +709,19 @@ export default function PropuestaEssenzaPage() {
       {/* LA MARCA REAL */}
       <SectionBlock
         id="marca"
-        eyebrow="La marca real (corregido)"
-        title="Esto es lo que existe. Nada más, nada menos."
-        subtitle="Essenza no tiene siete líneas sueltas. Tiene dos colecciones marca propia más tres verticales independientes."
+        eyebrow="Mapa de marca"
+        title="Dos colecciones + tres verticales"
+        subtitle="Así está organizado el catálogo real, sin las siete líneas sueltas del PDF."
         elevated
         alt
       >
-        <div className="essenza-marca-grid gals-stagger-group" data-reveal>
-          {MARCA_COLLECTIONS.map((item, i) => (
-            <article
-              key={item.title}
-              className={`essenza-marca-card gals-stagger ${item.highlight ? "essenza-marca-card--highlight" : ""}`}
-              style={staggerStyle(i, 70)}
-            >
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
+        <MarcaTree />
       </SectionBlock>
 
       {/* DIAGNÓSTICO */}
       <SectionBlock
         id="diagnostico"
-        eyebrow="01 — Diagnóstico"
+        eyebrow="01. Diagnóstico"
         title="Autoridad médica real sin sistema que la capitalice."
         subtitle="La confianza ya está construida. Lo que falta es la infraestructura digital que convierta interés en valoraciones y reservas."
         elevated
@@ -558,7 +742,7 @@ export default function PropuestaEssenzaPage() {
       {/* TRANSFORMACIÓN */}
       <SectionBlock
         id="transformacion"
-        eyebrow="02 — Transformación"
+        eyebrow="02. Transformación"
         title="De catálogo en PDF a sistema que convierte 24/7"
         alt
       >
@@ -587,35 +771,36 @@ export default function PropuestaEssenzaPage() {
         </div>
       </SectionBlock>
 
-      {/* QUÉ CONSTRUIMOS */}
       <SectionBlock
-        id="construir"
-        eyebrow="03 — Qué construimos"
-        title="Ecosistema digital por colección"
-        subtitle="Un solo mapa de entregables. Cada ítem etiquetado por línea: Hydrash, BE YOU, BE YOU+, Sueros o transversal."
+        id="ecosistema"
+        eyebrow="03. Ecosistema"
+        title="Qué construimos"
+        subtitle="Entregables por colección. Toca cada línea para ubicarte."
         elevated
         alt
       >
         <div data-reveal className="gals-reveal">
-          <p className="gals-eyebrow">Qué construimos</p>
-          <h3 className="gals-section-label mt-2 text-xl font-semibold sm:text-2xl">
-            Arquitectura digital con prioridad por impacto
-          </h3>
-          <p className="gals-muted mt-2 max-w-3xl text-sm leading-relaxed">
-            Web, automatización, contenido y marca bajo Essenza MD — organizados por colección para que veas qué
-            corresponde a cada línea de servicio.
-          </p>
           <AreaLegend />
           <UnifiedBuildGrid />
         </div>
 
         <p className="essenza-scope-note gals-reveal" data-reveal>
-          Alcance, fases e inversión se definen tras la llamada de diagnóstico.
+          Afinamos el alcance completo en la llamada de diagnóstico.
         </p>
       </SectionBlock>
 
+      <SectionBlock
+        id="fases"
+        eyebrow="04. Fases sugeridas"
+        title="¿Por dónde empezar?"
+        subtitle="Elige una prioridad y la afinamos en la llamada. Cada fase toma de 4 a 6 semanas."
+        elevated
+      >
+        <PhasePicker />
+      </SectionBlock>
+
       {/* CIERRE */}
-      <SectionBlock id="cierre" eyebrow="04 — Cierre" title="El siguiente paso es definir prioridades reales.">
+      <SectionBlock id="cierre" eyebrow="05. Cierre" title="El siguiente paso es definir prioridades reales." alt>
         <div className="gals-stagger-group grid gap-4 md:grid-cols-3" data-reveal>
           {CLOSING_STEPS.map((item, i) => (
             <article
@@ -632,25 +817,33 @@ export default function PropuestaEssenzaPage() {
 
         <div data-reveal className="gals-reveal mt-12 text-center">
           <p className="gals-lead mx-auto max-w-2xl">
-            Essenza ya tiene la autoridad y el catálogo. Nosotros construimos el sistema que los convierte en pacientes
-            sin fricción.
+            Essenza ya tiene autoridad y catálogo. Falta el sistema que convierte interés en citas, por fases y sin
+            abrumar.
           </p>
-          <a
-            href={waMessage}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="gals-btn-solid mt-8 inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
-          >
-            Agendar diagnóstico por WhatsApp
-          </a>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={waMessage}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="gals-btn-solid inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
+            >
+              Agendar diagnóstico
+            </a>
+            <a
+              href="#fases"
+              className="gals-btn-outline inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-medium"
+            >
+              Ver fases sugeridas
+            </a>
+          </div>
           <p className="gals-muted mt-6 text-xs sm:text-sm">
-            Propuesta confidencial · Fluxa Systems · Essenza MD Medicina Estética
+            Propuesta confidencial. Fluxa Systems. Essenza MD Medicina Estética
           </p>
         </div>
       </SectionBlock>
 
-      <a href="#construir" className="gals-floating-cta gals-floating-cta--pulse">
-        Ver propuesta
+      <a href="#fases" className="gals-floating-cta gals-floating-cta--pulse">
+        Ver fases
       </a>
     </main>
   );

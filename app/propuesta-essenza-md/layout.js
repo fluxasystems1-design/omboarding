@@ -7,9 +7,9 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const title = "Propuesta Estratégica | Essenza MD · Fluxa Systems";
+const title = "Propuesta Estratégica | Essenza MD | Fluxa Systems";
 const description =
-  "Arquitectura digital y sistema de captación para Essenza MD — BE YOU, BE YOU+, Hydrash, dermatología clínica y medicina bioreguladora.";
+  "Arquitectura digital y sistema de captación para Essenza MD: BE YOU, BE YOU+, Hydrash, dermatología clínica y medicina bioreguladora.";
 
 export const metadata = {
   title,
