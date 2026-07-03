@@ -22,6 +22,11 @@ const landings = [
     description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",
   },
   {
+    name: "Essenza MD — Dra. Ziul Pérez",
+    path: "/propuesta-essenza-md",
+    description: "Arquitectura digital y captación · BE YOU · BE YOU+ · Hydrash · Fluxa Systems",
+  },
+  {
     name: "Ronaldo Escandón — Alianza Chile",
     path: "/alianza-chile",
     description: "Alianza comercial B2B · Fluxa × Chile 2026 · Tú cierras, nosotros ejecutamos",
