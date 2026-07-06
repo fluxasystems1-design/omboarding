@@ -22,6 +22,11 @@ const landings = [
     description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",
   },
   {
+    name: "Essenza MD — Automatiza",
+    path: "/propuesta-essenza-automatiza",
+    description: "Sistema completo $12M COP · Homepage, chatbot unificado y reserva · Fluxa Systems",
+  },
+  {
     name: "Essenza MD — Dra. Ziul Pérez",
     path: "/propuesta-essenza-md",
     description: "Arquitectura digital y captación · BE YOU · BE YOU+ · Hydrash · Fluxa Systems",
