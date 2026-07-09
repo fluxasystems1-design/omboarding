@@ -143,18 +143,17 @@
 .rifex-proposal-root .rx-partners {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.55rem;
 }
 
-.rifex-proposal-root .rx-partners-logo-wrap {
+.rifex-proposal-root .rx-partners-logo-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.625rem;
-  border: 1px solid rgba(242, 178, 51, 0.25);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 0.2rem 0.45rem;
   line-height: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .rifex-proposal-root .rx-partners-logo {
@@ -164,11 +163,21 @@
 }
 
 .rifex-proposal-root .rx-partners-logo--rifex {
-  height: 2rem;
+  height: 2.85rem;
 }
 
 .rifex-proposal-root .rx-partners-logo--fluxa {
-  height: 2rem;
+  height: 2.15rem;
+}
+
+@media (min-width: 640px) {
+  .rifex-proposal-root .rx-partners-logo--rifex {
+    height: 3.25rem;
+  }
+
+  .rifex-proposal-root .rx-partners-logo--fluxa {
+    height: 2.35rem;
+  }
 }
 
 .rifex-proposal-root .rx-partners-plus {

@@ -6,8 +6,7 @@ import { useEffect } from "react";
 const WA_BASE = "https://wa.me/573116425337?text=";
 const WA_MSG =
   "Hola Fluxa. Vi la propuesta de mejoras para RIFEX y quiero arrancar. ¿Hablamos?";
-const RIFEX_LOGO =
-  "https://res.cloudinary.com/dmmnaypmc/image/upload/v1774429833/logo-rifex_odtuey.png";
+const RIFEX_LOGO = "/logo_principal.png";
 const FLUXA_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
 
 function waUrl(text = WA_MSG) {
@@ -285,14 +284,14 @@ function HeroMoneyBackground() {
 function NavPartners() {
   return (
     <div className="rx-partners">
-      <a href="#hero" className="rx-partners-logo-wrap" aria-label="RIFEX, inicio">
+      <a href="#hero" className="rx-partners-logo-link" aria-label="RIFEX, inicio">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={RIFEX_LOGO} alt="RIFEX" className="rx-partners-logo rx-partners-logo--rifex" />
       </a>
       <span className="rx-partners-plus" aria-hidden>
         +
       </span>
-      <div className="rx-partners-logo-wrap">
+      <div className="rx-partners-logo-link">
         <Image
           src={FLUXA_LOGO}
           alt="Fluxa Systems"
