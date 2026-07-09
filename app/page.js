@@ -22,6 +22,11 @@ const landings = [
     description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",
   },
   {
+    name: "RIFEX — Mejoras v2",
+    path: "/propuesta-rifex-mejoras",
+    description: "Daniel · rifex.app · Landing visual + ganadores · $2.499.000 COP · Fluxa Systems",
+  },
+  {
     name: "Essenza MD — Automatiza",
     path: "/propuesta-essenza-automatiza",
     description: "Sistema completo $12M COP · Homepage, chatbot unificado y reserva · Fluxa Systems",
