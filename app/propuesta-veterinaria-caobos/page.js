@@ -60,6 +60,12 @@ const FLOW = [
   { n: "04", title: "Ustedes confirman", text: "Reciben la solicitud y cierran por WhatsApp o llamada." },
 ];
 
+const VALUE_LINES = [
+  { label: "Homepage a medida", amount: "$900.000" },
+  { label: "Linktree con diseño de marca", amount: "$400.000" },
+  { label: "Reserva de citas básica", amount: "$379.000" },
+];
+
 function Icon({ name }) {
   const props = {
     width: 20,
@@ -188,8 +194,8 @@ export default function PropuestaVeterinariaCaobosPage() {
                 Quiero arrancar
                 <span className="ea-btn-hero-arrow">→</span>
               </a>
-              <a href="#homepage" className="ea-btn-link">
-                Ver alcance
+              <a href="#inversion" className="ea-btn-link">
+                Ver valor
               </a>
             </div>
           </div>
@@ -312,8 +318,41 @@ export default function PropuestaVeterinariaCaobosPage() {
         </div>
       </section>
 
+      {/* VALOR */}
+      <section id="inversion" className="ea-section ea-section--soft">
+        <div className="ea-wrap">
+          <SectionHeader label="Valor" title="Qué vale este trabajo" />
+          <div className="ea-invest-layout">
+            <article className="ea-invest-block">
+              <p className="ea-section-label">Desglose</p>
+              <div className="ea-value-cards">
+                {VALUE_LINES.map((line) => (
+                  <div key={line.label} className="ea-value-card">
+                    <span className="ea-value-card-label">{line.label}</span>
+                    <span className="ea-value-card-amount">{line.amount}</span>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="ea-invest-block ea-invest-block--featured">
+              <p className="ea-section-label">Valor del paquete</p>
+              <p className="ea-price-main">$1.679.000 COP</p>
+              <span className="ea-invest-badge">Homepage + Linktree + reserva</span>
+              <p className="ea-text ea-text--compact">
+                Referencia de valor de lo que vamos a construir. Sin plan de pagos en esta propuesta.
+              </p>
+              <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ea-btn-hero ea-btn-hero--block">
+                Quiero hablar
+                <span className="ea-btn-hero-arrow">→</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* CIERRE */}
-      <section className="ea-section ea-section--soft">
+      <section className="ea-section ea-section--white">
         <div className="ea-wrap">
           <div className="ea-cta-panel">
             <p className="ea-section-label">Siguiente paso</p>
@@ -323,7 +362,7 @@ export default function PropuestaVeterinariaCaobosPage() {
               sin perder al cliente.
             </h2>
             <p className="ea-text ea-text--center mt-3" style={{ color: "rgba(255,255,255,0.72)" }}>
-              Homepage + Linktree + reserva básica. Escribenos y arrancamos.
+              Homepage + Linktree + reserva básica. Escribenos y conversamos.
             </p>
             <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ea-btn-white">
               Escribir por WhatsApp

@@ -24,7 +24,7 @@ const landings = [
   {
     name: "Veterinaria Caobos",
     path: "/propuesta-veterinaria-caobos",
-    description: "Homepage + Linktree + reserva de citas · Fluxa Systems",
+    description: "Homepage + Linktree + reserva de citas · $1.679.000 COP · Fluxa Systems",
   },
   {
     name: "RIFEX — Mejoras v2",
