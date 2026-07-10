@@ -12,7 +12,6 @@ const FLUXA_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
 const HERO_VIDEO = "/7469779-hd_1920_1080_25fps.mp4";
 
 const VALOR_COP = 3080000;
-const VALOR_USD = 770;
 
 function waUrl(text = WA_MSG) {
   return WA_BASE + encodeURIComponent(text);
@@ -297,7 +296,7 @@ export default function PropuestaVeterinariaCaobosPage() {
             <article className="ea-invest-block ea-invest-block--featured ea-invest-block--wide">
               <p className="ea-section-label">Valor del sistema digital</p>
               <p className="ea-price-main">{formatCOP(VALOR_COP)}</p>
-              <span className="ea-invest-badge">Sistema digital completo · USD {VALOR_USD}</span>
+              <span className="ea-invest-badge">Sistema digital completo</span>
               <p className="ea-invest-lead">
                 <strong>Caobos no paga nada de este valor.</strong> Es el mismo paquete que Fluxa cobra
                 normalmente a sus clientes, pero aquí se liquida con un intercambio de servicios: Fluxa
@@ -321,7 +320,7 @@ export default function PropuestaVeterinariaCaobosPage() {
               </div>
               <div className="ea-value-total-bar">
                 <span>Valor total del paquete</span>
-                <span>{formatCOP(VALOR_COP)} · USD {VALOR_USD}</span>
+                <span>{formatCOP(VALOR_COP)}</span>
               </div>
             </article>
           </div>

@@ -24,7 +24,7 @@ const landings = [
   {
     name: "Veterinaria Caobos",
     path: "/propuesta-veterinaria-caobos",
-    description: "Intercambio · sistema digital USD 770 · sin desembolso · Fluxa Systems",
+    description: "Intercambio · sistema digital $3.080.000 COP · sin desembolso · Fluxa Systems",
   },
   {
     name: "RIFEX — Mejoras v2",

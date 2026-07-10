@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 const title = "Veterinaria Caobos | Propuesta Fluxa Systems";
 const description =
-  "Propuesta de intercambio: sistema digital completo (USD 770) sin desembolso para Veterinaria Caobos.";
+  "Propuesta de intercambio: sistema digital completo ($3.080.000 COP) sin desembolso para Veterinaria Caobos.";
 
 export const metadata = {
   title,
