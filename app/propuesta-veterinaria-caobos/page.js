@@ -11,7 +11,7 @@ const FLUXA_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
 
 const HERO_VIDEO = "/7469779-hd_1920_1080_25fps.mp4";
 
-const VALOR_COP = 3080000;
+const VALOR_COP = 2697000;
 
 function waUrl(text = WA_MSG) {
   return WA_BASE + encodeURIComponent(text);
@@ -76,13 +76,13 @@ const HOME_BLOCKS = [
 ];
 
 const VALUE_LINES = [
-  { label: "Home page profesional", amount: "$1.000.000" },
-  { label: "Landing de servicios + ubicación", amount: "$650.000" },
-  { label: "Linktree con diseño de marca", amount: "$350.000" },
-  { label: "Reserva de citas básica", amount: "$400.000" },
-  { label: "Laboratorio de contenido", amount: "$380.000" },
-  { label: "5 videos grabados y editados", amount: "$450.000" },
-  { label: "Asesoría o ejecución en redes", amount: "$350.000" },
+  { label: "Home page profesional", amount: "$757.000" },
+  { label: "Landing de servicios + ubicación", amount: "$488.000" },
+  { label: "Linktree con diseño de marca", amount: "$259.000" },
+  { label: "Reserva de citas básica", amount: "$301.000" },
+  { label: "Laboratorio de contenido", amount: "$285.000" },
+  { label: "5 videos grabados y editados", amount: "$337.000" },
+  { label: "Asesoría o ejecución en redes", amount: "$270.000" },
 ];
 
 function Icon({ name }) {
