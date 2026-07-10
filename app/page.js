@@ -22,6 +22,11 @@ const landings = [
     description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",
   },
   {
+    name: "Veterinaria Caobos",
+    path: "/propuesta-veterinaria-caobos",
+    description: "Homepage + Linktree + reserva de citas · Fluxa Systems",
+  },
+  {
     name: "RIFEX — Mejoras v2",
     path: "/propuesta-rifex-mejoras",
     description: "Daniel · rifex.app · Landing visual + ganadores · $2.499.000 COP · Fluxa Systems",
