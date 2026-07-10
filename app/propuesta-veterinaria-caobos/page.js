@@ -5,65 +5,85 @@ import { useEffect } from "react";
 
 const WA_BASE = "https://wa.me/573116425337?text=";
 const WA_MSG =
-  "Hola Fluxa. Revisé la propuesta de Veterinaria Caobos y quiero arrancar con homepage + Linktree + reserva.";
+  "Hola Fluxa. Revisé la propuesta de intercambio con Veterinaria Caobos y quiero conversar.";
 const CAOBOS_LOGO = "/imagenes/veterinaria-caobos-logo.png";
 const FLUXA_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
-const IG_URL = "https://www.instagram.com/veterinariacaobos";
-const CANVA_BRIEF =
-  "https://www.canva.com/design/DAGEaxNogbc/KcNsKsZwuTwRxoX5bn9TOg/view";
 
 const HERO_VIDEO = "/7469779-hd_1920_1080_25fps.mp4";
+
+const VALOR_COP = 3080000;
+const VALOR_USD = 770;
 
 function waUrl(text = WA_MSG) {
   return WA_BASE + encodeURIComponent(text);
 }
 
-const INCLUDES = [
+function formatCOP(n) {
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0,
+  }).format(n);
+}
+
+const DIGITAL = [
   {
     icon: "home",
-    title: "Homepage",
-    sub: "Sitio principal con la marca Caobos: servicios, confianza y llamada a agendar.",
+    title: "Home page profesional",
+    sub: "Reemplaza el link de Canva. Marca Caobos, confianza y camino claro a contactar o agendar.",
   },
   {
     icon: "links",
     title: "Linktree a medida",
-    sub: "Página de enlaces con buen diseño para Instagram: WhatsApp, citas, servicios y más.",
+    sub: "Página de enlaces para la bio de Instagram: WhatsApp, citas, servicios y ubicación.",
+  },
+  {
+    icon: "calendar",
+    title: "Landing de servicios",
+    sub: "Precios, ubicación, qué ofrecen y botón directo a WhatsApp.",
   },
   {
     icon: "calendar",
     title: "Reserva de citas básica",
-    sub: "Formulario en la homepage para pedir cita: datos, mascota, servicio y fecha preferida.",
+    sub: "Formulario en la web: dueño, mascota, servicio y fecha preferida.",
+  },
+];
+
+const CONTENIDO = [
+  {
+    icon: "links",
+    title: "Laboratorio de contenido",
+    sub: "Guiones, ganchos de 3 segundos y calendario de publicación.",
+  },
+  {
+    icon: "home",
+    title: "5 videos listos",
+    sub: "Grabados y editados, listos para publicar en redes.",
+  },
+  {
+    icon: "calendar",
+    title: "Redes sociales",
+    sub: "Encargado de ejecución o asesoría continua en publicación — según lo que prefieran.",
   },
 ];
 
 const HOME_BLOCKS = [
-  { title: "Hero de marca", text: "Logo, mensaje claro y botón para agendar." },
-  { title: "Servicios", text: "Consulta, vacunas, cirugía, urgencias — lo que ustedes ofrezcan." },
-  { title: "Por qué Caobos", text: "Confianza, cuidado y cercanía con dueños y mascotas." },
-  { title: "Reserva de citas", text: "Formulario básico integrado en la misma página." },
-  { title: "Contacto / WhatsApp", text: "Llegar fácil desde el celular." },
-];
-
-const LINKTREE_ITEMS = [
-  "Agendar cita",
-  "WhatsApp",
-  "Servicios",
-  "Ubicación / cómo llegar",
-  "Instagram",
-  "Homepage",
-];
-
-const FLOW = [
-  { n: "01", title: "Llega desde Instagram", text: "Bio → Linktree con diseño de marca." },
-  { n: "02", title: "Elige qué necesita", text: "Cita, WhatsApp o ver la homepage." },
-  { n: "03", title: "Agenda en la web", text: "Formulario básico de reserva en la homepage." },
-  { n: "04", title: "Ustedes confirman", text: "Reciben la solicitud y cierran por WhatsApp o llamada." },
+  { title: "Hero de marca", text: "Video, mensaje claro y botón a WhatsApp o cita." },
+  { title: "Servicios y precios", text: "Landing dedicada con lo que ofrecen y cuánto cuesta." },
+  { title: "Ubicación", text: "Cómo llegar y contacto directo." },
+  { title: "Reserva de citas", text: "Formulario básico integrado." },
+  { title: "Linktree en bio", text: "Enlaces ordenados para Instagram." },
+  { title: "Publicación", text: "Deploy y entrega lista para usar." },
 ];
 
 const VALUE_LINES = [
-  { label: "Homepage a medida", amount: "$900.000" },
-  { label: "Linktree con diseño de marca", amount: "$400.000" },
-  { label: "Reserva de citas básica", amount: "$379.000" },
+  { label: "Home page profesional", amount: "$1.000.000" },
+  { label: "Landing de servicios + ubicación", amount: "$650.000" },
+  { label: "Linktree con diseño de marca", amount: "$350.000" },
+  { label: "Reserva de citas básica", amount: "$400.000" },
+  { label: "Laboratorio de contenido", amount: "$380.000" },
+  { label: "5 videos grabados y editados", amount: "$450.000" },
+  { label: "Asesoría o ejecución en redes", amount: "$350.000" },
 ];
 
 function Icon({ name }) {
@@ -168,7 +188,7 @@ export default function PropuestaVeterinariaCaobosPage() {
         <div className="ea-nav-inner">
           <NavPartners />
           <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ea-nav-cta">
-            Arrancar
+            Conversar
           </a>
         </div>
       </header>
@@ -178,36 +198,54 @@ export default function PropuestaVeterinariaCaobosPage() {
         <HeroVideoBackground />
         <div className="ea-hero-inner">
           <div className="ea-hero-copy">
-            <p className="ea-section-label">Propuesta digital</p>
+            <p className="ea-section-label">Propuesta de intercambio</p>
             <h1 className="ea-hero-title">
-              Veterinaria Caobos.
+              Caobos cuidó a nuestra perra.
               <br />
-              <em>Presencia clara. Citas fáciles.</em>
+              <em>Nosotros cuidamos su presencia digital.</em>
             </h1>
             <p className="ea-hero-sub">
-              Homepage + Linktree con buen diseño + <strong>reserva de citas básica</strong>. Para que quien llega
-              desde Instagram sepa qué hacer en segundos.
+              Fluxa Systems propone cubrir el tratamiento veterinario acumulado a cambio de un{" "}
+              <strong>sistema digital completo</strong> para la clínica: web, contenido y redes.
             </p>
-            <p className="ea-hero-tag">@veterinariacaobos · Fluxa Systems</p>
+            <p className="ea-hero-tag">Veterinaria Caobos × Fluxa Systems</p>
             <div>
               <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ea-btn-hero">
-                Quiero arrancar
+                Quiero conversar
                 <span className="ea-btn-hero-arrow">→</span>
               </a>
-              <a href="#inversion" className="ea-btn-link">
-                Ver valor
+              <a href="#intercambio" className="ea-btn-link">
+                Ver propuesta
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* QUÉ INCLUYE */}
+      {/* CONTEXTO */}
       <section className="ea-section ea-section--white">
         <div className="ea-wrap">
-          <SectionHeader label="Alcance" title="Qué incluye este paquete" />
+          <SectionHeader label="Contexto" title="Por qué esta propuesta" />
+          <blockquote className="ea-quote">
+            <span className="ea-quote-mark" aria-hidden>
+              &ldquo;
+            </span>
+            <p>
+              Nuestra perrita está en tratamiento en Caobos por una condición que ha requerido varios
+              procedimientos. Confiamos en ustedes con lo más importante. Queremos proponer un{" "}
+              <strong>intercambio justo</strong>: cubrir la deuda del tratamiento a cambio de dejarles
+              una presencia digital a la altura de su trabajo.
+            </p>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* DIGITAL */}
+      <section id="digital" className="ea-section ea-section--soft">
+        <div className="ea-wrap">
+          <SectionHeader label="Sistema digital" title="Lo que construimos para Caobos" />
           <ul className="ea-icon-grid ea-icon-grid--3 ea-icon-grid--center">
-            {INCLUDES.map((item) => (
+            {DIGITAL.map((item) => (
               <li key={item.title} className="ea-icon-card">
                 <span className="ea-icon-circle">
                   <Icon name={item.icon} />
@@ -219,27 +257,7 @@ export default function PropuestaVeterinariaCaobosPage() {
               </li>
             ))}
           </ul>
-          <p className="ea-text ea-text--center mt-5">
-            Brief de referencia:{" "}
-            <a href={CANVA_BRIEF} target="_blank" rel="noopener noreferrer" className="ea-btn-link" style={{ margin: 0 }}>
-              ver en Canva
-            </a>
-            {" · "}
-            <a href={IG_URL} target="_blank" rel="noopener noreferrer" className="ea-btn-link" style={{ margin: 0 }}>
-              Instagram
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* HOMEPAGE */}
-      <section id="homepage" className="ea-section ea-section--soft">
-        <div className="ea-wrap">
-          <SectionHeader label="01 · Homepage" title="La casa digital de Caobos" />
-          <p className="ea-text ea-text--center mb-5">
-            Una página principal limpia, con la identidad de la veterinaria y un camino claro a la cita.
-          </p>
-          <div className="ea-compare-list">
+          <div className="ea-compare-list mt-5">
             {HOME_BLOCKS.map((b) => (
               <div key={b.title} className="ea-compare-row">
                 <span className="ea-compare-before">{b.title}</span>
@@ -251,80 +269,48 @@ export default function PropuestaVeterinariaCaobosPage() {
         </div>
       </section>
 
-      {/* LINKTREE */}
-      <section id="linktree" className="ea-section ea-section--white">
+      {/* CONTENIDO */}
+      <section id="contenido" className="ea-section ea-section--white">
         <div className="ea-wrap">
-          <SectionHeader label="02 · Linktree" title="Enlaces con diseño de marca" />
-          <p className="ea-text ea-text--center mb-5">
-            No un Linktree genérico. Una página de enlaces hecha para Caobos: ordenada, bonita y lista para la bio de
-            Instagram.
-          </p>
-          <div className="ea-value-cards" style={{ maxWidth: "28rem", margin: "0 auto" }}>
-            {LINKTREE_ITEMS.map((label) => (
-              <div key={label} className="ea-value-card" style={{ justifyContent: "center" }}>
-                <span className="ea-value-card-label" style={{ textAlign: "center", width: "100%" }}>
-                  {label}
+          <SectionHeader label="Contenido y redes" title="Para que no solo tengan web" />
+          <ul className="ea-icon-grid ea-icon-grid--3 ea-icon-grid--center">
+            {CONTENIDO.map((item) => (
+              <li key={item.title} className="ea-icon-card">
+                <span className="ea-icon-circle">
+                  <Icon name={item.icon} />
                 </span>
-              </div>
+                <div>
+                  <p className="ea-icon-card-text">{item.title}</p>
+                  <p className="ea-icon-card-sub">{item.sub}</p>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* RESERVA */}
-      <section id="reserva" className="ea-section ea-section--soft">
+      {/* INTERCAMBIO */}
+      <section id="intercambio" className="ea-section ea-section--soft">
         <div className="ea-wrap">
-          <SectionHeader label="03 · Citas" title="Reserva básica en la homepage" />
-          <blockquote className="ea-quote">
-            <span className="ea-quote-mark" aria-hidden>
-              &ldquo;
-            </span>
-            <p>
-              El dueño deja nombre, teléfono, mascota, servicio y fecha preferida. Ustedes reciben la solicitud y
-              confirman. <strong>Simple, sin agenda compleja.</strong>
-            </p>
-          </blockquote>
-          <div className="ea-check-list" style={{ maxWidth: "36rem", margin: "1.5rem auto 0" }}>
-            {[
-              "Formulario en la homepage",
-              "Datos del dueño y de la mascota",
-              "Tipo de servicio / motivo",
-              "Fecha y franja preferida",
-              "Aviso a ustedes (email o WhatsApp)",
-              "Confirmación manual por su equipo",
-            ].map((t) => (
-              <div key={t} className="ea-check-item">
-                <span className="ea-check">✓</span>
-                <span>{t}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FLUJO */}
-      <section className="ea-section ea-section--white">
-        <div className="ea-wrap">
-          <SectionHeader label="En la práctica" title="Así llega el cliente" />
-          <div className="ea-phase-list">
-            {FLOW.map((step) => (
-              <article key={step.n} className="ea-phase-item">
-                <p className="ea-phase-num">{step.n}</p>
-                <p className="ea-phase-title">{step.title}</p>
-                <p className="ea-phase-text">{step.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* VALOR */}
-      <section id="inversion" className="ea-section ea-section--soft">
-        <div className="ea-wrap">
-          <SectionHeader label="Valor" title="Qué vale este trabajo" />
+          <SectionHeader label="Intercambio" title="Cómo quedaría el acuerdo" />
           <div className="ea-invest-layout">
-            <article className="ea-invest-block">
-              <p className="ea-section-label">Desglose</p>
+            <article className="ea-invest-block ea-invest-block--featured ea-invest-block--wide">
+              <p className="ea-section-label">Valor del sistema digital</p>
+              <p className="ea-price-main">{formatCOP(VALOR_COP)}</p>
+              <span className="ea-invest-badge">Sistema digital completo · USD {VALOR_USD}</span>
+              <p className="ea-invest-lead">
+                <strong>Caobos no paga nada de este valor.</strong> Es el mismo paquete que Fluxa cobra
+                normalmente a sus clientes, pero aquí se liquida con un intercambio de servicios: Fluxa
+                cubre el tratamiento de nuestra perrita y ustedes reciben web, contenido y redes listos
+                para usar.
+              </p>
+              <p className="ea-text ea-text--compact" style={{ margin: 0 }}>
+                Sin plan de pagos · sin desembolso en efectivo · intercambio de valor.
+              </p>
+            </article>
+
+            <article className="ea-invest-block ea-invest-block--wide">
+              <p className="ea-section-label">Desglose del paquete Fluxa</p>
               <div className="ea-value-cards">
                 {VALUE_LINES.map((line) => (
                   <div key={line.label} className="ea-value-card">
@@ -333,19 +319,10 @@ export default function PropuestaVeterinariaCaobosPage() {
                   </div>
                 ))}
               </div>
-            </article>
-
-            <article className="ea-invest-block ea-invest-block--featured">
-              <p className="ea-section-label">Valor del paquete</p>
-              <p className="ea-price-main">$1.679.000 COP</p>
-              <span className="ea-invest-badge">Homepage + Linktree + reserva</span>
-              <p className="ea-text ea-text--compact">
-                Referencia de valor de lo que vamos a construir. Sin plan de pagos en esta propuesta.
-              </p>
-              <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ea-btn-hero ea-btn-hero--block">
-                Quiero hablar
-                <span className="ea-btn-hero-arrow">→</span>
-              </a>
+              <div className="ea-value-total-bar">
+                <span>Valor total del paquete</span>
+                <span>{formatCOP(VALOR_COP)} · USD {VALOR_USD}</span>
+              </div>
             </article>
           </div>
         </div>
@@ -357,12 +334,12 @@ export default function PropuestaVeterinariaCaobosPage() {
           <div className="ea-cta-panel">
             <p className="ea-section-label">Siguiente paso</p>
             <h2 className="ea-display ea-heading-xl" style={{ color: "#fff", fontWeight: 300 }}>
-              De Instagram a la cita,
+              Ustedes cuidaron a nuestra perra.
               <br />
-              sin perder al cliente.
+              Dejemos Caobos con cara profesional.
             </h2>
             <p className="ea-text ea-text--center mt-3" style={{ color: "rgba(255,255,255,0.72)" }}>
-              Homepage + Linktree + reserva básica. Escribenos y conversamos.
+              Si les hace sentido el intercambio, conversamos y arrancamos.
             </p>
             <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ea-btn-white">
               Escribir por WhatsApp

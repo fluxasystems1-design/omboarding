@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 const title = "Veterinaria Caobos | Propuesta Fluxa Systems";
 const description =
-  "Homepage + Linktree + reserva de citas básica para Veterinaria Caobos. Presencia digital clara desde Instagram.";
+  "Propuesta de intercambio: sistema digital completo (USD 770) sin desembolso para Veterinaria Caobos.";
 
 export const metadata = {
   title,
