@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 const title = "Ecosistema Panther | Lorena Perch · Partnersflux";
 const description =
-  "Propuesta de arquitectura digital para Lorena Perch: motor de autoridad, membresía, automatización y Sanctuary Skin Lab en dos fases.";
+  "Propuesta de arquitectura digital para Lorena Perch: Paquete 1 (motor @lorena_perch) y Paquete 2 (Sanctuary) con 60–90 días entre ambos.";
 
 export const metadata = {
   title,

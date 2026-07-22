@@ -20,7 +20,7 @@ const NAV_ITEMS = [
   { id: "cuellos", label: "Cuellos" },
   { id: "antes", label: "Antes / Después" },
   { id: "vision", label: "Visión" },
-  { id: "fases", label: "Fases" },
+  { id: "fases", label: "Secuencia" },
   { id: "paquetes", label: "Paquetes" },
   { id: "cierre", label: "Cierre" },
 ];
@@ -35,7 +35,7 @@ const CATEGORIES = [
   {
     label: "Producto monetizable",
     account: "@sanctuaryskinlab + Face Yoga",
-    role: "Necesitan conversión, no descubrimiento propio.",
+    role: "Necesitan conversión, no descubrimiento propio. Face Yoga se integra en la membresía del Paquete 1; Sanctuary se activa en el Paquete 2.",
   },
   {
     label: "Posicionamiento",
@@ -45,7 +45,7 @@ const CATEGORIES = [
   {
     label: "Autosuficiente",
     account: "@pantherstribe_closetsale + @panthers._love",
-    role: "Ya funcionan solas.",
+    role: "Ya funcionan solas (ropa preloved y testimonios).",
   },
 ];
 
@@ -53,7 +53,7 @@ const BOTTLENECKS = [
   "Todas las líneas reciben el mismo trato, saturando su capacidad operativa.",
   "Sanctuary desconectada visualmente del universo Panther — un lead no identifica que es la misma fundadora.",
   "Cuentas satélite en cero intentando crecer solas sin historial (el algoritmo penaliza cuentas sin recorrido).",
-  "Face Yoga sin lugar definido — su producto Evergreen real vive en Google Drive.",
+  "Face Yoga sin lugar definido — su producto continuo real vive en Google Drive.",
   "Comunidad en Telegram, no en WhatsApp — pierde data y seguimiento.",
   "Cero recurrencia — depende de lanzamientos sueltos y 1:1 (insostenible por límite de agenda).",
   "Checkout de Sanctuary sin validar — construido en Lovable, tráfico UTM activo sin confirmar conversión.",
@@ -76,7 +76,7 @@ const BEFORE_AFTER = [
   },
   {
     before: "Face Yoga sin lugar definido",
-    after: "Pilar Evergreen dentro de la membresía",
+    after: "Pilar continuo dentro de la membresía (Paquete 1)",
   },
   {
     before: "Comunidad en Telegram sin data",
@@ -98,35 +98,35 @@ const BEFORE_AFTER = [
 
 const TIMELINE = [
   {
-    when: "Semana 1–5",
-    title: "Paquete Completo — @lorena_perch",
-    text: "Arquitectura, membresía, landing, WhatsApp, contenido, pauta, IA y equipo.",
+    when: "Semanas 1–5",
+    title: "Paquete 1 — @lorena_perch",
+    text: "Arquitectura, membresía (con Face Yoga), landing, WhatsApp, contenido, pauta, IA y equipo.",
   },
   {
-    when: "Semana 6–13",
-    title: "Ventana de estabilización",
-    text: "Opera el sistema, genera resultado y valida antes de expandir.",
+    when: "Semanas 6–13+",
+    title: "Ventana de estabilización (60–90 días)",
+    text: "Opera el sistema, genera resultado y valida. El Paquete 2 no arranca hasta que el motor esté absorbiendo.",
   },
   {
-    when: "Semana 14–16",
-    title: "Paquete Consultoría + Instalación — @sanctuaryskinlab",
-    text: "Auditoría, identidad Panther, landing/checkout, WhatsApp y lanzamiento de cuenta.",
+    when: "Después de esa ventana",
+    title: "Paquete 2 — @sanctuaryskinlab",
+    text: "Auditoría, identidad Panther, landing/checkout, WhatsApp y lanzamiento de cuenta (~3 semanas).",
   },
 ];
 
 const PACKAGES = {
   lorena: {
     id: "lorena",
-    tab: "Completo",
-    badge: "Fase 1",
-    label: "Paquete completo · 5 semanas",
+    tab: "Paquete 1",
+    badge: "Inicio · ahora",
+    label: "Paquete 1 · Completo · 5 semanas",
     title: "@lorena_perch — Motor de autoridad",
     price: "$1,797 USD",
-    alt: "Pago único · o $1,897 en 2 cuotas de $948.50 (1ª al iniciar / 2ª al arrancar Fase 3, Semana 4)",
-    blurb: "Incluye 4 checkpoints semanales + 15 días de soporte post-entrega.",
+    alt: "Pago único · o $1,897 en 2 cuotas de $948.50 (1ª al iniciar / 2ª al arrancar la Semana 4 del Paquete 1)",
+    blurb: "Este es el punto de partida. Incluye Face Yoga como pilar de la membresía, 4 checkpoints semanales + 15 días de soporte post-entrega.",
     phases: [
       {
-        title: "Fase 1 · Semana 1 — Arquitectura y estrategia",
+        title: "Semana 1 — Arquitectura y estrategia",
         items: [
           "Diagnóstico y alineación (90 min)",
           "Avatar, oferta y mensaje maestro",
@@ -135,9 +135,9 @@ const PACKAGES = {
         ],
       },
       {
-        title: "Fase 2 · Semanas 2–3 — Construcción del sistema",
+        title: "Semanas 2–3 — Construcción del sistema",
         items: [
-          "Membresía: hasta 4 pilares clasificados",
+          "Membresía: hasta 4 pilares clasificados (incluye Face Yoga como pilar continuo)",
           "1 landing page con checkout",
           "VSL: 1 guion (edición básica, hasta 2 rondas de revisión)",
           "Automatización WhatsApp: 3 flujos (bienvenida, seguimiento 2h-24h-48h, carrito abandonado)",
@@ -145,7 +145,7 @@ const PACKAGES = {
         ],
       },
       {
-        title: "Fase 3 · Semana 4 — Laboratorio de contenido",
+        title: "Semana 4 — Laboratorio de contenido",
         items: [
           "Banco de 24 guiones por pilar, sin fecha fija — ella elige según lo que sienta",
           "Sesión de consultoría de contenido + marco de 3 preguntas antes de grabar",
@@ -154,7 +154,7 @@ const PACKAGES = {
         ],
       },
       {
-        title: "Fase 4 · Semana 5 — Pauta, IA y equipo",
+        title: "Semana 5 — Pauta, IA y equipo",
         items: [
           "Meta Ads: 2 campañas + 4 creativos (presupuesto de pauta aparte)",
           "Sesión 1 — Productos inteligentes con IA (2h): 1 producto piloto construido en sesión",
@@ -163,21 +163,21 @@ const PACKAGES = {
       },
     ],
     note: "No incluye: presupuesto de pauta, guiones adicionales a los 24, contratación/nómina, producto digital más allá del piloto, ni herramientas de pago/hosting (licencias de landing, checkout y WhatsApp API corren por cuenta de la clienta).",
-    cta: "Quiero el Paquete Completo",
-    msg: "Hola Partnersflux. Revisé el Paquete Completo de @lorena_perch ($1,797) y quiero avanzar.",
+    cta: "Quiero el Paquete 1",
+    msg: "Hola Partnersflux. Revisé el Paquete 1 de @lorena_perch ($1,797) y quiero avanzar.",
   },
   sanctuary: {
     id: "sanctuary",
-    tab: "Sanctuary",
-    badge: "Fase 2",
-    label: "Consultoría + instalación · 3 semanas",
+    tab: "Paquete 2",
+    badge: "Se activa después",
+    label: "Paquete 2 · Sanctuary · 3 semanas",
     title: "@sanctuaryskinlab — Producto monetizable",
     price: "$897 USD",
-    alt: "Inicia 60–90 días después del Paquete 1",
-    blurb: "Incluye 2 checkpoints + 10 días de soporte post-entrega. La capacitación de IA y equipo ya está cubierta en el Paquete 1.",
+    alt: "Se activa 60–90 días después del Paquete 1 — cuando el motor ya está operando",
+    blurb: "No es el inicio: se enciende después. Incluye 2 checkpoints + 10 días de soporte. IA y equipo ya vienen del Paquete 1.",
     phases: [
       {
-        title: "Fase 1 · Semana 1 — Auditoría y estrategia",
+        title: "Semana 1 del Paquete 2 — Auditoría y estrategia",
         items: [
           "Auditoría técnica de la tienda Lovable (checkout, flujo de pago, UTMs activos)",
           "Cláusula de alcance: reconstrucción completa se cotiza aparte si aplica",
@@ -186,7 +186,7 @@ const PACKAGES = {
         ],
       },
       {
-        title: "Fase 2 · Semana 2 — Instalación",
+        title: "Semana 2 del Paquete 2 — Instalación",
         items: [
           "Landing/checkout ajustado",
           "Automatización WhatsApp: 2 flujos",
@@ -194,7 +194,7 @@ const PACKAGES = {
         ],
       },
       {
-        title: "Fase 3 · Semana 3 — Lanzamiento de cuenta",
+        title: "Semana 3 del Paquete 2 — Lanzamiento de cuenta",
         items: [
           "Banco de 8 guiones, sin fecha fija",
           "Plan de cross-promoción desde @lorena_perch",
@@ -202,8 +202,8 @@ const PACKAGES = {
       },
     ],
     note: "No incluye: presupuesto de pauta, reconstrucción completa de tienda (si aplica), capacitación IA/equipo (ya cubierta en Paquete 1), ni herramientas de pago/hosting.",
-    cta: "Quiero el Paquete Sanctuary",
-    msg: "Hola Partnersflux. Revisé el Paquete Sanctuary ($897) y quiero conversar sobre la secuencia.",
+    cta: "Quiero el Paquete 2",
+    msg: "Hola Partnersflux. Revisé el Paquete 2 Sanctuary ($897) y quiero conversar sobre la secuencia.",
   },
 };
 
@@ -362,7 +362,7 @@ export default function PropuestaEcosistemaPantherPage() {
           </div>
         </div>
         <div data-reveal className="ph-hero-band ph-reveal is-visible ph-reveal--band">
-          <p className="ph-hero-band-text">Primero el motor. Después Sanctuary.</p>
+          <p className="ph-hero-band-text">Primero el Paquete 1. Después el Paquete 2.</p>
         </div>
       </section>
 
@@ -380,7 +380,8 @@ export default function PropuestaEcosistemaPantherPage() {
           </p>
           <p>
             La visión es correcta y el mensaje es auténtico; lo que falta es orden: está tratando 5 líneas como si
-            necesitaran la misma inversión, cuando cada una cumple una función distinta.
+            necesitaran la misma inversión, cuando cada una cumple una función distinta. En el siguiente marco esas
+            5 líneas se agrupan en 4 categorías de inversión.
           </p>
         </div>
       </Section>
@@ -445,8 +446,8 @@ export default function PropuestaEcosistemaPantherPage() {
             recurrente e ingreso más predecible.
           </p>
           <p>
-            Face Yoga entra como pilar continuo dentro de esa membresía. Sanctuary deja de pelear por audiencia propia
-            y se convierte en el destino de conversión.
+            Face Yoga entra como pilar continuo dentro de esa membresía (se resuelve en el Paquete 1). Sanctuary deja
+            de pelear por audiencia propia y se convierte en el destino de conversión (Paquete 2, después).
           </p>
           <p>
             Barre sigue construyendo prestigio sin desviar presupuesto. Y ella gana herramientas de IA para producir,
@@ -462,7 +463,7 @@ export default function PropuestaEcosistemaPantherPage() {
 
       <Section
         id="fases"
-        eyebrow="06 · Por qué va en 2 fases"
+        eyebrow="06 · Por qué va en 2 paquetes"
         title="60–90 días entre paquetes. No es demora: es absorción."
         alt
       >
@@ -473,7 +474,7 @@ export default function PropuestaEcosistemaPantherPage() {
           </p>
           <p>
             <strong>Validación antes de expandir:</strong> el Paquete 1 necesita generar resultado (membresía +
-            automatización funcionando) antes de invertir presupuesto y atención en Sanctuary.
+            automatización funcionando) antes de invertir presupuesto y atención en el Paquete 2 (Sanctuary).
           </p>
           <p>
             <strong>Reutilización de aprendizaje:</strong> lo aprendido en la capacitación de IA y equipo del Paquete
@@ -491,10 +492,11 @@ export default function PropuestaEcosistemaPantherPage() {
         </div>
       </Section>
 
-      <Section id="paquetes" eyebrow="07 · Paquetes" title="Dos caminos, un orden claro">
+      <Section id="paquetes" eyebrow="07 · Paquetes" title="Empieza por el Paquete 1. El 2 se activa después.">
         <div data-reveal className="ph-reveal">
           <p className="ph-pkg-order">
-            Fase 1 ahora (@lorena_perch) · Fase 2 a los 60–90 días (@sanctuaryskinlab)
+            <strong>Paquete 1 ($1,797)</strong> arranca ahora con @lorena_perch.{" "}
+            <strong>Paquete 2 ($897)</strong> se activa a los 60–90 días, cuando el motor ya está operando.
           </p>
           <div className="ph-pkg-tabs" role="tablist" aria-label="Paquetes">
             {Object.values(PACKAGES).map((p) => (
@@ -547,30 +549,34 @@ export default function PropuestaEcosistemaPantherPage() {
           <h3 className="ph-heading" style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.65rem)" }}>
             Qué incluye cada paquete
           </h3>
+          <p className="ph-sub">
+            Compara lado a lado: primero el Paquete 1 (inicio), después el Paquete 2 ($897, cuando toque).
+          </p>
         </header>
-        <div data-reveal className="ph-table-wrap ph-reveal">
-          <table className="ph-table">
-            <thead>
-              <tr>
-                <th>Entregable</th>
-                <th>$897 Sanctuary</th>
-                <th>$1,797 Lorena Perch</th>
-              </tr>
-            </thead>
-            <tbody>
-              {COMPARISON.map((row) => (
-                <tr key={row.feature}>
-                  <td>{row.feature}</td>
-                  <td>
-                    <CellValue value={row.sanctuary} />
-                  </td>
-                  <td>
+        <div data-reveal className="ph-diff ph-reveal">
+          <div className="ph-diff-legend" aria-hidden>
+            <span className="ph-diff-legend-item ph-diff-legend-item--p1">Paquete 1 · $1,797</span>
+            <span className="ph-diff-legend-item ph-diff-legend-item--p2">Paquete 2 · $897</span>
+          </div>
+          {COMPARISON.map((row) => (
+            <article key={row.feature} className="ph-diff-row">
+              <p className="ph-diff-feature">{row.feature}</p>
+              <div className="ph-diff-vals">
+                <div className="ph-diff-val ph-diff-val--p1">
+                  <span className="ph-diff-val-label">Paquete 1</span>
+                  <span className="ph-diff-val-body">
                     <CellValue value={row.lorena} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </span>
+                </div>
+                <div className="ph-diff-val ph-diff-val--p2">
+                  <span className="ph-diff-val-label">Paquete 2</span>
+                  <span className="ph-diff-val-body">
+                    <CellValue value={row.sanctuary} />
+                  </span>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </Section>
 
@@ -601,10 +607,10 @@ export default function PropuestaEcosistemaPantherPage() {
           </div>
           <div data-reveal className="ph-cta-panel ph-reveal">
             <p className="ph-eyebrow ph-eyebrow--on-dark">Siguiente paso</p>
-            <h2 className="ph-heading ph-heading--on-dark">Primero el motor. Después el producto que convierte.</h2>
+            <h2 className="ph-heading ph-heading--on-dark">Primero el Paquete 1. Después el Paquete 2.</h2>
             <p className="ph-sub ph-sub--on-dark">
-              Si el orden del Ecosistema Panther te hace sentido, conversamos y definimos el arranque del Paquete
-              Completo.
+              Si el orden del Ecosistema Panther te hace sentido, conversamos y definimos el arranque del Paquete 1
+              ($1,797).
             </p>
             <div className="ph-actions" style={{ justifyContent: "center" }}>
               <a href={waUrl()} target="_blank" rel="noopener noreferrer" className="ph-btn ph-btn--bone">
