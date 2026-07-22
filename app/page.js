@@ -97,6 +97,11 @@ const landings = [
     description: "Brief femenino de marca, bienestar y crecimiento",
   },
   {
+    name: "Ecosistema Panther — Lorena Perch",
+    path: "/propuesta-ecosistema-panther",
+    description: "Arquitectura digital · Paquete Completo $1,797 + Sanctuary $897 · Partnersflux",
+  },
+  {
     name: "Jean",
     path: "/jean",
     description: "Dos empresas, un ecosistema digital en 90 días",
