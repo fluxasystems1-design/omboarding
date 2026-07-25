@@ -311,15 +311,15 @@ export default function PropuestaFonopatipoPage() {
           <div className="fp-hero-bg__fade" />
         </div>
         <div data-reveal className="fp-wrap fp-reveal is-visible">
-          <p className="fp-eyebrow">Método PDM · Partnersflux</p>
+          <p className="fp-brand-hero">FonoPatipo</p>
+          <p className="fp-eyebrow">Método PDM · Partnersflux · Patricia Porras</p>
           <h1 className="fp-hero-title">
-            Presencia Digital Monetizable
-            <em>Propuesta para Patricia Porras · @fonopatipo</em>
+            Tu método ya vende cuando estás en consulta.
+            <em>Falta el sistema para que también venda cuando no estás.</em>
           </h1>
           <p className="fp-lead">
-            Tienes el conocimiento, la reputación y años formando confianza en Cúcuta. Pero cada peso que ganas
-            depende de que tú estés físicamente ahí — una consulta, una hora a la vez. Eso tiene un techo. Por eso
-            pediste una web con pagos y plataforma de cursos.
+            Años formando confianza en Cúcuta. Ahora: página, cobro y cursos que trabajan también sin ti en la
+            consulta.
           </p>
           <div className="fp-actions">
             <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="fp-btn fp-btn--solid">
@@ -331,9 +331,7 @@ export default function PropuestaFonopatipoPage() {
           </div>
         </div>
         <div data-reveal className="fp-hero-band fp-reveal is-visible fp-reveal--band">
-          <p className="fp-hero-band-text">
-            Cada mes sin sistema no es neutro: son personas que llegaron, se interesaron… y se fueron sin comprar.
-          </p>
+          <p className="fp-hero-band-text">Presencia Digital Monetizable — captar, nutrir y vender todos los días.</p>
         </div>
       </section>
 
@@ -343,8 +341,8 @@ export default function PropuestaFonopatipoPage() {
         title="Dónde estás. A dónde puedes llegar."
         subtitle="No es conseguir más likes. Es convertir tu expertise en un sistema que vende también cuando no estás."
       >
-        <div data-reveal className="fp-ab fp-stagger-group">
-          <article className="fp-card fp-stagger" style={staggerStyle(0)}>
+        <div data-reveal className="fp-contrast fp-stagger-group">
+          <article className="fp-contrast-col fp-contrast-col--today fp-stagger" style={staggerStyle(0)}>
             <p className="fp-card-label">Dónde estás hoy</p>
             <ul className="fp-plain-list">
               {POINT_A.map((item) => (
@@ -352,7 +350,7 @@ export default function PropuestaFonopatipoPage() {
               ))}
             </ul>
           </article>
-          <article className="fp-card fp-card--featured fp-stagger" style={staggerStyle(1)}>
+          <article className="fp-contrast-col fp-contrast-col--system fp-stagger" style={staggerStyle(1)}>
             <p className="fp-card-label">A dónde puedes llegar</p>
             <ul className="fp-plain-list">
               {POINT_B.map((item) => (
@@ -382,11 +380,6 @@ export default function PropuestaFonopatipoPage() {
             </ul>
           </article>
         </div>
-        <p data-reveal className="fp-note-line fp-reveal">
-          Partnersflux instala sistemas digitales completos para profesionales de salud y bienestar que quieren
-          escalar más allá de la consulta — el mismo método detrás de proyectos como Funciona+ (Dr. Leonardo Bello),
-          hoy con tienda propia, comunidad activa y automatización de ventas funcionando en la práctica.
-        </p>
       </Section>
 
       <Section
@@ -395,18 +388,23 @@ export default function PropuestaFonopatipoPage() {
         title="Cómo se instala — el camino completo"
         subtitle="Cuatro etapas. El sistema se construye contigo, no solo “una web y nos vamos”."
       >
-        <div data-reveal className="fp-stages fp-stagger-group">
-          <div className="fp-stages-grid">
-            {STAGES.map((s, i) => (
-              <article key={s.n} className="fp-stage fp-stagger" style={staggerStyle(i, 80)}>
-                <span className="fp-stage-n">{s.n}</span>
-                <h3 className="fp-stage-title">{s.title}</h3>
-                <p className="fp-stage-time">{s.time}</p>
+        <ol data-reveal className="fp-timeline fp-stagger-group">
+          {STAGES.map((s, i) => (
+            <li key={s.n} className="fp-timeline-item fp-stagger" style={staggerStyle(i, 90)}>
+              <div className="fp-timeline-rail" aria-hidden>
+                <span className="fp-timeline-dot">{s.n}</span>
+                {i < STAGES.length - 1 ? <span className="fp-timeline-line" /> : null}
+              </div>
+              <div className="fp-timeline-card">
+                <div className="fp-timeline-meta">
+                  <h3 className="fp-stage-title">{s.title}</h3>
+                  <p className="fp-stage-time">{s.time}</p>
+                </div>
                 <p className="fp-card-text">{s.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
+              </div>
+            </li>
+          ))}
+        </ol>
       </Section>
 
       <Section
@@ -424,7 +422,9 @@ export default function PropuestaFonopatipoPage() {
                 type="button"
                 role="tab"
                 aria-selected={activePkg === p.id}
-                className={`fp-pkg-tab ${activePkg === p.id ? "fp-pkg-tab--active" : ""}`}
+                className={`fp-pkg-tab ${activePkg === p.id ? "fp-pkg-tab--active" : ""} ${
+                  p.featured ? "fp-pkg-tab--featured" : ""
+                }`}
                 onClick={() => setActivePkg(p.id)}
               >
                 <span className="fp-pkg-tab-badge">{p.badge}</span>
@@ -434,11 +434,15 @@ export default function PropuestaFonopatipoPage() {
             ))}
           </div>
 
-          <article className={`fp-card fp-pkg-panel ${pkg.featured ? "fp-card--featured" : ""}`}>
+          <article
+            className={`fp-card fp-pkg-panel ${pkg.featured ? "fp-card--featured fp-pkg-panel--hero" : "fp-pkg-panel--quiet"}`}
+          >
+            {pkg.featured ? <span className="fp-pkg-ribbon">Recomendado</span> : null}
             <p className="fp-card-label">{pkg.label}</p>
             <p className="fp-price">{formatCOP(pkg.price)}</p>
             <p className="fp-price-alt">{pkg.id === "p2" ? "Instalación" : "Infraestructura técnica"}</p>
             <p className="fp-pkg-pitch">{pkg.pitch}</p>
+            <p className="fp-reconsumo-chip">{pkg.reconsumo}</p>
             {pkg.blocks.map((block) => (
               <div key={block.title} className="fp-pkg-block">
                 <p className="fp-pkg-block-title">{block.title}</p>
@@ -449,15 +453,12 @@ export default function PropuestaFonopatipoPage() {
                 </ul>
               </div>
             ))}
-            <p className="fp-price-alt" style={{ marginTop: "1.1rem" }}>
-              {pkg.reconsumo}
-            </p>
             <p className="fp-pkg-note">{pkg.note}</p>
             <a
               href={waUrl(pkg.msg)}
               target="_blank"
               rel="noopener noreferrer"
-              className="fp-btn fp-btn--solid"
+              className={`fp-btn ${pkg.featured ? "fp-btn--solid" : "fp-btn--ghost"}`}
               style={{ marginTop: "1.25rem", width: "100%" }}
             >
               {pkg.cta}
