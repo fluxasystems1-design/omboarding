@@ -102,6 +102,11 @@ const landings = [
     description: "Arquitectura digital · Paquete Completo $1,797 + Sanctuary $897 · Partnersflux",
   },
   {
+    name: "FonoPatipo — Patricia Porras",
+    path: "/propuesta-fonopatipo",
+    description: "Página + checkout + cursos · desde $3.499.000 COP · Sistema completo $4.999.000 · Partnersflux",
+  },
+  {
     name: "Jean",
     path: "/jean",
     description: "Dos empresas, un ecosistema digital en 90 días",
