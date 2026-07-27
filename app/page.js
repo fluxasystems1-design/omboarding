@@ -107,6 +107,11 @@ const landings = [
     description: "Página + checkout + cursos · desde $3.499.000 COP · Sistema completo $4.999.000 · Partnersflux",
   },
   {
+    name: "Smash TC — Método PDP Combat™",
+    path: "/propuesta-smash-tc",
+    description: "SMASH DIGITAL $957 y SMASH PRO $1,697 · @smashbox_tc · FitCo + automatización · Fluxa Method",
+  },
+  {
     name: "Jean",
     path: "/jean",
     description: "Dos empresas, un ecosistema digital en 90 días",

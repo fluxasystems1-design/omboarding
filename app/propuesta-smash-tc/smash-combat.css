@@ -1,0 +1,810 @@
+/* Smash TC — gris claro + blanco / negro */
+.smash-tc-root {
+  --smash-bg: #f2f2f2;
+  --smash-bg-alt: #e8e8e8;
+  --smash-bg-soft: #dedede;
+  --smash-surface: #ffffff;
+  --smash-card: #ffffff;
+  --smash-ink: #111111;
+  --smash-ink-soft: #2a2a2a;
+  --smash-accent: #111111;
+  --smash-accent-dark: #000000;
+  --smash-accent-soft: rgba(17, 17, 17, 0.08);
+  --smash-accent-muted: rgba(17, 17, 17, 0.05);
+  --smash-text: #3a3a3a;
+  --smash-heading: #111111;
+  --smash-muted: #6b6b6b;
+  --smash-muted-light: #9a9a9a;
+  --smash-border: rgba(17, 17, 17, 0.1);
+  --smash-border-accent: rgba(17, 17, 17, 0.28);
+  --smash-glow: rgba(0, 0, 0, 0.08);
+  --smash-purple: var(--smash-ink);
+  --smash-purple-dark: var(--smash-ink-soft);
+  --smash-purple-deep: #000000;
+  --smash-gold: var(--smash-ink);
+  --smash-gold-dark: var(--smash-ink-soft);
+  --smash-gold-deep: #000000;
+  background-color: var(--smash-bg);
+  color: var(--smash-text);
+}
+
+.smash-tc-root .smash-page {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  background-color: var(--smash-bg);
+  color: var(--smash-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* —— Hero mesh —— */
+.smash-tc-root .smash-hero-mesh {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.smash-tc-root .smash-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.smash-tc-root .smash-hero-bg-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.smash-tc-root .smash-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.58) 0%,
+    rgba(0, 0, 0, 0.32) 48%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+}
+
+.smash-tc-root .smash-hero-mesh::before {
+  content: none;
+}
+
+.smash-tc-root .smash-hero-copy {
+  padding-top: 1.5rem;
+  min-height: min(58vh, 32rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.smash-tc-root .smash-eyebrow--on-video {
+  color: #ffffff !important;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+.smash-tc-root .smash-hero-copy .smash-eyebrow,
+.smash-tc-root .smash-hero-copy .smash-hero-title,
+.smash-tc-root .smash-hero-copy .smash-lead {
+  color: #ffffff;
+}
+
+.smash-tc-root .smash-lead--on-video {
+  margin-top: 1.1rem;
+  max-width: 22rem;
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff !important;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
+.smash-tc-root .smash-pill--on-video {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.smash-tc-root .smash-pill--on-video:hover {
+  border-color: rgba(255, 255, 255, 0.65);
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes smashMeshDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-2%, 1.5%) scale(1.03);
+  }
+}
+
+@keyframes smashLogoIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.smash-tc-root .smash-hero-logo {
+  animation: smashLogoIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.smash-tc-root .smash-hero-band {
+  background: #111111;
+  border: none;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.smash-tc-root .smash-hero-band-handle {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* —— Progress & nav —— */
+.smash-tc-root .smash-progress-track {
+  background: var(--smash-accent-muted);
+}
+
+.smash-tc-root .smash-progress-bar {
+  background: var(--smash-accent);
+  transition: width 0.15s ease-out;
+}
+
+.smash-tc-root .smash-nav {
+  border-bottom: 1px solid var(--smash-border);
+  background: rgba(242, 242, 242, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.smash-tc-root .smash-nav-brand {
+  color: var(--smash-muted);
+}
+
+.smash-tc-root .smash-nav-link {
+  border: 1px solid var(--smash-border);
+  background: var(--smash-bg-alt);
+  color: var(--smash-muted);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smash-tc-root .smash-nav-link:hover {
+  border-color: var(--smash-border-accent);
+  color: var(--smash-heading);
+}
+
+.smash-tc-root .smash-nav-link--active {
+  border-color: var(--smash-border-accent);
+  background: var(--smash-accent-soft);
+  color: var(--smash-heading);
+  box-shadow: 0 0 18px var(--smash-glow);
+}
+
+/* —— Typography —— */
+.smash-tc-root .smash-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--smash-accent-dark);
+}
+
+.smash-tc-root .smash-heading {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--smash-heading);
+}
+
+.smash-tc-root .smash-lead {
+  margin-top: 1rem;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--smash-muted);
+}
+
+@media (min-width: 640px) {
+  .smash-tc-root .smash-lead {
+    font-size: 16px;
+  }
+}
+
+.smash-tc-root .smash-hero-title {
+  margin-top: 1.5rem;
+  max-width: 48rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--smash-heading);
+}
+
+@media (min-width: 640px) {
+  .smash-tc-root .smash-hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .smash-tc-root .smash-hero-title {
+    font-size: 3.25rem;
+  }
+}
+
+.smash-tc-root .smash-hero-title.smash-hero-title--on-video {
+  margin-top: 1rem;
+  max-width: 12ch;
+  font-size: clamp(2.85rem, 10vw, 5.5rem);
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 640px) {
+  .smash-tc-root .smash-hero-title.smash-hero-title--on-video {
+    font-size: clamp(3.5rem, 8vw, 5.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .smash-tc-root .smash-hero-title.smash-hero-title--on-video {
+    font-size: 5.5rem;
+  }
+}
+
+.smash-tc-root .smash-pill {
+  border: 1px solid var(--smash-border-accent);
+  background: var(--smash-accent-muted);
+  color: var(--smash-heading);
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.smash-tc-root .smash-pill:hover {
+  border-color: var(--smash-accent);
+  background: var(--smash-accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--smash-glow);
+}
+
+/* —— Cards —— */
+.smash-tc-root .smash-card {
+  background: var(--smash-card);
+  border: 1px solid var(--smash-border);
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.smash-tc-root .smash-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--smash-glow);
+  border-color: var(--smash-border-accent);
+}
+
+.smash-tc-root .smash-card--featured {
+  border-color: var(--smash-border-accent);
+  box-shadow: 0 4px 24px var(--smash-glow);
+}
+
+.smash-tc-root .smash-card-text {
+  color: var(--smash-text);
+}
+
+.smash-tc-root .smash-muted {
+  color: var(--smash-muted);
+}
+
+.smash-tc-root .smash-accent-text {
+  color: var(--smash-accent-dark);
+}
+
+.smash-tc-root .smash-price {
+  color: var(--smash-accent-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.smash-tc-root .smash-section-label {
+  color: var(--smash-heading);
+}
+
+.smash-tc-root .smash-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--smash-purple);
+  box-shadow: 0 0 0 3px var(--smash-accent-soft);
+  vertical-align: middle;
+}
+
+.smash-tc-root .smash-badge {
+  border: 1px solid var(--smash-border-accent);
+  background: var(--smash-accent-soft);
+  color: var(--smash-accent-dark);
+}
+
+.smash-tc-root .smash-badge--pulse {
+  animation: smashBadgePulse 3s ease-in-out infinite;
+}
+
+@keyframes smashBadgePulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(17, 17, 17, 0);
+  }
+  50% {
+    opacity: 0.88;
+    box-shadow: 0 0 12px rgba(17, 17, 17, 0.35);
+  }
+}
+
+/* —— Table —— */
+.smash-tc-root .smash-table-wrap {
+  border: 1px solid var(--smash-border);
+  background: var(--smash-bg-alt);
+}
+
+.smash-tc-root .smash-table-head {
+  border-bottom: 1px solid var(--smash-border);
+  color: var(--smash-muted);
+}
+
+.smash-tc-root .smash-table-row {
+  border-bottom: 1px solid var(--smash-border);
+}
+
+.smash-tc-root .smash-table-after {
+  color: var(--smash-accent-dark);
+  font-weight: 500;
+}
+
+/* —— Hub & compare table —— */
+.smash-tc-root .smash-hub-card {
+  border-color: var(--smash-border-accent);
+  background: linear-gradient(145deg, #ffffff 0%, var(--smash-bg-alt) 100%);
+}
+
+.smash-tc-root .smash-compare-wrap {
+  border: 1px solid var(--smash-border);
+  background: var(--smash-bg);
+}
+
+.smash-tc-root .smash-compare-head {
+  border-bottom: 1px solid var(--smash-border);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--smash-muted);
+}
+
+.smash-tc-root .smash-compare-price {
+  color: var(--smash-accent-dark);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.smash-tc-root .smash-compare-row {
+  border-bottom: 1px solid var(--smash-border);
+}
+
+.smash-tc-root .smash-compare-row:last-child {
+  border-bottom: none;
+}
+
+.smash-tc-root .smash-compare-check {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: var(--smash-accent-soft);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--smash-purple-deep);
+  box-shadow: inset 0 0 0 1px var(--smash-border-accent);
+}
+
+.smash-tc-root .smash-compare-x {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #b0b0b0;
+}
+
+.smash-tc-root .smash-compare-text {
+  display: block;
+  max-width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--smash-muted);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .smash-tc-root .smash-compare-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 639px) {
+  .smash-tc-root .smash-compare-check {
+    height: 1.75rem;
+    width: 1.75rem;
+    font-size: 0.8rem;
+  }
+
+  .smash-tc-root .smash-compare-head {
+    letter-spacing: 0.08em;
+  }
+}
+
+.smash-tc-root .smash-compare-text--pro {
+  color: var(--smash-accent-dark);
+}
+
+.smash-tc-root .smash-table-after-cell {
+  opacity: 0;
+  transform: translateX(8px);
+  transition:
+    opacity 0.45s ease var(--after-delay, 0ms),
+    transform 0.45s ease var(--after-delay, 0ms);
+}
+
+.smash-tc-root .smash-stagger-group.is-visible .smash-table-after-cell {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* —— Buttons —— */
+.smash-tc-root .smash-payment-box {
+  border: 1px solid var(--smash-border);
+  background: var(--smash-bg-soft);
+}
+
+.smash-tc-root .smash-btn-outline {
+  border: 1px solid var(--smash-border-accent);
+  color: var(--smash-heading);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.smash-tc-root .smash-btn-outline:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 22px var(--smash-glow);
+  border-color: var(--smash-accent);
+  background: var(--smash-accent-muted);
+}
+
+.smash-tc-root .smash-btn-solid {
+  background: var(--smash-accent);
+  color: #ffffff;
+  font-weight: 700;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.smash-tc-root .smash-btn-solid:hover {
+  transform: scale(1.02);
+  background: var(--smash-accent-dark);
+  box-shadow: 0 8px 24px var(--smash-glow);
+}
+
+.smash-tc-root .smash-callout {
+  border: 1px solid var(--smash-border-accent);
+  background: var(--smash-accent-soft);
+  color: var(--smash-heading);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.smash-tc-root .smash-callout:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--smash-glow);
+}
+
+/* —— Timeline —— */
+.smash-tc-root .smash-timeline-dot {
+  border: 1px solid var(--smash-border-accent);
+  background: var(--smash-bg);
+  color: var(--smash-accent-dark);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.smash-tc-root .smash-timeline-phase:hover .smash-timeline-dot {
+  transform: scale(1.08);
+  box-shadow: 0 0 14px var(--smash-glow);
+}
+
+.smash-tc-root .smash-timeline-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  background: linear-gradient(180deg, #111111 0%, rgba(17, 17, 17, 0.08) 100%);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.smash-tc-root .smash-timeline-group.is-visible .smash-timeline-line {
+  transform: scaleY(1);
+}
+
+.smash-tc-root .smash-timeline-group.is-visible .smash-stagger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* —— Reveal & stagger —— */
+.smash-tc-root .smash-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.smash-tc-root .smash-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.smash-tc-root .smash-reveal-header {
+  transform: translateY(14px);
+}
+
+.smash-tc-root .smash-stagger {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms);
+}
+
+.smash-tc-root .smash-stagger-group.is-visible .smash-stagger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.smash-tc-root .smash-section-alt {
+  background: linear-gradient(180deg, #f7f7f7 0%, var(--smash-bg-alt) 55%, var(--smash-bg-soft) 100%);
+}
+
+.smash-tc-root .smash-price-original {
+  color: var(--smash-muted-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: line-through;
+  text-decoration-color: rgba(102, 102, 102, 0.65);
+}
+
+.smash-tc-root .smash-discount-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--smash-border-accent);
+  border-radius: 9999px;
+  background: var(--smash-accent-soft);
+  padding: 0.125rem 0.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--smash-accent-dark);
+}
+
+.smash-tc-root .smash-compare-price-col .smash-price-original {
+  display: block;
+  font-size: 10px;
+}
+
+/* —— Plan picker (cierre) —— */
+.smash-tc-root .smash-plan-pick {
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid var(--smash-border);
+  background: var(--smash-surface);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.smash-tc-root .smash-plan-pick:hover {
+  border-color: var(--smash-border-accent);
+  transform: translateY(-1px);
+}
+
+.smash-tc-root .smash-plan-pick--selected {
+  border-color: var(--smash-border-accent);
+  box-shadow: 0 0 0 1px var(--smash-border-accent), 0 8px 24px var(--smash-glow);
+  background: linear-gradient(160deg, #ffffff 0%, var(--smash-bg-alt) 100%);
+}
+
+/* —— Floating CTA —— */
+.smash-tc-root .smash-floating-cta {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.25rem;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--smash-accent);
+  box-shadow: 0 8px 28px var(--smash-glow);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smash-tc-root .smash-floating-cta:hover {
+  transform: translateY(-2px);
+  background: var(--smash-accent-dark);
+  box-shadow: 0 12px 32px var(--smash-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smash-tc-root .smash-hero-mesh::before,
+  .smash-tc-root .smash-hero-logo,
+  .smash-tc-root .smash-badge--pulse {
+    animation: none;
+  }
+
+  .smash-tc-root .smash-reveal,
+  .smash-tc-root .smash-stagger,
+  .smash-tc-root .smash-table-after-cell {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .smash-tc-root .smash-timeline-line {
+    transform: scaleY(1);
+    transition: none;
+  }
+
+  .smash-tc-root .smash-card:hover,
+  .smash-tc-root .smash-btn-outline:hover,
+  .smash-tc-root .smash-btn-solid:hover,
+  .smash-tc-root .smash-pill:hover {
+    transform: none;
+  }
+
+  .smash-tc-root .smash-plan-pick:hover {
+    transform: none;
+  }
+
+  .smash-tc-root .smash-floating-cta:hover {
+    transform: none;
+  }
+
+  .smash-tc-root .smash-glove {
+    animation: none !important;
+  }
+}
+
+/* —— Guantes sticker —— */
+.smash-tc-root .smash-glove {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+  line-height: 0;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+  animation: smashGloveFloat 5.5s ease-in-out infinite;
+}
+
+.smash-tc-root .smash-glove-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.smash-tc-root .smash-glove--hero-left,
+.smash-tc-root .smash-glove--hero-right {
+  display: none;
+}
+
+.smash-tc-root .smash-glove--donde {
+  top: -1.5rem;
+  right: -0.75rem;
+  width: clamp(3.75rem, 11vw, 5.5rem);
+  transform: rotate(14deg);
+  opacity: 0.7;
+  animation-delay: -1s;
+}
+
+.smash-tc-root .smash-glove--planes {
+  top: -1.75rem;
+  left: 50%;
+  width: clamp(4rem, 12vw, 6rem);
+  transform: translateX(-50%) rotate(-8deg);
+  opacity: 0.75;
+  z-index: 5;
+  animation-delay: -3s;
+}
+
+.smash-tc-root .smash-glove--cierre-left {
+  bottom: 1rem;
+  left: -0.5rem;
+  width: clamp(4rem, 13vw, 6.5rem);
+  transform: rotate(-24deg);
+  opacity: 0.55;
+  animation-delay: -1.5s;
+}
+
+.smash-tc-root .smash-glove--cierre-right {
+  top: 1rem;
+  right: -0.5rem;
+  width: clamp(4.25rem, 14vw, 7rem);
+  transform: rotate(18deg) scaleX(-1);
+  opacity: 0.55;
+  animation-delay: -3.8s;
+}
+
+@keyframes smashGloveFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@media (max-width: 639px) {
+  .smash-tc-root .smash-glove--donde {
+    top: -0.75rem;
+    right: 0.25rem;
+    width: 3.5rem;
+    opacity: 0.65;
+  }
+
+  .smash-tc-root .smash-glove--planes {
+    display: none;
+  }
+
+  .smash-tc-root .smash-glove--cierre-left,
+  .smash-tc-root .smash-glove--cierre-right {
+    opacity: 0.4;
+    width: 3.75rem;
+  }
+}
