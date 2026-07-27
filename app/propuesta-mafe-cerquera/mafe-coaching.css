@@ -1,0 +1,849 @@
+/* Mafe Cerquera — nutrición funcional · sage / stone */
+.mafe-root {
+  --mafe-bg: #f3f5f1;
+  --mafe-bg-alt: #e8ece4;
+  --mafe-bg-soft: #dde3d8;
+  --mafe-surface: #ffffff;
+  --mafe-card: #ffffff;
+  --mafe-ink: #1c2b22;
+  --mafe-ink-soft: #2f4538;
+  --mafe-accent: #3f6b52;
+  --mafe-accent-dark: #2a4d3a;
+  --mafe-accent-soft: rgba(63, 107, 82, 0.12);
+  --mafe-accent-muted: rgba(63, 107, 82, 0.06);
+  --mafe-text: #3d4a42;
+  --mafe-heading: #1c2b22;
+  --mafe-muted: #66756c;
+  --mafe-muted-light: #93a098;
+  --mafe-border: rgba(28, 43, 34, 0.1);
+  --mafe-border-accent: rgba(63, 107, 82, 0.35);
+  --mafe-glow: rgba(42, 77, 58, 0.14);
+  --mafe-purple: var(--mafe-accent);
+  --mafe-purple-dark: var(--mafe-accent-dark);
+  --mafe-purple-deep: var(--mafe-accent-dark);
+  --mafe-gold: var(--mafe-accent);
+  --mafe-gold-dark: var(--mafe-accent-dark);
+  --mafe-gold-deep: var(--mafe-accent-dark);
+  background-color: var(--mafe-bg);
+  color: var(--mafe-text);
+}
+
+.mafe-root .mafe-page {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  background-color: var(--mafe-bg);
+  color: var(--mafe-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* —— Hero mesh —— */
+.mafe-root .mafe-hero-mesh {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.mafe-root .mafe-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mafe-root .mafe-hero-bg-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  animation: mafeMeshDrift 28s ease-in-out infinite alternate;
+}
+
+.mafe-root .mafe-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(18, 32, 24, 0.72) 0%,
+    rgba(28, 43, 34, 0.48) 45%,
+    rgba(42, 77, 58, 0.28) 100%
+  );
+}
+
+.mafe-root .mafe-hero-mesh::before {
+  content: none;
+}
+
+.mafe-root .mafe-hero-copy {
+  padding-top: 1.5rem;
+  min-height: min(58vh, 32rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mafe-root .mafe-eyebrow--on-video {
+  font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+.mafe-root .mafe-hero-copy .mafe-eyebrow,
+.mafe-root .mafe-hero-copy .mafe-hero-brand,
+.mafe-root .mafe-hero-copy .mafe-hero-title,
+.mafe-root .mafe-hero-copy .mafe-lead {
+  color: #ffffff;
+}
+
+.mafe-root .mafe-lead--on-video {
+  margin-top: 1.1rem;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2.3vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: #ffffff !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+
+.mafe-root .mafe-pill.mafe-pill--on-video {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff !important;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.mafe-root .mafe-pill.mafe-pill--on-video:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.58);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes mafeMeshDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-2%, 1.5%) scale(1.03);
+  }
+}
+
+@keyframes mafeLogoIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.mafe-root .mafe-hero-logo {
+  animation: mafeLogoIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.mafe-root .mafe-hero-band {
+  background: var(--mafe-accent-dark);
+  border: none;
+  border-top: 1px solid var(--mafe-ink);
+  border-bottom: 1px solid var(--mafe-ink);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.mafe-root .mafe-hero-band-handle {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* —— Progress & nav —— */
+.mafe-root .mafe-progress-track {
+  background: var(--mafe-accent-muted);
+}
+
+.mafe-root .mafe-progress-bar {
+  background: var(--mafe-accent);
+  transition: width 0.15s ease-out;
+}
+
+.mafe-root .mafe-nav {
+  border-bottom: 1px solid var(--mafe-border);
+  background: rgba(243, 245, 241, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.mafe-root .mafe-nav-brand {
+  color: var(--mafe-muted);
+}
+
+.mafe-root .mafe-nav-link {
+  border: 1px solid var(--mafe-border);
+  background: var(--mafe-bg-alt);
+  color: var(--mafe-muted);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mafe-root .mafe-nav-link:hover {
+  border-color: var(--mafe-border-accent);
+  color: var(--mafe-heading);
+}
+
+.mafe-root .mafe-nav-link--active {
+  border-color: var(--mafe-border-accent);
+  background: var(--mafe-accent-soft);
+  color: var(--mafe-heading);
+  box-shadow: 0 0 18px var(--mafe-glow);
+}
+
+/* —— Typography —— */
+.mafe-root .mafe-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--mafe-accent-dark);
+}
+
+.mafe-root .mafe-heading {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--mafe-heading);
+}
+
+.mafe-root .mafe-lead {
+  margin-top: 1rem;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--mafe-muted);
+}
+
+@media (min-width: 640px) {
+  .mafe-root .mafe-lead {
+    font-size: 16px;
+  }
+}
+
+.mafe-root .mafe-hero-title {
+  margin-top: 1.5rem;
+  max-width: 48rem;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--mafe-heading);
+}
+
+@media (min-width: 640px) {
+  .mafe-root .mafe-hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mafe-root .mafe-hero-title {
+    font-size: 3.25rem;
+  }
+}
+
+.mafe-root .mafe-hero-brand {
+  margin-top: 0.75rem;
+  max-width: 18ch;
+  font-family: var(--mafe-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 8vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.55);
+}
+
+.mafe-root .mafe-hero-title.mafe-hero-title--on-video {
+  margin-top: 1.15rem;
+  max-width: 22rem;
+  font-size: clamp(1.35rem, 3.6vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: #ffffff;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
+}
+
+.mafe-root .mafe-asset-check {
+  display: inline-flex;
+  height: 1.25rem;
+  width: 1.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--mafe-accent-soft);
+  color: var(--mafe-accent-dark);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.mafe-root .mafe-ficha-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .mafe-root .mafe-ficha-grid {
+    grid-template-columns: 10rem 1fr;
+    gap: 0.5rem 1.25rem;
+  }
+}
+
+.mafe-root .mafe-ficha-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mafe-muted);
+}
+
+.mafe-root .mafe-section-alt {
+  background: linear-gradient(180deg, #f7f8f5 0%, var(--mafe-bg-alt) 55%, var(--mafe-bg-soft) 100%);
+}
+
+.mafe-root .mafe-pill {
+  border: 1px solid var(--mafe-border-accent);
+  background: var(--mafe-accent-muted);
+  color: var(--mafe-heading);
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mafe-root .mafe-pill:hover {
+  border-color: var(--mafe-accent);
+  background: var(--mafe-accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px var(--mafe-glow);
+}
+
+/* —— Cards —— */
+.mafe-root .mafe-card {
+  background: var(--mafe-card);
+  border: 1px solid var(--mafe-border);
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.mafe-root .mafe-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px var(--mafe-glow);
+  border-color: var(--mafe-border-accent);
+}
+
+.mafe-root .mafe-card--featured {
+  border-color: var(--mafe-border-accent);
+  box-shadow: 0 4px 24px var(--mafe-glow);
+}
+
+.mafe-root .mafe-card-text {
+  color: var(--mafe-text);
+}
+
+.mafe-root .mafe-muted {
+  color: var(--mafe-muted);
+}
+
+.mafe-root .mafe-accent-text {
+  color: var(--mafe-accent-dark);
+}
+
+.mafe-root .mafe-price {
+  color: var(--mafe-accent-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.mafe-root .mafe-section-label {
+  color: var(--mafe-heading);
+}
+
+.mafe-root .mafe-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--mafe-purple);
+  box-shadow: 0 0 0 3px var(--mafe-accent-soft);
+  vertical-align: middle;
+}
+
+.mafe-root .mafe-badge {
+  border: 1px solid var(--mafe-border-accent);
+  background: var(--mafe-accent-soft);
+  color: var(--mafe-accent-dark);
+}
+
+.mafe-root .mafe-badge--pulse {
+  animation: mafeBadgePulse 3s ease-in-out infinite;
+}
+
+@keyframes mafeBadgePulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(63, 107, 82, 0);
+  }
+  50% {
+    opacity: 0.88;
+    box-shadow: 0 0 12px rgba(63, 107, 82, 0.35);
+  }
+}
+
+/* —— Table —— */
+.mafe-root .mafe-table-wrap {
+  border: 1px solid var(--mafe-border);
+  background: var(--mafe-bg-alt);
+}
+
+.mafe-root .mafe-table-head {
+  border-bottom: 1px solid var(--mafe-border);
+  color: var(--mafe-muted);
+}
+
+.mafe-root .mafe-table-row {
+  border-bottom: 1px solid var(--mafe-border);
+}
+
+.mafe-root .mafe-table-after {
+  color: var(--mafe-accent-dark);
+  font-weight: 500;
+}
+
+/* —— Hub & compare table —— */
+.mafe-root .mafe-hub-card {
+  border-color: var(--mafe-border-accent);
+  background: linear-gradient(145deg, #ffffff 0%, var(--mafe-bg-alt) 100%);
+}
+
+.mafe-root .mafe-compare-wrap {
+  border: 1px solid var(--mafe-border);
+  background: var(--mafe-bg);
+}
+
+.mafe-root .mafe-compare-head {
+  border-bottom: 1px solid var(--mafe-border);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mafe-muted);
+}
+
+.mafe-root .mafe-compare-price {
+  color: var(--mafe-accent-dark);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.mafe-root .mafe-compare-row {
+  border-bottom: 1px solid var(--mafe-border);
+}
+
+.mafe-root .mafe-compare-row:last-child {
+  border-bottom: none;
+}
+
+.mafe-root .mafe-compare-check {
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: var(--mafe-accent-soft);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--mafe-purple-deep);
+  box-shadow: inset 0 0 0 1px var(--mafe-border-accent);
+}
+
+.mafe-root .mafe-compare-x {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #b0b0b0;
+}
+
+.mafe-root .mafe-compare-text {
+  display: block;
+  max-width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--mafe-muted);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (min-width: 640px) {
+  .mafe-root .mafe-compare-text {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 639px) {
+  .mafe-root .mafe-compare-check {
+    height: 1.75rem;
+    width: 1.75rem;
+    font-size: 0.8rem;
+  }
+
+  .mafe-root .mafe-compare-head {
+    letter-spacing: 0.08em;
+  }
+}
+
+.mafe-root .mafe-compare-text--pro {
+  color: var(--mafe-accent-dark);
+}
+
+.mafe-root .mafe-table-after-cell {
+  opacity: 0;
+  transform: translateX(8px);
+  transition:
+    opacity 0.45s ease var(--after-delay, 0ms),
+    transform 0.45s ease var(--after-delay, 0ms);
+}
+
+.mafe-root .mafe-stagger-group.is-visible .mafe-table-after-cell {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* —— Buttons —— */
+.mafe-root .mafe-payment-box {
+  border: 1px solid var(--mafe-border);
+  background: var(--mafe-bg-soft);
+}
+
+.mafe-root .mafe-btn-outline {
+  border: 1px solid var(--mafe-border-accent);
+  color: var(--mafe-heading);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.mafe-root .mafe-btn-outline:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 22px var(--mafe-glow);
+  border-color: var(--mafe-accent);
+  background: var(--mafe-accent-muted);
+}
+
+.mafe-root .mafe-btn-solid {
+  background: var(--mafe-accent);
+  color: #ffffff;
+  font-weight: 700;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mafe-root .mafe-btn-solid:hover {
+  transform: scale(1.02);
+  background: var(--mafe-accent-dark);
+  box-shadow: 0 8px 24px var(--mafe-glow);
+}
+
+.mafe-root .mafe-callout {
+  border: 1px solid var(--mafe-border-accent);
+  background: var(--mafe-accent-soft);
+  color: var(--mafe-heading);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mafe-root .mafe-callout:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px var(--mafe-glow);
+}
+
+/* —— Timeline —— */
+.mafe-root .mafe-timeline-dot {
+  border: 1px solid var(--mafe-border-accent);
+  background: var(--mafe-bg);
+  color: var(--mafe-accent-dark);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mafe-root .mafe-timeline-phase:hover .mafe-timeline-dot {
+  transform: scale(1.08);
+  box-shadow: 0 0 14px var(--mafe-glow);
+}
+
+.mafe-root .mafe-timeline-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  background: linear-gradient(180deg, var(--mafe-accent) 0%, rgba(63, 107, 82, 0.08) 100%);
+  transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mafe-root .mafe-timeline-group.is-visible .mafe-timeline-line {
+  transform: scaleY(1);
+}
+
+.mafe-root .mafe-timeline-group.is-visible .mafe-stagger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* —— Reveal & stagger —— */
+.mafe-root .mafe-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mafe-root .mafe-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mafe-root .mafe-reveal-header {
+  transform: translateY(14px);
+}
+
+.mafe-root .mafe-stagger {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms);
+}
+
+.mafe-root .mafe-stagger-group.is-visible .mafe-stagger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mafe-root .mafe-price-original {
+  color: var(--mafe-muted-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: line-through;
+  text-decoration-color: rgba(102, 102, 102, 0.65);
+}
+
+.mafe-root .mafe-discount-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--mafe-border-accent);
+  border-radius: 9999px;
+  background: var(--mafe-accent-soft);
+  padding: 0.125rem 0.5rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--mafe-accent-dark);
+}
+
+.mafe-root .mafe-compare-price-col .mafe-price-original {
+  display: block;
+  font-size: 10px;
+}
+
+/* —— Plan picker (cierre) —— */
+.mafe-root .mafe-plan-pick {
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid var(--mafe-border);
+  background: var(--mafe-surface);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mafe-root .mafe-plan-pick:hover {
+  border-color: var(--mafe-border-accent);
+  transform: translateY(-1px);
+}
+
+.mafe-root .mafe-plan-pick--selected {
+  border-color: var(--mafe-border-accent);
+  box-shadow: 0 0 0 1px var(--mafe-border-accent), 0 8px 24px var(--mafe-glow);
+  background: linear-gradient(160deg, #ffffff 0%, var(--mafe-bg-alt) 100%);
+}
+
+/* —— Floating CTA —— */
+.mafe-root .mafe-floating-cta {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.25rem;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--mafe-accent);
+  box-shadow: 0 8px 28px var(--mafe-glow);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mafe-root .mafe-floating-cta:hover {
+  transform: translateY(-2px);
+  background: var(--mafe-accent-dark);
+  box-shadow: 0 12px 32px var(--mafe-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mafe-root .mafe-hero-mesh::before,
+  .mafe-root .mafe-hero-logo,
+  .mafe-root .mafe-badge--pulse {
+    animation: none;
+  }
+
+  .mafe-root .mafe-reveal,
+  .mafe-root .mafe-stagger,
+  .mafe-root .mafe-table-after-cell {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .mafe-root .mafe-timeline-line {
+    transform: scaleY(1);
+    transition: none;
+  }
+
+  .mafe-root .mafe-card:hover,
+  .mafe-root .mafe-btn-outline:hover,
+  .mafe-root .mafe-btn-solid:hover,
+  .mafe-root .mafe-pill:hover {
+    transform: none;
+  }
+
+  .mafe-root .mafe-plan-pick:hover {
+    transform: none;
+  }
+
+  .mafe-root .mafe-floating-cta:hover {
+    transform: none;
+  }
+
+  .mafe-root .mafe-glove {
+    animation: none !important;
+  }
+}
+
+/* —— Guantes sticker —— */
+.mafe-root .mafe-glove {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+  line-height: 0;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+  animation: mafeFloat 5.5s ease-in-out infinite;
+}
+
+.mafe-root .mafe-glove-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.mafe-root .mafe-glove--hero-left,
+.mafe-root .mafe-glove--hero-right {
+  display: none;
+}
+
+.mafe-root .mafe-glove--donde {
+  top: -1.5rem;
+  right: -0.75rem;
+  width: clamp(3.75rem, 11vw, 5.5rem);
+  transform: rotate(14deg);
+  opacity: 0.7;
+  animation-delay: -1s;
+}
+
+.mafe-root .mafe-glove--planes {
+  top: -1.75rem;
+  left: 50%;
+  width: clamp(4rem, 12vw, 6rem);
+  transform: translateX(-50%) rotate(-8deg);
+  opacity: 0.75;
+  z-index: 5;
+  animation-delay: -3s;
+}
+
+.mafe-root .mafe-glove--cierre-left {
+  bottom: 1rem;
+  left: -0.5rem;
+  width: clamp(4rem, 13vw, 6.5rem);
+  transform: rotate(-24deg);
+  opacity: 0.55;
+  animation-delay: -1.5s;
+}
+
+.mafe-root .mafe-glove--cierre-right {
+  top: 1rem;
+  right: -0.5rem;
+  width: clamp(4.25rem, 14vw, 7rem);
+  transform: rotate(18deg) scaleX(-1);
+  opacity: 0.55;
+  animation-delay: -3.8s;
+}
+
+@keyframes mafeFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@media (max-width: 639px) {
+  .mafe-root .mafe-glove--donde {
+    top: -0.75rem;
+    right: 0.25rem;
+    width: 3.5rem;
+    opacity: 0.65;
+  }
+
+  .mafe-root .mafe-glove--planes {
+    display: none;
+  }
+
+  .mafe-root .mafe-glove--cierre-left,
+  .mafe-root .mafe-glove--cierre-right {
+    opacity: 0.4;
+    width: 3.75rem;
+  }
+}

@@ -112,6 +112,11 @@ const landings = [
     description: "SMASH DIGITAL $957 y SMASH PRO $1,697 · @smashbox_tc · FitCo + automatización · Fluxa Method",
   },
   {
+    name: "Mafe Cerquera — Método PDM Coaching",
+    path: "/propuesta-mafe-cerquera",
+    description: "PDM DIGITAL $947 y PRO $1,497 · @mafecerquerap.nutricion · membresía + checkout · Fluxa Method",
+  },
+  {
     name: "Jean",
     path: "/jean",
     description: "Dos empresas, un ecosistema digital en 90 días",
