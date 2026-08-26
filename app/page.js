@@ -117,6 +117,11 @@ const landings = [
     description: "PDM DIGITAL $947 y PRO $1,497 · @mafecerquerap.nutricion · membresía + checkout · Fluxa Method",
   },
   {
+    name: "Brief Mafe Cerquera",
+    path: "/propuesta-mafe-cerquera/brief",
+    description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
+  },
+  {
     name: "Jean",
     path: "/jean",
     description: "Dos empresas, un ecosistema digital en 90 días",
