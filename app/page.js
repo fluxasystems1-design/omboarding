@@ -118,8 +118,13 @@ const landings = [
   },
   {
     name: "Brief Mafe Cerquera",
-    path: "/propuesta-mafe-cerquera/brief",
+    path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
+  },
+  {
+    name: "Kickoff Mafe Cerquera — Nutrición",
+    path: "/kickoff-nutricion",
+    description: "Kickoff oficial MAFE DIGITAL $4.000.000 COP · Método PDM Nutrición · Partnersflux",
   },
   {
     name: "Jean",
