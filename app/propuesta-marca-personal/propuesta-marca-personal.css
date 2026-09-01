@@ -1,0 +1,265 @@
+/* Propuesta Mentoría PDM — extensiones sobre kickoff GAL'S */
+.gals-pdm-root .gals-pdm-hero-title {
+  font-size: clamp(2rem, 5.5vw, 3.35rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.gals-pdm-root .gals-pdm-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--gals-border-accent);
+  background: var(--gals-accent-soft);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gals-purple-dark);
+}
+
+.gals-pdm-root .gals-pdm-audience-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.gals-pdm-root .gals-pdm-audience-list::before {
+  content: "";
+  position: absolute;
+  left: 1.35rem;
+  top: 2.5rem;
+  bottom: 2.5rem;
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--gals-border-accent) 0,
+    var(--gals-border-accent) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.7;
+}
+
+.gals-pdm-root .gals-pdm-audience-item {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border: 1px solid var(--gals-border);
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 1rem;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gals-pdm-root .gals-pdm-audience-item:hover {
+  border-color: var(--gals-border-accent);
+  box-shadow: 0 8px 28px var(--gals-glow);
+}
+
+.gals-pdm-root .gals-pdm-audience-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--gals-border-accent);
+  background: var(--gals-accent-soft);
+  color: var(--gals-purple-dark);
+  z-index: 1;
+}
+
+.gals-pdm-root .gals-pdm-pillar-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--gals-purple);
+}
+
+.gals-pdm-root .gals-pdm-pillar-desc {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--gals-muted);
+}
+
+.gals-pdm-root .gals-pdm-includes-card {
+  border: 1px solid var(--gals-border-accent);
+  background: linear-gradient(160deg, #ffffff 0%, var(--gals-bg-alt) 100%);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+}
+
+.gals-pdm-root .gals-pdm-disclaimer {
+  border-left: 3px solid var(--gals-purple);
+  background: var(--gals-accent-muted);
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--gals-heading);
+}
+
+.gals-pdm-root .gals-pdm-transform-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .gals-pdm-root .gals-pdm-transform-grid {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+  }
+}
+
+.gals-pdm-root .gals-pdm-transform-arrow {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--gals-border-accent);
+  background: var(--gals-purple);
+  color: #fff;
+  font-weight: 700;
+  align-self: center;
+}
+
+@media (min-width: 1024px) {
+  .gals-pdm-root .gals-pdm-transform-arrow {
+    display: flex;
+  }
+}
+
+.gals-pdm-root .gals-pdm-before-card,
+.gals-pdm-root .gals-pdm-after-card {
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+}
+
+.gals-pdm-root .gals-pdm-before-card {
+  border: 1px solid var(--gals-border);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.gals-pdm-root .gals-pdm-after-card {
+  border: 1px solid var(--gals-border-accent);
+  background: linear-gradient(160deg, #ffffff 0%, rgba(141, 160, 198, 0.12) 100%);
+  box-shadow: 0 10px 32px var(--gals-glow);
+}
+
+.gals-pdm-root .gals-pdm-card-label {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.gals-pdm-root .gals-pdm-card-label--before {
+  background: var(--gals-bg-alt);
+  color: var(--gals-muted);
+  border: 1px solid var(--gals-border);
+}
+
+.gals-pdm-root .gals-pdm-card-label--after {
+  background: var(--gals-purple);
+  color: #fff;
+}
+
+.gals-pdm-root .gals-pdm-transform-item {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--gals-text);
+}
+
+.gals-pdm-root .gals-pdm-transform-item + .gals-pdm-transform-item {
+  margin-top: 0.85rem;
+}
+
+.gals-pdm-root .gals-pdm-transform-icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.gals-pdm-root .gals-pdm-transform-icon--before {
+  color: var(--gals-muted-light);
+}
+
+.gals-pdm-root .gals-pdm-transform-icon--after {
+  color: var(--gals-purple-dark);
+}
+
+.gals-pdm-root .gals-pdm-launch-badge {
+  display: inline-flex;
+  border-radius: 999px;
+  border: 1px solid var(--gals-border-accent);
+  background: var(--gals-accent-soft);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gals-purple-dark);
+}
+
+.gals-pdm-root .gals-pdm-investment-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .gals-pdm-root .gals-pdm-investment-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.gals-pdm-root .gals-pdm-benefit-item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--gals-muted);
+}
+
+.gals-pdm-root .gals-pdm-benefit-item + .gals-pdm-benefit-item {
+  margin-top: 0.85rem;
+}
+
+.gals-pdm-root .gals-pdm-benefit-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  background: var(--gals-accent-soft);
+  color: var(--gals-purple-dark);
+}
+
+.gals-pdm-root .gals-pdm-comparativa-wrap {
+  border-color: var(--gals-border-accent);
+  box-shadow: 0 14px 40px var(--gals-glow);
+}
+
+.gals-pdm-root .gals-pdm-highlight {
+  color: var(--gals-purple-dark);
+  font-weight: 600;
+}
