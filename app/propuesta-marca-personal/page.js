@@ -231,8 +231,14 @@ export default function PropuestaMarcaPersonalPage() {
     };
   }, [sectionIds]);
 
-  const ctaWa = waUrl(
-    "Hola Partnersflux. Soy Natalia Galvis. Revisé la propuesta PDM — Presencia Digital Magnética y Monetizable — y quiero avanzar con la Fase Magnética."
+  const ctaHero = waUrl(
+    "Hola Partnersflux. Soy Natalia Galvis. Revisé la propuesta completa PDM — Presencia Digital Magnética y Monetizable — y quiero conversar sobre ella."
+  );
+  const ctaMagnetica = waUrl(
+    "Hola Partnersflux. Soy Natalia Galvis. Quiero avanzar con la Fase Magnética de PDM ($297 USD)."
+  );
+  const ctaMonetizable = waUrl(
+    "Hola Partnersflux. Soy Natalia Galvis. Revisé la Fase Monetizable de PDM y quiero resolver dudas sobre la alianza."
   );
 
   return (
@@ -287,12 +293,12 @@ export default function PropuestaMarcaPersonalPage() {
                 ecosistema propio cuando estés lista para monetizarlo.
               </p>
               <a
-                href={ctaWa}
+                href={ctaHero}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="gals-btn-solid mt-8 inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
               >
-                Quiero avanzar con PDM →
+                Quiero conversar sobre PDM →
               </a>
             </div>
           </div>
@@ -404,11 +410,7 @@ export default function PropuestaMarcaPersonalPage() {
             <div className="gals-pdm-disclaimer">
               <strong>Dónde vive esto.</strong> Un perfil personal de Natalia que se complementa con @galstudio___, sin
               competir con él. GAL&apos;s sigue hablando de la marca, la comunidad y las clases; el perfil de Natalia
-              muestra el proceso detrás.{" "}
-              <em>
-                (Punto a confirmar: cuenta personal nueva y separada, o una capa más presente dentro del mismo
-                @galstudio___.)
-              </em>
+              muestra el proceso detrás — su camino, su identidad, sus decisiones como fundadora.
             </div>
 
             <div>
@@ -455,7 +457,7 @@ export default function PropuestaMarcaPersonalPage() {
                 <p className="gals-kickoff-price-hero gals-kickoff-display mt-2 font-semibold">$297 USD</p>
                 <p className="gals-muted mt-3 text-sm">Pago único o 2 cuotas de $160 USD.</p>
                 <a
-                  href={ctaWa}
+                  href={ctaMagnetica}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="gals-btn-solid mt-6 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
@@ -551,6 +553,17 @@ export default function PropuestaMarcaPersonalPage() {
                 </p>
               </article>
             </div>
+
+            <div className="text-center">
+              <a
+                href={ctaMonetizable}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gals-btn-solid inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
+              >
+                Quiero resolver dudas sobre la Fase Monetizable →
+              </a>
+            </div>
           </div>
         </SectionBlock>
 
@@ -600,14 +613,24 @@ export default function PropuestaMarcaPersonalPage() {
                 Tu método siempre es tuyo. El ecosistema que construimos lo sostenemos juntas, como socios reales del
                 resultado.
               </p>
-              <a
-                href={ctaWa}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gals-btn-solid mt-8 inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
-              >
-                Quiero avanzar con la Fase Magnética →
-              </a>
+              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+                <a
+                  href={ctaMagnetica}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gals-btn-solid inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
+                >
+                  Quiero la Fase Magnética →
+                </a>
+                <a
+                  href={ctaMonetizable}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gals-btn-outline inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
+                >
+                  Dudas sobre la Fase Monetizable →
+                </a>
+              </div>
               <p className="gals-muted mt-6 text-xs sm:text-sm">
                 Partnersflux × Natalia Galvis · PDM — Presencia Digital Magnética y Monetizable
               </p>
