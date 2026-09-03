@@ -17,9 +17,9 @@ const landings = [
     description: "Método PDP Wellness™ · GAL'S DIGITAL $947 y GAL'S PRO $1,497 · @galstudio___",
   },
   {
-    name: "Natalia Galvis — Mentoría PDM Marca Personal",
+    name: "Natalia Galvis — PDM Marca Personal",
     path: "/propuesta-marca-personal",
-    description: "Método PDM · Presencia digital monetizable · 10 sesiones · $297 USD · Partnersflux",
+    description: "PDM Magnética y Monetizable · Fase Magnética $297 · alianza 35/65 · Partnersflux",
   },
   {
     name: "ANAK — Barre by Anak",

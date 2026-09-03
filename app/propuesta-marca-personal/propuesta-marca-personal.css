@@ -263,3 +263,7 @@
   color: var(--gals-purple-dark);
   font-weight: 600;
 }
+
+.gals-pdm-root .gals-pdm-number-strong {
+  background: rgba(141, 160, 198, 0.08);
+}

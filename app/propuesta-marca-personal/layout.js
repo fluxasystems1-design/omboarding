@@ -16,9 +16,9 @@ const display = Cormorant_Garamond({
   variable: "--font-gals-display",
 });
 
-const title = "Propuesta | Mentoría PDM — Marca Personal · Partnersflux";
+const title = "PDM — Presencia Digital Magnética y Monetizable | Partnersflux × Natalia Galvis";
 const description =
-  "Método PDM — Aprende a construir tu propio sistema de presencia digital monetizable. 10 sesiones en vivo · $297 USD · Partnersflux.";
+  "Propuesta completa PDM: Fase Magnética $297 USD (10 sesiones) y Fase Monetizable con alianza de ecosistema. Partnersflux × Natalia Galvis.";
 
 export const metadata = {
   title,
