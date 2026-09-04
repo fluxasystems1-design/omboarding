@@ -22,6 +22,12 @@ const landings = [
     description: "PDM Magnética y Monetizable · Fase Magnética $297 · alianza 35/65 · Partnersflux",
   },
   {
+    name: "Aurora Shop — Atención Automatizada",
+    path: "/propuesta-aurora-shop",
+    description:
+      "Sistema de Atención Automatizada · 118K seguidores · Omnicanal $5.500.000 COP · Partnersflux",
+  },
+  {
     name: "ANAK — Barre by Anak",
     path: "/prototipoanak",
     description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",

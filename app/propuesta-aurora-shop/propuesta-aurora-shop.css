@@ -1,0 +1,726 @@
+.aurora-root {
+  --aurora-max: 72rem;
+  --aurora-ink: #111111;
+  --aurora-heading: #141414;
+  --aurora-text: #2c2826;
+  --aurora-muted: #7a716c;
+  --aurora-muted-light: #a39891;
+  --aurora-bg: #f7f1eb;
+  --aurora-bg-alt: #efe6de;
+  --aurora-card: rgba(255, 255, 255, 0.86);
+  --aurora-accent: #d5b8ad;
+  --aurora-accent-deep: #b89286;
+  --aurora-blush: #e8d4cc;
+  --aurora-border: rgba(20, 20, 20, 0.1);
+  --aurora-border-accent: rgba(184, 146, 134, 0.4);
+  --aurora-glow: rgba(184, 146, 134, 0.18);
+  --aurora-white: #fffcfa;
+  --aurora-bar: #d9b8ac;
+  color: var(--aurora-text);
+  font-family: var(--aurora-sans), system-ui, sans-serif;
+}
+
+.aurora-root .aurora-display {
+  font-family: var(--aurora-display), Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--aurora-heading);
+}
+
+.aurora-root .aurora-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  background: transparent;
+  overflow-x: hidden;
+}
+
+.aurora-root .aurora-decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  --aurora-parallax: 0px;
+  transform: translate3d(0, calc(var(--aurora-parallax) * -0.25), 0);
+  will-change: transform;
+  background: #f7f1eb;
+}
+
+/* Base crema boutique */
+.aurora-root .aurora-sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #faf6f2 0%, #f7f1eb 45%, #f3ebe4 100%);
+}
+
+/* Manchas dusty rose suaves (como la barra de marca) */
+.aurora-root .aurora-wash {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.aurora-root .aurora-wash--1 {
+  top: -8%;
+  left: -12%;
+  width: 55vw;
+  height: 45vh;
+  max-width: 640px;
+  background: radial-gradient(circle, rgba(217, 184, 172, 0.55) 0%, transparent 70%);
+  animation: auroraWashDrift 16s ease-in-out infinite alternate;
+}
+
+.aurora-root .aurora-wash--2 {
+  bottom: -10%;
+  right: -14%;
+  width: 50vw;
+  height: 48vh;
+  max-width: 580px;
+  background: radial-gradient(circle, rgba(232, 212, 204, 0.65) 0%, transparent 70%);
+  animation: auroraWashDrift 20s ease-in-out infinite alternate-reverse;
+}
+
+/* Textura pincel / acuarela (lado derecho, como su web) */
+.aurora-root .aurora-brush {
+  position: absolute;
+  top: 8%;
+  right: -5%;
+  width: min(48vw, 520px);
+  height: 70%;
+  opacity: 0.35;
+  background:
+    radial-gradient(ellipse 70% 40% at 60% 20%, rgba(213, 184, 173, 0.45), transparent 70%),
+    radial-gradient(ellipse 55% 50% at 40% 55%, rgba(239, 230, 222, 0.8), transparent 68%),
+    radial-gradient(ellipse 60% 35% at 70% 80%, rgba(184, 146, 134, 0.22), transparent 70%);
+  filter: blur(18px);
+  animation: auroraBrushShift 22s ease-in-out infinite alternate;
+  transform-origin: center right;
+}
+
+/* Firma de marca: polka dots negros */
+.aurora-root .aurora-dots {
+  position: absolute;
+  background-image: radial-gradient(circle, #111111 2px, transparent 2.2px);
+  background-size: 22px 22px;
+  opacity: 0.12;
+  animation: auroraDotsDrift 14s ease-in-out infinite alternate;
+}
+
+.aurora-root .aurora-dots--left {
+  top: 10%;
+  left: 1.5%;
+  width: min(26vw, 200px);
+  height: min(50vh, 360px);
+  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+}
+
+.aurora-root .aurora-dots--right {
+  bottom: 8%;
+  right: 2%;
+  width: min(18vw, 140px);
+  height: min(28vh, 200px);
+  opacity: 0.08;
+  background-size: 18px 18px;
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
+  mask-image: linear-gradient(0deg, #000 10%, transparent 90%);
+}
+
+/* Franja dusty rose fija (identidad header Aurora) */
+.aurora-root .aurora-rose-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #d9b8ac, #e8d4cc, #d5b8ad, #d9b8ac);
+  background-size: 200% 100%;
+  animation: auroraBarSlide 12s linear infinite;
+  opacity: 0.9;
+}
+
+.aurora-root .aurora-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+.aurora-root .aurora-content {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes auroraWashDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(4%, 3%) scale(1.08);
+  }
+}
+
+@keyframes auroraBrushShift {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.28;
+  }
+  100% {
+    transform: translate(-3%, 2%) scale(1.06) rotate(-1.5deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes auroraDotsDrift {
+  0% {
+    transform: translateY(0);
+    opacity: 0.09;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0.16;
+  }
+}
+
+@keyframes auroraBarSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* —— Reveals & UI motion —— */
+.aurora-root .aurora-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.aurora-root .aurora-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aurora-root [data-stagger] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--stagger, 0s);
+}
+
+.aurora-root [data-stagger].is-staggered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.aurora-root .aurora-badge--pulse {
+  animation: auroraBadgePulse 2.4s ease-in-out infinite;
+}
+
+.aurora-root .aurora-btn-glow {
+  animation: auroraBtnGlow 2.8s ease-in-out infinite;
+}
+
+.aurora-root .aurora-logo-wrap {
+  animation:
+    auroraLogoIn 1s cubic-bezier(0.22, 1, 0.36, 1) both,
+    auroraLogoFloat 5s ease-in-out 1s infinite;
+}
+
+@keyframes auroraBadgePulse {
+  0%,
+  100% {
+    box-shadow: 0 6px 18px rgba(184, 146, 134, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(184, 146, 134, 0.22);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes auroraBtnGlow {
+  0%,
+  100% {
+    box-shadow: 0 12px 32px rgba(15, 15, 15, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 14px 36px rgba(15, 15, 15, 0.28),
+      0 0 0 6px rgba(213, 184, 173, 0.18);
+  }
+}
+
+@keyframes auroraLogoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.aurora-root .aurora-reveal.is-visible .aurora-card,
+.aurora-root .aurora-reveal.is-visible .aurora-before-card,
+.aurora-root .aurora-reveal.is-visible .aurora-after-card,
+.aurora-root .aurora-reveal.is-visible .aurora-flow-step,
+.aurora-root .aurora-reveal.is-visible .aurora-main-card {
+  animation: auroraCardRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.aurora-root .aurora-reveal.is-visible .aurora-card:nth-child(1),
+.aurora-root .aurora-reveal.is-visible .aurora-flow-step:nth-child(1),
+.aurora-root .aurora-reveal.is-visible .aurora-before-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.aurora-root .aurora-reveal.is-visible .aurora-card:nth-child(2),
+.aurora-root .aurora-reveal.is-visible .aurora-flow-step:nth-child(2) {
+  animation-delay: 0.12s;
+}
+.aurora-root .aurora-reveal.is-visible .aurora-card:nth-child(3),
+.aurora-root .aurora-reveal.is-visible .aurora-flow-step:nth-child(3) {
+  animation-delay: 0.19s;
+}
+.aurora-root .aurora-reveal.is-visible .aurora-card:nth-child(4),
+.aurora-root .aurora-reveal.is-visible .aurora-flow-step:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+@keyframes auroraCardRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aurora-root .aurora-progress {
+  height: 2px;
+  background: transparent;
+}
+
+.aurora-root .aurora-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--aurora-blush), var(--aurora-accent), var(--aurora-accent-deep));
+  box-shadow: 0 0 12px rgba(213, 184, 173, 0.5);
+  transition: width 0.1s linear;
+}
+
+.aurora-root .aurora-nav {
+  position: relative;
+  backdrop-filter: blur(16px) saturate(1.1);
+  background: rgba(247, 241, 235, 0.88);
+  border-bottom: 1px solid var(--aurora-border);
+  transition: background 0.3s ease;
+}
+
+.aurora-root .aurora-nav::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: var(--aurora-bar);
+}
+
+.aurora-root .aurora-nav-link {
+  color: var(--aurora-muted);
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.aurora-root .aurora-nav-link:hover {
+  color: var(--aurora-heading);
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.aurora-root .aurora-nav-link--active {
+  color: var(--aurora-heading);
+  background: rgba(213, 184, 173, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(184, 146, 134, 0.25);
+}
+
+.aurora-root .aurora-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--aurora-accent-deep);
+}
+
+.aurora-root .aurora-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--aurora-muted);
+}
+
+.aurora-root .aurora-muted {
+  color: var(--aurora-muted);
+}
+
+.aurora-root .aurora-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--aurora-border-accent);
+  background: rgba(232, 212, 204, 0.4);
+  padding: 0.35rem 0.95rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--aurora-accent-deep);
+  box-shadow: 0 6px 18px rgba(184, 146, 134, 0.1);
+}
+
+.aurora-root .aurora-btn-solid {
+  background: var(--aurora-ink);
+  color: var(--aurora-white);
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 12px 32px rgba(15, 15, 15, 0.2);
+}
+
+.aurora-root .aurora-btn-solid:hover {
+  background: #2a2a2a;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 15, 15, 0.28);
+}
+
+.aurora-root .aurora-btn-outline {
+  border: 1px solid var(--aurora-ink);
+  color: var(--aurora-ink);
+  background: rgba(255, 252, 250, 0.45);
+  backdrop-filter: blur(6px);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease;
+}
+
+.aurora-root .aurora-btn-outline:hover {
+  background: var(--aurora-ink);
+  color: var(--aurora-white);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 15, 15, 0.18);
+}
+
+.aurora-root .aurora-card {
+  border: 1px solid var(--aurora-border);
+  background: var(--aurora-card);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(12px) saturate(1.05);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.aurora-root .aurora-card:hover {
+  border-color: var(--aurora-border-accent);
+  box-shadow: 0 18px 42px var(--aurora-glow);
+  transform: translateY(-4px);
+}
+
+.aurora-root .aurora-card--featured {
+  border-color: var(--aurora-border-accent);
+  background: linear-gradient(165deg, rgba(255, 252, 250, 0.95) 0%, rgba(232, 212, 204, 0.4) 100%);
+  box-shadow: 0 18px 44px var(--aurora-glow);
+  position: relative;
+}
+
+.aurora-root .aurora-card--featured::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(213, 184, 173, 0.45), transparent 40%, transparent 60%, rgba(184, 146, 134, 0.35));
+  opacity: 0.5;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 1px;
+  animation: auroraFeatureGlow 4.5s ease-in-out infinite alternate;
+}
+
+.aurora-root .aurora-card--featured::before {
+  content: "Recomendado";
+  position: absolute;
+  top: -0.7rem;
+  left: 1.25rem;
+  z-index: 1;
+  border-radius: 999px;
+  background: var(--aurora-ink);
+  color: var(--aurora-white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+}
+
+@keyframes auroraFeatureGlow {
+  from {
+    opacity: 0.35;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+.aurora-root .aurora-main-card {
+  border: 1px solid var(--aurora-border);
+  background: linear-gradient(160deg, rgba(255, 252, 250, 0.92), rgba(235, 228, 220, 0.5));
+  border-radius: 1.5rem;
+  box-shadow: 0 14px 44px rgba(22, 22, 22, 0.06);
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.aurora-root .aurora-main-card:hover {
+  box-shadow: 0 18px 48px rgba(184, 146, 134, 0.14);
+}
+
+.aurora-root .aurora-price-cop {
+  font-family: var(--aurora-display), Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--aurora-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+.aurora-root .aurora-price-usd {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--aurora-accent-deep);
+}
+
+.aurora-root .aurora-explain {
+  margin-top: 1.25rem;
+  border-left: 3px solid var(--aurora-accent);
+  background: rgba(232, 212, 204, 0.28);
+  border-radius: 0 0.9rem 0.9rem 0;
+  padding: 1rem 1.15rem;
+}
+
+.aurora-root .aurora-explain-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aurora-accent-deep);
+}
+
+.aurora-root .aurora-check {
+  color: var(--aurora-accent-deep);
+  font-weight: 700;
+}
+
+.aurora-root .aurora-x {
+  color: var(--aurora-muted-light);
+  font-weight: 700;
+}
+
+.aurora-root .aurora-flow-step {
+  position: relative;
+  text-align: center;
+}
+
+.aurora-root .aurora-flow-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: var(--aurora-ink);
+  color: var(--aurora-white);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 8px 20px rgba(15, 15, 15, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aurora-root .aurora-flow-step:hover .aurora-flow-num {
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(15, 15, 15, 0.25);
+}
+
+.aurora-root .aurora-before-card {
+  border: 1px solid var(--aurora-border);
+  background: rgba(255, 255, 255, 0.68);
+  border-radius: 1.25rem;
+  padding: 1.4rem;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aurora-root .aurora-before-card:hover {
+  transform: translateY(-2px);
+}
+
+.aurora-root .aurora-after-card {
+  border: 1px solid var(--aurora-border-accent);
+  background: linear-gradient(160deg, #fffcfa 0%, rgba(213, 184, 173, 0.2) 100%);
+  border-radius: 1.25rem;
+  padding: 1.4rem;
+  box-shadow: 0 10px 28px var(--aurora-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aurora-root .aurora-after-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px var(--aurora-glow);
+}
+
+.aurora-root .aurora-chip {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 0.28rem 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.aurora-root .aurora-chip--before {
+  background: var(--aurora-bg-alt);
+  color: var(--aurora-muted);
+  border: 1px solid var(--aurora-border);
+}
+
+.aurora-root .aurora-chip--after {
+  background: var(--aurora-ink);
+  color: var(--aurora-white);
+}
+
+.aurora-root .aurora-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1.75rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid var(--aurora-border);
+  box-shadow:
+    0 18px 40px rgba(15, 15, 15, 0.08),
+    0 0 0 1px rgba(213, 184, 173, 0.25);
+  overflow: hidden;
+}
+
+.aurora-root .aurora-logo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.65) 48%, transparent 62%);
+  transform: translateX(-120%);
+  animation: auroraLogoSheen 3.8s ease-in-out 1.2s infinite;
+}
+
+@keyframes auroraLogoIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes auroraLogoSheen {
+  0%,
+  55% {
+    transform: translateX(-120%);
+  }
+  80%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.aurora-root .aurora-hero-title {
+  font-size: clamp(2.1rem, 5.8vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.aurora-root .aurora-saas-note {
+  border: 1px dashed var(--aurora-border-accent);
+  background: rgba(255, 252, 250, 0.7);
+  border-radius: 1rem;
+  padding: 1rem 1.2rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--aurora-muted);
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 768px) {
+  .aurora-root .aurora-dots--left {
+    width: 28vw;
+    height: 30vh;
+    opacity: 0.1;
+  }
+
+  .aurora-root .aurora-dots--right {
+    display: none;
+  }
+
+  .aurora-root .aurora-brush {
+    opacity: 0.22;
+    width: 60vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-root .aurora-wash,
+  .aurora-root .aurora-brush,
+  .aurora-root .aurora-dots,
+  .aurora-root .aurora-rose-bar,
+  .aurora-root .aurora-logo-wrap,
+  .aurora-root .aurora-logo-wrap::after,
+  .aurora-root .aurora-reveal,
+  .aurora-root .aurora-badge--pulse,
+  .aurora-root .aurora-btn-glow,
+  .aurora-root .aurora-card--featured::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .aurora-root .aurora-reveal,
+  .aurora-root [data-stagger] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .aurora-root .aurora-card:hover,
+  .aurora-root .aurora-btn-solid:hover,
+  .aurora-root .aurora-btn-outline:hover {
+    transform: none !important;
+  }
+}
