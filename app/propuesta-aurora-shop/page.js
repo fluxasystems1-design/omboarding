@@ -240,18 +240,39 @@ function SectionBlock({ id, eyebrow, title, subtitle, children, className = "" }
 export default function PropuestaAuroraShopPage() {
   const [progress, setProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
+  const [showStickyCta, setShowStickyCta] = useState(false);
   const sectionIds = useMemo(() => NAV_ITEMS.map((item) => item.id), []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtml = html.style.backgroundColor;
+    const prevBody = body.style.backgroundColor;
+    html.style.backgroundColor = "#f7f1eb";
+    body.style.backgroundColor = "#f7f1eb";
+    return () => {
+      html.style.backgroundColor = prevHtml;
+      body.style.backgroundColor = prevBody;
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
       setProgress(Math.max(0, Math.min(100, pct)));
+      setShowStickyCta(window.scrollY > window.innerHeight * 0.55);
 
       const decor = document.querySelector(".aurora-decor");
       if (decor) {
-        const y = window.scrollY * 0.12;
-        decor.style.setProperty("--aurora-parallax", `${y}px`);
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (reduceMotion || isMobile) {
+          decor.style.setProperty("--aurora-parallax", "0px");
+        } else {
+          const y = window.scrollY * 0.12;
+          decor.style.setProperty("--aurora-parallax", `${y}px`);
+        }
       }
     };
     onScroll();
@@ -341,104 +362,133 @@ export default function PropuestaAuroraShopPage() {
         </nav>
 
         {/* HERO */}
-        <section id="hero" className="scroll-mt-28 px-4 pb-16 pt-12 sm:px-6 lg:pb-20 lg:pt-16">
-          <div className="mx-auto w-full max-w-[var(--aurora-max)]">
-            <div data-reveal className="aurora-reveal flex flex-col items-center text-center">
-              <span className="aurora-badge aurora-badge--pulse" data-stagger>
-                Sistema de Atención Automatizada
-              </span>
+        <section id="hero" className="aurora-hero scroll-mt-28">
+          <div className="aurora-hero-bleed">
+            <div className="mx-auto grid w-full max-w-[var(--aurora-max)] items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-16">
+              <div data-reveal className="aurora-reveal aurora-hero-copy">
+                <div className="aurora-logo-wrap aurora-logo-wrap--hero" data-stagger>
+                  <Image
+                    src={AURORA_LOGO}
+                    alt="Aurora Shop"
+                    width={360}
+                    height={180}
+                    className="h-auto w-56 sm:w-72 lg:w-80"
+                    priority
+                  />
+                </div>
 
-              <div className="aurora-logo-wrap mt-8" data-stagger>
-                <Image
-                  src={AURORA_LOGO}
-                  alt="Aurora Shop"
-                  width={280}
-                  height={140}
-                  className="h-auto w-48 sm:w-56"
-                  priority
-                />
-              </div>
+                <p className="aurora-hero-brandmark mt-5" data-stagger>
+                  Aurora Shop
+                </p>
 
-              <div className="mt-6 flex items-center gap-3" data-stagger>
-                <Image src={PARTNERS_LOGO} alt="Partnersflux" width={120} height={40} className="h-8 w-auto opacity-80" />
-                <span className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--aurora-muted)]">
-                  Partnersflux
+                <span className="aurora-badge aurora-badge--pulse mt-6 inline-flex" data-stagger>
+                  Sistema de Atención Automatizada
                 </span>
+
+                <div className="aurora-hero-partner mt-5" data-stagger>
+                  <Image src={PARTNERS_LOGO} alt="Partnersflux" width={100} height={32} className="h-6 w-auto opacity-70" />
+                  <span>Partnersflux</span>
+                </div>
+
+                <p className="aurora-eyebrow mt-7" data-stagger>
+                  Propuesta Aurora Shop — Sistema de Atención Automatizada
+                </p>
+
+                <h1 className="aurora-display aurora-hero-title mt-4 max-w-3xl" data-stagger>
+                  Cada mensaje que no respondes a tiempo es una venta perdida.
+                </h1>
+                <p className="aurora-lead mt-6 max-w-2xl text-base sm:text-lg" data-stagger>
+                  Aurora tiene 118 mil seguidores y el tráfico para vender mucho más de lo que vende hoy. Lo que falta no
+                  es demanda, es un sistema que atienda cada mensaje al instante, clasifique entre detal y mayorista, y
+                  lo lleve solo hacia el pedido, sin importar la hora ni si hay alguien disponible para responder.
+                </p>
+
+                <div className="mt-8 flex flex-wrap items-center gap-3" data-stagger>
+                  <a
+                    href={ctaB}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="aurora-btn-solid aurora-btn-glow inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
+                  >
+                    Quiero el plan recomendado →
+                  </a>
+                  <a
+                    href="#planes"
+                    className="aurora-btn-outline inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold"
+                  >
+                    Ver planes
+                  </a>
+                </div>
+
+                <p
+                  className="mt-6 text-xs font-medium uppercase tracking-[0.16em] text-[var(--aurora-muted-light)]"
+                  data-stagger
+                >
+                  Solo automatización · Sin pauta · Sin landings en el setup
+                </p>
               </div>
 
-              <p className="aurora-eyebrow mt-8" data-stagger>
-                Propuesta Aurora Shop — Sistema de Atención Automatizada
-              </p>
-
-              <h1 className="aurora-display aurora-hero-title mt-4 max-w-4xl" data-stagger>
-                Cada mensaje que no respondes a tiempo es una venta perdida.
-              </h1>
-              <p className="aurora-lead mx-auto mt-6 max-w-2xl text-lg sm:text-xl" data-stagger>
-                Aurora tiene 118 mil seguidores y el tráfico para vender mucho más de lo que vende hoy. Lo que falta no es
-                demanda, es un sistema que atienda cada mensaje al instante, clasifique entre detal y mayorista, y lo
-                lleve solo hacia el pedido, sin importar la hora ni si hay alguien disponible para responder.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3" data-stagger>
-                <a
-                  href={ctaB}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="aurora-btn-solid aurora-btn-glow inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-semibold"
-                >
-                  Quiero el plan recomendado →
-                </a>
-                <a
-                  href="#planes"
-                  className="aurora-btn-outline inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold"
-                >
-                  Ver planes
-                </a>
+              <div className="aurora-hero-visual" data-reveal>
+                <div className="aurora-chat-mock" aria-hidden>
+                  <div className="aurora-chat-mock__bar">
+                    <span className="aurora-chat-mock__dot" />
+                    <span>WhatsApp · Aurora Shop</span>
+                  </div>
+                  <div className="aurora-chat-mock__thread">
+                    <p className="aurora-chat-bubble aurora-chat-bubble--in">Hola, ¿tienen esta blazer en M?</p>
+                    <p className="aurora-chat-bubble aurora-chat-bubble--out">
+                      ¡Hola! Sí, la tenemos disponible en M. ¿Te la apartamos para envío o la recoges en tienda?
+                    </p>
+                    <p className="aurora-chat-bubble aurora-chat-bubble--in">Para envío, por favor</p>
+                    <p className="aurora-chat-bubble aurora-chat-bubble--out">
+                      Perfecto. Para darte el precio y el proceso correcto: ¿compras al detal o eres mayorista?
+                    </p>
+                    <div className="aurora-chat-choices">
+                      <span>Detal</span>
+                      <span>Mayorista</span>
+                    </div>
+                    <p className="aurora-chat-bubble aurora-chat-bubble--in">Detal</p>
+                    <p className="aurora-chat-bubble aurora-chat-bubble--out">
+                      Listo. Te dejo link de pago y datos de envío para cerrar el pedido.
+                    </p>
+                  </div>
+                  <p className="aurora-chat-mock__foot">Clasifica · Responde · Lleva al pedido · 24/7</p>
+                </div>
               </div>
-
-              <p
-                className="mt-6 text-xs font-medium uppercase tracking-[0.16em] text-[var(--aurora-muted-light)]"
-                data-stagger
-              >
-                Solo automatización · Sin pauta · Sin landings en el setup
-              </p>
             </div>
           </div>
         </section>
 
         {/* SITUACIÓN */}
         <SectionBlock id="situacion" eyebrow="01 — La situación" title="La situación">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {SITUATION.map((item) => (
-              <article key={item} className="aurora-card p-6" data-stagger>
-                <p className="text-sm leading-relaxed text-[var(--aurora-text)] sm:text-[15px]">{item}</p>
-              </article>
+          <ol className="aurora-editorial-list">
+            {SITUATION.map((item, index) => (
+              <li key={item} className="aurora-editorial-item" data-stagger>
+                <span className="aurora-editorial-num">{String(index + 1).padStart(2, "0")}</span>
+                <p className="aurora-editorial-text">{item}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </SectionBlock>
 
         {/* ANTES / DESPUÉS */}
         <SectionBlock id="cambio" eyebrow="02 — Antes / Después" title="Antes / Después">
-          <div className="aurora-main-card overflow-hidden p-0">
-            <div className="hidden grid-cols-[0.9fr_1.2fr_1.2fr] gap-0 border-b border-[var(--aurora-border)] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--aurora-muted)] sm:grid">
-              <span />
+          <div className="aurora-compare">
+            <div className="aurora-compare-head">
+              <span className="aurora-compare-label-spacer" />
               <span>Hoy</span>
-              <span>Con el sistema instalado</span>
+              <span className="aurora-compare-after-label">Con el sistema instalado</span>
             </div>
             {BEFORE_AFTER_ROWS.map((row) => (
-              <div
-                key={row.label}
-                className="grid gap-3 border-b border-[var(--aurora-border)] px-5 py-4 last:border-0 sm:grid-cols-[0.9fr_1.2fr_1.2fr] sm:gap-4"
-                data-stagger
-              >
-                <p className="text-sm font-semibold text-[var(--aurora-heading)]">{row.label}</p>
-                <div>
+              <div key={row.label} className="aurora-compare-row" data-stagger>
+                <p className="aurora-compare-metric">{row.label}</p>
+                <div className="aurora-compare-before">
                   <span className="aurora-chip aurora-chip--before mb-2 sm:hidden">Hoy</span>
-                  <p className="text-sm leading-relaxed text-[var(--aurora-muted)]">{row.before}</p>
+                  <p>{row.before}</p>
                 </div>
-                <div>
+                <div className="aurora-compare-after">
                   <span className="aurora-chip aurora-chip--after mb-2 sm:hidden">Con el sistema instalado</span>
-                  <p className="text-sm leading-relaxed text-[var(--aurora-heading)]">{row.after}</p>
+                  <p>{row.after}</p>
                 </div>
               </div>
             ))}
@@ -447,29 +497,25 @@ export default function PropuestaAuroraShopPage() {
 
         {/* POR QUÉ */}
         <SectionBlock id="por-que" eyebrow="03 — Por qué Partnersflux" title="Por qué Partnersflux">
-          <div className="aurora-main-card space-y-5 p-6 sm:p-9" data-stagger>
-            <p className="text-sm leading-relaxed text-[var(--aurora-text)] sm:text-[15px]">
-              No llegamos a instalar un bot genérico. Ya construimos sistemas de automatización para marcas que atienden
-              alto volumen de mensajes en categorías distintas: moda, bienestar y salud.
-            </p>
-          </div>
+          <p className="aurora-editorial-lead" data-stagger>
+            No llegamos a instalar un bot genérico. Ya construimos sistemas de automatización para marcas que atienden
+            alto volumen de mensajes en categorías distintas: moda, bienestar y salud.
+          </p>
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <div className="aurora-cases">
             {WHY_US.map((item) => (
-              <article key={item.title} className="aurora-card p-6 sm:p-7" data-stagger>
-                <p className="aurora-eyebrow">{item.title}</p>
-                <p className="aurora-muted mt-4 text-sm leading-relaxed sm:text-[15px]">{item.text}</p>
+              <article key={item.title} className="aurora-case" data-stagger>
+                <h3 className="aurora-display aurora-case-title">{item.title}</h3>
+                <p className="aurora-case-text">{item.text}</p>
               </article>
             ))}
           </div>
 
-          <div className="aurora-explain mt-6">
-            <p className="mt-0 text-sm leading-relaxed text-[var(--aurora-text)]">
-              Cada marca tiene un comprador distinto y una lógica de venta distinta. Lo que no cambia es el problema de
-              fondo: mensajes que llegan más rápido de lo que un equipo humano puede responder. Ese es exactamente el
-              sistema que sabemos instalar.
-            </p>
-          </div>
+          <p className="aurora-editorial-close" data-stagger>
+            Cada marca tiene un comprador distinto y una lógica de venta distinta. Lo que no cambia es el problema de
+            fondo: mensajes que llegan más rápido de lo que un equipo humano puede responder. Ese es exactamente el
+            sistema que sabemos instalar.
+          </p>
         </SectionBlock>
 
         {/* PLANES */}
@@ -486,15 +532,15 @@ export default function PropuestaAuroraShopPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="aurora-plans-grid">
             {PLANS.map((plan) => (
               <article
                 key={plan.id}
                 data-stagger
-                className={`aurora-card flex flex-col p-6 sm:p-7 ${plan.featured ? "aurora-card--featured" : ""}`}
+                className={`aurora-card flex flex-col p-6 sm:p-7 ${plan.featured ? "aurora-card--featured aurora-card--featured-lift" : "aurora-card--quiet"}`}
               >
                 <p className="aurora-eyebrow">{plan.badge}</p>
-                <h3 className="aurora-display mt-2 text-2xl">{plan.name}</h3>
+                <h3 className="aurora-display mt-2 text-2xl sm:text-[1.75rem]">{plan.name}</h3>
                 <p className="aurora-price-cop mt-4">{plan.priceCop} COP</p>
                 <p className="aurora-price-usd mt-1">{plan.priceUsd}</p>
                 <p className="aurora-muted mt-2 text-xs font-medium uppercase tracking-[0.12em]">{plan.time}</p>
@@ -541,8 +587,8 @@ export default function PropuestaAuroraShopPage() {
                   href={waUrl(plan.wa)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-6 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold ${
-                    plan.featured ? "aurora-btn-solid" : "aurora-btn-outline"
+                  className={`mt-auto inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold ${
+                    plan.featured ? "aurora-btn-solid aurora-btn-glow" : "aurora-btn-outline"
                   }`}
                 >
                   Elegir {plan.name} →
@@ -609,8 +655,11 @@ export default function PropuestaAuroraShopPage() {
           title="Menos que un mes de nómina. Sin el riesgo de volver a empezar."
           subtitle="Reemplazar el equipo que renunció cuesta entre $5M y $9M COP al mes en nómina, sin contar selección ni entrenamiento — tiempo que hoy no hay."
         >
-          <div className="aurora-main-card p-6 sm:p-9" data-stagger>
-            <p className="text-sm leading-relaxed text-[var(--aurora-text)] sm:text-[15px]">
+          <div className="aurora-stat-block" data-stagger>
+            <p className="aurora-stat-kicker">Paquete B</p>
+            <p className="aurora-stat-number">$5.500.000</p>
+            <p className="aurora-stat-unit">COP · menos que un mes de nómina</p>
+            <p className="aurora-stat-copy">
               El <strong>Paquete B</strong> cuesta menos que un mes de esa nómina. Y una vez instalado, no renuncia, no
               tiene mal día y vende mientras el equipo duerme.
             </p>
@@ -678,9 +727,9 @@ export default function PropuestaAuroraShopPage() {
           title="Cuando quieran escalar más allá de la automatización"
           subtitle="Opcionales. No forman parte de los planes A, B o C. Se cotizan y activan aparte, cuando Aurora lo decida."
         >
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="aurora-addons-grid">
             {ADDONS.map((addon) => (
-              <article key={addon.id} className="aurora-card flex flex-col p-6 sm:p-7" data-stagger>
+              <article key={addon.id} className="aurora-addon flex flex-col" data-stagger>
                 <span className="aurora-badge">{addon.tag}</span>
                 <h3 className="aurora-display mt-4 text-2xl">{addon.title}</h3>
                 <p className="aurora-muted mt-3 text-sm leading-relaxed">{addon.summary}</p>
@@ -714,6 +763,12 @@ export default function PropuestaAuroraShopPage() {
             ))}
           </div>
         </SectionBlock>
+
+        <div className={`aurora-sticky-cta ${showStickyCta ? "is-visible" : ""}`}>
+          <a href={ctaB} target="_blank" rel="noopener noreferrer" className="aurora-btn-solid aurora-btn-glow">
+            Quiero el plan recomendado →
+          </a>
+        </div>
       </div>
     </main>
   );
