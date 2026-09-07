@@ -28,6 +28,12 @@ const landings = [
       "Sistema de Atención Automatizada · 118K seguidores · Omnicanal $5.500.000 COP · Partnersflux",
   },
   {
+    name: "eWe Store — Movilidad Eléctrica",
+    path: "/ewestore",
+    description:
+      "PARTNERSFLUX × EWE STORE · Ecosistema $9.999.999 COP · @ewe.movilidadelectrica",
+  },
+  {
     name: "ANAK — Barre by Anak",
     path: "/prototipoanak",
     description: "Protótipo landing de membresía fitness · Barre · Strength · Balance",
