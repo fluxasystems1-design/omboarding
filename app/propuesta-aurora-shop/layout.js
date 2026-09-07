@@ -1,14 +1,14 @@
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { DM_Sans, Space_Grotesk } from "next/font/google";
 import "./propuesta-aurora-shop.css";
 
-const outfit = Outfit({
+const sans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--aurora-sans",
 });
 
-const display = Cormorant_Garamond({
+const display = Space_Grotesk({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   display: "swap",
@@ -28,5 +28,5 @@ export const metadata = {
 };
 
 export default function PropuestaAuroraShopLayout({ children }) {
-  return <div className={`aurora-root ${outfit.className} ${outfit.variable} ${display.variable}`}>{children}</div>;
+  return <div className={`aurora-root ${sans.className} ${sans.variable} ${display.variable}`}>{children}</div>;
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const AURORA_LOGO = "/imagenes/aurora-shop/logo/aurora-logo.png";
 const PARTNERS_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
@@ -15,7 +15,6 @@ const NAV_ITEMS = [
   { id: "hero", label: "Portada" },
   { id: "situacion", label: "Situación" },
   { id: "cambio", label: "Antes / Después" },
-  { id: "por-que", label: "Partnersflux" },
   { id: "planes", label: "Planes" },
   { id: "mensual", label: "Mensual" },
   { id: "proyeccion", label: "Proyección" },
@@ -192,28 +191,207 @@ const BEFORE_AFTER_ROWS = [
   },
 ];
 
-const WHY_US = [
+const CHAT_SCRIPT = [
+  { type: "msg", side: "in", text: "Hola, ¿tienen esta blazer en M?" },
   {
-    title: "Dr. Bello / Funciona+",
-    text: "Con Dr. Bello / Funciona+, integramos Shopify con automatización conversacional para una marca que vende productos físicos con pedidos recurrentes, la misma arquitectura que necesita Aurora entre catálogo, inventario y chat.",
+    type: "msg",
+    side: "out",
+    text: "¡Hola! Sí, la tenemos disponible en M. ¿Te la apartamos para envío o la recoges en tienda?",
   },
+  { type: "msg", side: "in", text: "Para envío, por favor" },
   {
-    title: "GAL’s Studio",
-    text: "Con GAL’s Studio, montamos flujos por palabra clave que filtran y clasifican automáticamente a cada cliente según su intención, sin que nadie tenga que estar monitoreando el chat en tiempo real.",
+    type: "msg",
+    side: "out",
+    text: "Perfecto. Para darte el precio y el proceso correcto: ¿compras al detal o eres mayorista?",
+  },
+  { type: "choices" },
+  { type: "msg", side: "in", text: "Detal" },
+  {
+    type: "msg",
+    side: "out",
+    text: "Listo. Te dejo link de pago y datos de envío para cerrar el pedido.",
   },
 ];
 
 function DecorLayer() {
   return (
     <div className="aurora-decor" aria-hidden>
-      <div className="aurora-sky" />
-      <div className="aurora-wash aurora-wash--1" />
-      <div className="aurora-wash aurora-wash--2" />
-      <div className="aurora-brush" />
-      <div className="aurora-dots aurora-dots--left" />
-      <div className="aurora-dots aurora-dots--right" />
-      <div className="aurora-rose-bar" />
-      <div className="aurora-grain" />
+      <div className="aurora-chart-bg">
+        <svg className="aurora-chart-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="auroraChartFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#7BBBFF" stopOpacity="0.55" />
+              <stop offset="55%" stopColor="#B8A9FF" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#7BBBFF" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="auroraChartLine" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#7BBBFF" />
+              <stop offset="100%" stopColor="#B8A9FF" />
+            </linearGradient>
+            <filter id="auroraChartGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <g className="aurora-chart-bars">
+            <rect x="90" y="480" width="70" height="120" rx="12" />
+            <rect x="250" y="390" width="70" height="210" rx="12" />
+            <rect x="410" y="430" width="70" height="170" rx="12" />
+            <rect x="570" y="300" width="70" height="300" rx="12" />
+            <rect x="730" y="220" width="70" height="380" rx="12" />
+            <rect x="890" y="140" width="70" height="460" rx="12" />
+            <rect x="1040" y="90" width="70" height="510" rx="12" />
+          </g>
+          <path
+            className="aurora-chart-area"
+            d="M90 500 L250 400 L410 450 L570 310 L730 230 L890 150 L1110 100 L1110 620 L90 620 Z"
+            fill="url(#auroraChartFill)"
+          />
+          <path
+            className="aurora-chart-line"
+            d="M90 500 L250 400 L410 450 L570 310 L730 230 L890 150 L1110 100"
+            fill="none"
+            stroke="url(#auroraChartLine)"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#auroraChartGlow)"
+          />
+          <g className="aurora-chart-dots" filter="url(#auroraChartGlow)">
+            <circle cx="90" cy="500" r="10" />
+            <circle cx="250" cy="400" r="10" />
+            <circle cx="410" cy="450" r="10" />
+            <circle cx="570" cy="310" r="10" />
+            <circle cx="730" cy="230" r="10" />
+            <circle cx="890" cy="150" r="10" />
+            <circle cx="1110" cy="100" r="12" />
+          </g>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function AuroraChatMock() {
+  const [items, setItems] = useState([]);
+  const [typingSide, setTypingSide] = useState(null);
+  const [draft, setDraft] = useState(null);
+  const threadRef = useRef(null);
+  const timersRef = useRef([]);
+
+  useEffect(() => {
+    const reduceMotion =
+      typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const clearTimers = () => {
+      timersRef.current.forEach((id) => clearTimeout(id));
+      timersRef.current = [];
+    };
+
+    const wait = (ms) =>
+      new Promise((resolve) => {
+        const id = setTimeout(resolve, ms);
+        timersRef.current.push(id);
+      });
+
+    const typeText = async (text, side) => {
+      setDraft(null);
+      setTypingSide(side);
+      await wait(side === "out" ? 900 : 550);
+      setDraft({ side, text: "" });
+      for (let i = 1; i <= text.length; i += 1) {
+        setDraft({ side, text: text.slice(0, i) });
+        await wait(i === 1 ? 28 : 18 + (i % 5 === 0 ? 12 : 0));
+      }
+      setDraft(null);
+      setTypingSide(null);
+      setItems((prev) => [...prev, { type: "msg", side, text }]);
+      await wait(side === "out" ? 520 : 380);
+    };
+
+    const run = async () => {
+      clearTimers();
+      setItems([]);
+      setDraft(null);
+      setTypingSide(null);
+      await wait(500);
+
+      if (reduceMotion) {
+        setItems(CHAT_SCRIPT);
+        return;
+      }
+
+      for (const step of CHAT_SCRIPT) {
+        if (step.type === "choices") {
+          setItems((prev) => [...prev, { type: "choices" }]);
+          await wait(700);
+          continue;
+        }
+        await typeText(step.text, step.side);
+      }
+
+      await wait(2600);
+      run();
+    };
+
+    run();
+    return clearTimers;
+  }, []);
+
+  useEffect(() => {
+    const el = threadRef.current;
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }, [items, draft, typingSide]);
+
+  return (
+    <div className="aurora-chat-mock" aria-hidden>
+      <div className="aurora-chat-mock__bar">
+        <span className="aurora-chat-mock__dot" />
+        <span>WhatsApp · Instagram · Aurora Shop</span>
+      </div>
+      <div className="aurora-chat-mock__thread" ref={threadRef}>
+        {items.map((item, index) => {
+          if (item.type === "choices") {
+            return (
+              <div key={`choices-${index}`} className="aurora-chat-choices">
+                <span>Detal</span>
+                <span>Mayorista</span>
+              </div>
+            );
+          }
+          return (
+            <p
+              key={`msg-${index}`}
+              className={`aurora-chat-bubble aurora-chat-bubble--${item.side}`}
+            >
+              {item.text}
+            </p>
+          );
+        })}
+
+        {typingSide && !draft ? (
+          <div
+            className={`aurora-chat-typing aurora-chat-typing--${typingSide}`}
+            aria-hidden
+          >
+            <span />
+            <span />
+            <span />
+          </div>
+        ) : null}
+
+        {draft ? (
+          <p className={`aurora-chat-bubble aurora-chat-bubble--${draft.side} aurora-chat-bubble--typing`}>
+            {draft.text}
+            <span className="aurora-chat-caret" />
+          </p>
+        ) : null}
+      </div>
+      <p className="aurora-chat-mock__foot">Clasifica · Responde · Lleva al pedido · 24/7</p>
     </div>
   );
 }
@@ -248,8 +426,8 @@ export default function PropuestaAuroraShopPage() {
     const body = document.body;
     const prevHtml = html.style.backgroundColor;
     const prevBody = body.style.backgroundColor;
-    html.style.backgroundColor = "#f7f1eb";
-    body.style.backgroundColor = "#f7f1eb";
+    html.style.backgroundColor = "#f2fdff";
+    body.style.backgroundColor = "#f2fdff";
     return () => {
       html.style.backgroundColor = prevHtml;
       body.style.backgroundColor = prevBody;
@@ -265,14 +443,7 @@ export default function PropuestaAuroraShopPage() {
 
       const decor = document.querySelector(".aurora-decor");
       if (decor) {
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        if (reduceMotion || isMobile) {
-          decor.style.setProperty("--aurora-parallax", "0px");
-        } else {
-          const y = window.scrollY * 0.12;
-          decor.style.setProperty("--aurora-parallax", `${y}px`);
-        }
+        decor.style.setProperty("--aurora-parallax", "0px");
       }
     };
     onScroll();
@@ -367,14 +538,27 @@ export default function PropuestaAuroraShopPage() {
             <div className="mx-auto grid w-full max-w-[var(--aurora-max)] items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 lg:py-16">
               <div data-reveal className="aurora-reveal aurora-hero-copy">
                 <div className="aurora-logo-wrap aurora-logo-wrap--hero" data-stagger>
-                  <Image
-                    src={AURORA_LOGO}
-                    alt="Aurora Shop"
-                    width={360}
-                    height={180}
-                    className="h-auto w-56 sm:w-72 lg:w-80"
-                    priority
-                  />
+                  <div className="aurora-brand-pair">
+                    <Image
+                      src={AURORA_LOGO}
+                      alt="Aurora Shop"
+                      width={360}
+                      height={180}
+                      className="aurora-brand-pair__aurora"
+                      priority
+                    />
+                    <span className="aurora-brand-pair__x" aria-hidden>
+                      ×
+                    </span>
+                    <Image
+                      src={PARTNERS_LOGO}
+                      alt="Partnersflux"
+                      width={220}
+                      height={80}
+                      className="aurora-brand-pair__partners"
+                      priority
+                    />
+                  </div>
                 </div>
 
                 <p className="aurora-hero-brandmark mt-5" data-stagger>
@@ -384,11 +568,6 @@ export default function PropuestaAuroraShopPage() {
                 <span className="aurora-badge aurora-badge--pulse mt-6 inline-flex" data-stagger>
                   Sistema de Atención Automatizada
                 </span>
-
-                <div className="aurora-hero-partner mt-5" data-stagger>
-                  <Image src={PARTNERS_LOGO} alt="Partnersflux" width={100} height={32} className="h-6 w-auto opacity-70" />
-                  <span>Partnersflux</span>
-                </div>
 
                 <p className="aurora-eyebrow mt-7" data-stagger>
                   Propuesta Aurora Shop — Sistema de Atención Automatizada
@@ -429,31 +608,7 @@ export default function PropuestaAuroraShopPage() {
               </div>
 
               <div className="aurora-hero-visual" data-reveal>
-                <div className="aurora-chat-mock" aria-hidden>
-                  <div className="aurora-chat-mock__bar">
-                    <span className="aurora-chat-mock__dot" />
-                    <span>WhatsApp · Aurora Shop</span>
-                  </div>
-                  <div className="aurora-chat-mock__thread">
-                    <p className="aurora-chat-bubble aurora-chat-bubble--in">Hola, ¿tienen esta blazer en M?</p>
-                    <p className="aurora-chat-bubble aurora-chat-bubble--out">
-                      ¡Hola! Sí, la tenemos disponible en M. ¿Te la apartamos para envío o la recoges en tienda?
-                    </p>
-                    <p className="aurora-chat-bubble aurora-chat-bubble--in">Para envío, por favor</p>
-                    <p className="aurora-chat-bubble aurora-chat-bubble--out">
-                      Perfecto. Para darte el precio y el proceso correcto: ¿compras al detal o eres mayorista?
-                    </p>
-                    <div className="aurora-chat-choices">
-                      <span>Detal</span>
-                      <span>Mayorista</span>
-                    </div>
-                    <p className="aurora-chat-bubble aurora-chat-bubble--in">Detal</p>
-                    <p className="aurora-chat-bubble aurora-chat-bubble--out">
-                      Listo. Te dejo link de pago y datos de envío para cerrar el pedido.
-                    </p>
-                  </div>
-                  <p className="aurora-chat-mock__foot">Clasifica · Responde · Lleva al pedido · 24/7</p>
-                </div>
+                <AuroraChatMock />
               </div>
             </div>
           </div>
@@ -495,33 +650,10 @@ export default function PropuestaAuroraShopPage() {
           </div>
         </SectionBlock>
 
-        {/* POR QUÉ */}
-        <SectionBlock id="por-que" eyebrow="03 — Por qué Partnersflux" title="Por qué Partnersflux">
-          <p className="aurora-editorial-lead" data-stagger>
-            No llegamos a instalar un bot genérico. Ya construimos sistemas de automatización para marcas que atienden
-            alto volumen de mensajes en categorías distintas: moda, bienestar y salud.
-          </p>
-
-          <div className="aurora-cases">
-            {WHY_US.map((item) => (
-              <article key={item.title} className="aurora-case" data-stagger>
-                <h3 className="aurora-display aurora-case-title">{item.title}</h3>
-                <p className="aurora-case-text">{item.text}</p>
-              </article>
-            ))}
-          </div>
-
-          <p className="aurora-editorial-close" data-stagger>
-            Cada marca tiene un comprador distinto y una lógica de venta distinta. Lo que no cambia es el problema de
-            fondo: mensajes que llegan más rápido de lo que un equipo humano puede responder. Ese es exactamente el
-            sistema que sabemos instalar.
-          </p>
-        </SectionBlock>
-
         {/* PLANES */}
         <SectionBlock
           id="planes"
-          eyebrow="04 — Inversión"
+          eyebrow="03 — Inversión"
           title="Tres planes. Una sola promesa: automatizar."
         >
           <div className="aurora-after-card mb-8" data-stagger>
@@ -609,7 +741,7 @@ export default function PropuestaAuroraShopPage() {
         {/* MENSUAL */}
         <SectionBlock
           id="mensual"
-          eyebrow="05 — Continuidad"
+          eyebrow="04 — Continuidad"
           title="Mantenimiento mensual"
           subtitle="Opcional. Solo si quieren que Partnersflux mantenga el bot al día después del setup."
         >
@@ -651,7 +783,7 @@ export default function PropuestaAuroraShopPage() {
         {/* PROYECCIÓN */}
         <SectionBlock
           id="proyeccion"
-          eyebrow="06 — La proyección"
+          eyebrow="05 — La proyección"
           title="Menos que un mes de nómina. Sin el riesgo de volver a empezar."
           subtitle="Reemplazar el equipo que renunció cuesta entre $5M y $9M COP al mes en nómina, sin contar selección ni entrenamiento — tiempo que hoy no hay."
         >
@@ -669,7 +801,7 @@ export default function PropuestaAuroraShopPage() {
         {/* TIEMPO */}
         <SectionBlock
           id="tiempo"
-          eyebrow="07 — El tiempo corre"
+          eyebrow="06 — El tiempo corre"
           title="Hoy es septiembre. Diciembre no espera."
           subtitle="El Paquete B toma entre 3 y 4 semanas de implementación más 30 días de ajuste con chats reales."
         >
@@ -685,7 +817,7 @@ export default function PropuestaAuroraShopPage() {
         {/* CIERRE */}
         <SectionBlock
           id="cierre"
-          eyebrow="08 — Siguiente paso"
+          eyebrow="07 — Siguiente paso"
           title="Recomendación para Aurora"
           subtitle="Paquete B — Omnicanal + IA ($5.500.000 COP · ~$1.375 USD) + mensual opcional. Todos los planes en 2 cuotas: 50% al firmar · 50% al go-live."
         >
@@ -723,7 +855,7 @@ export default function PropuestaAuroraShopPage() {
         {/* AGREGADOS FINALES — al final de todo */}
         <SectionBlock
           id="agregados"
-          eyebrow="09 — Agregados finales"
+          eyebrow="08 — Agregados finales"
           title="Cuando quieran escalar más allá de la automatización"
           subtitle="Opcionales. No forman parte de los planes A, B o C. Se cotizan y activan aparte, cuando Aurora lo decida."
         >
