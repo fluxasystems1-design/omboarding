@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const WA_BASE = "https://wa.me/573116425337?text=";
+const WA_BASE = "https://wa.me/573105813007?text=";
 const PARTNERS_LOGO = "/imagenes/opticallery/fluxa-partners-logo.png";
 
 function wa(message) {
@@ -537,11 +537,9 @@ export default function AlejandraToledoPage() {
               <div>
                 <p className="ale-eyebrow">Método PDM Neurocoaching</p>
                 <h1 className="ale-display ale-hero-title">
-                  Tienes la audiencia.
-                  <br />
-                  El mensaje que la convierte todavía no existe.
+                  Método PDM construye una presencia digital monetizable
                 </h1>
-                <p className="ale-hero-lead">
+                <p className="ale-hero-lead ale-hero-box">
                   2,282 personas ya te siguen como coach en neurociencia — pero hoy esa categoría es genérica: no hay un
                   ángulo propio, no hay oferta, no hay forma de convertir esa atención en ingreso. El trabajo empieza
                   por construir el mensaje que te diferencie, antes que cualquier landing o automatización.
@@ -711,24 +709,28 @@ export default function AlejandraToledoPage() {
             </div>
 
             <div className="ale-cmp-wrap">
-              <table className="ale-cmp">
-                <thead>
-                  <tr>
-                    <th>Característica</th>
-                    <th>Digital $3.100.000</th>
-                    <th>Pro $4.800.000</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {CMP.map(([feature, d, p]) => (
-                    <tr key={feature}>
-                      <td>{feature}</td>
-                      <td>{d}</td>
-                      <td>{p}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="ale-cmp-head" aria-hidden>
+                <span>Característica</span>
+                <span>Digital $3.100.000</span>
+                <span>Pro $4.800.000</span>
+              </div>
+              <div className="ale-cmp-list">
+                {CMP.map(([feature, d, p]) => (
+                  <div key={feature} className="ale-cmp-row">
+                    <p className="ale-cmp-feature">{feature}</p>
+                    <div className="ale-cmp-vals">
+                      <div className="ale-cmp-val">
+                        <span className="ale-cmp-val-label">Digital</span>
+                        <strong>{d}</strong>
+                      </div>
+                      <div className="ale-cmp-val ale-cmp-val--pro">
+                        <span className="ale-cmp-val-label">Pro</span>
+                        <strong>{p}</strong>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

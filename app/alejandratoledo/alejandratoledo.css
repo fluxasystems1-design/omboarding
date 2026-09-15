@@ -1097,7 +1097,7 @@ html:has(.ale-root) body {
 }
 
 .ale-root .ale-hero-title {
-  max-width: 18ch;
+  max-width: 22ch;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -1247,44 +1247,64 @@ html:has(.ale-root) body {
 
 .ale-root .ale-fase-row {
   display: grid;
-  gap: 0.9rem;
-  margin: 1.5rem 0 2.25rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem;
+  margin: 1.75rem 0 2.75rem;
+  grid-template-columns: 1fr;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 640px) {
+  .ale-root .ale-fase-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .ale-root .ale-fase-row {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
   }
 }
 
 .ale-root .ale-fase {
-  border-top: 2px solid var(--ale-sky);
-  padding-top: 0.75rem;
+  border-top: 3px solid var(--ale-sky);
+  padding: 1.15rem 1.1rem 1.25rem;
+  border-radius: 0 0 1.15rem 1.15rem;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--ale-border);
+  border-bottom: 1px solid var(--ale-border);
+  border-left: 1px solid var(--ale-border);
+  box-shadow: 0 12px 28px rgba(5, 15, 42, 0.05);
 }
 
 .ale-root .ale-fase .tag {
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ale-muted);
 }
 
 .ale-root .ale-fase h4 {
-  margin: 0.35rem 0 0.3rem;
+  margin: 0.55rem 0 0.5rem;
   font-family: "Clash Display", var(--ale-display), system-ui, sans-serif;
-  font-size: 1.05rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
   font-weight: 700;
   color: var(--ale-ink);
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .ale-root .ale-fase p {
   margin: 0;
-  font-size: 0.82rem;
-  line-height: 1.45;
+  font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+  line-height: 1.55;
   color: var(--ale-muted);
+}
+
+.ale-root #planes .ale-block-title {
+  font-size: 1.2rem;
 }
 
 .ale-root .ale-pkg-grid {
@@ -1392,37 +1412,114 @@ html:has(.ale-root) body {
 }
 
 .ale-root .ale-cmp-wrap {
-  overflow-x: auto;
+  overflow: visible;
   margin-top: 2rem;
 }
 
-.ale-root .ale-cmp {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 520px;
-  font-size: 0.88rem;
+.ale-root .ale-cmp-head {
+  display: none;
 }
 
-.ale-root .ale-cmp th,
-.ale-root .ale-cmp td {
-  padding: 0.7rem 0.55rem;
-  border-bottom: 1px solid var(--ale-border);
-  text-align: left;
+.ale-root .ale-cmp-list {
+  display: grid;
+  gap: 0.75rem;
 }
 
-.ale-root .ale-cmp th {
+.ale-root .ale-cmp-row {
+  border: 1px solid var(--ale-border);
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  padding: 0.95rem 1rem;
+}
+
+.ale-root .ale-cmp-feature {
+  margin: 0 0 0.7rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.55);
   color: var(--ale-ink);
 }
 
-.ale-root .ale-cmp th:not(:first-child),
-.ale-root .ale-cmp td:not(:first-child) {
-  text-align: center;
+.ale-root .ale-cmp-vals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
 }
 
-.ale-root .ale-cmp td:first-child {
+.ale-root .ale-cmp-val {
+  border-radius: 0.85rem;
+  background: rgba(242, 253, 255, 0.9);
+  border: 1px solid var(--ale-border);
+  padding: 0.65rem 0.7rem;
+}
+
+.ale-root .ale-cmp-val--pro {
+  background: rgba(184, 169, 255, 0.14);
+  border-color: rgba(123, 187, 255, 0.35);
+}
+
+.ale-root .ale-cmp-val-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ale-muted);
+}
+
+.ale-root .ale-cmp-val strong {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ale-ink);
+  line-height: 1.35;
+}
+
+@media (min-width: 860px) {
+  .ale-root .ale-cmp-head {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ale-muted);
+  }
+
+  .ale-root .ale-cmp-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.85rem 1rem;
+  }
+
+  .ale-root .ale-cmp-feature {
+    margin: 0;
+  }
+
+  .ale-root .ale-cmp-vals {
+    display: contents;
+  }
+
+  .ale-root .ale-cmp-val {
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  .ale-root .ale-cmp-val-label {
+    display: none;
+  }
+
+  .ale-root .ale-cmp-val strong {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
 }
 
 .ale-root .ale-timeline {
@@ -1685,4 +1782,19 @@ html:has(.ale-root) body {
 
 .ale-root .ale-section-head {
   margin-bottom: 0.35rem;
+}
+
+
+.ale-root .ale-hero-box {
+  margin-top: 1.35rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--ale-border);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px) saturate(1.1);
+  box-shadow: 0 14px 36px rgba(5, 15, 42, 0.06);
+  text-align: center;
 }
