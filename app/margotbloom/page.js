@@ -350,26 +350,63 @@ export default function MargotBloomPage() {
   }, []);
 
   useEffect(() => {
-    const nodes = document.querySelectorAll("[data-mb-reveal]");
+    const nodes = Array.from(document.querySelectorAll("[data-mb-reveal]"));
     if (!nodes.length) return undefined;
+
+    const show = (el) => el.classList.add("is-visible");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      nodes.forEach((el) => el.classList.add("is-visible"));
+      nodes.forEach(show);
       return undefined;
     }
+
+    const revealNearViewport = () => {
+      const limit = window.innerHeight * 0.95;
+      nodes.forEach((el) => {
+        if (el.classList.contains("is-visible")) return;
+        const rect = el.getBoundingClientRect();
+        // Visible ahora o ya scrolleado (arriba del viewport)
+        if (rect.top < limit) show(el);
+      });
+    };
+
+    // Primero marcar visibles, luego activar el hide — evita flash en blanco
+    revealNearViewport();
+    document.documentElement.classList.add("mb-js");
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+          if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight) {
+            show(entry.target);
             io.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.01, rootMargin: "12% 0px 12% 0px" }
     );
-    nodes.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    nodes.forEach((el) => {
+      if (!el.classList.contains("is-visible")) io.observe(el);
+    });
+
+    const onNavigate = () => {
+      // Nav anchors / hash: revelar destino y todo lo ya pasado
+      window.requestAnimationFrame(revealNearViewport);
+    };
+    window.addEventListener("hashchange", onNavigate);
+    window.addEventListener("scroll", onNavigate, { passive: true });
+
+    // Failsafe: nunca dejar texto invisible en iOS Safari
+    const failsafe = window.setTimeout(() => nodes.forEach(show), 1800);
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("hashchange", onNavigate);
+      window.removeEventListener("scroll", onNavigate);
+      window.clearTimeout(failsafe);
+      document.documentElement.classList.remove("mb-js");
+    };
   }, []);
 
   return (
