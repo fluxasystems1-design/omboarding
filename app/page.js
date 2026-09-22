@@ -134,6 +134,11 @@ const landings = [
     description: "PDM DIGITAL $947 y PRO $1,497 · @mafecerquerap.nutricion · membresía + checkout · Fluxa Method",
   },
   {
+    name: "Viviana Rubio — Método PDM Coaching",
+    path: "/propuesta-viviana-rubio",
+    description: "PDM DIGITAL $947 y PRO $1,497 · @nutricionista.vivianarubio · nutrición funcional · Fluxa Method",
+  },
+  {
     name: "Brief Mafe Cerquera",
     path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
