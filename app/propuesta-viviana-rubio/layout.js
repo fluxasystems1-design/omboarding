@@ -18,7 +18,7 @@ const newsreader = Newsreader({
 
 const title = "Propuesta Comercial | Viviana Rubio · Método PDM Coaching";
 const description =
-  "Presencia Digital Profesional: convierte tu comunidad en Ibagué y online en clientas de membresía recurrente. Desde $947 USD · Landing + automatización + membresía.";
+  "Presencia Digital Profesional: convierte tu comunidad en Ibagué y online en clientas de membresía recurrente. Desde $1.100.000 COP · Consultoría, Digital y Pro.";
 
 export const metadata = {
   title,

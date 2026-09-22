@@ -17,6 +17,10 @@ function formatUsd(n) {
   return new Intl.NumberFormat("en-US").format(n);
 }
 
+function formatCop(n) {
+  return new Intl.NumberFormat("es-CO").format(n);
+}
+
 function staggerStyle(index, step = 80) {
   return { "--delay": `${index * step}ms` };
 }
@@ -131,6 +135,15 @@ const JOURNEY_STEPS = [
   },
 ];
 
+const CONSULTORIA_ITEMS = [
+  "Definición de avatar, oferta y producto",
+  "Mensaje por público",
+  "Estrategia digital",
+  "Calendario de contenido",
+  "Definición de embudos",
+  "Estrategia de ventas",
+];
+
 const DIGITAL_SECTIONS = [
   {
     label: "Arquitectura Digital",
@@ -188,19 +201,23 @@ const PRO_EXTRA_SECTIONS = [
 ];
 
 const PLAN_COMPARISON = [
-  { feature: "Landing con checkout (producto digital)", digital: true, pro: true },
-  { feature: "Landing producto digital completo", digital: false, pro: true },
-  { feature: "VSL", digital: "1 corto", pro: "2" },
-  { feature: "Pagos recurrentes de membresía", digital: false, pro: true },
-  { feature: "Automatización WhatsApp/Instagram", digital: "Básica", pro: "Completa + cupos limitados" },
-  { feature: "Conexión Nutrixion Funcional al funnel", digital: false, pro: true },
-  { feature: "Secuencia de bienvenida", digital: false, pro: true },
-  { feature: "Laboratorio Notion", digital: true, pro: true },
-  { feature: "Estrategia de contenido", digital: "60 días", pro: "90 días" },
-  { feature: "Guiones reels", digital: "15", pro: "25" },
-  { feature: "Guiones ads", digital: "10", pro: "15" },
-  { feature: "Guiones UGC", digital: false, pro: "5" },
-  { feature: "Meta Ads + creativos", digital: false, pro: "5 + gestión 1 mes" },
+  { feature: "Avatar, oferta y producto", consultoria: true, digital: true, pro: true },
+  { feature: "Mensaje y estrategia digital", consultoria: true, digital: true, pro: true },
+  { feature: "Embudos y estrategia de ventas", consultoria: true, digital: true, pro: true },
+  { feature: "Calendario de contenido", consultoria: true, digital: "60 días", pro: "90 días" },
+  { feature: "Landing con checkout (producto digital)", consultoria: false, digital: true, pro: true },
+  { feature: "Landing producto digital completo", consultoria: false, digital: false, pro: true },
+  { feature: "VSL", consultoria: false, digital: "1 corto", pro: "2" },
+  { feature: "Pagos recurrentes de membresía", consultoria: false, digital: false, pro: true },
+  { feature: "Automatización WhatsApp/Instagram", consultoria: false, digital: "Básica", pro: "Completa + cupos limitados" },
+  { feature: "Conexión Nutrixion Funcional al funnel", consultoria: false, digital: false, pro: true },
+  { feature: "Secuencia de bienvenida", consultoria: false, digital: false, pro: true },
+  { feature: "Laboratorio Notion", consultoria: false, digital: true, pro: true },
+  { feature: "Guiones reels", consultoria: false, digital: "15", pro: "25" },
+  { feature: "Guiones ads", consultoria: false, digital: "10", pro: "15" },
+  { feature: "Guiones UGC", consultoria: false, digital: false, pro: "5" },
+  { feature: "Meta Ads + creativos", consultoria: false, digital: false, pro: "5 + gestión 1 mes" },
+  { feature: "Capacitación", consultoria: false, digital: "3 sesiones", pro: "3 sesiones" },
 ];
 
 const EXECUTION_PHASES = [
@@ -237,7 +254,8 @@ const EXECUTION_PHASES = [
 const RECONSUMO = [
   {
     name: "Esencial",
-    price: 39,
+    price: 130000,
+    usd: 39,
     note: "Solo nivel técnico",
     featured: false,
     items: [
@@ -248,7 +266,8 @@ const RECONSUMO = [
   },
   {
     name: "Mantenimiento",
-    price: 97,
+    price: 305000,
+    usd: 97,
     note: null,
     featured: false,
     items: [
@@ -260,7 +279,8 @@ const RECONSUMO = [
   },
   {
     name: "Gestión completa",
-    price: 250,
+    price: 790000,
+    usd: 250,
     note: "Más completo",
     featured: true,
     items: [
@@ -277,20 +297,32 @@ const RECONSUMO = [
 
 const CLOSING_PLANS = [
   {
+    id: "consultoria",
+    name: "PDM CONSULTORÍA",
+    price: 1100000,
+    usd: 350,
+    phase1: 550000,
+    phase2: 550000,
+    note: "Oferta, mensaje y estrategia",
+    recommended: false,
+  },
+  {
     id: "digital",
     name: "PDM COACHING DIGITAL",
-    price: 947,
-    phase1: 474,
-    phase2: 473,
+    price: 2980000,
+    usd: 947,
+    phase1: 1490000,
+    phase2: 1490000,
     note: "Landing + checkout + contenido + capacitación",
     recommended: false,
   },
   {
     id: "pro",
     name: "PDM COACHING PRO",
-    price: 1497,
-    phase1: 749,
-    phase2: 748,
+    price: 4720000,
+    usd: 1497,
+    phase1: 2360000,
+    phase2: 2360000,
     note: "Membresia recurrente + Nutrixion Funcional + Meta Ads",
     recommended: true,
   },
@@ -373,7 +405,7 @@ function ClosingPlanPicker() {
       <p className="mafe-eyebrow text-center">Resumen de tu elección</p>
       <h3 className="mafe-heading mt-2 text-center text-xl sm:text-2xl">¿Qué paquete eliges?</h3>
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2">
+      <div className="mt-8 grid gap-3 sm:grid-cols-3">
         {CLOSING_PLANS.map((plan) => (
           <button
             key={plan.id}
@@ -394,7 +426,8 @@ function ClosingPlanPicker() {
                 </span>
               ) : null}
             </div>
-            <p className="mafe-price mt-4 text-2xl font-semibold">${formatUsd(plan.price)} USD</p>
+            <p className="mafe-price mt-4 text-xl font-semibold sm:text-2xl">${formatCop(plan.price)} COP</p>
+            <p className="mafe-muted mt-0.5 text-xs">USD {formatUsd(plan.usd)}</p>
           </button>
         ))}
       </div>
@@ -407,22 +440,22 @@ function ClosingPlanPicker() {
           </div>
           <div className="flex items-center justify-between gap-4">
             <p className="mafe-muted">Total</p>
-            <p className="mafe-price font-semibold">${formatUsd(selected.price)} USD</p>
+            <p className="mafe-price font-semibold">${formatCop(selected.price)} COP</p>
           </div>
           <div className="flex items-center justify-between gap-4">
             <p className="mafe-muted">Fase 1 (al firmar)</p>
-            <p className="mafe-card-text font-medium">${formatUsd(selected.phase1)} USD</p>
+            <p className="mafe-card-text font-medium">${formatCop(selected.phase1)} COP</p>
           </div>
           <div className="flex items-center justify-between gap-4">
             <p className="mafe-muted">Fase 2 (a los 15 días)</p>
-            <p className="mafe-card-text font-medium">${formatUsd(selected.phase2)} USD</p>
+            <p className="mafe-card-text font-medium">${formatCop(selected.phase2)} COP</p>
           </div>
         </div>
 
         <div className="mt-6 text-center">
           <a
             href={waUrl(
-              `Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y quiero confirmar el paquete ${selected.name} ($${formatUsd(selected.price)} USD).`
+              `Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y quiero confirmar el paquete ${selected.name} ($${formatCop(selected.price)} COP).`
             )}
             target="_blank"
             rel="noopener noreferrer"
@@ -547,7 +580,7 @@ export default function PropuestaVivianaRubioPage() {
           </p>
 
           <div className="mt-9 flex flex-wrap gap-2.5">
-            {["Desde $947 USD", "4 a 6 semanas", "Landing + automatización + membresía"].map((pill, i) => (
+            {["Desde $1.100.000 COP", "4 a 6 semanas", "Consultoría · Digital · Pro"].map((pill, i) => (
               <span
                 key={pill}
                 className="mafe-pill mafe-pill--on-video mafe-stagger rounded-full px-4 py-2 text-xs font-medium"
@@ -701,15 +734,15 @@ export default function PropuestaVivianaRubioPage() {
         id="planes"
         eyebrow="03. Inversión"
         title="Elige tu ruta"
-        subtitle="Arquitectura central en ambos planes: landing con checkout, automatización WhatsApp/Instagram, laboratorio de contenido, capacitación de equipo."
+        subtitle="Tres rutas: consultoría de oferta, sistema digital con checkout, o el paquete completo con membresía y Meta Ads."
         elevated
         alt
       >
         <div data-reveal className="mafe-reveal">
           <h3 className="mafe-section-label text-lg font-semibold">Cómo encaja todo</h3>
           <p className="mafe-muted mt-2 max-w-3xl text-sm leading-relaxed">
-            Primero validamos con un producto digital de bajo ticket. Luego construimos el producto completo. En PRO
-            activamos membresía recurrente y conectamos Nutrixion Funcional al funnel.
+            Puedes empezar solo con la oferta y el mensaje, o montar el sistema digital completo. En PRO activamos
+            membresía recurrente y conectamos Nutrixion Funcional al funnel.
           </p>
           <div className="mafe-stagger-group mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
             {JOURNEY_STEPS.map((item, i) => (
@@ -725,11 +758,49 @@ export default function PropuestaVivianaRubioPage() {
           </div>
         </div>
 
-        <div className="mafe-stagger-group mt-12 grid gap-6 lg:grid-cols-2" data-reveal>
+        <div className="mafe-stagger-group mt-12 grid gap-6 lg:grid-cols-3" data-reveal>
           <article className="mafe-card mafe-stagger flex flex-col rounded-2xl p-6 sm:p-8" style={staggerStyle(0)}>
+            <p className="mafe-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 3</p>
+            <h3 className="mafe-section-label mt-2 text-2xl font-semibold">PDM CONSULTORÍA</h3>
+            <p className="mafe-price mt-1 text-3xl font-semibold">${formatCop(1100000)} COP</p>
+            <p className="mafe-muted mt-1 text-sm">USD 350</p>
+            <p className="mafe-muted mt-4 text-sm leading-relaxed">
+              Te ayudamos a construir tu oferta irresistible y magnética.
+            </p>
+            <ul className="mafe-muted mt-5 space-y-1.5 text-sm leading-relaxed">
+              {CONSULTORIA_ITEMS.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mafe-accent-text shrink-0">*</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mafe-payment-box mt-6 rounded-lg p-4">
+              <p className="mafe-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
+              <p className="mafe-card-text mt-2 text-sm">
+                Fase 1: <strong>${formatCop(550000)} COP</strong> al firmar
+              </p>
+              <p className="mafe-muted text-sm">
+                Fase 2: <strong>${formatCop(550000)} COP</strong> a los 15 días
+              </p>
+            </div>
+            <a
+              href={waUrl(
+                "Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y me interesa PDM CONSULTORÍA ($1.100.000 COP). Quiero coordinar el siguiente paso."
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mafe-btn-outline mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium"
+            >
+              Quiero CONSULTORÍA
+            </a>
+          </article>
+
+          <article className="mafe-card mafe-stagger flex flex-col rounded-2xl p-6 sm:p-8" style={staggerStyle(1, 100)}>
             <p className="mafe-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 1</p>
             <h3 className="mafe-section-label mt-2 text-2xl font-semibold">PDM COACHING DIGITAL</h3>
-            <p className="mafe-price mt-1 text-3xl font-semibold">${formatUsd(947)} USD</p>
+            <p className="mafe-price mt-1 text-3xl font-semibold">${formatCop(2980000)} COP</p>
+            <p className="mafe-muted mt-1 text-sm">USD 947</p>
 
             {DIGITAL_SECTIONS.map((block) => (
               <PackageBlock key={block.label} label={block.label} items={block.items} />
@@ -737,13 +808,17 @@ export default function PropuestaVivianaRubioPage() {
 
             <div className="mafe-payment-box mt-6 rounded-lg p-4">
               <p className="mafe-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
-              <p className="mafe-card-text mt-2 text-sm">Fase 1: $474 USD al firmar</p>
-              <p className="mafe-muted text-sm">Fase 2: $473 USD a los 15 días</p>
+              <p className="mafe-card-text mt-2 text-sm">
+                Fase 1: <strong>${formatCop(1490000)} COP</strong> al firmar
+              </p>
+              <p className="mafe-muted text-sm">
+                Fase 2: <strong>${formatCop(1490000)} COP</strong> a los 15 días
+              </p>
             </div>
 
             <a
               href={waUrl(
-                "Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y me interesa PDM COACHING DIGITAL ($947 USD). Quiero coordinar el siguiente paso."
+                "Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y me interesa PDM COACHING DIGITAL ($2.980.000 COP). Quiero coordinar el siguiente paso."
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -755,15 +830,16 @@ export default function PropuestaVivianaRubioPage() {
 
           <article
             className="mafe-card mafe-card--featured mafe-stagger relative flex flex-col rounded-2xl p-6 sm:p-8"
-            style={staggerStyle(1, 140)}
+            style={staggerStyle(2, 140)}
           >
             <span className="mafe-badge mafe-badge--pulse absolute right-5 top-5 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-wider">
               Recomendado
             </span>
             <p className="mafe-muted text-[11px] font-medium uppercase tracking-[0.2em]">Paquete 2</p>
             <h3 className="mafe-section-label mt-2 text-2xl font-semibold">PDM COACHING PRO</h3>
-            <p className="mafe-price mt-1 text-3xl font-semibold">${formatUsd(1497)} USD</p>
-            <p className="mafe-section-label mt-4 text-sm font-medium">Todo lo del paquete anterior, más:</p>
+            <p className="mafe-price mt-1 text-3xl font-semibold">${formatCop(4720000)} COP</p>
+            <p className="mafe-muted mt-1 text-sm">USD 1.497</p>
+            <p className="mafe-section-label mt-4 text-sm font-medium">Todo lo del paquete Digital, más:</p>
 
             {PRO_EXTRA_SECTIONS.map((block) => (
               <PackageBlock key={block.label} label={block.label} items={block.items} />
@@ -771,13 +847,17 @@ export default function PropuestaVivianaRubioPage() {
 
             <div className="mafe-payment-box mt-6 rounded-lg p-4">
               <p className="mafe-muted text-[11px] font-medium uppercase tracking-[0.16em]">Forma de pago</p>
-              <p className="mafe-card-text mt-2 text-sm">Fase 1: $749 USD al firmar</p>
-              <p className="mafe-muted text-sm">Fase 2: $748 USD a los 15 días</p>
+              <p className="mafe-card-text mt-2 text-sm">
+                Fase 1: <strong>${formatCop(2360000)} COP</strong> al firmar
+              </p>
+              <p className="mafe-muted text-sm">
+                Fase 2: <strong>${formatCop(2360000)} COP</strong> a los 15 días
+              </p>
             </div>
 
             <a
               href={waUrl(
-                "Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y me interesa PDM COACHING PRO ($1,497 USD). Quiero coordinar el siguiente paso."
+                "Hola Fluxa Method. Revisé la propuesta de Viviana Rubio y me interesa PDM COACHING PRO ($4.720.000 COP). Quiero coordinar el siguiente paso."
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -792,24 +872,31 @@ export default function PropuestaVivianaRubioPage() {
           <h3 className="mafe-section-label text-center text-lg font-semibold sm:text-xl">Comparativa lado a lado</h3>
           <div className="mafe-compare-wrap mt-6 rounded-xl">
             <div className="sm:hidden">
-              <div className="mafe-compare-head grid grid-cols-2 gap-2 px-3 py-3">
+              <div className="mafe-compare-head grid grid-cols-3 gap-1 px-2 py-3 text-[10px]">
+                <span className="text-center">
+                  Consultoría
+                  <span className="mafe-compare-price block">$1.1M</span>
+                </span>
                 <span className="text-center">
                   Digital
-                  <span className="mafe-compare-price block">${formatUsd(947)}</span>
+                  <span className="mafe-compare-price block">$2.98M</span>
                 </span>
                 <span className="text-center mafe-accent-text">
                   Pro
-                  <span className="mafe-compare-price block">${formatUsd(1497)}</span>
+                  <span className="mafe-compare-price block">$4.72M</span>
                 </span>
               </div>
               {PLAN_COMPARISON.map((row) => (
-                <div key={row.feature} className="mafe-compare-row px-3 py-3.5">
+                <div key={row.feature} className="mafe-compare-row px-2 py-3.5">
                   <p className="mafe-card-text text-xs leading-snug">{row.feature}</p>
-                  <div className="mt-2.5 grid grid-cols-2 gap-2">
-                    <div className="flex min-h-[2rem] items-center justify-center px-1">
+                  <div className="mt-2.5 grid grid-cols-3 gap-1">
+                    <div className="flex min-h-[2rem] items-center justify-center px-0.5">
+                      <CompareCell value={row.consultoria} />
+                    </div>
+                    <div className="flex min-h-[2rem] items-center justify-center px-0.5">
                       <CompareCell value={row.digital} />
                     </div>
-                    <div className="flex min-h-[2rem] items-center justify-center px-1">
+                    <div className="flex min-h-[2rem] items-center justify-center px-0.5">
                       <CompareCell value={row.pro} isPro />
                     </div>
                   </div>
@@ -818,21 +905,27 @@ export default function PropuestaVivianaRubioPage() {
             </div>
 
             <div className="hidden overflow-x-auto sm:block">
-              <div className="mafe-compare-head grid grid-cols-[1.4fr_1fr_1fr] gap-2 px-5 py-3">
+              <div className="mafe-compare-head grid grid-cols-[1.3fr_1fr_1fr_1fr] gap-2 px-5 py-3">
                 <span>Característica</span>
                 <span className="text-center">
-                  Digital <span className="mafe-compare-price block">${formatUsd(947)}</span>
+                  Consultoría <span className="mafe-compare-price block">${formatCop(1100000)}</span>
+                </span>
+                <span className="text-center">
+                  Digital <span className="mafe-compare-price block">${formatCop(2980000)}</span>
                 </span>
                 <span className="text-center mafe-accent-text">
-                  Pro <span className="mafe-compare-price block">${formatUsd(1497)}</span>
+                  Pro <span className="mafe-compare-price block">${formatCop(4720000)}</span>
                 </span>
               </div>
               {PLAN_COMPARISON.map((row) => (
                 <div
                   key={row.feature}
-                  className="mafe-compare-row grid grid-cols-[1.4fr_1fr_1fr] items-center gap-2 px-5 py-3.5"
+                  className="mafe-compare-row grid grid-cols-[1.3fr_1fr_1fr_1fr] items-center gap-2 px-5 py-3.5"
                 >
                   <p className="mafe-card-text text-sm leading-snug">{row.feature}</p>
+                  <div className="flex justify-center">
+                    <CompareCell value={row.consultoria} />
+                  </div>
                   <div className="flex justify-center">
                     <CompareCell value={row.digital} />
                   </div>
@@ -875,7 +968,10 @@ export default function PropuestaVivianaRubioPage() {
                   <span className="mafe-badge rounded-full px-2 py-0.5 text-[9px] uppercase">Más completo</span>
                 ) : null}
               </div>
-              <h3 className="mafe-section-label mt-2 text-2xl font-semibold">${formatUsd(plan.price)} USD/mes</h3>
+              <h3 className="mafe-section-label mt-2 text-2xl font-semibold">
+                ${formatCop(plan.price)} <span className="text-base font-medium">COP/mes</span>
+              </h3>
+              <p className="mafe-muted mt-0.5 text-xs">USD {formatUsd(plan.usd)}/mes</p>
               {plan.note ? <p className="mafe-muted mt-1 text-sm">{plan.note}</p> : null}
               <ul className="mafe-muted mt-6 space-y-2 text-sm leading-relaxed">
                 {plan.items.map((item) => (
@@ -914,14 +1010,21 @@ export default function PropuestaVivianaRubioPage() {
           </article>
         </div>
 
-        <div className="mafe-stagger-group mt-6 grid gap-4 sm:grid-cols-2" data-reveal>
+        <div className="mafe-stagger-group mt-6 grid gap-4 sm:grid-cols-3" data-reveal>
           <article className="mafe-card mafe-stagger rounded-xl p-5" style={staggerStyle(0)}>
-            <p className="mafe-section-label font-semibold">PDM COACHING DIGITAL</p>
-            <p className="mafe-price mt-1 text-xl font-semibold">${formatUsd(947)} USD</p>
+            <p className="mafe-section-label font-semibold">PDM CONSULTORÍA</p>
+            <p className="mafe-price mt-1 text-xl font-semibold">${formatCop(1100000)} COP</p>
+            <p className="mafe-muted mt-0.5 text-xs">USD 350</p>
           </article>
-          <article className="mafe-card mafe-card--featured mafe-stagger rounded-xl p-5" style={staggerStyle(1)}>
+          <article className="mafe-card mafe-stagger rounded-xl p-5" style={staggerStyle(1)}>
+            <p className="mafe-section-label font-semibold">PDM COACHING DIGITAL</p>
+            <p className="mafe-price mt-1 text-xl font-semibold">${formatCop(2980000)} COP</p>
+            <p className="mafe-muted mt-0.5 text-xs">USD 947</p>
+          </article>
+          <article className="mafe-card mafe-card--featured mafe-stagger rounded-xl p-5" style={staggerStyle(2)}>
             <p className="mafe-section-label font-semibold">PDM COACHING PRO</p>
-            <p className="mafe-price mt-1 text-xl font-semibold">${formatUsd(1497)} USD</p>
+            <p className="mafe-price mt-1 text-xl font-semibold">${formatCop(4720000)} COP</p>
+            <p className="mafe-muted mt-0.5 text-xs">USD 1.497</p>
             <p className="mafe-muted mt-1 text-xs">Recomendado</p>
           </article>
         </div>
