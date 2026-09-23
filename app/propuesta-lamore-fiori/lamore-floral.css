@@ -1,0 +1,391 @@
+﻿/* Lamore Fiori — overrides + fallbacks (no depender de Tailwind para lo crítico) */
+
+/* —— Visibilidad forzada: nada oculto por reveal/stagger —— */
+.mafe-root .mafe-reveal,
+.mafe-root .mafe-stagger,
+.mafe-root .mafe-table-after-cell {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.mafe-root .mafe-timeline-line {
+  transform: scaleY(1) !important;
+}
+
+/* —— Nav legible aunque falle Tailwind —— */
+.mafe-root .mafe-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  min-height: 3.25rem;
+  border-bottom: 1px solid var(--mafe-border);
+  background: rgba(243, 245, 241, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.mafe-root .mafe-nav > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mafe-root .mafe-nav-brand {
+  flex-shrink: 0;
+  margin-right: 0.25rem;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mafe-muted);
+}
+
+.mafe-root .mafe-nav-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--mafe-border);
+  border-radius: 9999px;
+  background: var(--mafe-bg-alt);
+  padding: 0.25rem 0.75rem;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--mafe-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mafe-root .mafe-nav-link:hover {
+  border-color: var(--mafe-border-accent);
+  color: var(--mafe-heading);
+}
+
+.mafe-root .mafe-nav-link--active {
+  border-color: var(--mafe-border-accent);
+  background: var(--mafe-accent-soft);
+  color: var(--mafe-heading);
+  box-shadow: 0 0 18px var(--mafe-glow);
+}
+
+/* —— Hero: copy ENCIMA de la foto (z-index propio, sin Tailwind) —— */
+.mafe-root .mafe-hero-mesh {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 85vh;
+}
+
+.mafe-root .mafe-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mafe-root .mafe-hero-bg-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.mafe-root .mafe-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    115deg,
+    rgba(12, 22, 16, 0.82) 0%,
+    rgba(22, 36, 28, 0.62) 42%,
+    rgba(32, 58, 44, 0.45) 100%
+  );
+}
+
+.mafe-root .mafe-hero-copy,
+.mafe-root .mafe-hero-band,
+.mafe-root .mafe-hero-mesh > .relative {
+  position: relative;
+  z-index: 2;
+}
+
+.mafe-root .mafe-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 1.5rem;
+  min-height: min(58vh, 32rem);
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mafe-root .mafe-hero-copy {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.mafe-root .mafe-hero-copy .mafe-eyebrow,
+.mafe-root .mafe-hero-copy .mafe-hero-brand,
+.mafe-root .mafe-hero-copy .mafe-hero-title,
+.mafe-root .mafe-hero-copy .mafe-lead {
+  color: #ffffff !important;
+}
+
+.mafe-root .mafe-hero-brand {
+  margin-top: 0.75rem;
+  max-width: 18ch;
+  font-family: var(--mafe-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 8vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #ffffff !important;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.65);
+}
+
+.mafe-root .mafe-hero-title--on-video {
+  margin-top: 1.15rem;
+  max-width: 22rem;
+  font-size: clamp(1.35rem, 3.6vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff !important;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
+}
+
+.mafe-root .mafe-lead--on-video {
+  margin-top: 1.1rem;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2.3vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.45;
+  color: #ffffff !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+
+.mafe-root .mafe-eyebrow--on-video {
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: #ffffff !important;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+.mafe-root .mafe-hero-copy .mafe-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin-top: 2.25rem;
+}
+
+.mafe-root .mafe-pill.mafe-pill--on-video {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff !important;
+  backdrop-filter: blur(8px);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+.mafe-root .mafe-hero-cta-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 72rem;
+  margin: 2.5rem auto 0;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .mafe-root .mafe-hero-cta-row {
+    padding: 0 1.5rem;
+  }
+}
+
+.mafe-root .mafe-btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* —— Body ambient floral —— */
+.mafe-root .lam-body {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 8%, rgba(232, 180, 196, 0.32) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 55% at 88% 18%, rgba(244, 200, 210, 0.24) 0%, transparent 50%),
+    radial-gradient(ellipse 65% 50% at 50% 100%, rgba(180, 120, 140, 0.1) 0%, transparent 55%),
+    linear-gradient(165deg, #faf6f7 0%, #f5eef1 45%, #efe6ea 100%);
+}
+
+.mafe-root .lam-food-ambient {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mafe-root .lam-food {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  animation: lamFloralFloat 14s ease-in-out infinite;
+}
+
+.mafe-root .lam-food__emoji {
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(42, 77, 58, 0.12));
+}
+
+.mafe-root .lam-food--1 {
+  top: 3%;
+  left: 3%;
+  font-size: 5.5rem;
+  animation-duration: 16s;
+}
+
+.mafe-root .lam-food--2 {
+  top: 5%;
+  right: 4%;
+  font-size: 5rem;
+  animation-delay: -2s;
+  animation-duration: 18s;
+}
+
+.mafe-root .lam-food--3 {
+  top: 24%;
+  left: 2%;
+  font-size: 4.75rem;
+  animation-delay: -5s;
+  animation-duration: 15s;
+}
+
+.mafe-root .lam-food--4 {
+  top: 30%;
+  right: 3%;
+  font-size: 5.25rem;
+  animation-delay: -8s;
+  animation-duration: 17s;
+}
+
+.mafe-root .lam-food--5 {
+  top: 48%;
+  left: 5%;
+  font-size: 4.5rem;
+  animation-delay: -3s;
+  animation-duration: 19s;
+}
+
+.mafe-root .lam-food--6 {
+  top: 54%;
+  right: 5%;
+  font-size: 5rem;
+  animation-delay: -11s;
+  animation-duration: 16s;
+}
+
+.mafe-root .lam-food--7 {
+  top: 72%;
+  left: 6%;
+  font-size: 4.25rem;
+  animation-delay: -6s;
+  animation-duration: 20s;
+  opacity: 0.92;
+}
+
+.mafe-root .lam-food--8 {
+  top: 76%;
+  right: 7%;
+  font-size: 4.75rem;
+  animation-delay: -9s;
+  animation-duration: 18s;
+  opacity: 0.95;
+}
+
+.mafe-root .lam-body-content {
+  position: relative;
+  z-index: 1;
+}
+
+.mafe-root .lam-body .mafe-section-alt {
+  background: linear-gradient(
+    180deg,
+    rgba(247, 248, 245, 0.55) 0%,
+    rgba(232, 236, 228, 0.5) 55%,
+    rgba(221, 227, 216, 0.45) 100%
+  );
+}
+
+.mafe-root .lam-body .scroll-mt-28:not(.mafe-hero-mesh) {
+  background: transparent;
+}
+
+@keyframes lamFloralFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(6px, -10px) rotate(4deg);
+  }
+  50% {
+    transform: translate(-4px, -16px) rotate(-3deg);
+  }
+  75% {
+    transform: translate(8px, -6px) rotate(2deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .mafe-root .lam-food--3,
+  .mafe-root .lam-food--5,
+  .mafe-root .lam-food--7 {
+    display: none;
+  }
+
+  .mafe-root .lam-food--1,
+  .mafe-root .lam-food--2 {
+    font-size: 3.25rem;
+    opacity: 0.75;
+  }
+
+  .mafe-root .lam-food--4,
+  .mafe-root .lam-food--6,
+  .mafe-root .lam-food--8 {
+    font-size: 2.85rem;
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mafe-root .lam-food {
+    animation: none !important;
+  }
+}

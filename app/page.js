@@ -139,6 +139,12 @@ const landings = [
     description: "Desde $1.100.000 COP · Consultoría, Digital $2.980.000 y Pro $4.720.000 · @nutricionista.vivianarubio",
   },
   {
+    name: "Lamore Fiori — Método PDM Floral",
+    path: "/propuesta-lamore-fiori",
+    description:
+      "Desde $1.100.000 COP · Consultoría, Digital $3.197.000 y Pro $4.897.000 · @lamore.fiori · Fluxa Method",
+  },
+  {
     name: "Brief Mafe Cerquera",
     path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
