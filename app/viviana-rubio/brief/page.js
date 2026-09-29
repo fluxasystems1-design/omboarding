@@ -404,15 +404,16 @@ function toggleCheckboxValue(current, value) {
 }
 
 export default function BriefVivianaRubioPage() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const totalSteps = BRIEF_SECTIONS.length;
-  const currentSection = BRIEF_SECTIONS[step - 1];
+  const currentSection = step >= 1 && step <= totalSteps ? BRIEF_SECTIONS[step - 1] : null;
 
   const progressPct = useMemo(() => {
+    if (step <= 0) return 0;
     if (step > totalSteps) return 100;
     return Math.round((step / totalSteps) * 100);
   }, [step, totalSteps]);
@@ -455,7 +456,7 @@ export default function BriefVivianaRubioPage() {
   const goPrev = () => {
     setSubmitError("");
     setErrors({});
-    if (step > 1) setStep((s) => s - 1);
+    if (step > 0) setStep((s) => s - 1);
   };
 
   const handleSubmit = async () => {
@@ -485,6 +486,31 @@ export default function BriefVivianaRubioPage() {
       setSubmitting(false);
     }
   };
+
+  if (step === 0) {
+    return (
+      <main className="mafe-brief-page px-4 py-10 sm:px-6 sm:py-14">
+        <BriefAmbient />
+        <div className="mafe-brief-shell mx-auto max-w-xl">
+          <div className="mafe-brief-card rounded-2xl p-6 text-center sm:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#3f6b52]">Brief de arranque</p>
+            <h1 className="mt-2 font-serif text-2xl font-semibold sm:text-3xl">Hola, Viviana</h1>
+            <p className="mt-4 text-sm leading-relaxed text-[#66756c] sm:text-base">
+              Este brief es para conocerte mejor antes de construir tu presencia digital: marca, consulta y Nutrixion
+              Funcional. Son 7 pasos cortos.
+            </p>
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-[#3f6b52] px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-[0_8px_24px_rgba(42,77,58,0.22)] sm:w-auto sm:min-w-[220px]"
+            >
+              Comenzar
+            </button>
+          </div>
+        </div>
+      </main>
+    );
+  }
 
   if (step === totalSteps + 1) {
     return (
@@ -616,8 +642,7 @@ export default function BriefVivianaRubioPage() {
           <button
             type="button"
             onClick={goPrev}
-            disabled={step === 1}
-            className="order-2 rounded-full border border-[rgba(28,43,34,0.2)] bg-transparent px-5 py-3 text-sm font-semibold transition enabled:hover:border-[#3f6b52] disabled:cursor-not-allowed disabled:opacity-40 sm:order-1"
+            className="order-2 rounded-full border border-[rgba(28,43,34,0.2)] bg-transparent px-5 py-3 text-sm font-semibold transition hover:border-[#3f6b52] sm:order-1"
           >
             Anterior
           </button>

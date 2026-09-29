@@ -61,6 +61,7 @@
 
 .mafe-brief-food {
   position: absolute;
+  z-index: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,77 +70,83 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   user-select: none;
+  opacity: 1;
   animation: mafeBriefFloat 14s ease-in-out infinite;
 }
 
 .mafe-brief-food__emoji {
+  display: block;
   line-height: 1;
-  filter: drop-shadow(0 4px 12px rgba(42, 77, 58, 0.12));
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", "Twemoji Mozilla", emoji, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  filter: drop-shadow(0 6px 14px rgba(42, 77, 58, 0.22));
+  transform: translateZ(0);
 }
 
 .mafe-brief-food--1 {
-  top: 8%;
-  left: 6%;
-  font-size: 2.75rem;
+  top: 4%;
+  left: 2%;
+  font-size: 4rem;
   animation-duration: 16s;
 }
 
 .mafe-brief-food--2 {
-  top: 14%;
-  right: 8%;
-  font-size: 2.35rem;
+  top: 8%;
+  right: 2%;
+  font-size: 3.5rem;
   animation-delay: -2s;
   animation-duration: 18s;
 }
 
 .mafe-brief-food--3 {
-  top: 42%;
-  left: 4%;
-  font-size: 2.5rem;
+  top: 38%;
+  left: 1%;
+  font-size: 3.75rem;
   animation-delay: -5s;
   animation-duration: 15s;
 }
 
 .mafe-brief-food--4 {
-  top: 55%;
-  right: 5%;
-  font-size: 2.85rem;
+  top: 48%;
+  right: 1%;
+  font-size: 4.1rem;
   animation-delay: -8s;
   animation-duration: 17s;
 }
 
 .mafe-brief-food--5 {
-  bottom: 18%;
-  left: 10%;
-  font-size: 2.2rem;
+  bottom: 12%;
+  left: 3%;
+  font-size: 3.4rem;
   animation-delay: -3s;
   animation-duration: 19s;
 }
 
 .mafe-brief-food--6 {
-  bottom: 12%;
-  right: 12%;
-  font-size: 2.5rem;
+  bottom: 6%;
+  right: 3%;
+  font-size: 3.75rem;
   animation-delay: -11s;
   animation-duration: 16s;
 }
 
 .mafe-brief-food--7 {
-  top: 32%;
-  right: 18%;
-  font-size: 2rem;
+  top: 24%;
+  right: 10%;
+  font-size: 3.1rem;
   animation-delay: -6s;
   animation-duration: 20s;
-  opacity: 0.9;
 }
 
 .mafe-brief-food--8 {
-  bottom: 32%;
-  left: 22%;
-  font-size: 2.25rem;
+  bottom: 24%;
+  left: 10%;
+  font-size: 3.25rem;
   animation-delay: -9s;
   animation-duration: 18s;
-  opacity: 0.95;
 }
 
 .mafe-brief-leaf {
@@ -296,15 +303,60 @@
 }
 
 @media (max-width: 639px) {
-  .mafe-brief-food--3,
-  .mafe-brief-food--7,
-  .mafe-brief-leaf--2 {
+  .mafe-brief-leaf {
     display: none;
   }
 
-  .mafe-brief-food--1,
+  .mafe-brief-food {
+    opacity: 1 !important;
+  }
+
+  .mafe-brief-food--1 {
+    top: 2%;
+    left: 1%;
+    font-size: 4.25rem;
+  }
+
   .mafe-brief-food--2 {
-    opacity: 0.75;
+    top: 3%;
+    right: 1%;
+    font-size: 3.85rem;
+  }
+
+  .mafe-brief-food--3 {
+    top: 36%;
+    left: 0;
+    font-size: 4rem;
+  }
+
+  .mafe-brief-food--4 {
+    top: 46%;
+    right: 0;
+    font-size: 4.25rem;
+  }
+
+  .mafe-brief-food--5 {
+    bottom: 8%;
+    left: 2%;
+    font-size: 3.75rem;
+  }
+
+  .mafe-brief-food--6 {
+    bottom: 4%;
+    right: 2%;
+    font-size: 4rem;
+  }
+
+  .mafe-brief-food--7 {
+    top: 18%;
+    right: 4%;
+    font-size: 3.5rem;
+  }
+
+  .mafe-brief-food--8 {
+    bottom: 18%;
+    left: 5%;
+    font-size: 3.6rem;
   }
 }
 
