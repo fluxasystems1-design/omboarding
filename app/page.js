@@ -150,6 +150,11 @@ const landings = [
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
   },
   {
+    name: "Brief Viviana Rubio",
+    path: "/viviana-rubio/brief",
+    description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
+  },
+  {
     name: "Kickoff Mafe Cerquera — Nutrición",
     path: "/kickoff-nutricion",
     description: "Kickoff oficial MAFE DIGITAL $4.000.000 COP · Método PDM Nutrición · Partnersflux",
