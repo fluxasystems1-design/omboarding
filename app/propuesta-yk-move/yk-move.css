@@ -1,0 +1,789 @@
+/* YK Move — limpio, blanco, negro · referencia estética Audaz */
+.yk-root {
+  --yk-bg: #f7f7f5;
+  --yk-bg-alt: #efeee9;
+  --yk-surface: #ffffff;
+  --yk-ink: #111111;
+  --yk-text: #3a3a3a;
+  --yk-muted: #6e6e6e;
+  --yk-muted-light: #9a9a9a;
+  --yk-border: rgba(17, 17, 17, 0.1);
+  --yk-border-strong: rgba(17, 17, 17, 0.22);
+  --yk-accent: #111111;
+  --yk-accent-soft: rgba(17, 17, 17, 0.06);
+  --yk-glow: rgba(17, 17, 17, 0.1);
+  --yk-sans: var(--yk-sans), "Manrope", system-ui, sans-serif;
+  --yk-display: var(--yk-display), "Cormorant Garamond", Georgia, serif;
+  background: var(--yk-bg);
+  color: var(--yk-text);
+}
+
+.yk-root .yk-page {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 0%, rgba(0, 0, 0, 0.03) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 90% 20%, rgba(0, 0, 0, 0.025) 0%, transparent 50%),
+    linear-gradient(180deg, #fafaf8 0%, #f4f3ef 50%, #efeee9 100%);
+  color: var(--yk-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.yk-root .yk-progress-track {
+  background: rgba(17, 17, 17, 0.06);
+}
+
+.yk-root .yk-progress-bar {
+  background: var(--yk-ink);
+  transition: width 0.15s ease-out;
+}
+
+.yk-root .yk-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--yk-border);
+  background: rgba(250, 250, 248, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.yk-root .yk-nav > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+}
+
+.yk-root .yk-nav-brand {
+  flex-shrink: 0;
+  margin-right: 0.35rem;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--yk-muted);
+}
+
+.yk-root .yk-nav-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--yk-border);
+  border-radius: 9999px;
+  background: var(--yk-surface);
+  padding: 0.3rem 0.8rem;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--yk-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.yk-root .yk-nav-link:hover,
+.yk-root .yk-nav-link--active {
+  border-color: var(--yk-border-strong);
+  background: var(--yk-accent-soft);
+  color: var(--yk-ink);
+}
+
+/* Hero */
+.yk-root .yk-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 88vh;
+}
+
+.yk-root .yk-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.yk-root .yk-hero-bg-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 32% 28%;
+}
+
+.yk-root .yk-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.18) 38%,
+    rgba(0, 0, 0, 0.48) 68%,
+    rgba(0, 0, 0, 0.68) 100%
+  );
+}
+
+@media (max-width: 639px) {
+  .yk-root .yk-hero {
+    min-height: auto;
+  }
+
+  .yk-root .yk-hero-bg-img {
+    object-position: 48% 38%;
+  }
+
+  .yk-root .yk-hero-bg-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.68) 38%,
+      rgba(0, 0, 0, 0.52) 68%,
+      rgba(0, 0, 0, 0.58) 100%
+    );
+  }
+
+  .yk-root .yk-hero-copy {
+    min-height: auto;
+    padding: 1.75rem 1rem 1.25rem;
+  }
+
+  .yk-root .yk-hero-lockup {
+    gap: 0.55rem;
+  }
+
+  .yk-root .yk-hero-logo-box {
+    padding: 0.4rem 0.5rem;
+    border-radius: 0.7rem;
+  }
+
+  .yk-root .yk-hero-logo {
+    height: 2.55rem;
+  }
+
+  .yk-root .yk-hero-fluxa {
+    height: 2.7rem;
+  }
+
+  .yk-root .yk-hero-x {
+    font-size: 1rem;
+  }
+
+  .yk-root .yk-hero-brand {
+    margin-top: 0.7rem;
+    font-size: clamp(2.35rem, 11vw, 3.1rem);
+  }
+
+  .yk-root .yk-hero-title {
+    margin-top: 0.7rem;
+    max-width: none;
+  }
+
+  .yk-root .yk-lead {
+    margin-top: 0.85rem;
+    font-size: 1rem;
+  }
+
+  .yk-root .yk-lead--on-hero {
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+  }
+
+  .yk-root .yk-pill-row {
+    margin-top: 1.35rem;
+    gap: 0.45rem;
+  }
+
+  .yk-root .yk-pill {
+    padding: 0.4rem 0.8rem;
+    font-size: 11px;
+  }
+
+  .yk-root .yk-hero-band-inner {
+    padding: 1.5rem 1rem;
+  }
+
+  .yk-root .yk-hero-cta {
+    margin-top: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .yk-root .yk-meta-card {
+    margin-top: 1.15rem;
+    padding: 0.85rem 1rem;
+    gap: 0.45rem 0.85rem;
+    font-size: 0.75rem;
+    flex-direction: column;
+  }
+
+  .yk-root .yk-page {
+    padding-bottom: 4.5rem;
+  }
+
+  .yk-root .yk-floating-cta {
+    right: 0.85rem;
+    bottom: 0.85rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.75rem;
+  }
+
+  .yk-root .yk-section {
+    padding-bottom: 3.25rem;
+  }
+
+  .yk-root .yk-section-inner--card {
+    padding: 1.25rem;
+  }
+}
+
+.yk-root .yk-hero-copy,
+.yk-root .yk-hero-band,
+.yk-root .yk-hero-meta,
+.yk-root .yk-hero-cta {
+  position: relative;
+  z-index: 2;
+}
+
+.yk-root .yk-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 72rem;
+  min-height: min(62vh, 34rem);
+  margin: 0 auto;
+  padding: 2.5rem 1rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-hero-copy {
+    align-items: flex-end;
+    text-align: right;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .yk-root .yk-hero-title,
+  .yk-root .yk-lead {
+    margin-left: auto;
+  }
+
+  .yk-root .yk-pill-row {
+    justify-content: flex-end;
+  }
+
+  .yk-root .yk-hero-cta {
+    justify-content: flex-end;
+  }
+}
+
+.yk-root .yk-hero-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.yk-root .yk-hero-logo-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.55rem 0.7rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.yk-root .yk-hero-logo {
+  width: auto;
+  height: 3.25rem;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.yk-root .yk-hero-x {
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.yk-root .yk-hero-fluxa {
+  display: block;
+  width: auto;
+  height: 3.5rem;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-hero-logo-box {
+    border-radius: 1rem;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .yk-root .yk-hero-logo {
+    height: 3.75rem;
+  }
+
+  .yk-root .yk-hero-fluxa {
+    height: 4.25rem;
+  }
+
+  .yk-root .yk-hero-x {
+    font-size: 1.3rem;
+  }
+}
+
+.yk-root .yk-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--yk-muted);
+}
+
+.yk-root .yk-eyebrow--on-hero {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.yk-root .yk-hero-brand {
+  margin-top: 0.85rem;
+  font-family: var(--yk-display);
+  font-size: clamp(2.75rem, 9vw, 4.75rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.yk-root .yk-hero-title {
+  margin-top: 1rem;
+  max-width: 22rem;
+  font-size: clamp(1.2rem, 3.2vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.yk-root .yk-lead {
+  margin-top: 1.1rem;
+  max-width: 34rem;
+  font-size: clamp(1.02rem, 2.2vw, 1.18rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--yk-text);
+}
+
+.yk-root .yk-lead--on-hero {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-weight: 600;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+}
+
+.yk-root .yk-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 2rem;
+}
+
+.yk-root .yk-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.45rem 0.95rem;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.yk-root .yk-hero-band {
+  background: #111111;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.yk-root .yk-hero-band-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.25rem 1rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-hero-band-inner {
+    padding: 2.75rem 1.5rem;
+  }
+}
+
+.yk-root .yk-hero-band-handle {
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.yk-root .yk-hero-band-sub {
+  margin-top: 0.45rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.yk-root .yk-hero-meta,
+.yk-root .yk-hero-cta {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-hero-meta,
+  .yk-root .yk-hero-cta {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.yk-root .yk-meta-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.75rem;
+  border: 1px solid var(--yk-border);
+  border-radius: 1rem;
+  background: var(--yk-surface);
+  padding: 1rem 1.25rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.yk-root .yk-meta-card a {
+  color: var(--yk-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.yk-root .yk-meta-card a:hover {
+  text-decoration: underline;
+}
+
+.yk-root .yk-divider {
+  display: none;
+  width: 1px;
+  height: 1rem;
+  background: var(--yk-border);
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-divider {
+    display: block;
+  }
+}
+
+.yk-root .yk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.yk-root .yk-btn-solid {
+  color: #ffffff;
+  background: var(--yk-ink);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+}
+
+.yk-root .yk-btn-solid:hover {
+  transform: translateY(-1px);
+  background: #000;
+}
+
+.yk-root .yk-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Body sections */
+.yk-root .yk-section {
+  scroll-margin-top: 5.5rem;
+  padding: 0 1rem 4.5rem;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 5.5rem;
+  }
+}
+
+.yk-root .yk-section--alt {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(239, 238, 233, 0.65) 100%);
+}
+
+.yk-root .yk-section-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.yk-root .yk-section-inner--card {
+  border: 1px solid var(--yk-border);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 1.75rem;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-section-inner--card {
+    padding: 2.5rem;
+  }
+}
+
+.yk-root .yk-heading {
+  margin-top: 0.7rem;
+  font-family: var(--yk-display);
+  font-size: clamp(1.7rem, 4vw, 2.55rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--yk-ink);
+}
+
+.yk-root .yk-section-label {
+  color: var(--yk-ink);
+  font-weight: 700;
+}
+
+.yk-root .yk-muted {
+  color: var(--yk-muted);
+}
+
+.yk-root .yk-card {
+  border: 1px solid var(--yk-border);
+  border-radius: 1rem;
+  background: var(--yk-surface);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+}
+
+.yk-root .yk-ficha-grid {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.85rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-ficha-grid {
+    grid-template-columns: 10rem 1fr;
+  }
+}
+
+.yk-root .yk-ficha-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--yk-muted-light);
+}
+
+.yk-root .yk-asset-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: var(--yk-ink);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.yk-root .yk-table-wrap {
+  border: 1px solid var(--yk-border);
+  background: var(--yk-surface);
+}
+
+.yk-root .yk-table-head {
+  background: #111;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.yk-root .yk-table-head .yk-after {
+  color: #fff;
+}
+
+.yk-root .yk-table-row {
+  border-bottom: 1px solid var(--yk-border);
+}
+
+.yk-root .yk-price {
+  color: var(--yk-ink);
+}
+
+.yk-root .yk-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--yk-border-strong);
+  border-radius: 9999px;
+  background: var(--yk-accent-soft);
+  color: var(--yk-ink);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.yk-root .yk-package {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--yk-border);
+  border-radius: 1.15rem;
+  background: var(--yk-surface);
+  padding: 1.5rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+}
+
+.yk-root .yk-package--featured {
+  border-color: var(--yk-ink);
+  box-shadow: 0 0 0 1px var(--yk-ink), 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.yk-root .yk-package-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.yk-root .yk-package-footer .yk-btn {
+  margin-top: 1.5rem;
+}
+
+.yk-root .yk-compare-check {
+  color: var(--yk-ink);
+  font-weight: 700;
+}
+
+.yk-root .yk-compare-x {
+  color: var(--yk-muted-light);
+}
+
+.yk-root .yk-timeline-dot {
+  border: 1px solid var(--yk-ink);
+  background: var(--yk-ink);
+  color: #fff;
+}
+
+.yk-root .yk-timeline-line {
+  background: linear-gradient(180deg, var(--yk-ink) 0%, rgba(17, 17, 17, 0.1) 100%);
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.yk-root .yk-plan-pick {
+  cursor: pointer;
+  width: 100%;
+  border: 1px solid var(--yk-border);
+  background: var(--yk-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.yk-root .yk-plan-pick:hover {
+  border-color: var(--yk-border-strong);
+  transform: translateY(-1px);
+}
+
+.yk-root .yk-plan-pick--selected {
+  border-color: var(--yk-ink);
+  box-shadow: 0 0 0 1px var(--yk-ink), 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.yk-root .yk-payment-box {
+  border: 1px solid var(--yk-border);
+  background: linear-gradient(160deg, #ffffff 0%, #f4f3ef 100%);
+}
+
+.yk-root .yk-floating-cta {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.25rem;
+  z-index: 45;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--yk-ink);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.yk-root .yk-floating-cta:hover {
+  transform: translateY(-2px);
+  background: #000;
+}
+
+.yk-root .yk-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.yk-root .yk-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.yk-root .yk-stagger {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms);
+}
+
+.yk-root .yk-stagger-group.is-visible .yk-stagger,
+.yk-root .yk-timeline-group.is-visible .yk-stagger {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yk-root .yk-reveal,
+  .yk-root .yk-stagger {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

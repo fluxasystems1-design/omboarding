@@ -145,6 +145,12 @@ const landings = [
       "Desde $1.100.000 COP · Consultoría, Digital $3.197.000 y Pro $4.897.000 · @lamore.fiori · Fluxa Method",
   },
   {
+    name: "YK Move — Presencia Digital Profesional",
+    path: "/propuesta-yk-move",
+    description:
+      "Desde $3.197.000 COP · Tienda, Lanzamiento $4.997.000 y Studio $7.297.000 · @yk_justmove · Fluxa Method",
+  },
+  {
     name: "Brief Mafe Cerquera",
     path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
