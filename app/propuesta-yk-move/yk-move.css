@@ -685,6 +685,149 @@
   margin-top: 1.5rem;
 }
 
+.yk-root .yk-compare {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.yk-root .yk-compare-table {
+  margin-top: 1rem;
+  width: 100%;
+  border: 1px solid var(--yk-border);
+  border-radius: 1rem;
+  background: var(--yk-surface);
+  overflow: hidden;
+}
+
+.yk-root .yk-compare-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.65fr);
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid var(--yk-border);
+}
+
+.yk-root .yk-compare-row:last-child {
+  border-bottom: 0;
+}
+
+.yk-root .yk-compare-row--head {
+  background: rgba(17, 17, 17, 0.04);
+  border-bottom: 1px solid var(--yk-border-strong);
+}
+
+.yk-root .yk-compare-feature {
+  min-width: 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.yk-root .yk-compare-row--head .yk-compare-feature {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.yk-root .yk-compare-plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.yk-root .yk-compare-cell {
+  min-width: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  color: var(--yk-ink);
+  overflow-wrap: anywhere;
+}
+
+.yk-root .yk-compare-cell--head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  align-items: center;
+}
+
+.yk-root .yk-compare-plan-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--yk-ink);
+  line-height: 1.2;
+}
+
+.yk-root .yk-compare-plan-price {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--yk-muted);
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .yk-root .yk-compare-row {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 2fr);
+    gap: 1rem;
+    padding: 0.85rem 1.15rem;
+  }
+
+  .yk-root .yk-compare-feature {
+    font-size: 0.875rem;
+  }
+
+  .yk-root .yk-compare-cell {
+    font-size: 0.875rem;
+  }
+
+  .yk-root .yk-compare-plan-name {
+    font-size: 0.82rem;
+  }
+
+  .yk-root .yk-compare-plan-price {
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .yk-root .yk-compare-row {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    padding: 0.85rem 0.8rem;
+  }
+
+  .yk-root .yk-compare-row--head .yk-compare-feature {
+    display: none;
+  }
+
+  .yk-root .yk-compare-feature {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--yk-ink);
+  }
+
+  .yk-root .yk-compare-plans {
+    gap: 0.4rem;
+  }
+
+  .yk-root .yk-compare-cell {
+    border: 1px solid var(--yk-border);
+    border-radius: 0.55rem;
+    background: rgba(17, 17, 17, 0.03);
+    padding: 0.4rem 0.25rem;
+  }
+
+  .yk-root .yk-compare-cell--head {
+    border: 0;
+    background: transparent;
+    padding: 0;
+  }
+}
+
 .yk-root .yk-compare-check {
   color: var(--yk-ink);
   font-weight: 700;

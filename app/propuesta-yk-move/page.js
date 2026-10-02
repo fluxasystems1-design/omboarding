@@ -755,34 +755,47 @@ export default function PropuestaYkMovePage() {
           </article>
         </div>
 
-        <div data-reveal className="yk-reveal mt-12 overflow-x-auto">
+        <div data-reveal className="yk-reveal yk-compare mt-12">
           <h3 className="yk-section-label text-lg">Comparativa lado a lado</h3>
-          <table className="mt-4 w-full min-w-[640px] border-collapse text-left text-sm">
-            <thead>
-              <tr className="border-b border-[var(--yk-border)]">
-                <th className="yk-muted py-3 pr-4 font-medium">Característica</th>
-                <th className="py-3 pr-4 font-semibold text-[var(--yk-ink)]">Tienda $3.197.000</th>
-                <th className="py-3 pr-4 font-semibold text-[var(--yk-ink)]">Lanzamiento $4.997.000</th>
-                <th className="py-3 font-semibold text-[var(--yk-ink)]">Studio $7.297.000</th>
-              </tr>
-            </thead>
-            <tbody>
-              {COMPARE_ROWS.map((row) => (
-                <tr key={row.feature} className="border-b border-[var(--yk-border)]">
-                  <td className="yk-muted py-3 pr-4">{row.feature}</td>
-                  <td className="py-3 pr-4">
+          <div className="yk-compare-table" role="table" aria-label="Comparativa de planes">
+            <div className="yk-compare-row yk-compare-row--head" role="row">
+              <div className="yk-compare-feature yk-muted" role="columnheader">
+                Característica
+              </div>
+              <div className="yk-compare-plans" role="presentation">
+                <div className="yk-compare-cell yk-compare-cell--head" role="columnheader">
+                  <span className="yk-compare-plan-name">Tienda</span>
+                  <span className="yk-compare-plan-price">$3.197.000</span>
+                </div>
+                <div className="yk-compare-cell yk-compare-cell--head" role="columnheader">
+                  <span className="yk-compare-plan-name">Lanzamiento</span>
+                  <span className="yk-compare-plan-price">$4.997.000</span>
+                </div>
+                <div className="yk-compare-cell yk-compare-cell--head" role="columnheader">
+                  <span className="yk-compare-plan-name">Studio</span>
+                  <span className="yk-compare-plan-price">$7.297.000</span>
+                </div>
+              </div>
+            </div>
+            {COMPARE_ROWS.map((row) => (
+              <div key={row.feature} className="yk-compare-row" role="row">
+                <div className="yk-compare-feature yk-muted" role="rowheader">
+                  {row.feature}
+                </div>
+                <div className="yk-compare-plans" role="presentation">
+                  <div className="yk-compare-cell" role="cell" data-label="Tienda">
                     <CompareCell value={row.tienda} />
-                  </td>
-                  <td className="py-3 pr-4">
+                  </div>
+                  <div className="yk-compare-cell" role="cell" data-label="Lanzamiento">
                     <CompareCell value={row.lanzamiento} />
-                  </td>
-                  <td className="py-3">
+                  </div>
+                  <div className="yk-compare-cell" role="cell" data-label="Studio">
                     <CompareCell value={row.studio} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </SectionBlock>
 
