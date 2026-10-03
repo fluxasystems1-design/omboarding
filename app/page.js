@@ -151,6 +151,12 @@ const landings = [
       "Desde $3.197.000 COP · Tienda, Lanzamiento $4.997.000 y Studio $7.297.000 · @yk_justmove · Fluxa Method",
   },
   {
+    name: "Birdhouse — Ritual de Cierre y Manifestación",
+    path: "/propuesta-birdhouse-wellness",
+    description:
+      "Colaboración wellness fin de año · GAL's Studio × Partnersflux · Contenido profesional + UGC de creadoras",
+  },
+  {
     name: "Brief Mafe Cerquera",
     path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
