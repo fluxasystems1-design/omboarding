@@ -19,7 +19,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.ve
 const title = "Propuesta de Colaboración | Birdhouse · Ritual de Cierre y Manifestación";
 const description =
   "Evento wellness de fin de año: experiencia liderada por Natalia Galvis (GAL's Studio) y documentada por Partnersflux. Contenido profesional + UGC de creadoras.";
-const ogImage = "/og/fluxa-logo.jpg";
+const ogImage = "/og/gals-logo.jpg";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -32,9 +32,9 @@ export const metadata = {
     description,
     type: "website",
     url: "/propuesta-birdhouse-wellness",
-    siteName: "Partnersflux × GAL's Studio",
+    siteName: "GAL's Studio × Birdhouse",
     locale: "es_CO",
-    images: [{ url: ogImage, width: 800, height: 800, alt: "Partnersflux" }],
+    images: [{ url: ogImage, width: 800, height: 800, alt: "GAL's Studio" }],
   },
   twitter: {
     card: "summary_large_image",
