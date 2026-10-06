@@ -462,8 +462,8 @@ export default function PropuestaJulianPachonIshopPage() {
               <img
                 src="/imagenes/julian-pachon/julian-about.jpg"
                 alt="Julián Pachón"
-                width={1440}
-                height={2560}
+                width={472}
+                height={1024}
                 loading="lazy"
               />
             </figure>
