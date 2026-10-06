@@ -157,7 +157,7 @@ const landings = [
       "Colaboración wellness fin de año · GAL's Studio × Partnersflux · Contenido profesional + UGC de creadoras",
   },
   {
-    name: "Julián Pachón × iShop",
+    name: "Julián Pachón × iShop Colombia",
     path: "/propuesta-julian-pachon-ishop",
     description:
       "Creador Embajador · Ecosistema Apple · Canje semestral o $1.200.000 COP/mes · @_Julianpachon",

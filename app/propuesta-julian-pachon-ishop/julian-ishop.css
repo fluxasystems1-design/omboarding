@@ -1,17 +1,18 @@
 @import url("https://api.fontshare.com/v2/css?f[]=clash-display@500;600;700&display=swap");
 
-/* Julián × iShop — atmósfera fotográfica / cinematográfica */
+/* Julián × iShop — dark cinematic + naranja iShop */
 .jp-root {
-  --jp-sky: #7bbbff;
-  --jp-lav: #b8a9ff;
-  --jp-coral: #ff8a4c;
+  --jp-sky: #5aa8ff;
+  --jp-lav: #9b8cff;
+  --jp-coral: #ff6a00;
+  --jp-ishop: #ff6a00;
   --jp-mint: #3ecf8e;
-  --jp-ink: #050f2a;
-  --jp-ice: #f2fdff;
-  --jp-muted: #4a5670;
+  --jp-ink: #f5f5f7;
+  --jp-ice: #050505;
+  --jp-muted: #e8e8ed;
   --jp-white: #ffffff;
-  --jp-glass: rgba(255, 255, 255, 0.72);
-  --jp-border: rgba(5, 15, 42, 0.08);
+  --jp-glass: rgba(255, 255, 255, 0.06);
+  --jp-border: rgba(255, 255, 255, 0.12);
   --jp-sans: var(--jp-sans), system-ui, sans-serif;
   --jp-display: "Clash Display", var(--jp-display), system-ui, sans-serif;
   color: var(--jp-ink);
@@ -40,18 +41,17 @@ html:has(.jp-root) body {
   pointer-events: none;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 55% 48% at 100% 0%, rgba(123, 187, 255, 0.55), transparent 68%),
-    radial-gradient(ellipse 48% 42% at 0% 12%, rgba(184, 169, 255, 0.5), transparent 65%),
-    radial-gradient(ellipse 42% 38% at 80% 100%, rgba(255, 138, 76, 0.28), transparent 70%),
-    radial-gradient(ellipse 36% 32% at 20% 85%, rgba(62, 207, 142, 0.18), transparent 70%),
-    linear-gradient(180deg, #e8f0ff 0%, #f2fdff 45%, #f4ecff 100%);
+    radial-gradient(ellipse 55% 48% at 100% 0%, rgba(255, 106, 0, 0.22), transparent 68%),
+    radial-gradient(ellipse 48% 42% at 0% 12%, rgba(90, 168, 255, 0.16), transparent 65%),
+    radial-gradient(ellipse 42% 38% at 80% 100%, rgba(255, 106, 0, 0.12), transparent 70%),
+    linear-gradient(180deg, #050505 0%, #0a0a0a 45%, #080808 100%);
 }
 
 .jp-root .jp-scope-bg {
   position: absolute;
   inset: 4% -2% -4% -2%;
-  opacity: 0.52;
-  filter: blur(3px) saturate(1.2);
+  opacity: 0.28;
+  filter: blur(3px) saturate(1.15);
   animation: jpScopeDrift 14s ease-in-out infinite alternate;
 }
 
@@ -62,18 +62,18 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-histo-bars rect {
-  fill: rgba(123, 187, 255, 0.22);
+  fill: rgba(255, 106, 0, 0.18);
   transform-origin: bottom center;
   transform-box: fill-box;
   animation: jpHistoPulse 4.8s ease-in-out infinite;
 }
 
 .jp-root .jp-histo-bars rect:nth-child(3n) {
-  fill: rgba(184, 169, 255, 0.24);
+  fill: rgba(90, 168, 255, 0.16);
 }
 
 .jp-root .jp-histo-bars rect:nth-child(3n + 1) {
-  fill: rgba(255, 138, 76, 0.2);
+  fill: rgba(255, 106, 0, 0.28);
 }
 
 .jp-root .jp-histo-bars rect:nth-child(1) { animation-delay: 0s; }
@@ -107,19 +107,19 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-focus-dots circle {
-  fill: #7bbbff;
+  fill: #ff6a00;
   transform-origin: center;
   transform-box: fill-box;
   animation: jpFocusPulse 2.8s ease-in-out infinite;
 }
 
 .jp-root .jp-focus-dots circle:nth-child(odd) {
-  fill: #b8a9ff;
+  fill: #5aa8ff;
   animation-delay: 0.35s;
 }
 
 .jp-root .jp-focus-dots circle:nth-child(3n) {
-  fill: #ff8a4c;
+  fill: #ffb070;
   animation-delay: 0.7s;
 }
 
@@ -169,11 +169,11 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-progress-track {
-  background: rgba(5, 15, 42, 0.08);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .jp-root .jp-progress-bar {
-  background: linear-gradient(90deg, var(--jp-sky), var(--jp-lav), var(--jp-coral));
+  background: linear-gradient(90deg, var(--jp-ishop), #ff9a4d, var(--jp-sky));
   transition: width 0.15s ease-out;
 }
 
@@ -182,7 +182,7 @@ html:has(.jp-root) body {
   top: 0;
   z-index: 40;
   border-bottom: 1px solid var(--jp-border);
-  background: rgba(242, 253, 255, 0.78);
+  background: rgba(5, 5, 5, 0.86);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
@@ -232,12 +232,12 @@ html:has(.jp-root) body {
 
 .jp-root .jp-nav-link:hover {
   color: var(--jp-ink);
-  background: rgba(123, 187, 255, 0.16);
+  background: rgba(255, 106, 0, 0.14);
 }
 
 .jp-root .jp-nav-link--active {
-  background: var(--jp-ink);
-  color: var(--jp-white);
+  background: var(--jp-ishop);
+  color: #0a0a0a;
 }
 
 .jp-root .jp-hero {
@@ -265,14 +265,14 @@ html:has(.jp-root) body {
 .jp-root .jp-eyebrow {
   display: inline-flex;
   border-radius: 999px;
-  border: 1px solid rgba(123, 187, 255, 0.45);
-  background: rgba(123, 187, 255, 0.16);
+  border: 1px solid rgba(255, 106, 0, 0.45);
+  background: rgba(255, 106, 0, 0.14);
   padding: 0.35rem 0.8rem;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #1a4f8a;
+  color: #ffb070;
 }
 
 .jp-root .jp-hero-brand {
@@ -282,17 +282,24 @@ html:has(.jp-root) body {
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.03em;
-  color: var(--jp-ink);
+  color: var(--jp-white);
   animation: jpFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   word-break: break-word;
 }
 
-.jp-root .jp-hero-brand span {
+.jp-root .jp-hero-brand span,
+.jp-root .jp-ishop {
   display: block;
-  background: linear-gradient(110deg, #3d7fd4 0%, #7a6ad8 45%, #e8783a 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--jp-ishop);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+.jp-root .jp-nav-brand .jp-ishop,
+.jp-root span.jp-ishop {
+  display: inline;
+  color: var(--jp-ishop);
 }
 
 .jp-root .jp-hero-title {
@@ -322,7 +329,7 @@ html:has(.jp-root) body {
 
 .jp-root .jp-stat {
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--jp-border);
   padding: 0.45rem 0.85rem;
   font-size: 0.82rem;
@@ -370,15 +377,15 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-btn-solid {
-  background: linear-gradient(135deg, var(--jp-ink) 0%, #1a2a5c 100%);
-  color: var(--jp-white);
-  box-shadow: 0 12px 28px rgba(5, 15, 42, 0.22);
+  background: linear-gradient(135deg, var(--jp-ishop) 0%, #e85d04 100%);
+  color: #0a0a0a;
+  box-shadow: 0 12px 28px rgba(255, 106, 0, 0.28);
 }
 
 .jp-root .jp-btn-ghost {
-  border: 1px solid rgba(5, 15, 42, 0.16);
-  background: rgba(255, 255, 255, 0.65);
-  color: var(--jp-ink);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--jp-white);
 }
 
 .jp-root .jp-meta {
@@ -388,7 +395,7 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-meta a {
-  color: #2f6fb8;
+  color: var(--jp-ishop);
   font-weight: 700;
   text-decoration: none;
 }
@@ -452,9 +459,9 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-section--soft {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(184, 169, 255, 0.12) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.55);
-  border-bottom: 1px solid rgba(123, 187, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255, 106, 0, 0.06) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border-top: 1px solid var(--jp-border);
+  border-bottom: 1px solid var(--jp-border);
 }
 
 .jp-root .jp-section-inner {
@@ -481,7 +488,7 @@ html:has(.jp-root) body {
   max-width: 42rem;
   font-size: 0.98rem;
   line-height: 1.65;
-  color: var(--jp-muted);
+  color: #f2f2f7;
 }
 
 @media (min-width: 768px) {
@@ -512,30 +519,28 @@ html:has(.jp-root) body {
   margin: 0;
   overflow: hidden;
   border-radius: 1.15rem;
-  aspect-ratio: 4 / 5;
-  max-height: 20rem;
   width: 100%;
-  max-width: 18rem;
+  max-width: 16.5rem;
   justify-self: center;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 @media (min-width: 860px) {
   .jp-root .jp-about-photo {
     border-radius: 1.35rem;
-    aspect-ratio: 3 / 4;
-    max-height: 26rem;
-    max-width: 22rem;
-    width: 100%;
+    max-width: 19rem;
     justify-self: end;
   }
 }
 
 .jp-root .jp-about-photo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 12%;
+  height: auto;
   display: block;
+  object-fit: contain;
+  object-position: center top;
+  filter: brightness(1.14) contrast(1.06) saturate(1.05);
 }
 
 .jp-root .jp-reveal {
@@ -702,9 +707,9 @@ html:has(.jp-root) body {
 .jp-root .jp-plan {
   border-radius: 1.2rem;
   border: 1px solid var(--jp-border);
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.05);
   padding: 1.15rem 1rem;
-  box-shadow: 0 14px 34px rgba(5, 15, 42, 0.06);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
 }
 
 @media (min-width: 768px) {
@@ -715,9 +720,9 @@ html:has(.jp-root) body {
 }
 
 .jp-root .jp-plan--featured {
-  border-color: rgba(123, 187, 255, 0.55);
-  background: linear-gradient(160deg, rgba(123, 187, 255, 0.18) 0%, rgba(255, 255, 255, 0.9) 55%);
-  box-shadow: 0 18px 40px rgba(61, 127, 212, 0.16);
+  border-color: rgba(255, 106, 0, 0.55);
+  background: linear-gradient(160deg, rgba(255, 106, 0, 0.16) 0%, rgba(255, 255, 255, 0.06) 55%);
+  box-shadow: 0 18px 40px rgba(255, 106, 0, 0.12);
 }
 
 .jp-root .jp-plan-tag {
@@ -728,13 +733,13 @@ html:has(.jp-root) body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: rgba(184, 169, 255, 0.22);
-  color: #4a3f9a;
+  background: rgba(255, 106, 0, 0.16);
+  color: #ffb070;
 }
 
 .jp-root .jp-plan--featured .jp-plan-tag {
-  background: rgba(123, 187, 255, 0.28);
-  color: #1a4f8a;
+  background: rgba(255, 106, 0, 0.28);
+  color: #ffd0a8;
 }
 
 .jp-root .jp-plan-title {
@@ -749,7 +754,7 @@ html:has(.jp-root) body {
   margin-top: 0.45rem;
   font-size: 1.02rem;
   font-weight: 700;
-  color: #2f6fb8;
+  color: var(--jp-ishop);
 }
 
 .jp-root .jp-plan-copy {
@@ -762,7 +767,7 @@ html:has(.jp-root) body {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.6;
-  color: var(--jp-muted);
+  color: #f2f2f7;
 }
 
 @media (min-width: 768px) {
@@ -795,7 +800,7 @@ html:has(.jp-root) body {
   width: 0.42rem;
   height: 0.42rem;
   border-radius: 50%;
-  background: var(--jp-sky);
+  background: var(--jp-ishop);
 }
 
 .jp-root .jp-steps {
@@ -811,7 +816,7 @@ html:has(.jp-root) body {
 
 .jp-root .jp-step {
   border-radius: 1.15rem;
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--jp-border);
   padding: 1.1rem 1rem;
 }
@@ -821,7 +826,7 @@ html:has(.jp-root) body {
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #2f6fb8;
+  color: var(--jp-ishop);
 }
 
 .jp-root .jp-step-title {
@@ -835,15 +840,15 @@ html:has(.jp-root) body {
   margin-top: 0.4rem;
   font-size: 0.9rem;
   line-height: 1.55;
-  color: var(--jp-muted);
+  color: #f2f2f7;
 }
 
 .jp-root .jp-contact-box {
   border-radius: 1.25rem;
-  border: 1px solid rgba(123, 187, 255, 0.35);
-  background: linear-gradient(145deg, rgba(123, 187, 255, 0.2) 0%, rgba(255, 255, 255, 0.85) 55%, rgba(184, 169, 255, 0.18) 100%);
+  border: 1px solid rgba(255, 106, 0, 0.4);
+  background: linear-gradient(145deg, rgba(255, 106, 0, 0.16) 0%, rgba(255, 255, 255, 0.05) 55%, rgba(90, 168, 255, 0.08) 100%);
   padding: 1.35rem 1.1rem;
-  box-shadow: 0 18px 40px rgba(5, 15, 42, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 
 @media (min-width: 768px) {
@@ -857,7 +862,7 @@ html:has(.jp-root) body {
   font-family: var(--jp-display);
   font-size: clamp(1.45rem, 6vw, 2.5rem);
   font-weight: 700;
-  color: var(--jp-ink);
+  color: var(--jp-white);
   word-break: break-word;
 }
 
@@ -876,13 +881,13 @@ html:has(.jp-root) body {
   bottom: 0.85rem;
   z-index: 45;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--jp-ink), #1a2a5c);
-  color: #fff;
+  background: linear-gradient(135deg, var(--jp-ishop), #e85d04);
+  color: #0a0a0a;
   padding: 0.72rem 1rem;
   font-size: 0.78rem;
   font-weight: 800;
   text-decoration: none;
-  box-shadow: 0 14px 30px rgba(5, 15, 42, 0.28);
+  box-shadow: 0 14px 30px rgba(255, 106, 0, 0.35);
 }
 
 @media (min-width: 768px) {

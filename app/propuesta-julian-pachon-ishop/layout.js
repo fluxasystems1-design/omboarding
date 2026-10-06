@@ -9,7 +9,7 @@ const sans = Space_Grotesk({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
-const title = "Propuesta | Julián Pachón × iShop · Creador Embajador";
+const title = "Propuesta | Julián Pachón × iShop Colombia · Creador Embajador";
 const description =
   "Colaboración semestral: contenido ecosistema Apple + talleres de foto y video. Canje de dispositivo o contenido pago mensual.";
 const ogImage = "/og/fluxa-logo.jpg";
@@ -25,7 +25,7 @@ export const metadata = {
     description,
     type: "website",
     url: "/propuesta-julian-pachon-ishop",
-    siteName: "Julián Pachón × iShop",
+    siteName: "Julián Pachón × iShop Colombia",
     locale: "es_CO",
     images: [{ url: ogImage, width: 640, height: 640, alt: "Julián Pachón" }],
   },

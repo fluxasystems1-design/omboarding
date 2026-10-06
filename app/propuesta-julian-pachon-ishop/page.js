@@ -7,6 +7,7 @@ const WA_NUMBER = "573112435112";
 
 const IG_HANDLE = "_Julianpachon";
 const IG_URL = `https://www.instagram.com/${IG_HANDLE}/`;
+const BRAND = "iShop Colombia";
 
 const REELS = [
   {
@@ -231,14 +232,14 @@ function DecorLayer() {
         <svg className="jp-scope-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
           <defs>
             <linearGradient id="jpHistoFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#7BBBFF" stopOpacity="0.55" />
-              <stop offset="45%" stopColor="#B8A9FF" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#FF8A4C" stopOpacity="0" />
+              <stop offset="0%" stopColor="#FF6A00" stopOpacity="0.45" />
+              <stop offset="45%" stopColor="#5AA8FF" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#FF6A00" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="jpWaveLine" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#7BBBFF" />
-              <stop offset="45%" stopColor="#B8A9FF" />
-              <stop offset="100%" stopColor="#FF8A4C" />
+              <stop offset="0%" stopColor="#5AA8FF" />
+              <stop offset="55%" stopColor="#FF6A00" />
+              <stop offset="100%" stopColor="#FFB070" />
             </linearGradient>
             <filter id="jpScopeGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="6" result="blur" />
@@ -300,9 +301,9 @@ function DecorLayer() {
 
           {/* Anillo de diafragma sutil */}
           <g className="jp-aperture-ring" opacity="0.35">
-            <circle cx="980" cy="160" r="72" fill="none" stroke="#7BBBFF" strokeWidth="2" />
-            <circle cx="980" cy="160" r="48" fill="none" stroke="#B8A9FF" strokeWidth="1.5" />
-            <circle cx="980" cy="160" r="22" fill="none" stroke="#FF8A4C" strokeWidth="1.5" />
+            <circle cx="980" cy="160" r="72" fill="none" stroke="#FF6A00" strokeWidth="2" />
+            <circle cx="980" cy="160" r="48" fill="none" stroke="#5AA8FF" strokeWidth="1.5" />
+            <circle cx="980" cy="160" r="22" fill="none" stroke="#FFB070" strokeWidth="1.5" />
           </g>
         </svg>
       </div>
@@ -327,7 +328,7 @@ export default function PropuestaJulianPachonIshopPage() {
   const [activeNav, setActiveNav] = useState("hero");
 
   const waMessage =
-    "Hola Julián. Vi la propuesta Julián Pachón × iShop (Creador Embajador, Ecosistema Apple) y quiero coordinar.";
+    `Hola Julián. Vi la propuesta Julián Pachón × ${BRAND} (Creador Embajador, Ecosistema Apple) y quiero coordinar.`;
   const contactHref = waUrl(waMessage) || "#contacto";
   const contactIsWa = Boolean(waUrl(waMessage));
 
@@ -402,7 +403,9 @@ export default function PropuestaJulianPachonIshopPage() {
 
         <nav className="jp-nav" aria-label="Secciones">
           <div>
-            <span className="jp-nav-brand">Julián × iShop</span>
+            <span className="jp-nav-brand">
+              Julián × <span className="jp-ishop">{BRAND}</span>
+            </span>
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.id}
@@ -420,7 +423,7 @@ export default function PropuestaJulianPachonIshopPage() {
             <p className="jp-eyebrow">Propuesta</p>
             <h1 className="jp-hero-brand">
               Julián Pachón
-              <span>× iShop</span>
+              <span className="jp-ishop">× {BRAND}</span>
             </h1>
             <p className="jp-hero-title">Creador Embajador, Ecosistema Apple</p>
             <p className="jp-meta">
@@ -460,10 +463,10 @@ export default function PropuestaJulianPachonIshopPage() {
             </div>
             <figure data-reveal className="jp-reveal jp-about-photo">
               <img
-                src="/imagenes/julian-pachon/julian-about.jpg"
+                src="/imagenes/julian-pachon/julian-about.jpg?v=2"
                 alt="Julián Pachón"
                 width={472}
-                height={1024}
+                height={686}
                 loading="lazy"
               />
             </figure>
@@ -477,7 +480,7 @@ export default function PropuestaJulianPachonIshopPage() {
         <Section id="por-que" title="Por qué esta colaboración tiene sentido">
           <p data-reveal className="jp-reveal jp-body">
             Mi contenido conecta porque viene de la experiencia real: la gente confía en lo que recomiendo porque me ve
-            usarlo y vivirlo en mi día a día, no porque sea publicidad. Eso es lo que puedo aportarle a iShop: contenido
+            usarlo y vivirlo en mi día a día, no porque sea publicidad. Eso es lo que puedo aportarle a {BRAND}: contenido
             que enseña y que la audiencia realmente recuerda, construido desde la cercanía y la autenticidad que ya tengo
             con ella.
           </p>
@@ -495,9 +498,9 @@ export default function PropuestaJulianPachonIshopPage() {
               <h3 className="jp-plan-title">Canje semestral</h3>
               <div className="jp-plan-copy">
                 <p>
-                  iShop me entrega el dispositivo como herramienta de trabajo cada semestre, por ejemplo un iPhone 18 Pro
+                  {BRAND} me entrega el dispositivo como herramienta de trabajo cada semestre, por ejemplo un iPhone 18 Pro
                   Max de 512GB o 1TB. A cambio, entrego 1-2 piezas de contenido mensual sobre un tema o producto que la
-                  marca proponga, coproducidos directamente con iShop, enseñando a sacarle el máximo provecho al
+                  marca proponga, coproducidos directamente con {BRAND}, enseñando a sacarle el máximo provecho al
                   dispositivo. Primer periodo: octubre-marzo, con renovación según resultados.
                 </p>
                 <p>
@@ -515,7 +518,7 @@ export default function PropuestaJulianPachonIshopPage() {
               <div className="jp-plan-copy">
                 <p>
                   1-2 contenidos al mes sobre un tema o producto que la marca proponga, coproducidos directamente con
-                  iShop, con un pago mensual de $1.200.000 COP, equivalente a $7.200.000 COP por el periodo de 6 meses.
+                  {BRAND}, con un pago mensual de $1.200.000 COP, equivalente a $7.200.000 COP por el periodo de 6 meses.
                 </p>
                 <p>
                   Dentro de ese mismo periodo, incluyo sin costo adicional la creación y ejecución de talleres enfocados
@@ -530,9 +533,9 @@ export default function PropuestaJulianPachonIshopPage() {
 
         <Section id="dinamica" title="Dinámica de trabajo">
           <p data-reveal className="jp-reveal jp-body">
-            iShop propone el tema del mes (o yo lo sugiero según el dispositivo en foco), grabo y edito con el equipo
+            {BRAND} propone el tema del mes (o yo lo sugiero según el dispositivo en foco), grabo y edito con el equipo
             asignado, la marca revisa antes de publicar, y definimos juntos si el contenido sale desde mi perfil o para
-            los canales de iShop.
+            los canales de {BRAND}.
           </p>
         </Section>
 
@@ -565,7 +568,7 @@ export default function PropuestaJulianPachonIshopPage() {
           </div>
         </Section>
 
-        <footer className="jp-footer">Julián Pachón × iShop · Creador Embajador, Ecosistema Apple</footer>
+        <footer className="jp-footer">Julián Pachón × {BRAND} · Creador Embajador, Ecosistema Apple</footer>
       </div>
 
       <a
