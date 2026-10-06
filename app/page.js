@@ -163,6 +163,12 @@ const landings = [
       "Creador Embajador · Ecosistema Apple · Canje semestral o $1.200.000 COP/mes · @_Julianpachon",
   },
   {
+    name: "Jebusitor · PDM BROKER",
+    path: "/propuesta-jebusitor",
+    description:
+      "Oferta, landing de registro, DM automatizado, contenido y Meta Ads · $2.000.000 COP · @jebusitor",
+  },
+  {
     name: "Brief Mafe Cerquera",
     path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",

@@ -515,7 +515,7 @@ html:has(.jp-root) body {
   aspect-ratio: 4 / 5;
   max-height: 20rem;
   width: 100%;
-  max-width: 20rem;
+  max-width: 18rem;
   justify-self: center;
 }
 
@@ -523,9 +523,10 @@ html:has(.jp-root) body {
   .jp-root .jp-about-photo {
     border-radius: 1.35rem;
     aspect-ratio: 3 / 4;
-    max-height: 28rem;
+    max-height: 26rem;
+    max-width: 22rem;
     width: 100%;
-    justify-self: stretch;
+    justify-self: end;
   }
 }
 

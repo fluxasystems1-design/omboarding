@@ -460,10 +460,10 @@ export default function PropuestaJulianPachonIshopPage() {
             </div>
             <figure data-reveal className="jp-reveal jp-about-photo">
               <img
-                src="/imagenes/julian-pachon/shot-03.jpg"
+                src="/imagenes/julian-pachon/julian-about.jpg"
                 alt="Julián Pachón"
-                width={720}
-                height={1280}
+                width={1440}
+                height={2560}
                 loading="lazy"
               />
             </figure>
