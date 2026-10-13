@@ -184,6 +184,11 @@ const landings = [
     description: "Kickoff oficial MAFE DIGITAL $4.000.000 COP · Método PDM Nutrición · Partnersflux",
   },
   {
+    name: "Kickoff Viviana Rubio — Nutrición",
+    path: "/kickoff-viviana-rubio",
+    description: "Kickoff oficial VIVIANA DIGITAL $4.200.000 COP · Método PDM Coaching · Partnersflux",
+  },
+  {
     name: "Jean",
     path: "/jean",
     description: "Dos empresas, un ecosistema digital en 90 días",

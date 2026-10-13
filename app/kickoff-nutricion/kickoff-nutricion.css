@@ -501,9 +501,33 @@
 }
 
 @media (max-width: 767px) {
+  .mafe-kickoff-root .mafe-kickoff-food {
+    font-size: 1.55rem !important;
+    opacity: 0.35;
+    filter: drop-shadow(0 4px 10px rgba(42, 77, 58, 0.1));
+  }
+
   .mafe-kickoff-root .mafe-kickoff-food--3,
   .mafe-kickoff-root .mafe-kickoff-food--4,
-  .mafe-kickoff-root .mafe-kickoff-food--7 {
-    opacity: 0.55;
+  .mafe-kickoff-root .mafe-kickoff-food--5,
+  .mafe-kickoff-root .mafe-kickoff-food--6,
+  .mafe-kickoff-root .mafe-kickoff-food--7,
+  .mafe-kickoff-root .mafe-kickoff-food--8 {
+    display: none;
+  }
+
+  .mafe-kickoff-root .mafe-kickoff-food--1 {
+    top: 6%;
+    left: 2%;
+  }
+
+  .mafe-kickoff-root .mafe-kickoff-food--2 {
+    top: 8%;
+    right: 2%;
+  }
+
+  .mafe-kickoff-root .mafe-kickoff-nav-link {
+    font-size: 11px;
+    padding: 0.35rem 0.7rem;
   }
 }
