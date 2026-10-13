@@ -348,13 +348,13 @@ export default function KickoffVivianaRubioPage() {
                 </div>
                 <div className="mafe-muted max-w-md text-sm leading-relaxed sm:text-[15px]">
                   <p>
-                    <strong className="font-semibold text-[var(--mafe-heading)]">Fase 1 — $2.100.000 COP</strong>
+                    <strong className="font-semibold text-[var(--mafe-heading)]">Fase 1 — $2.200.000 COP</strong>
                     <br />
                     <span className="mafe-accent-text font-semibold">✓ Abono recibido: $200.000 COP.</span> Pendiente de
-                    Fase 1: $1.900.000 COP. Con el abono ya arrancamos.
+                    Fase 1: $2.000.000 COP. Con el abono ya arrancamos.
                   </p>
                   <p className="mt-3">
-                    <strong className="font-semibold text-[var(--mafe-heading)]">Fase 2 — $2.100.000 COP</strong> —
+                    <strong className="font-semibold text-[var(--mafe-heading)]">Fase 2 — $2.000.000 COP</strong> —
                     cuando el producto esté definido y montado en landing (estimado semana 3-4)
                   </p>
                   <p className="mt-4 text-xs font-medium uppercase tracking-[0.12em] text-[var(--mafe-muted-light)]">
@@ -435,11 +435,11 @@ export default function KickoffVivianaRubioPage() {
           <div className="mafe-kickoff-payment-lane grid gap-5 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
             <article className="mafe-kickoff-payment-card rounded-2xl p-6 text-center sm:p-7">
               <p className="mafe-eyebrow">Fase 1 — Pago al comienzo</p>
-              <p className="mafe-kickoff-display mt-2 text-3xl text-[var(--mafe-purple-dark)]">$2.100.000 COP</p>
+              <p className="mafe-kickoff-display mt-2 text-3xl text-[var(--mafe-purple-dark)]">$2.200.000 COP</p>
               <p className="mafe-muted mt-3 text-sm">
                 <span className="mafe-accent-text font-semibold">Abono recibido: $200.000 COP.</span>
                 <br />
-                Pendiente Fase 1: $1.900.000 COP.
+                Pendiente Fase 1: $2.000.000 COP.
               </p>
             </article>
 
@@ -449,7 +449,7 @@ export default function KickoffVivianaRubioPage() {
 
             <article className="mafe-kickoff-payment-card rounded-2xl p-6 text-center sm:p-7">
               <p className="mafe-eyebrow">Fase 2 — Producto en landing</p>
-              <p className="mafe-kickoff-display mt-2 text-3xl text-[var(--mafe-purple-dark)]">$2.100.000 COP</p>
+              <p className="mafe-kickoff-display mt-2 text-3xl text-[var(--mafe-purple-dark)]">$2.000.000 COP</p>
               <p className="mafe-muted mt-3 text-sm">
                 Se activa cuando el sistema esté funcionando con el producto ya definido (estimado semana 3-4).
               </p>
