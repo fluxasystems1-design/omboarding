@@ -23,6 +23,7 @@ const NAV_ITEMS = [
   { id: "comparar", label: "Comparar" },
   { id: "como", label: "Cómo" },
   { id: "continuidad", label: "Continuidad" },
+  { id: "vision", label: "Visión" },
   { id: "cierre", label: "Cierre" },
 ];
 
@@ -36,8 +37,8 @@ const PILLARS = [
     text: "Seguimiento de interesados, inventario y asignación: cada asesor sabe a quién atender y en qué etapa está.",
   },
   {
-    title: "Modelado 3D y captación",
-    text: "Viviendas para recorrer en el navegador, páginas por zona y un espacio para que propietarios sumen inventario.",
+    title: "Tour 3D / 360° y captación",
+    text: "Viviendas para recorrer en 3D o 360°, páginas por zona y un espacio para que propietarios sumen inventario.",
   },
 ];
 
@@ -70,11 +71,11 @@ const CAPS = [
     ],
   },
   {
-    title: "Tour 3D en las fichas prioritarias",
-    text: "En el alcance Plataforma, modelamos viviendas destacadas para que el interesado las recorra en el navegador antes de la visita presencial. Es una forma de diferenciar a Estatus y de filtrar mejor quién vale la pena agendar.",
+    title: "Tour 3D o 360° en fichas prioritarias",
+    text: "En el alcance Plataforma, las viviendas destacadas pueden llevar un recorrido 3D navegable o imágenes 360°, a elección de la marca. El interesado explora antes de la visita presencial y Estatus filtra mejor a quién agendar.",
     points: [
-      "Recorrido navegable sin instalar apps",
-      "Integración del 3D dentro de la ficha de la propiedad",
+      "3D navegable o 360°, según la propiedad y el presupuesto",
+      "Integración dentro de la ficha de la propiedad",
       "Enlace compartible por WhatsApp e Instagram",
     ],
   },
@@ -139,14 +140,14 @@ const SOFTWARE_EXTRA = [
 
 const PLATAFORMA_EXTRA = [
   {
-    label: "Modelado 3D de viviendas",
+    label: "Tour 3D o imágenes 360°",
     items: [
-      "Modelado 3D de hasta 5 tipologías o viviendas prioritarias a partir de planos o medidas",
-      "Recorrido navegable en el navegador: el interesado camina la vivienda sin instalar nada",
+      "Hasta 5 tipologías o viviendas prioritarias con recorrido 3D o imágenes 360°, a elección de la marca",
+      "Recorrido navegable en el navegador cuando eligen 3D: el interesado camina la vivienda sin instalar nada",
       "Vista de distribución para entender cómo se conectan los espacios",
-      "Integración del modelo 3D dentro de la ficha de cada propiedad destacada",
-      "Enlace compartible por WhatsApp e Instagram para cada modelo",
-      "Capacidad de modelar más viviendas después, una por una, con cotización aparte",
+      "Integración del tour dentro de la ficha de cada propiedad destacada",
+      "Enlace compartible por WhatsApp e Instagram para cada experiencia",
+      "Más viviendas después, una por una, con cotización aparte",
     ],
   },
   {
@@ -154,7 +155,7 @@ const PLATAFORMA_EXTRA = [
     items: [
       "Páginas por zona, por tipo de inmueble y para inversionistas",
       "Ruta separada para compradores y para propietarios que quieren publicar",
-      "Espacio para que un propietario publique su inmueble y sumar inventario",
+      "Espacio para que un propietario publique su inmueble y sume inventario",
     ],
   },
   {
@@ -175,17 +176,11 @@ const COMPARE_ROWS = [
   { f: "Aviso de nuevos contactos", t: "Correo / WA", l: "✓ + CRM", e: "✓ + CRM" },
   { f: "Seguimiento de asesores", t: "—", l: "✓", e: "✓" },
   { f: "Respuestas automáticas IG / WhatsApp", t: "—", l: "✓", e: "✓" },
-  { f: "Permisos del equipo y reportes", t: "—", l: "✓", e: "✓" },
+  { f: "Permisos del equipo y vista por asesor", t: "—", l: "✓", e: "✓" },
+  { f: "Reportes y tableros de metas", t: "—", l: "—", e: "✓" },
   { f: "Páginas por zona / tipo", t: "Listados", l: "Listados", e: "Completas + inversionistas" },
   { f: "Espacio para que publiquen propietarios", t: "—", l: "—", e: "✓" },
-  { f: "Modelado 3D navegable de viviendas", t: "—", l: "—", e: "Hasta 5 + integración" },
-  {
-    f: "Inversión COP",
-    t: "$5.497.000",
-    l: "$8.997.000",
-    e: "$15.997.000",
-    price: true,
-  },
+  { f: "Tour 3D o imágenes 360°", t: "—", l: "—", e: "Hasta 5 + integración" },
 ];
 
 const PHASES = [
@@ -204,8 +199,8 @@ const PHASES = [
   {
     num: "03",
     when: "Semanas 5 a 8 · Plataforma",
-    title: "Modelado 3D y ampliación",
-    text: "Modelamos las viviendas prioritarias, las integramos a las fichas y sumamos páginas por zona y tableros.",
+    title: "Tour 3D / 360° y ampliación",
+    text: "Integramos hasta 5 recorridos 3D o 360° en las fichas prioritarias, páginas por zona y tableros ampliados.",
   },
   {
     num: "04",
@@ -243,7 +238,7 @@ const CONTINUIDAD = [
     featured: true,
     items: [
       "Todo lo de Software",
-      "Hosting y mantenimiento de modelos 3D activos",
+      "Hosting y mantenimiento de tours 3D o 360° activos",
       "Páginas o mejoras menores nuevas",
       "Afinar reportes y el recorrido de venta",
       "Acompañamiento del día a día del sistema",
@@ -259,6 +254,7 @@ const ROUTES = [
     short: "Página",
     price: 5497000,
     half: 2748500,
+    priceShort: "5,5M",
     featured: false,
     desc: "Sitio de marca, catálogo filtrable, fichas completas, carga inicial de propiedades y área para que el equipo las mantenga al día.",
     allows: "Que el interesado entienda el inmueble solo y escriba para pedir visita — sin armar el rompecabezas por chat.",
@@ -270,20 +266,22 @@ const ROUTES = [
     short: "Software",
     price: 8997000,
     half: 4498500,
+    priceShort: "9,0M",
     featured: true,
     desc: "Páginas más software comercial: seguimiento de asesores, inventario y respuestas automáticas.",
     allows: "Que el equipo gestione interesados, visitas y cierres desde un sistema propio.",
   },
   {
     id: "plataforma",
-    tag: "Paquete 03 · Premium 3D",
+    tag: "Paquete 03 · Premium 3D / 360°",
     name: "Inmo Plataforma",
     short: "Plataforma",
     price: 15997000,
     half: 7998500,
+    priceShort: "16M",
     featured: false,
-    desc: "Todo lo de Software, más modelado 3D, páginas por zona y captación de propietarios.",
-    allows: "Que el interesado recorra la vivienda en 3D antes de agendar la visita presencial.",
+    desc: "Todo lo de Software, más tour 3D o 360° a elección, páginas por zona y captación de propietarios.",
+    allows: "Que el interesado recorra la vivienda en 3D o 360° antes de agendar la visita presencial.",
   },
 ];
 
@@ -315,6 +313,8 @@ function Section({ id, eyebrow, title, children, soft = false }) {
 export default function PropuestaInmobiliariaPage() {
   const [progress, setProgress] = useState(0);
   const [activeNav, setActiveNav] = useState("hero");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navSolid, setNavSolid] = useState(false);
   const [selectedId, setSelectedId] = useState("software");
   const sectionIds = useMemo(() => NAV_ITEMS.map((i) => i.id), []);
   const selected = ROUTES.find((r) => r.id === selectedId) || ROUTES[1];
@@ -323,6 +323,9 @@ export default function PropuestaInmobiliariaPage() {
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(max > 0 ? Math.min(100, Math.max(0, (window.scrollY / max) * 100)) : 0);
+      const hero = document.getElementById("hero");
+      const threshold = hero ? Math.max(220, hero.offsetHeight - 72) : 420;
+      setNavSolid(window.scrollY > threshold);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -412,19 +415,39 @@ export default function PropuestaInmobiliariaPage() {
         <div className="inmo-progress-bar" style={{ width: `${progress}%` }} />
       </div>
 
-      <nav className="inmo-nav" aria-label="Secciones">
-        <div>
+      <nav
+        className={`inmo-nav ${menuOpen ? "inmo-nav--open" : ""} ${navSolid ? "inmo-nav--solid" : ""}`}
+        aria-label="Secciones"
+      >
+        <div className="inmo-nav-bar">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="inmo-nav-logo" src={LOGO} alt={BRAND_FULL} />
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className={`inmo-nav-link ${activeNav === item.id ? "inmo-nav-link--active" : ""}`}
-            >
-              {item.label}
-            </a>
-          ))}
+          <button
+            type="button"
+            className="inmo-nav-toggle"
+            aria-expanded={menuOpen}
+            aria-controls="inmo-nav-links"
+            aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="inmo-nav-burger" aria-hidden>
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
+          <div id="inmo-nav-links" className="inmo-nav-links">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`inmo-nav-link ${activeNav === item.id ? "inmo-nav-link--active" : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
         </div>
       </nav>
 
@@ -446,13 +469,13 @@ export default function PropuestaInmobiliariaPage() {
           <div className="inmo-hero-copy">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="inmo-hero-logo" src={LOGO} alt={BRAND_FULL} />
-            <h1 className="inmo-hero-title">El contenido ya abre la puerta. Ahora falta el sistema que la acompañe.</h1>
+            <h1 className="inmo-hero-title">El contenido ya abre las puertas. Ahora falta el sistema que las acompañe.</h1>
             <p className="inmo-hero-lead">
-              Páginas, catálogo y software comercial para Estatus: que cada persona que llega por Instagram encuentre
-              la ficha, deje sus datos y avance con un asesor — sin que el interés se quede solo en el chat.
+              Catálogo y software para que cada persona que llega por Instagram encuentre la ficha, deje sus datos y
+              avance con un asesor.
             </p>
             <p className="inmo-hero-meta">
-              Una propuesta de Partnersflux ·{" "}
+              Partnersflux ·{" "}
               <a href={IG_URL} target="_blank" rel="noopener noreferrer">
                 {IG_HANDLE}
               </a>
@@ -505,7 +528,7 @@ export default function PropuestaInmobiliariaPage() {
       <Section
         id="oportunidad"
         eyebrow="02 — La oportunidad"
-        title="El video abre la puerta. Las páginas y el software organizan la visita."
+        title="Los videos abren las puertas. Las páginas y el software organizan la visita."
         soft
       >
         <div className="inmo-prose">
@@ -550,7 +573,7 @@ export default function PropuestaInmobiliariaPage() {
         <p className="inmo-lead" style={{ marginTop: "1.1rem" }}>
           No proponemos solo “una página”. Proponemos un sistema digital a nombre de Estatus: catálogo para que el
           interesado se informe, CRM para que el equipo no pierda leads, inventario ordenado y —en el alcance
-          premium— recorridos 3D dentro de las fichas.
+          Plataforma— recorridos 3D o 360° dentro de las fichas.
         </p>
         <div className="inmo-caps inmo-caps--rich">
           {CAPS.map((cap) => (
@@ -581,9 +604,9 @@ export default function PropuestaInmobiliariaPage() {
       >
         <div className="inmo-feature inmo-feature--flip inmo-feature--tight">
           <p className="inmo-lead" style={{ marginTop: 0 }}>
-            Cada propiedad de Estatus puede tener su propia landing editable: fotos, tour 3D, video, planos, mapa,
-            precio y botones para pedir visita o recorrer en 3D. El equipo actualiza la ficha cuando cambia el
-            inventario —sin depender de un desarrollador para cada ajuste.
+            Cada propiedad puede tener su ficha o landing editable: fotos, video, planos, mapa, precio y botones para
+            pedir visita. En Inmo Plataforma sumamos tour 3D o imágenes 360°, a elección de la marca. El equipo
+            actualiza la ficha cuando cambia el inventario —sin depender de un desarrollador para cada ajuste.
           </p>
           <figure className="inmo-device">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -730,7 +753,7 @@ export default function PropuestaInmobiliariaPage() {
             <h3>Inventario centralizado y primera respuesta automática</h3>
             <p>
               El equipo publica y actualiza inmuebles en un solo lugar. Cuando alguien escribe por Instagram o WhatsApp,
-              el sistema puede enviar la ficha y filtrar el interés real —incluido desde Inmo Software.
+              el sistema puede enviar la ficha y filtrar el interés real —disponible desde Inmo Software.
             </p>
           </div>
           <figure className="inmo-device">
@@ -768,40 +791,28 @@ export default function PropuestaInmobiliariaPage() {
             </thead>
             <tbody>
               {COMPARE_ROWS.map((row) => (
-                <tr key={row.f} className={row.price ? "inmo-compare-price" : undefined}>
+                <tr key={row.f}>
                   <td>{row.f}</td>
-                  <td>
-                    {row.price ? (
-                      <>
-                        <span className="inmo-compare-price-full">{row.t}</span>
-                        <span className="inmo-compare-price-short">5,5M</span>
-                      </>
-                    ) : (
-                      row.t
-                    )}
-                  </td>
-                  <td>
-                    {row.price ? (
-                      <>
-                        <span className="inmo-compare-price-full">{row.l}</span>
-                        <span className="inmo-compare-price-short">9,0M</span>
-                      </>
-                    ) : (
-                      row.l
-                    )}
-                  </td>
-                  <td>
-                    {row.price ? (
-                      <>
-                        <span className="inmo-compare-price-full">{row.e}</span>
-                        <span className="inmo-compare-price-short">20M</span>
-                      </>
-                    ) : (
-                      row.e
-                    )}
-                  </td>
+                  <td>{row.t}</td>
+                  <td>{row.l}</td>
+                  <td>{row.e}</td>
                 </tr>
               ))}
+              <tr className="inmo-compare-price">
+                <td>Inversión COP</td>
+                <td>
+                  <span className="inmo-compare-price-full">${formatCop(ROUTES[0].price)}</span>
+                  <span className="inmo-compare-price-short">{ROUTES[0].priceShort}</span>
+                </td>
+                <td>
+                  <span className="inmo-compare-price-full">${formatCop(ROUTES[1].price)}</span>
+                  <span className="inmo-compare-price-short">{ROUTES[1].priceShort}</span>
+                </td>
+                <td>
+                  <span className="inmo-compare-price-full">${formatCop(ROUTES[2].price)}</span>
+                  <span className="inmo-compare-price-short">{ROUTES[2].priceShort}</span>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -815,9 +826,9 @@ export default function PropuestaInmobiliariaPage() {
             catálogo.
           </p>
           <p style={{ marginTop: "0.85rem" }}>
-            Si el objetivo es diferenciarse con modelado 3D y captar inventario por zonas, Inmo Plataforma es el alcance
-            premium. La decisión no debería basarse solo en el precio, sino en hasta dónde debe llegar el sistema en
-            esta etapa.
+            Si el objetivo es diferenciarse con tour 3D o 360° y captar inventario por zonas, Inmo Plataforma es el
+            alcance premium. La decisión no debería basarse solo en el precio, sino en hasta dónde debe llegar el
+            sistema en esta etapa.
           </p>
         </div>
       </Section>
@@ -894,7 +905,7 @@ export default function PropuestaInmobiliariaPage() {
       >
         <div className="inmo-close">
           <p className="inmo-lead">
-            Si alguno de los paquetes encaja con lo que quieren construir, definimos juntas el alcance y la fecha de
+            Si alguno de los paquetes encaja con lo que quieren construir, definimos juntos el alcance y la fecha de
             inicio.
           </p>
           <p className="inmo-eyebrow" style={{ marginTop: "1.5rem" }}>
@@ -939,7 +950,7 @@ export default function PropuestaInmobiliariaPage() {
       </Section>
 
       <footer className="inmo-footer">
-        {BRAND} × Partnersflux · Páginas · Software · Modelado 3D
+        {BRAND} × Partnersflux · Páginas · Software · Tour 3D / 360°
       </footer>
     </div>
   );

@@ -10,9 +10,9 @@ const manrope = Manrope({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
-const title = "Propuesta | Estatus Inmobiliaria · Páginas, software y 3D";
+const title = "Propuesta | Estatus Inmobiliaria · Páginas, software y tour 3D / 360°";
 const description =
-  "Páginas, software y modelado 3D de viviendas para Estatus Inmobiliaria. Página $5.497.000 · Software $8.997.000 · Plataforma $15.997.000 · Partnersflux · @inmobiliariaestatus";
+  "Páginas, software y tour 3D o 360° para Estatus Inmobiliaria. Página $5.497.000 · Software $8.997.000 · Plataforma $15.997.000 · Partnersflux · @inmobiliariaestatus";
 const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
