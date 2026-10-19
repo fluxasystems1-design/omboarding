@@ -1,19 +1,11 @@
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./inmobiliaria.css";
 
 const manrope = Manrope({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
-  variable: "--inmo-sans",
-  adjustFontFallback: false,
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-  variable: "--inmo-display",
+  variable: "--font-inmo-sans",
   adjustFontFallback: false,
 });
 
@@ -47,7 +39,5 @@ export const metadata = {
 };
 
 export default function PropuestaInmobiliariaLayout({ children }) {
-  return (
-    <div className={`inmo-root ${manrope.className} ${manrope.variable} ${cormorant.variable}`}>{children}</div>
-  );
+  return <div className={`inmo-root ${manrope.className} ${manrope.variable}`}>{children}</div>;
 }

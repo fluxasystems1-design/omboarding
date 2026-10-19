@@ -11,6 +11,7 @@ const WA_NUMBER = "573116425337";
 const LOGO = "/imagenes/estatus/logo.png";
 
 const HERO = "/imagenes/inmobiliaria/hero.jpg";
+const SHAPESPARK_DEMO = "https://demo.shapespark.com/modern-apartment/";
 
 const NAV_ITEMS = [
   { id: "hero", label: "Portada" },
@@ -184,7 +185,13 @@ const COMPARE_ROWS = [
   { f: "Páginas por zona / tipo", t: "—", l: "—", e: "✓" },
   { f: "Espacio para que publiquen propietarios", t: "—", l: "—", e: "✓" },
   { f: "Modelado 3D navegable de viviendas", t: "—", l: "—", e: "Hasta 5 + integración" },
-  { f: "Inversión COP", t: "$5.497.000", l: "$8.997.000", e: "$19.997.000" },
+  {
+    f: "Inversión COP",
+    t: "$5.497.000",
+    l: "$8.997.000",
+    e: "$19.997.000",
+    price: true,
+  },
 ];
 
 const PHASES = [
@@ -342,33 +349,79 @@ export default function PropuestaInmobiliariaPage() {
       if (el) sectionObserver.observe(el);
     });
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("is-visible");
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
-    );
-    document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
-    document.querySelectorAll("#hero [data-reveal]").forEach((el) => el.classList.add("is-visible"));
-
     return () => {
       sectionObserver.disconnect();
-      revealObserver.disconnect();
     };
   }, [sectionIds]);
 
   return (
     <div className="inmo-page">
-      <div className="inmo-ambient" aria-hidden />
+      <div className="inmo-decor" aria-hidden>
+        <div className="inmo-chart-bg">
+          <svg className="inmo-chart-svg" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="inmoChartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#7BBBFF" stopOpacity="0.55" />
+                <stop offset="55%" stopColor="#B8A9FF" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#7BBBFF" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="inmoChartLine" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#7BBBFF" />
+                <stop offset="100%" stopColor="#B8A9FF" />
+              </linearGradient>
+              <filter id="inmoChartGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <g className="inmo-chart-bars">
+              <rect x="90" y="480" width="70" height="120" rx="12" />
+              <rect x="250" y="390" width="70" height="210" rx="12" />
+              <rect x="410" y="430" width="70" height="170" rx="12" />
+              <rect x="570" y="300" width="70" height="300" rx="12" />
+              <rect x="730" y="220" width="70" height="380" rx="12" />
+              <rect x="890" y="140" width="70" height="460" rx="12" />
+              <rect x="1040" y="90" width="70" height="510" rx="12" />
+            </g>
+            <path
+              className="inmo-chart-area"
+              d="M90 500 L250 400 L410 450 L570 310 L730 230 L890 150 L1110 100 L1110 620 L90 620 Z"
+              fill="url(#inmoChartFill)"
+            />
+            <path
+              className="inmo-chart-line"
+              d="M90 500 L250 400 L410 450 L570 310 L730 230 L890 150 L1110 100"
+              fill="none"
+              stroke="url(#inmoChartLine)"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#inmoChartGlow)"
+            />
+            <g className="inmo-chart-dots" filter="url(#inmoChartGlow)">
+              <circle cx="90" cy="500" r="10" />
+              <circle cx="250" cy="400" r="10" />
+              <circle cx="410" cy="450" r="10" />
+              <circle cx="570" cy="310" r="10" />
+              <circle cx="730" cy="230" r="10" />
+              <circle cx="890" cy="150" r="10" />
+              <circle cx="1110" cy="100" r="12" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
       <div className="inmo-progress fixed left-0 top-0 z-50 w-full">
         <div className="inmo-progress-bar" style={{ width: `${progress}%` }} />
       </div>
 
       <nav className="inmo-nav" aria-label="Secciones">
         <div>
-          <span className="inmo-nav-brand">{BRAND}</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="inmo-nav-logo" src={LOGO} alt={BRAND_FULL} />
           {NAV_ITEMS.map((item) => (
             <a
               key={item.id}
@@ -386,37 +439,45 @@ export default function PropuestaInmobiliariaPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={HERO} alt="" />
         </div>
-        <div className="inmo-hero-copy">
-          <p className="inmo-eyebrow inmo-eyebrow--on-hero">{BRAND_TAG}</p>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="inmo-hero-logo" src={LOGO} alt={BRAND_FULL} />
-          <h1 className="inmo-hero-brand">{BRAND}</h1>
-          <p className="inmo-hero-title">Páginas y software para vender propiedades.</p>
-          <p className="inmo-hero-lead">
-            Sin página y sin sistema, cada video termina en chat. Armamos el sitio, el catálogo y el software comercial
-            para que el interés se vuelva visita rastreable — con tu equipo de asesores ordenado.
-          </p>
-          <p className="inmo-hero-meta">
-            Una propuesta de Partnersflux ·{" "}
-            <a href={IG_URL} target="_blank" rel="noopener noreferrer">
-              {IG_HANDLE}
-            </a>
-          </p>
-          <div className="inmo-hero-cta">
-            <a href="#rutas" className="inmo-btn inmo-btn-solid">
-              Ver paquetes
-            </a>
-            <a
-              href={waUrl(
-                `Hola Partnersflux. Revisé la propuesta de ${BRAND_FULL} y quiero conversar sobre el siguiente paso.`
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inmo-btn inmo-btn-ghost"
-            >
-              Hablar por WhatsApp
-            </a>
+        <div className="inmo-hero-inner">
+          <div className="inmo-hero-copy">
+            <p className="inmo-eyebrow inmo-eyebrow--on-hero">{BRAND_TAG}</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="inmo-hero-logo" src={LOGO} alt={BRAND_FULL} />
+            <h1 className="inmo-hero-title">Páginas y software para vender propiedades.</h1>
+            <p className="inmo-hero-lead">
+              Sin página y sin sistema, cada video termina en chat. Armamos el sitio, el catálogo y el software
+              comercial para que el interés se vuelva visita rastreable — con tu equipo de asesores ordenado.
+            </p>
+            <p className="inmo-hero-meta">
+              Una propuesta de Partnersflux ·{" "}
+              <a href={IG_URL} target="_blank" rel="noopener noreferrer">
+                {IG_HANDLE}
+              </a>
+            </p>
+            <div className="inmo-hero-cta">
+              <a href="#rutas" className="inmo-btn inmo-btn-solid">
+                Ver paquetes
+              </a>
+              <a
+                href={waUrl(
+                  `Hola Partnersflux. Revisé la propuesta de ${BRAND_FULL} y quiero conversar sobre el siguiente paso.`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inmo-btn inmo-btn-ghost"
+              >
+                Hablar por WhatsApp
+              </a>
+            </div>
           </div>
+          <figure className="inmo-hero-shot">
+            <div className="inmo-frame-mat">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={HERO} alt={`${BRAND_FULL} · ${IG_HANDLE}`} />
+            </div>
+            <figcaption className="inmo-frame-caption">{IG_HANDLE}</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -475,8 +536,13 @@ export default function PropuestaInmobiliariaPage() {
         <div className="inmo-caps">
           {CAPS.map((cap) => (
             <article key={cap.title} className="inmo-cap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={cap.img} alt="" />
+              <figure className="inmo-frame">
+                <div className="inmo-frame-mat">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={cap.img} alt={`${cap.title} · ${IG_HANDLE}`} />
+                </div>
+                <figcaption className="inmo-frame-caption">{IG_HANDLE}</figcaption>
+              </figure>
               <div className="inmo-cap-copy">
                 <h3>{cap.title}</h3>
                 <p>{cap.text}</p>
@@ -501,6 +567,39 @@ export default function PropuestaInmobiliariaPage() {
           mes; un desarrollo a medida de páginas, software propio y modelado 3D de viviendas es una inversión de
           proyecto — y suele costar más que una tienda online de moda.
         </p>
+
+        <div className="inmo-demo-3d">
+          <div className="inmo-demo-3d-copy">
+            <p className="inmo-eyebrow">Demo · Modelado 3D</p>
+            <h3 className="inmo-demo-3d-title">Así se siente recorrer una vivienda en el celular</h3>
+            <p className="inmo-demo-3d-text">
+              Referente Shapespark: el interesado camina el espacio desde el navegador. En Inmo Plataforma integramos
+              este tipo de recorrido dentro de la ficha de cada propiedad.
+            </p>
+            <a href={SHAPESPARK_DEMO} target="_blank" rel="noopener noreferrer" className="inmo-ref-link">
+              Abrir demo en pantalla completa →
+            </a>
+          </div>
+          <div className="inmo-phone">
+            <div className="inmo-phone-frame">
+              <span className="inmo-phone-notch" aria-hidden />
+              <div className="inmo-phone-display">
+                <iframe
+                  className="inmo-phone-iframe"
+                  src={SHAPESPARK_DEMO}
+                  title="Demo 3D Shapespark · apartamento moderno"
+                  loading="eager"
+                  allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <span className="inmo-phone-home" aria-hidden />
+            </div>
+            <p className="inmo-phone-caption">Interactúa dentro del celular · demo.shapespark.com</p>
+          </div>
+        </div>
+
         <div className="inmo-refs">
           {REFERENTES.map((ref) => (
             <article key={ref.name} className="inmo-ref">
@@ -613,19 +712,61 @@ export default function PropuestaInmobiliariaPage() {
           <table>
             <thead>
               <tr>
-                <th>Capacidad</th>
-                <th>Página</th>
-                <th>Software</th>
-                <th>Plataforma</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col">
+                  <span className="inmo-compare-label inmo-compare-label--full">Página</span>
+                  <span className="inmo-compare-label inmo-compare-label--short" title="Página">
+                    Pág.
+                  </span>
+                </th>
+                <th scope="col">
+                  <span className="inmo-compare-label inmo-compare-label--full">Software</span>
+                  <span className="inmo-compare-label inmo-compare-label--short" title="Software">
+                    Soft.
+                  </span>
+                </th>
+                <th scope="col">
+                  <span className="inmo-compare-label inmo-compare-label--full">Plataforma</span>
+                  <span className="inmo-compare-label inmo-compare-label--short" title="Plataforma">
+                    Plat.
+                  </span>
+                </th>
               </tr>
             </thead>
             <tbody>
               {COMPARE_ROWS.map((row) => (
-                <tr key={row.f}>
+                <tr key={row.f} className={row.price ? "inmo-compare-price" : undefined}>
                   <td>{row.f}</td>
-                  <td>{row.t}</td>
-                  <td>{row.l}</td>
-                  <td>{row.e}</td>
+                  <td>
+                    {row.price ? (
+                      <>
+                        <span className="inmo-compare-price-full">{row.t}</span>
+                        <span className="inmo-compare-price-short">5,5M</span>
+                      </>
+                    ) : (
+                      row.t
+                    )}
+                  </td>
+                  <td>
+                    {row.price ? (
+                      <>
+                        <span className="inmo-compare-price-full">{row.l}</span>
+                        <span className="inmo-compare-price-short">9,0M</span>
+                      </>
+                    ) : (
+                      row.l
+                    )}
+                  </td>
+                  <td>
+                    {row.price ? (
+                      <>
+                        <span className="inmo-compare-price-full">{row.e}</span>
+                        <span className="inmo-compare-price-short">20M</span>
+                      </>
+                    ) : (
+                      row.e
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -749,7 +890,7 @@ export default function PropuestaInmobiliariaPage() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="inmo-btn inmo-btn-ink"
+              className="inmo-btn inmo-btn-accent"
             >
               Quiero dar el siguiente paso
             </a>

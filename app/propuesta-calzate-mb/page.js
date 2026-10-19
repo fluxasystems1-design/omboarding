@@ -2,13 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const BRAND = "Cálzate";
 const BRAND_FULL = "Cálzate MB";
 const BRAND_TAG = "Partnersflux × Cálzate MB · Ecommerce y expansión";
 const IG_HANDLE = "@calzatemym";
 const IG_URL = "https://www.instagram.com/calzatemym/";
 const LOGO = "/imagenes/calzate-mb/logo.png";
-const HERO = "/imagenes/calzate-mb/hero.jpg";
+const HERO = "/imagenes/calzate-mb/hero.jpg?v=ig1";
+const PHOTO_SHOP = "/imagenes/calzate-mb/cap-shop.jpg?v=ig1";
+const PHOTO_ORDERS = "/imagenes/calzate-mb/cap-orders.jpg?v=ig1";
+const PHOTO_DISCOVER = "/imagenes/calzate-mb/cap-discover.jpg?v=ig1";
+const PHOTO_WHOLESALE = "/imagenes/calzate-mb/cap-wholesale.jpg?v=ig1";
 const WA_NUMBER = "573116425337";
 
 const NAV_ITEMS = [
@@ -31,52 +34,56 @@ const STATS = [
 
 const PILLARS = [
   {
-    title: "Que comprar sea tan fácil como enamorarse del diseño",
-    text: "Una tienda donde cada mujer encuentre modelos, tallas, colores, precios y medios de pago.",
+    title: "Que comprar sea tan fácil como enamorarse del diseño.",
+    text: "Una tienda donde cada mujer encuentre sus modelos favoritos, tallas, colores, precios y medios de pago.",
   },
   {
-    title: "Que tu equipo tenga más tiempo para hacer crecer el negocio",
-    text: "Menos conversaciones repetitivas y atención más organizada para quien sí necesita asesoría.",
+    title: "Que tu equipo tenga más tiempo para hacer crecer el negocio.",
+    text: "Menos conversaciones repetitivas y una atención más organizada para quienes necesitan asesoría personalizada.",
   },
   {
-    title: "Que Cálzate MB no dependa solo de su mercado local",
-    text: "Preparar la marca para nuevas compradoras, boutiques y revendedoras de otras ciudades.",
+    title: "Que Cálzate MB no dependa únicamente de su mercado local.",
+    text: "Preparar la marca para llegar a nuevas compradoras, boutiques y revendedoras de otras ciudades.",
   },
 ];
 
 const CAPS = [
   {
-    img: "/imagenes/calzate-mb/cap-shop.jpg",
+    img: PHOTO_SHOP,
     title: "Una tienda que venda las 24 horas",
     text: "Tus clientas pueden comprar cuando estén listas, incluso fuera del horario de atención.",
+    caption: "@calzatemym",
   },
   {
-    img: "/imagenes/calzate-mb/cap-orders.jpg",
+    img: PHOTO_ORDERS,
     title: "Pedidos más organizados",
     text: "Disponibilidad, pagos y solicitudes reunidos en un mismo sistema.",
+    caption: "Colección propia · Cálzate MB",
   },
   {
-    img: "/imagenes/calzate-mb/cap-discover.jpg",
+    img: PHOTO_DISCOVER,
     title: "Más mujeres descubriendo tus diseños",
     text: "Contenido y publicidad que conecten cada colección con nuevas compradoras.",
+    caption: "Tienda · Cúcuta",
   },
   {
-    img: "/imagenes/calzate-mb/cap-wholesale.jpg",
+    img: PHOTO_WHOLESALE,
     title: "Una oportunidad mayorista real",
     text: "Una experiencia diferenciada para boutiques y personas interesadas en revender tu calzado.",
+    caption: "Detal y mayor",
   },
 ];
 
 const TIENDA_ITEMS = [
-  "Tienda online en Shopify con presentación organizada de colecciones",
+  "Tienda online en Shopify con una presentación organizada de tus colecciones",
   "Catálogo con tallas, colores, precios y disponibilidad",
   "Carrito de compras y configuración de medios de pago",
-  "Envíos nacionales según cobertura y tarifas acordadas",
-  "Páginas especiales para modelos más vendidos",
-  "Sección mayorista básica hacia WhatsApp",
-  "Cambios, envíos, FAQ y guía de tallas",
-  "Conexión de Instagram con la nueva tienda",
-  "Capacitación para gestionar productos, inventario y pedidos",
+  "Configuración de envíos nacionales según cobertura y tarifas acordadas",
+  "Páginas especiales para destacar tus modelos más vendidos",
+  "Sección mayorista básica para orientar solicitudes de compra por volumen hacia WhatsApp",
+  "Información clara de cambios, envíos, preguntas frecuentes y guía de tallas",
+  "Conexión de tu Instagram con la nueva tienda",
+  "Una capacitación para que puedas gestionar productos, inventario y pedidos",
 ];
 
 const LANZAMIENTO_EXTRA = [
@@ -143,7 +150,13 @@ const COMPARE_ROWS = [
   { f: "Estrategia de expansión nacional", t: "—", l: "—", e: "✓" },
   { f: "Gestión inicial de Meta Ads", t: "—", l: "—", e: "✓" },
   { f: "Activación estratégica en Bogotá", t: "—", l: "—", e: "✓" },
-  { f: "Inversión COP", t: "$3.197.000", l: "$4.997.000", e: "$7.297.000" },
+  {
+    f: "Inversión COP",
+    t: "$3.197.000",
+    l: "$4.997.000",
+    e: "$7.297.000",
+    price: true,
+  },
 ];
 
 const PHASES = [
@@ -218,7 +231,8 @@ const ROUTES = [
     half: 1598500,
     featured: false,
     desc: "Para que tu marca tenga una tienda propia y comprar tus diseños sea mucho más sencillo.",
-    allows: "Tener tu canal digital de ventas, una experiencia más profesional y pedidos más organizados.",
+    allows:
+      "Tener tu propio canal digital de ventas, darle una experiencia de compra más profesional a tus clientas y organizar mejor los pedidos.",
   },
   {
     id: "lanzamiento",
@@ -227,9 +241,9 @@ const ROUTES = [
     price: 4997000,
     half: 2498500,
     featured: true,
-    desc: "Para que no solo tengas una tienda, sino una estrategia que lleve personas a comprar en ella.",
+    desc: "Para que no solo tengas una tienda bonita, sino una estrategia que lleve personas a comprar en ella.",
     allows:
-      "Conectar lo que publicas con lo que vendes, reducir pasos en la compra y recuperar oportunidades.",
+      "Conectar lo que publicas con lo que vendes, reducir pasos en la compra y recuperar oportunidades que hoy podrían perderse.",
   },
   {
     id: "expansion",
@@ -238,8 +252,9 @@ const ROUTES = [
     price: 7297000,
     half: 3648500,
     featured: false,
-    desc: "Para que Cálzate MB empiece a posicionarse con presencia comercial en diferentes ciudades.",
-    allows: "Nuevos mercados, canal mayorista estructurado y adquisición más allá de Cúcuta.",
+    desc: "Para que Cálzate MB comience a posicionarse como una marca con presencia comercial en diferentes ciudades de Colombia.",
+    allows:
+      "Comenzar a desarrollar una marca con nuevos mercados, un canal mayorista más estructurado y una estrategia de adquisición más allá de Cúcuta.",
   },
 ];
 
@@ -299,20 +314,8 @@ export default function PropuestaCalzateMbPage() {
       if (el) sectionObserver.observe(el);
     });
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("is-visible");
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
-    );
-    document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
-    document.querySelectorAll("#hero [data-reveal]").forEach((el) => el.classList.add("is-visible"));
-
     return () => {
       sectionObserver.disconnect();
-      revealObserver.disconnect();
     };
   }, [sectionIds]);
 
@@ -343,59 +346,90 @@ export default function PropuestaCalzateMbPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={HERO} alt="" />
         </div>
-        <div className="cm-hero-copy">
-          <p className="cm-eyebrow cm-eyebrow--on-hero">{BRAND_TAG}</p>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="cm-hero-logo" src={LOGO} alt={`${BRAND_FULL} · Marly Balmaceda`} />
-          <h1 className="cm-hero-brand">{BRAND}</h1>
-          <p className="cm-hero-title">De Cúcuta para toda Colombia.</p>
-          <p className="cm-hero-lead">
-            Tus diseños ya tienen una historia. Ahora queremos que puedan llegar mucho más lejos: convertir el interés
-            de redes en compras, nuevas clientas y oportunidades de expansión.
-          </p>
-          <p className="cm-hero-meta">
-            Una propuesta de Partnersflux ·{" "}
-            <a href={IG_URL} target="_blank" rel="noopener noreferrer">
-              {IG_HANDLE}
-            </a>
-          </p>
-          <div className="cm-hero-cta">
-            <a href="#rutas" className="cm-btn cm-btn-solid">
-              Ver rutas
-            </a>
-            <a
-              href={waUrl(
-                `Hola Partnersflux. Revisé la propuesta de ${BRAND_FULL} y quiero conversar sobre el siguiente paso.`
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cm-btn cm-btn-ghost"
-            >
-              Hablar por WhatsApp
-            </a>
+        <div className="cm-hero-inner">
+          <div className="cm-hero-copy">
+            <p className="cm-eyebrow cm-eyebrow--on-hero">{BRAND_TAG}</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="cm-hero-logo" src={LOGO} alt={`${BRAND_FULL} · Marly Balmaceda`} />
+            <h1 className="cm-hero-title">De Cúcuta para toda Colombia.</h1>
+            <p className="cm-hero-lead">
+              Tus diseños ya tienen una historia. Ahora queremos que puedan llegar mucho más lejos.
+            </p>
+            <p className="cm-hero-lead cm-hero-lead--soft">
+              Una propuesta para transformar Cálzate MB en una marca que no solo enamora en redes, sino que también
+              convierte ese interés en compras, nuevas clientas y oportunidades de expansión.
+            </p>
+            <p className="cm-hero-meta">
+              Una propuesta de Partnersflux ·{" "}
+              <a href={IG_URL} target="_blank" rel="noopener noreferrer">
+                {IG_HANDLE}
+              </a>
+            </p>
+            <div className="cm-hero-cta">
+              <a href="#vemos" className="cm-btn cm-btn-solid">
+                Ver propuesta
+              </a>
+              <a
+                href={waUrl(
+                  `Hola Partnersflux. Revisé la propuesta de ${BRAND_FULL} y quiero conversar sobre el siguiente paso.`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cm-btn cm-btn-ghost"
+              >
+                Hablar por WhatsApp
+              </a>
+            </div>
           </div>
+          <figure className="cm-hero-shot">
+            <div className="cm-frame-mat">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={HERO} alt="Colección Cálzate MB · @calzatemym" />
+            </div>
+            <figcaption className="cm-frame-caption cm-frame-caption--on-dark">@calzatemym</figcaption>
+          </figure>
         </div>
       </section>
 
-      <Section id="vemos" eyebrow="01 — Lo que vemos" title="Ya has construido algo que muchas marcas apenas están intentando conseguir">
-        <div className="cm-prose">
-          <p>
-            Una marca propia. Diseños que llevan tu identidad. Una comunidad que sigue tus colecciones y, sobre todo,
-            la capacidad de fabricar el producto que vendes.
-          </p>
-          <p>
-            <strong>Eso tiene muchísimo valor.</strong> Porque detrás de cada par de zapatos hay decisiones, inversión,
-            trabajo y una visión de negocio que merece crecer.
-          </p>
-          <p>
-            Hoy Cálzate MB ya tiene presencia digital y la posibilidad de vender al detal y al mayor. Vemos la
-            oportunidad de que todo ese esfuerzo tenga una estructura más sólida.
-          </p>
-          <p>
-            Imagina que una mujer en Bogotá ve uno de tus diseños, se enamora, encuentra su talla, elige el color y
-            completa su compra sin esperar una respuesta. Y que, al mismo tiempo, una boutique en Medellín pueda
-            conocer tus colecciones y solicitar información para comprar al por mayor.
-          </p>
+      <Section
+        id="vemos"
+        eyebrow="01 — Lo que vemos en Cálzate MB"
+        title="Ya has construido algo que muchas marcas apenas están intentando conseguir."
+      >
+        <div className="cm-split">
+          <div className="cm-prose" style={{ marginTop: 0 }}>
+            <p>
+              Una marca propia. Diseños que llevan tu identidad. Una comunidad que sigue tus colecciones y, sobre
+              todo, la capacidad de fabricar el producto que vendes.
+            </p>
+            <p>
+              <strong>Eso tiene muchísimo valor.</strong>
+            </p>
+            <p>
+              Porque detrás de cada par de zapatos hay decisiones, inversión, trabajo y una visión de negocio que
+              merece crecer.
+            </p>
+            <p>
+              Hoy, Cálzate MB ya tiene una presencia digital importante y la posibilidad de vender al detal y al
+              mayor. Sin embargo, vemos una oportunidad para que todo ese esfuerzo comercial tenga una estructura más
+              sólida.
+            </p>
+            <p>
+              Imagina que una mujer en Bogotá ve uno de tus diseños, se enamora, encuentra su talla, elige el color y
+              completa su compra sin tener que esperar una respuesta.
+            </p>
+            <p>
+              Y que, al mismo tiempo, una boutique en Medellín pueda conocer tus colecciones y solicitar información
+              para comprar al por mayor.
+            </p>
+          </div>
+          <figure className="cm-frame cm-frame--solo">
+            <div className="cm-frame-mat">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={PHOTO_ORDERS} alt="Sandalias Cálzate MB" />
+            </div>
+            <figcaption className="cm-frame-caption">@calzatemym</figcaption>
+          </figure>
         </div>
         <p className="cm-highlight">Eso es lo que queremos empezar a construir contigo.</p>
 
@@ -414,19 +448,22 @@ export default function PropuestaCalzateMbPage() {
 
       <Section
         id="oportunidad"
-        eyebrow="02 — La oportunidad"
+        eyebrow="02 — La oportunidad que encontramos"
         title="Tu Instagram puede despertar el deseo. Tu tienda debe facilitar la compra."
         soft
       >
         <div className="cm-prose">
           <p>
-            Hoy las redes son una vitrina importante. Pero cuando una mujer descubre un modelo, el proceso puede
-            depender de varios mensajes: precio, talla, disponibilidad, envío. Cada paso toma tiempo y puede
-            convertirse en una razón para posponer la decisión.
+            Hoy las redes sociales son una vitrina importante para Cálzate MB. Pero cuando una mujer descubre un
+            modelo que le encanta, el proceso de compra puede depender de varios mensajes: preguntar el precio,
+            confirmar la talla, verificar disponibilidad y conocer cómo recibirlo.
           </p>
           <p>
-            No queremos quitar el trato cercano que caracteriza a una marca. Queremos reservar esa atención para los
-            momentos donde realmente aporta valor, mientras la tecnología facilita lo demás.
+            Cada uno de esos pasos requiere tiempo y puede convertirse en una razón para posponer su decisión.
+          </p>
+          <p>
+            No queremos quitarle el trato cercano que caracteriza a una marca. Queremos reservar esa atención para
+            los momentos donde realmente aporta valor, mientras la tecnología facilita lo demás.
           </p>
         </div>
         <div className="cm-pillars">
@@ -443,8 +480,13 @@ export default function PropuestaCalzateMbPage() {
         <div className="cm-caps">
           {CAPS.map((cap) => (
             <article key={cap.title} className="cm-cap">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={cap.img} alt="" />
+              <figure className="cm-frame">
+                <div className="cm-frame-mat">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={cap.img} alt="" />
+                </div>
+                {cap.caption ? <figcaption className="cm-frame-caption">{cap.caption}</figcaption> : null}
+              </figure>
               <div className="cm-cap-copy">
                 <h3>{cap.title}</h3>
                 <p>{cap.text}</p>
@@ -453,15 +495,14 @@ export default function PropuestaCalzateMbPage() {
           ))}
         </div>
         <p className="cm-highlight">
-          No se trata solo de abrir una página web. Se trata de empezar a construir una estructura de ventas que
+          No se trata solamente de abrir una página web. Se trata de empezar a construir una estructura de ventas que
           acompañe el crecimiento de Cálzate MB.
         </p>
       </Section>
 
-      <Section id="rutas" eyebrow="04 — Tres caminos" title="Tres maneras de dar el siguiente paso" soft>
+      <Section id="rutas" eyebrow="04 — Tres maneras de dar el siguiente paso" title="No todas las marcas necesitan crecer al mismo ritmo" soft>
         <p className="cm-lead" style={{ marginTop: "1.1rem" }}>
-          No todas las marcas necesitan crecer al mismo ritmo. Por eso planteamos tres rutas, según lo que quieras
-          priorizar hoy.
+          Por eso planteamos tres caminos, dependiendo de lo que quieras priorizar hoy.
         </p>
 
         <div className="cm-plans">
@@ -561,19 +602,61 @@ export default function PropuestaCalzateMbPage() {
           <table>
             <thead>
               <tr>
-                <th>Capacidad</th>
-                <th>Tienda</th>
-                <th>Lanzamiento</th>
-                <th>Expansión</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col">
+                  <span className="cm-compare-label cm-compare-label--full">Tienda</span>
+                  <span className="cm-compare-label cm-compare-label--short" title="Tienda">
+                    Tda
+                  </span>
+                </th>
+                <th scope="col">
+                  <span className="cm-compare-label cm-compare-label--full">Lanzamiento</span>
+                  <span className="cm-compare-label cm-compare-label--short" title="Lanzamiento">
+                    Lanz.
+                  </span>
+                </th>
+                <th scope="col">
+                  <span className="cm-compare-label cm-compare-label--full">Expansión</span>
+                  <span className="cm-compare-label cm-compare-label--short" title="Expansión">
+                    Exp.
+                  </span>
+                </th>
               </tr>
             </thead>
             <tbody>
               {COMPARE_ROWS.map((row) => (
-                <tr key={row.f}>
+                <tr key={row.f} className={row.price ? "cm-compare-price" : undefined}>
                   <td>{row.f}</td>
-                  <td>{row.t}</td>
-                  <td>{row.l}</td>
-                  <td>{row.e}</td>
+                  <td>
+                    {row.price ? (
+                      <>
+                        <span className="cm-compare-price-full">{row.t}</span>
+                        <span className="cm-compare-price-short">3,2M</span>
+                      </>
+                    ) : (
+                      row.t
+                    )}
+                  </td>
+                  <td>
+                    {row.price ? (
+                      <>
+                        <span className="cm-compare-price-full">{row.l}</span>
+                        <span className="cm-compare-price-short">5,0M</span>
+                      </>
+                    ) : (
+                      row.l
+                    )}
+                  </td>
+                  <td>
+                    {row.price ? (
+                      <>
+                        <span className="cm-compare-price-full">{row.e}</span>
+                        <span className="cm-compare-price-short">7,3M</span>
+                      </>
+                    ) : (
+                      row.e
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -584,13 +667,19 @@ export default function PropuestaCalzateMbPage() {
         </p>
         <div className="cm-recommend">
           <p>
-            <strong>Nuestra recomendación:</strong> PDM Cálzate Lanzamiento es el punto de equilibrio si hoy la
-            prioridad es convertir la atención de Instagram en compras con un sistema organizado.
+            <strong>Nuestra recomendación</strong>
+          </p>
+          <p style={{ marginTop: "0.65rem" }}>
+            Creemos que PDM Cálzate Lanzamiento es el punto de equilibrio más interesante si hoy la prioridad es
+            comenzar a convertir la atención de Instagram en compras a través de un sistema organizado.
           </p>
           <p style={{ marginTop: "0.85rem" }}>
-            Si la visión ya es desarrollar canales mayoristas y posicionarse en otras ciudades, PDM Cálzate Expansión
-            es el camino más alineado. La elección no debería depender solo del precio, sino de qué tan lejos quiere
-            llevar la marca en esta etapa.
+            Pero si la visión de la marca es empezar desde ahora a desarrollar nuevos canales mayoristas y
+            posicionarse en otras ciudades, PDM Cálzate Expansión es el camino más alineado con ese objetivo.
+          </p>
+          <p style={{ marginTop: "0.85rem" }}>
+            La elección no debería depender únicamente del precio, sino de qué tan lejos quiere llevar la marca en
+            esta nueva etapa.
           </p>
         </div>
       </Section>

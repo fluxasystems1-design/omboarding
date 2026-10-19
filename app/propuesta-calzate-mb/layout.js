@@ -1,19 +1,11 @@
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./calzate-mb.css";
 
-const manrope = Manrope({
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--cm-sans",
-  adjustFontFallback: false,
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-  variable: "--cm-display",
+  variable: "--font-cm-sans",
   adjustFontFallback: false,
 });
 
@@ -21,7 +13,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.ve
 const title = "Propuesta | Cálzate MB · De Cúcuta para toda Colombia";
 const description =
   "Ecommerce y expansión para Cálzate MB: convierte el deseo de Instagram en compras, mayoristas y nuevas ciudades. Desde $3.197.000 COP · @calzatemym · Partnersflux.";
-const ogImage = "/og/calzate-mb.jpg";
+const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,7 +28,7 @@ export const metadata = {
     url: "/propuesta-calzate-mb",
     siteName: "Partnersflux",
     locale: "es_CO",
-    images: [{ url: ogImage, width: 1200, height: 630, alt: "Cálzate MB · Marly Balmaceda" }],
+    images: [{ url: ogImage, width: 800, height: 800, alt: "Fluxa · Partnersflux" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -47,7 +39,5 @@ export const metadata = {
 };
 
 export default function PropuestaCalzateMbLayout({ children }) {
-  return (
-    <div className={`cm-root ${manrope.className} ${manrope.variable} ${cormorant.variable}`}>{children}</div>
-  );
+  return <div className={`cm-root ${poppins.className} ${poppins.variable}`}>{children}</div>;
 }
