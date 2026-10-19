@@ -1083,10 +1083,6 @@ html:has(.ak-root) body {
   .ak-root .ak-compare-price-short {
     display: inline;
   }
-
-  .ak-root .ak-plan--featured {
-    order: -1;
-  }
 }
 
 .ak-root .ak-recommend {

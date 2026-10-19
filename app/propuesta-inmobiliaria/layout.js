@@ -12,8 +12,8 @@ const manrope = Manrope({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
 const title = "Propuesta | Estatus Inmobiliaria · Páginas, software y 3D";
 const description =
-  "Páginas, software y modelado 3D de viviendas para Estatus Inmobiliaria. Página $5.497.000 · Software $8.997.000 · Plataforma $19.997.000 · Partnersflux · @inmobiliariaestatus";
-const ogImage = "/og/estatus-inmobiliaria.jpg";
+  "Páginas, software y modelado 3D de viviendas para Estatus Inmobiliaria. Página $5.497.000 · Software $8.997.000 · Plataforma $15.997.000 · Partnersflux · @inmobiliariaestatus";
+const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -28,7 +28,7 @@ export const metadata = {
     url: "/propuesta-inmobiliaria",
     siteName: "Partnersflux",
     locale: "es_CO",
-    images: [{ url: ogImage, width: 1200, height: 630, alt: "Estatus Inmobiliaria · Partnersflux" }],
+    images: [{ url: ogImage, width: 800, height: 800, alt: "Fluxa · Partnersflux" }],
   },
   twitter: {
     card: "summary_large_image",

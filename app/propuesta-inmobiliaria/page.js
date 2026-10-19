@@ -4,13 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 
 const BRAND = "ESTATUS";
 const BRAND_FULL = "Estatus Inmobiliaria";
-const BRAND_TAG = "Partnersflux × Estatus Inmobiliaria · Páginas y software de propiedades";
 const IG_HANDLE = "@inmobiliariaestatus";
 const IG_URL = "https://www.instagram.com/inmobiliariaestatus/";
 const WA_NUMBER = "573116425337";
 const LOGO = "/imagenes/estatus/logo.png";
 
-const HERO = "/imagenes/inmobiliaria/hero.jpg";
+const HERO_VIDEO = "/imagenes/inmobiliaria/hero.mp4";
+const HERO_POSTER = "/imagenes/inmobiliaria/hero.jpg";
 const SHAPESPARK_DEMO = "https://demo.shapespark.com/modern-apartment/";
 
 const NAV_ITEMS = [
@@ -18,7 +18,7 @@ const NAV_ITEMS = [
   { id: "vemos", label: "Lo que vemos" },
   { id: "oportunidad", label: "Oportunidad" },
   { id: "capitulo", label: "Capítulo" },
-  { id: "referentes", label: "Referentes" },
+  { id: "recorrido-3d", label: "Tour 3D" },
   { id: "rutas", label: "Paquetes" },
   { id: "comparar", label: "Comparar" },
   { id: "como", label: "Cómo" },
@@ -28,96 +28,88 @@ const NAV_ITEMS = [
 
 const PILLARS = [
   {
-    title: "Páginas que venden la propiedad",
-    text: "Sitio, listado con filtros y fichas completas: la persona entiende el inmueble sin pedirte info por chat.",
+    title: "Sitio y fichas de propiedad",
+    text: "Catálogo con filtros y fichas completas: el interesado entiende el inmueble sin pedirte la información por mensaje.",
   },
   {
     title: "Software para el equipo comercial",
-    text: "Seguimiento de interesados, inventario y asignación: cada asesor sabe qué seguir y en qué etapa está.",
+    text: "Seguimiento de interesados, inventario y asignación: cada asesor sabe a quién atender y en qué etapa está.",
   },
   {
-    title: "Modelados 3D y captación que escalan",
-    text: "Viviendas modeladas en 3D para recorrerlas en el navegador, páginas por zona y espacio para propietarios.",
+    title: "Modelado 3D y captación",
+    text: "Viviendas para recorrer en el navegador, páginas por zona y un espacio para que propietarios sumen inventario.",
   },
 ];
 
 const CAPS = [
   {
-    img: "/imagenes/inmobiliaria/cap-catalog.jpg",
-    title: "Sitio + catálogo",
-    text: "Listado con filtros y fichas completas: fotos, video, características y botón para pedir visita.",
+    title: "Catálogo digital de Estatus",
+    text: "Un sitio de marca con listado filtrable por zona, precio, tipo, venta o arriendo y habitaciones. Cada ficha concentra fotos, video, características, estado y un botón para pedir visita o escribir por WhatsApp — para que el interesado no tenga que armar el rompecabezas en el chat.",
+    points: [
+      "Páginas de destacadas, nuevas y por zona",
+      "Área privada para que el equipo suba y actualice propiedades",
+      "Enlace desde Instagram y QR hacia el catálogo",
+    ],
   },
   {
-    img: "/imagenes/inmobiliaria/cap-crm.jpg",
-    title: "Seguimiento de asesores",
-    text: "Cada interesado tiene dueño y etapa: consulta → visita → negociación → cerrado.",
+    title: "CRM y software comercial",
+    text: "El seguimiento deja de vivir solo en WhatsApp y en la memoria del equipo. Cada interesado queda en un sistema con presupuesto, zona, origen del contacto y asesor responsable. El tablero muestra la etapa —consulta, visita, negociación o cierre— y ayuda a priorizar qué hacer después.",
+    points: [
+      "Asignación de leads entre asesores",
+      "Historial de propiedades consultadas y visitas",
+      "Vista de resultados por asesor: interesados, visitas y cierres",
+    ],
   },
   {
-    img: "/imagenes/inmobiliaria/cap-visit.jpg",
-    title: "Carga y respuestas automáticas",
-    text: "Suben propiedades, marcan estado y el sistema responde lo repetido por WhatsApp o Instagram.",
+    title: "Inventario y operación del día a día",
+    text: "Un área para gestionar el inventario con estados claros: disponible, reservado, vendido o arrendado. Cuando alguien pregunta por Instagram o WhatsApp, el sistema puede enviar la ficha automáticamente y filtrar el interés real antes de ocupar al equipo.",
+    points: [
+      "Respuestas a dudas frecuentes de precio, zona y requisitos",
+      "Paso a un asesor cuando hay intención real de visita",
+      "Menos mensajes repetidos, más tiempo para cerrar",
+    ],
   },
   {
-    img: "/imagenes/inmobiliaria/cap-ads.jpg",
-    title: "Modelo 3D de la vivienda",
-    text: "Se construye la casa en 3D desde planos o medidas y el interesado la recorre en el navegador.",
+    title: "Tour 3D en las fichas prioritarias",
+    text: "En el alcance Plataforma, modelamos viviendas destacadas para que el interesado las recorra en el navegador antes de la visita presencial. Es una forma de diferenciar a Estatus y de filtrar mejor quién vale la pena agendar.",
+    points: [
+      "Recorrido navegable sin instalar apps",
+      "Integración del 3D dentro de la ficha de la propiedad",
+      "Enlace compartible por WhatsApp e Instagram",
+    ],
   },
 ];
 
-const REFERENTES = [
+const PAGINA_BLOCKS = [
   {
-    name: "Wasi",
-    type: "Software de renta mensual · LatAm",
-    note: "Software inmobiliario con vitrina, fichas y herramientas para asesores. Se paga mes a mes.",
-    href: "https://wasi.co/",
-    price: "Planes de pago · el valor se confirma al registrarse",
+    label: "Sitio de marca Estatus",
+    items: [
+      "Sitio inmobiliario completo con identidad visual de la marca",
+      "Páginas de inicio, nosotros, contacto y políticas básicas",
+      "Diseño responsive: se ve y se usa bien en celular y computador",
+      "Conexión del perfil de Instagram y código QR hacia el catálogo",
+    ],
   },
   {
-    name: "Vitrina Raíz",
-    type: "Software de renta mensual · Colombia",
-    note: "Seguimiento de clientes, vitrina y app. Referente local todo-en-uno para agentes e inmobiliarias.",
-    href: "https://vitrinaraiz.com/precios",
-    price: "Desde $29.900 hasta $149.900 COP/mes",
+    label: "Catálogo y fichas de propiedad",
+    items: [
+      "Catálogo filtrable por zona, precio, tipo, venta o arriendo y habitaciones",
+      "Ficha completa: fotos, video, características, zona, estado y mapa de ubicación",
+      "Botón para pedir visita y botón de WhatsApp en cada propiedad",
+      "Secciones de destacadas, nuevas y listados por zona",
+      "Carga inicial de hasta 20 propiedades con el equipo",
+    ],
   },
   {
-    name: "KiteProp",
-    type: "Software de renta mensual · Colombia",
-    note: "Plataforma con sitio, búsqueda de propiedades y conexión con portales.",
-    href: "https://www.kiteprop.com/co/planes",
-    price: "Desde ~$142.000 hasta ~$430.000 COP/mes + IVA",
+    label: "Operación simple del catálogo",
+    items: [
+      "Área privada para que el equipo suba, edite y archive propiedades",
+      "Estados básicos: disponible, reservado, vendido o arrendado",
+      "Aviso de nuevos contactos del formulario al correo o WhatsApp del equipo",
+      "Medición básica de visitas a páginas y fichas",
+      "Una sesión de capacitación para cargar y mantener el catálogo",
+    ],
   },
-  {
-    name: "Shapespark · apartamento 3D",
-    type: "Modelado 3D navegable · demo",
-    note: "Referente de vivienda modelada en 3D: se camina por el espacio en el navegador, no es una cámara 360.",
-    href: "https://demo.shapespark.com/modern-apartment/",
-    price: "Demo pública de modelado 3D interactivo",
-  },
-  {
-    name: "Mentora · Catálogo",
-    type: "Desarrollo a medida · Bogotá",
-    note: "Referente de precio público para una web con catálogo de inmuebles, filtros y área para editar.",
-    href: "https://mentoracolombia.com/diseno-web",
-    price: "$5.990.000 COP + IVA · solo catálogo web",
-  },
-  {
-    name: "FincaRaíz / Metrocuadrado",
-    type: "Portales · Cómo se busca hoy",
-    note: "Referencia de cómo se siente buscar, filtrar y abrir una ficha de propiedad en Colombia.",
-    href: "https://www.fincaraiz.com.co/",
-    price: "Solo referencia de experiencia · no es una cotización",
-  },
-];
-
-const PAGINA_ITEMS = [
-  "Sitio web inmobiliario completo de la marca",
-  "Catálogo con filtros por zona, precio, tipo, venta o arriendo y habitaciones",
-  "Ficha de cada propiedad con fotos, video, características, zona, estado y botón para pedir visita",
-  "Páginas de propiedades destacadas, nuevas y por zona",
-  "Formulario de contacto en cada propiedad y botón de WhatsApp",
-  "Enlace del perfil de Instagram y código QR hacia el catálogo",
-  "Área privada para que el equipo suba y actualice propiedades",
-  "Capacitación para cargar el catálogo",
 ];
 
 const SOFTWARE_EXTRA = [
@@ -178,18 +170,20 @@ const PLATAFORMA_EXTRA = [
 
 const COMPARE_ROWS = [
   { f: "Sitio + catálogo + fichas de propiedad", t: "✓", l: "✓", e: "✓" },
+  { f: "Carga inicial de propiedades", t: "Hasta 20", l: "Hasta 20", e: "Hasta 20" },
   { f: "Área para subir propiedades", t: "Sí", l: "Completa", e: "Completa" },
+  { f: "Aviso de nuevos contactos", t: "Correo / WA", l: "✓ + CRM", e: "✓ + CRM" },
   { f: "Seguimiento de asesores", t: "—", l: "✓", e: "✓" },
   { f: "Respuestas automáticas IG / WhatsApp", t: "—", l: "✓", e: "✓" },
   { f: "Permisos del equipo y reportes", t: "—", l: "✓", e: "✓" },
-  { f: "Páginas por zona / tipo", t: "—", l: "—", e: "✓" },
+  { f: "Páginas por zona / tipo", t: "Listados", l: "Listados", e: "Completas + inversionistas" },
   { f: "Espacio para que publiquen propietarios", t: "—", l: "—", e: "✓" },
   { f: "Modelado 3D navegable de viviendas", t: "—", l: "—", e: "Hasta 5 + integración" },
   {
     f: "Inversión COP",
     t: "$5.497.000",
     l: "$8.997.000",
-    e: "$19.997.000",
+    e: "$15.997.000",
     price: true,
   },
 ];
@@ -198,26 +192,26 @@ const PHASES = [
   {
     num: "01",
     when: "Semanas 1 y 2 · Todos los paquetes",
-    title: "Armamos las páginas",
-    text: "Sitio, listado, fichas de propiedad, botones de contacto y área para subir inmuebles.",
+    title: "Diseño y páginas",
+    text: "Definimos la estructura, armamos el sitio, el catálogo, las fichas y el área para cargar propiedades.",
   },
   {
     num: "02",
     when: "Semanas 3 a 5 · Software y Plataforma",
-    title: "Construimos el software comercial",
-    text: "Seguimiento de asesores, estados del inventario, respuestas automáticas y capacitaciones.",
+    title: "Software comercial",
+    text: "Implementamos seguimiento de asesores, estados de inventario, respuestas automáticas y capacitamos al equipo.",
   },
   {
     num: "03",
     when: "Semanas 5 a 8 · Plataforma",
-    title: "Modelado 3D y páginas extra",
-    text: "Modelamos las viviendas prioritarias, las integramos a las fichas, sumamos páginas por zona y tableros.",
+    title: "Modelado 3D y ampliación",
+    text: "Modelamos las viviendas prioritarias, las integramos a las fichas y sumamos páginas por zona y tableros.",
   },
   {
     num: "04",
     when: "Entrega",
-    title: "Pruebas, entrega y soporte",
-    text: "Revisamos todo el recorrido, dejamos los accesos a nombre de la marca y 30 días de soporte.",
+    title: "Pruebas y puesta en marcha",
+    text: "Revisamos el recorrido completo, dejamos accesos a nombre de la marca e incluimos 30 días de soporte.",
   },
 ];
 
@@ -245,7 +239,7 @@ const CONTINUIDAD = [
   },
   {
     name: "Plataforma",
-    price: "$1.290.000 COP/mes",
+    price: "$990.000 COP/mes",
     featured: true,
     items: [
       "Todo lo de Software",
@@ -266,8 +260,8 @@ const ROUTES = [
     price: 5497000,
     half: 2748500,
     featured: false,
-    desc: "Solo páginas: sitio, catálogo con filtros y fichas de propiedad completas.",
-    allows: "Tener una vitrina seria las 24 horas, sin mandar la información a pedazos por chat.",
+    desc: "Sitio de marca, catálogo filtrable, fichas completas, carga inicial de propiedades y área para que el equipo las mantenga al día.",
+    allows: "Que el interesado entienda el inmueble solo y escriba para pedir visita — sin armar el rompecabezas por chat.",
   },
   {
     id: "software",
@@ -277,19 +271,19 @@ const ROUTES = [
     price: 8997000,
     half: 4498500,
     featured: true,
-    desc: "Páginas + software comercial: seguimiento de asesores, inventario y respuestas automáticas.",
-    allows: "Que el equipo gestione interesados, visitas y cierres con un sistema propio.",
+    desc: "Páginas más software comercial: seguimiento de asesores, inventario y respuestas automáticas.",
+    allows: "Que el equipo gestione interesados, visitas y cierres desde un sistema propio.",
   },
   {
     id: "plataforma",
     tag: "Paquete 03 · Premium 3D",
     name: "Inmo Plataforma",
     short: "Plataforma",
-    price: 19997000,
-    half: 9998500,
+    price: 15997000,
+    half: 7998500,
     featured: false,
-    desc: "Todo lo anterior más modelado 3D de viviendas, páginas por zona y captación de propietarios.",
-    allows: "Que el interesado camine un modelo 3D de la casa antes de la visita presencial.",
+    desc: "Todo lo de Software, más modelado 3D, páginas por zona y captación de propietarios.",
+    allows: "Que el interesado recorra la vivienda en 3D antes de agendar la visita presencial.",
   },
 ];
 
@@ -434,20 +428,28 @@ export default function PropuestaInmobiliariaPage() {
         </div>
       </nav>
 
-      <section id="hero" className="inmo-hero scroll-mt-28">
+      <section id="hero" className="inmo-hero inmo-hero--video scroll-mt-28">
         <div className="inmo-hero-bg" aria-hidden>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={HERO} alt="" />
+          <video
+            className="inmo-hero-bg-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={HERO_POSTER}
+          >
+            <source src={HERO_VIDEO} type="video/mp4" />
+          </video>
         </div>
         <div className="inmo-hero-inner">
           <div className="inmo-hero-copy">
-            <p className="inmo-eyebrow inmo-eyebrow--on-hero">{BRAND_TAG}</p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="inmo-hero-logo" src={LOGO} alt={BRAND_FULL} />
-            <h1 className="inmo-hero-title">Páginas y software para vender propiedades.</h1>
+            <h1 className="inmo-hero-title">El contenido ya abre la puerta. Ahora falta el sistema que la acompañe.</h1>
             <p className="inmo-hero-lead">
-              Sin página y sin sistema, cada video termina en chat. Armamos el sitio, el catálogo y el software
-              comercial para que el interés se vuelva visita rastreable — con tu equipo de asesores ordenado.
+              Páginas, catálogo y software comercial para Estatus: que cada persona que llega por Instagram encuentre
+              la ficha, deje sus datos y avance con un asesor — sin que el interés se quede solo en el chat.
             </p>
             <p className="inmo-hero-meta">
               Una propuesta de Partnersflux ·{" "}
@@ -471,55 +473,49 @@ export default function PropuestaInmobiliariaPage() {
               </a>
             </div>
           </div>
-          <figure className="inmo-hero-shot">
-            <div className="inmo-frame-mat">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={HERO} alt={`${BRAND_FULL} · ${IG_HANDLE}`} />
-            </div>
-            <figcaption className="inmo-frame-caption">{IG_HANDLE}</figcaption>
-          </figure>
         </div>
       </section>
 
       <Section
         id="vemos"
         eyebrow="01 — Lo que vemos"
-        title="Ya tienes el activo más difícil: contenido que genera interés"
+        title="Ya producen el activo más difícil: contenido que genera interés"
       >
-        <div className="inmo-prose">
-          <p>
-            Estatus Inmobiliaria ya comunica con videos — algo que muchas marcas todavía no logran: mostrar propiedades
-            de forma viva, cercana y constante.
-          </p>
-          <p>
-            <strong>Eso tiene muchísimo valor.</strong> El siguiente paso no es “hacer posts más bonitos”. Es construir
-            las páginas y el software para que cada persona interesada encuentre la ficha, deje sus datos y avance hacia
-            una visita — sin que todo dependa de responder chats a mano.
-          </p>
-          <p>
-            Imagina que alguien ve un apartamento en un reel, abre la ficha completa, pide visita y tu asesor recibe el
-            interesado ya filtrado en el sistema. Eso es lo que queremos empezar a construir contigo.
-          </p>
+        <div className="inmo-feature inmo-feature--tight">
+          <div className="inmo-prose inmo-prose--compact">
+            <p>
+              Estatus Inmobiliaria ya muestra propiedades con videos constantes — algo que muchas inmobiliarias todavía
+              no logran. <strong>Ese alcance es un activo real.</strong>
+            </p>
+            <p>
+              El siguiente paso no es “publicar más”. Es construir las páginas y el software para que quien ve un reel
+              encuentre la ficha, pida visita y llegue al asesor con contexto: presupuesto, zona e intención.
+            </p>
+            <p className="inmo-highlight inmo-highlight--inline">
+              No venimos a señalar lo que falta. Venimos a ordenar digitalmente lo que ya están construyendo.
+            </p>
+          </div>
+          <figure className="inmo-device inmo-device--compact">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/imagenes/inmobiliaria/mock-mobile.png" alt={`${BRAND_FULL} · ficha móvil con pedir visita`} />
+          </figure>
         </div>
-        <p className="inmo-highlight">
-          No venimos a señalar lo que falta. Venimos a poner estructura digital a lo que ya estás construyendo.
-        </p>
       </Section>
 
       <Section
         id="oportunidad"
         eyebrow="02 — La oportunidad"
-        title="El video despierta el deseo. Las páginas y el software facilitan la visita."
+        title="El video abre la puerta. Las páginas y el software organizan la visita."
         soft
       >
         <div className="inmo-prose">
           <p>
-            Hoy el recorrido suele vivir en mensajes: precio, ubicación, disponibilidad, requisitos, agenda. Cada paso
-            toma tiempo del equipo y puede convertirse en una razón para que la persona se enfríe.
+            Hoy buena parte del proceso ocurre en mensajes: precio, ubicación, disponibilidad, requisitos y agenda. Cada
+            respuesta ocupa tiempo del equipo y, si se demora, el interesado puede perderse.
           </p>
           <p>
-            No queremos quitar la atención humana. Queremos reservarla para cuando realmente aporta valor, mientras las
-            páginas y el software hacen el trabajo repetitivo.
+            No buscamos reemplazar la atención humana. Buscamos reservarla para cuando aporta valor —mientras las
+            páginas y el software resuelven lo repetitivo y dejan trazabilidad.
           </p>
         </div>
         <div className="inmo-pillars">
@@ -530,54 +526,82 @@ export default function PropuestaInmobiliariaPage() {
             </article>
           ))}
         </div>
+        <div className="inmo-feature inmo-feature--flip">
+          <div className="inmo-cap-copy">
+            <h3>Seguimiento comercial con dueño y etapa claros</h3>
+            <p>
+              Si el seguimiento vive solo en chats y memoria, los leads se diluyen. Con el software, cada interesado
+              queda registrado con presupuesto, zona y asesor responsable. El equipo ve la etapa y sabe qué acción
+              corresponde después.
+            </p>
+          </div>
+          <figure className="inmo-device">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/imagenes/inmobiliaria/mock-crm.png" alt={`${BRAND_FULL} · pipeline de asesores`} />
+          </figure>
+        </div>
       </Section>
 
-      <Section id="capitulo" eyebrow="03 — Siguiente capítulo" title={`Así imaginamos el siguiente capítulo de ${BRAND}`}>
-        <div className="inmo-caps">
+      <Section
+        id="capitulo"
+        eyebrow="03 — Siguiente capítulo"
+        title={`Lo que queremos construir para ${BRAND}: catálogo, software y operación comercial`}
+      >
+        <p className="inmo-lead" style={{ marginTop: "1.1rem" }}>
+          No proponemos solo “una página”. Proponemos un sistema digital a nombre de Estatus: catálogo para que el
+          interesado se informe, CRM para que el equipo no pierda leads, inventario ordenado y —en el alcance
+          premium— recorridos 3D dentro de las fichas.
+        </p>
+        <div className="inmo-caps inmo-caps--rich">
           {CAPS.map((cap) => (
-            <article key={cap.title} className="inmo-cap">
-              <figure className="inmo-frame">
-                <div className="inmo-frame-mat">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={cap.img} alt={`${cap.title} · ${IG_HANDLE}`} />
-                </div>
-                <figcaption className="inmo-frame-caption">{IG_HANDLE}</figcaption>
-              </figure>
+            <article key={cap.title} className="inmo-cap inmo-cap--rich">
               <div className="inmo-cap-copy">
                 <h3>{cap.title}</h3>
                 <p>{cap.text}</p>
+                <ul className="inmo-cap-points">
+                  {cap.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
         </div>
         <p className="inmo-highlight">
-          No se trata de “una web bonita”. Se trata de páginas + software comercial que acompañen el inventario y el
-          equipo.
+          El contenido de Estatus ya genera interés. El siguiente paso es que ese interés entre a un catálogo claro y a
+          un CRM donde el equipo pueda seguirlo hasta la visita y el cierre.
         </p>
       </Section>
 
       <Section
-        id="referentes"
-        eyebrow="04 — Referentes actuales"
-        title="Con qué se compara este tipo de producto en el mercado"
+        id="recorrido-3d"
+        eyebrow="04 — Tour 3D para ESTATUS"
+        title="Así se puede recorrer una vivienda desde el celular"
         soft
       >
-        <p className="inmo-lead" style={{ marginTop: "1.1rem" }}>
-          Precios y productos públicos consultados en 2026. Sirven para dimensionar: un software genérico se paga mes a
-          mes; un desarrollo a medida de páginas, software propio y modelado 3D de viviendas es una inversión de
-          proyecto — y suele costar más que una tienda online de moda.
-        </p>
+        <div className="inmo-feature inmo-feature--flip inmo-feature--tight">
+          <p className="inmo-lead" style={{ marginTop: 0 }}>
+            Cada propiedad de Estatus puede tener su propia landing editable: fotos, tour 3D, video, planos, mapa,
+            precio y botones para pedir visita o recorrer en 3D. El equipo actualiza la ficha cuando cambia el
+            inventario —sin depender de un desarrollador para cada ajuste.
+          </p>
+          <figure className="inmo-device">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/imagenes/inmobiliaria/mock-3d.png" alt={`${BRAND_FULL} · ficha de propiedad con tour 3D`} />
+          </figure>
+        </div>
 
         <div className="inmo-demo-3d">
           <div className="inmo-demo-3d-copy">
-            <p className="inmo-eyebrow">Demo · Modelado 3D</p>
-            <h3 className="inmo-demo-3d-title">Así se siente recorrer una vivienda en el celular</h3>
+            <p className="inmo-eyebrow">Demo · Recorrido inmersivo</p>
+            <h3 className="inmo-demo-3d-title">Tour 3D o imágenes 360°, a elección de la marca</h3>
             <p className="inmo-demo-3d-text">
-              Referente Shapespark: el interesado camina el espacio desde el navegador. En Inmo Plataforma integramos
-              este tipo de recorrido dentro de la ficha de cada propiedad.
+              En las fichas destacadas de Estatus podemos integrar un recorrido 3D navegable —como esta demo— o
+              experiencias con imágenes 360°. La marca elige el formato según la propiedad, el presupuesto y el nivel
+              de inmersión que quieran ofrecer.
             </p>
             <a href={SHAPESPARK_DEMO} target="_blank" rel="noopener noreferrer" className="inmo-ref-link">
-              Abrir demo en pantalla completa →
+              Abrir demo 3D en pantalla completa →
             </a>
           </div>
           <div className="inmo-phone">
@@ -587,7 +611,7 @@ export default function PropuestaInmobiliariaPage() {
                 <iframe
                   className="inmo-phone-iframe"
                   src={SHAPESPARK_DEMO}
-                  title="Demo 3D Shapespark · apartamento moderno"
+                  title={`${BRAND_FULL} · demo de recorrido 3D`}
                   loading="eager"
                   allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope"
                   allowFullScreen
@@ -596,34 +620,24 @@ export default function PropuestaInmobiliariaPage() {
               </div>
               <span className="inmo-phone-home" aria-hidden />
             </div>
-            <p className="inmo-phone-caption">Interactúa dentro del celular · demo.shapespark.com</p>
+            <p className="inmo-phone-caption">Interactúa dentro del celular</p>
           </div>
         </div>
-
-        <div className="inmo-refs">
-          {REFERENTES.map((ref) => (
-            <article key={ref.name} className="inmo-ref">
-              <p className="inmo-ref-type">{ref.type}</p>
-              <h3 className="inmo-ref-name">{ref.name}</h3>
-              <p className="inmo-ref-note">{ref.note}</p>
-              <p className="inmo-ref-price">{ref.price}</p>
-              <a href={ref.href} target="_blank" rel="noopener noreferrer" className="inmo-ref-link">
-                Ver referente →
-              </a>
-            </article>
-          ))}
-        </div>
-        <p className="inmo-stat-note" style={{ marginTop: "1rem" }}>
-          Fuentes públicas oct 2026: Vitrina Raíz, KiteProp, Mentora, Wasi, FincaRaíz y demos de modelado 3D navegable.
-          Los precios cambian; confirma en cada sitio. Nuestra propuesta es desarrollo a medida con marca propia, no una
-          suscripción de plantilla.
-        </p>
       </Section>
 
-      <Section id="rutas" eyebrow="05 — Tres paquetes" title="Solo páginas, software o plataforma completa">
+      <Section id="rutas" eyebrow="05 — Tres paquetes" title="Tres alcances: páginas, software o plataforma">
         <p className="inmo-lead" style={{ marginTop: "1.1rem" }}>
-          Tres alcances claros. Sin paquetes de contenido ni pauta: aquí hablamos de páginas y de software.
+          Sin paquetes de contenido ni pauta. Esta propuesta se centra en páginas de marca y en software comercial
+          propio.
         </p>
+
+        <figure className="inmo-device inmo-device--mid">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/imagenes/inmobiliaria/mock-web.png"
+            alt={`${BRAND_FULL} · sitio y catálogo en dispositivos`}
+          />
+        </figure>
 
         <div className="inmo-plans">
           <article className="inmo-plan">
@@ -633,11 +647,16 @@ export default function PropuestaInmobiliariaPage() {
             <p className="inmo-plan-desc">{ROUTES[0].desc}</p>
             <div className="inmo-plan-block">
               <h4>Qué incluye</h4>
-              <ul>
-                {PAGINA_ITEMS.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              {PAGINA_BLOCKS.map((block) => (
+                <div key={block.label} style={{ marginTop: "0.85rem" }}>
+                  <h4>{block.label}</h4>
+                  <ul>
+                    {block.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
             <p className="inmo-plan-pay">
               Lo que permite: {ROUTES[0].allows}
@@ -704,6 +723,20 @@ export default function PropuestaInmobiliariaPage() {
               Elegir Plataforma
             </button>
           </article>
+        </div>
+
+        <div className="inmo-feature">
+          <div className="inmo-cap-copy">
+            <h3>Inventario centralizado y primera respuesta automática</h3>
+            <p>
+              El equipo publica y actualiza inmuebles en un solo lugar. Cuando alguien escribe por Instagram o WhatsApp,
+              el sistema puede enviar la ficha y filtrar el interés real —incluido desde Inmo Software.
+            </p>
+          </div>
+          <figure className="inmo-device">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/imagenes/inmobiliaria/mock-ops.png" alt={`${BRAND_FULL} · inventario y WhatsApp`} />
+          </figure>
         </div>
       </Section>
 
@@ -777,20 +810,21 @@ export default function PropuestaInmobiliariaPage() {
         </p>
         <div className="inmo-recommend">
           <p>
-            <strong>Nuestra recomendación:</strong> Inmo Software es el punto de equilibrio si ya hay videos y asesores,
-            pero el interés se pierde en WhatsApp: necesitas páginas + seguimiento del equipo, no solo un catálogo.
+            <strong>Nuestra recomendación:</strong> Inmo Software es el equilibrio natural si ya hay videos y un equipo
+            de asesores, pero el interés se diluye en WhatsApp. Necesitan páginas más seguimiento comercial, no solo un
+            catálogo.
           </p>
           <p style={{ marginTop: "0.85rem" }}>
-            Si quieren diferenciarse con modelado 3D de las viviendas y captar inventario por zonas, Inmo Plataforma es
-            el camino premium. La elección no debería depender solo del precio, sino de qué tan lejos debe llegar el
-            sistema en esta etapa.
+            Si el objetivo es diferenciarse con modelado 3D y captar inventario por zonas, Inmo Plataforma es el alcance
+            premium. La decisión no debería basarse solo en el precio, sino en hasta dónde debe llegar el sistema en
+            esta etapa.
           </p>
         </div>
       </Section>
 
-      <Section id="como" eyebrow="07 — Cómo lo hacemos" title="De cero a páginas y software operando" soft>
+      <Section id="como" eyebrow="07 — Cómo lo hacemos" title="Del brief a páginas y software en operación" soft>
         <p className="inmo-lead" style={{ marginTop: "1.1rem" }}>
-          No necesitas ocuparte de toda la parte técnica. Te acompañamos desde la arquitectura hasta la entrega.
+          Nosotros nos ocupamos de la parte técnica. Ustedes definen inventario, procesos comerciales y prioridades.
         </p>
         <div className="inmo-timeline">
           {PHASES.map((phase) => (
@@ -810,10 +844,11 @@ export default function PropuestaInmobiliariaPage() {
       <Section
         id="continuidad"
         eyebrow="08 — Continuidad"
-        title="Queremos acompañar el software, no solo entregarlo"
+        title="Acompañamiento después de la entrega"
       >
         <p className="inmo-lead" style={{ marginTop: "1.1rem" }}>
-          El inventario cambia y el software necesita mantenimiento. Después del proyecto puedes continuar con nosotros.
+          El inventario cambia y el sistema necesita mantenimiento. Al cerrar el proyecto pueden continuar con un plan
+          mensual opcional.
         </p>
         <div className="inmo-continuity">
           {CONTINUIDAD.map((plan) => (
@@ -831,7 +866,7 @@ export default function PropuestaInmobiliariaPage() {
         <p className="inmo-stat-note">Planes opcionales desde el mes 3. El alcance se define antes de contratarlos.</p>
       </Section>
 
-      <Section id="vision" eyebrow="09 — Visión" title="Lo que nos gustaría construir contigo">
+      <Section id="vision" eyebrow="09 — Visión" title={`Hacia dónde queremos llevar a ${BRAND}`}>
         <div className="inmo-prose">
           <p>
             <strong>
@@ -839,14 +874,14 @@ export default function PropuestaInmobiliariaPage() {
             </strong>
           </p>
           <p>
-            Nos emociona trabajar con equipos que ya producen contenido real de propiedades. El siguiente capítulo es
+            Nos interesa trabajar con equipos que ya producen contenido real de propiedades. El siguiente paso es
             convertir ese contenido en un sistema: catálogo serio, seguimiento de asesores y herramientas que crezcan
             con ustedes.
           </p>
         </div>
         <p className="inmo-highlight">
-          Ustedes siguen mostrando las propiedades. Nosotras les ayudamos a construir las páginas y el software para
-          venderlas con orden.
+          Ustedes siguen mostrando las propiedades. Nosotros armamos las páginas y el software para venderlas con
+          orden.
         </p>
         <p className="inmo-stat-note">— Partnersflux</p>
       </Section>
@@ -854,12 +889,13 @@ export default function PropuestaInmobiliariaPage() {
       <Section
         id="cierre"
         eyebrow="10 — Siguiente paso"
-        title={`¿Hacemos que esta nueva etapa de ${BRAND} comience?`}
+        title={`¿Damos el siguiente paso con ${BRAND}?`}
         soft
       >
         <div className="inmo-close">
           <p className="inmo-lead">
-            Si algún paquete conecta con lo que quieres construir, definimos juntas el alcance y la fecha de inicio.
+            Si alguno de los paquetes encaja con lo que quieren construir, definimos juntas el alcance y la fecha de
+            inicio.
           </p>
           <p className="inmo-eyebrow" style={{ marginTop: "1.5rem" }}>
             Selecciona el paquete
