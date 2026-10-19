@@ -169,6 +169,24 @@ const landings = [
       "Oferta, landing de registro, DM automatizado, contenido y Meta Ads · $2.000.000 COP · @jebusitor",
   },
   {
+    name: "ALMAK — Ecommerce estratégico",
+    path: "/propuesta-alma-k",
+    description:
+      "Tienda que vende, automatización y lanzamiento Chía pudín · @almakcol · Partnersflux",
+  },
+  {
+    name: "Cálzate MB — De Cúcuta para toda Colombia",
+    path: "/propuesta-calzate-mb",
+    description:
+      "Ecommerce y expansión · Tienda $3.197.000 · Lanzamiento $4.997.000 · Expansión $7.297.000 · @calzatemym · Partnersflux",
+  },
+  {
+    name: "Estatus Inmobiliaria — Páginas y software",
+    path: "/propuesta-inmobiliaria",
+    description:
+      "Página $5.497.000 · Software $8.997.000 · Plataforma 3D $19.997.000 · @inmobiliariaestatus · Partnersflux",
+  },
+  {
     name: "Brief Mafe Cerquera",
     path: "/mafe-cerquera/brief",
     description: "Brief de arranque · identidad, servicios, clienta ideal y producción · Método PDM Coaching",
