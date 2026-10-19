@@ -21,7 +21,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.ve
 const title = "Propuesta | ALMAK · Ecommerce estratégico";
 const description =
   "Lo que han construido merece una tienda que esté a su altura. Ecommerce, automatización y crecimiento digital · Partnersflux · @almakcol";
-const ogImage = "/og/alma-k-logo.jpg";
+const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,7 +36,7 @@ export const metadata = {
     url: "/propuesta-alma-k",
     siteName: "Partnersflux",
     locale: "es_CO",
-    images: [{ url: ogImage, width: 800, height: 800, alt: "ALMAK" }],
+    images: [{ url: ogImage, width: 800, height: 800, alt: "Fluxa · Partnersflux" }],
   },
   twitter: {
     card: "summary_large_image",
