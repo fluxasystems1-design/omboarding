@@ -6,6 +6,7 @@ const outfit = Outfit({
   weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--ak-sans",
+  adjustFontFallback: false,
 });
 
 const fraunces = Fraunces({
@@ -13,6 +14,7 @@ const fraunces = Fraunces({
   weight: ["500", "600", "700"],
   display: "swap",
   variable: "--ak-display",
+  adjustFontFallback: false,
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";

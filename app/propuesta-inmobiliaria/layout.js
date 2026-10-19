@@ -6,6 +6,7 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--inmo-sans",
+  adjustFontFallback: false,
 });
 
 const cormorant = Cormorant_Garamond({
@@ -13,6 +14,7 @@ const cormorant = Cormorant_Garamond({
   weight: ["500", "600", "700"],
   display: "swap",
   variable: "--inmo-display",
+  adjustFontFallback: false,
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
