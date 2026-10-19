@@ -1,26 +1,18 @@
-import { Fraunces, Outfit } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./alma-k.css";
 
-const outfit = Outfit({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
-  variable: "--ak-sans",
-  adjustFontFallback: false,
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-  variable: "--ak-display",
+  variable: "--font-ak-sans",
   adjustFontFallback: false,
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
-const title = "Propuesta | ALMAK · Ecommerce estratégico";
+const title = "Propuesta | Almak · Ecommerce, automatización y crecimiento";
 const description =
-  "Lo que han construido merece una tienda que esté a su altura. Ecommerce, automatización y crecimiento digital · Partnersflux · @almakcol";
+  "De una marca que enamora a una marca que convierte y crece. Tienda $3.197.000 · Crecimiento $4.997.000 · Expansión $7.297.000 · Partnersflux · @almakcol";
 const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
@@ -47,5 +39,5 @@ export const metadata = {
 };
 
 export default function PropuestaAlmaKLayout({ children }) {
-  return <div className={`ak-root ${outfit.className} ${outfit.variable} ${fraunces.variable}`}>{children}</div>;
+  return <div className={`ak-root ${poppins.className} ${poppins.variable}`}>{children}</div>;
 }

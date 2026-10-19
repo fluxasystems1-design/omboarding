@@ -169,7 +169,7 @@ const landings = [
       "Oferta, landing de registro, DM automatizado, contenido y Meta Ads · $2.000.000 COP · @jebusitor",
   },
   {
-    name: "ALMAK — Ecommerce estratégico",
+    name: "Almak — Ecommerce estratégico",
     path: "/propuesta-alma-k",
     description:
       "Tienda que vende, automatización y lanzamiento Chía pudín · @almakcol · Partnersflux",
