@@ -1,7 +1,16 @@
-import { Poppins } from "next/font/google";
+import { Bodoni_Moda, Figtree } from "next/font/google";
 import "./calzate-mb.css";
 
-const poppins = Poppins({
+const display = Bodoni_Moda({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-cm-display",
+  adjustFontFallback: false,
+});
+
+const sans = Figtree({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -10,9 +19,9 @@ const poppins = Poppins({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
-const title = "Propuesta | Cálzate MB · De Cúcuta para toda Colombia";
+const title = "Propuesta | Cálzate MB · Brand Evolution 2026–2027";
 const description =
-  "Ecommerce y expansión para Cálzate MB: convierte el deseo de Instagram en compras, mayoristas y nuevas ciudades. Desde $3.197.000 COP · @calzatemym · Partnersflux.";
+  "Partnersflux × Cálzate MB: estrategia de marca, producción audiovisual, lanzamientos y marketing digital. Brand Identity $3.500.000/mes · Brand Experience & Launch $4.950.000/mes · 90 días.";
 const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
@@ -39,5 +48,7 @@ export const metadata = {
 };
 
 export default function PropuestaCalzateMbLayout({ children }) {
-  return <div className={`cm-root ${poppins.className} ${poppins.variable}`}>{children}</div>;
+  return (
+    <div className={`cm-root ${display.variable} ${sans.variable} ${sans.className}`}>{children}</div>
+  );
 }
