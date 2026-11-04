@@ -59,6 +59,12 @@ const landings = [
     description: "Arquitectura digital y captación · BE YOU · BE YOU+ · Hydrash · Fluxa Systems",
   },
   {
+    name: "Dra. Sandra Cárdenas — PDM Clínica Growth 360",
+    path: "/propuesta-sandra-cardenas",
+    description:
+      "Odontología estética · web + landings + CRM · USD 2.497 · 90 días · Partnersflux",
+  },
+  {
     name: "Ronaldo Escandón — Alianza Chile",
     path: "/alianza-chile",
     description: "Alianza comercial B2B · Fluxa × Chile 2026 · Tú cierras, nosotros ejecutamos",
