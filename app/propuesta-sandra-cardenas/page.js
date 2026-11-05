@@ -262,7 +262,7 @@ const PHASES = [
     num: "03",
     range: "26–35",
     days: "Días 26–35",
-    title: "WhatsApp, panel y pauta",
+    title: "Instagram, WhatsApp y CRM",
     text: "Respuestas automáticas, panel de solicitudes y eventos conectados con quien maneja los anuncios.",
   },
   {
