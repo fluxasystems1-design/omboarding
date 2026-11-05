@@ -62,7 +62,7 @@ const landings = [
     name: "Dra. Sandra Cárdenas — PDM Clínica Growth 360",
     path: "/propuesta-sandra-cardenas",
     description:
-      "Odontología estética · web + landings + CRM · USD 2.497 · 90 días · Partnersflux",
+      "Odontología estética · contenido, web, 3 landings y WhatsApp · $3.590.000 · inicia con el 50% · 45 días · Partnersflux",
   },
   {
     name: "Ronaldo Escandón — Alianza Chile",

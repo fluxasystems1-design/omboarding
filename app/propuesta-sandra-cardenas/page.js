@@ -9,7 +9,6 @@ const SANDRA_HERO_VIDEO = "/imagenes/sandra-cardenas/hero-reel.mp4";
 const SANDRA_FLYER = "/imagenes/sandra-cardenas/flyer-ref.png";
 const MOCKUP_ENDO_LAPTOP = "/imagenes/sandra-cardenas/mockups/endolifting-laptop-2.png";
 const MOCKUP_ARMO_PHONE = "/imagenes/sandra-cardenas/mockups/armonizacion-phone-2.png";
-const MOCKUP_CRM = "/imagenes/sandra-cardenas/mockups/crm-paciente.png";
 const CONTEXTO_SEPARATOR = "/imagenes/sandra-cardenas/contexto-clinica-2.jpg";
 const ICON_FINGERPRINT = "/imagenes/sandra-cardenas/icons/fingerprint.png";
 const ICON_HEART = "/imagenes/sandra-cardenas/icons/heart.png";
@@ -20,12 +19,10 @@ const ICON_INSTAGRAM = "/imagenes/sandra-cardenas/icons/instagram.png";
 const ICON_MEGAPHONE = "/imagenes/sandra-cardenas/icons/megaphone.png";
 const ICON_DEVICES = "/imagenes/sandra-cardenas/icons/devices.png";
 const ICON_WHATSAPP = "/imagenes/sandra-cardenas/icons/whatsapp.png";
-const ICON_FLUXA = "/imagenes/sandra-cardenas/icons/fluxa.jpg";
-const ICON_GOOGLE = "/imagenes/sandra-cardenas/icons/google.svg";
 const INSTAGRAM_URL = "https://www.instagram.com/drasandracardenasc/";
 const WA_BASE = "https://wa.me/573116425337?text=";
 const WA_MSG =
-  "Hola Partnersflux. Revisé la propuesta PDM Clínica Growth 360 para Dra. Sandra Cárdenas y quiero avanzar con el pago 1 para arrancar.";
+  "Hola Partnersflux. Revisé la propuesta PDM Clínica Growth 360 para Dra. Sandra Cárdenas y quiero avanzar.";
 
 function waUrl(message = WA_MSG) {
   return WA_BASE + encodeURIComponent(message);
@@ -144,7 +141,7 @@ const OPPORTUNITIES = [
     icon: ICON_CURSOR,
     iconAlt: "Cursor",
     title: "Hay espacio para mejorar el recorrido hacia la reserva",
-    text: "Instagram y WhatsApp son puntos clave. Conectarlos a páginas especializadas, formularios y una agenda organizada multiplica valoraciones.",
+    text: "Instagram y WhatsApp son puntos clave. Conectarlos a páginas especializadas y a un primer mensaje que se responde solo multiplica valoraciones.",
   },
   {
     num: "04",
@@ -155,109 +152,92 @@ const OPPORTUNITIES = [
   },
 ];
 
-const HOME_SECTIONS = [
-  { section: "Hero principal", fn: "Presentación de tu propuesta de valor y acceso a valoración" },
-  { section: "Conoce a tu especialista", fn: "Experiencia, credenciales y filosofía profesional" },
-  { section: "Tratamientos destacados", fn: "Acceso visual a los servicios prioritarios" },
-  { section: "Catálogo de tratamientos", fn: "Información organizada por categorías" },
-  { section: "Resultados y experiencias", fn: "Casos y testimonios reales autorizados" },
-  { section: "¿Cómo funciona tu valoración?", fn: "Explicación del proceso de atención" },
-  { section: "Preguntas frecuentes", fn: "Resolver dudas antes de agendar" },
-  { section: "Reserva tu valoración", fn: "Acceso a agenda o WhatsApp" },
-  { section: "Contacto y ubicación", fn: "Facilitar la visita a la clínica" },
-];
-
 const STRATEGY_ITEMS = [
-  "Auditoría inicial de presencia digital",
-  "Definición de paciente ideal y sus motivaciones",
-  "Identificación de ventajas competitivas",
-  "Posicionamiento y narrativa de marca personal",
-  "Optimización estratégica de la biografía y perfil",
-  "Definición de pilares de comunicación",
-  "Arquitectura del recorrido comercial",
-  "Priorización de tratamientos según demanda y objetivos de negocio",
+  "Diagnóstico de marca y definición de objetivos",
+  "Estrategia de posicionamiento para Endolifting y Armonización facial",
+  "Investigación del paciente ideal y sus objeciones",
+  "Definición de pilares de contenido",
+  "Planeación del calendario mensual",
+  "Redacción de los 15 guiones para reels",
+  "Conceptualización y copy de los 5 carruseles",
+  "Desarrollo de los 5 guiones publicitarios",
+  "Definición de CTA y rutas hacia WhatsApp o valoración",
+  "Dirección creativa y supervisión estratégica",
+  "3 reuniones/sesiones de planificación y seguimiento",
 ];
 
 const CRM_ITEMS = [
-  "CRM para gestionar solicitudes y oportunidades",
-  "Integraciones compatibles con WhatsApp e Instagram",
-  "Respuesta inicial automatizada",
-  "Flujos de preguntas administrativas frecuentes",
-  "Clasificación de contactos por tratamiento de interés",
-  "Envío de información general y enlaces de reserva",
-  "Integración de agenda",
-  "Confirmación y recordatorios de citas",
-  "Seguimiento a solicitudes pendientes, con consentimiento",
-  "Tablero para visualizar el estado de las oportunidades",
-  "Capacitación para utilizar el sistema",
+  "Cada persona queda con nombre, teléfono y el servicio que busca",
+  "El equipo ve en qué va: nueva, en conversación o cita agendada",
+  "La conversación queda junto a la ficha, sin perderse en un chat personal",
 ];
 
-const CONTENT_LAB = [
-  "Estrategia editorial de lanzamiento",
-  "Calendario de contenido de 30 días",
-  "12 ideas desarrolladas con gancho, guion y CTA",
-  "Recomendaciones visuales y de grabación",
-  "Estrategia inicial de campañas Meta Ads",
-  "Hasta tres rutas publicitarias de captación",
-  "Configuración inicial de campañas y medición",
+const AUTO_ITEMS = [
+  "Flujo de bienvenida que separa a quien solo mira de quien quiere una valoración",
+  "Categoriza el interés: Endolifting, Armonización facial o servicios odontológicos",
+  "Identifica a la persona por su nombre antes de que llegue al equipo",
+  "Confirma que la solicitud quedó recibida y clasificada",
+  "Fuera de horario, el flujo sigue filtrando y ordenando cada interés",
+  "Instagram entra al mismo flujo, para que todo interés quede categorizado de la misma forma",
 ];
 
-const PILLARS = [
-  {
-    title: "Autoridad profesional",
-    text: "Educación sobre procedimientos, seguridad, indicaciones y expectativas realistas.",
-  },
-  {
-    title: "Conexión con la paciente",
-    text: "Responder inquietudes y ayudar a tomar decisiones informadas.",
-  },
-  {
-    title: "Confianza y experiencias",
-    text: "Testimonios autorizados y procesos reales de atención.",
-  },
-  {
-    title: "Marca personal",
-    text: "La profesional detrás de los resultados y su manera de trabajar.",
-  },
-  {
-    title: "Conversión",
-    text: "Explicar la experiencia de valoración, disponibilidad y próximos pasos.",
-  },
+const META_ITEMS = [
+  "Configuración de los eventos y correlación con quien ya maneja la pauta",
+  "Cada solicitud recuerda el servicio y el anuncio que la trajo",
+  "Meta aprende a mostrar la pauta a quien sí pide la valoración, y deja de gastarla en curiosos",
+];
+
+const DELIVERABLES = [
+  "Diagnóstico, posicionamiento, pilares y calendario de contenido",
+  "15 guiones para reels, 5 carruseles y 5 guiones publicitarios",
+  "Dirección creativa y 3 reuniones/sesiones de planificación y seguimiento",
+  "Homepage",
+  "Landing de Endolifting",
+  "Landing de Armonización facial",
+  "Landing de servicios odontológicos",
+  "Flujo de filtración y categorización en WhatsApp e Instagram",
+  "CRM básico y panel de solicitudes",
+  "Configuración de los eventos y correlación con quien ya maneja la pauta",
+  "Capacitación del equipo",
+  "Hosting de la web y de las automatizaciones de Instagram, de por vida",
+];
+
+const TRAIN_ITEMS = [
+  "Sesión con el equipo para usar el panel, leer de dónde llegó cada persona y marcar el estado de la cita",
 ];
 
 const CRM_STACK = [
-  { name: "WhatsApp + CRM", src: ICON_WHATSAPP, note: "Automatización con Fluxa" },
-  { name: "Google", src: ICON_GOOGLE, note: "Agenda y medición" },
-  { name: "Instagram", src: ICON_INSTAGRAM, note: "Captación orgánica" },
-  { name: "Meta Ads", src: ICON_MEGAPHONE, note: "Captación publicitaria" },
+  { name: "WhatsApp", src: ICON_WHATSAPP, note: "Filtra y categoriza" },
+  { name: "Instagram", src: ICON_INSTAGRAM, note: "Mismo flujo de interés" },
+  { name: "Meta Ads", src: ICON_MEGAPHONE, note: "Eventos para la pauta" },
 ];
 
 const FUNNEL = [
   {
-    title: "Marca personal y contenido estratégico",
-    text: "Generamos interés y construimos autoridad",
+    title: "Estrategia de contenido",
+    text: "Pensada para el algoritmo de Meta y para ahorrar gasto innecesario en pauta",
     icon: ICON_SPARKLE,
   },
   {
     split: true,
     items: [
-      { title: "Instagram", text: "Conexión orgánica", icon: ICON_INSTAGRAM },
-      { title: "Meta Ads", text: "Captación publicitaria", icon: ICON_MEGAPHONE },
+      { title: "Instagram", text: "Mensaje directo automático", icon: ICON_INSTAGRAM },
+      { title: "Meta Ads", text: "Eventos para el algoritmo", icon: ICON_MEGAPHONE },
     ],
   },
   {
-    title: "Página web + landings de tratamientos",
-    text: "Información, confianza y solicitudes de valoración",
+    title: "Homepage y tres landings",
+    text: "Filtran curiosos y solo pasan clientes potenciales",
     icon: ICON_DEVICES,
   },
   {
-    title: "WhatsApp + CRM + agenda",
-    text: "Atención y seguimiento organizados",
+    title: "WhatsApp con respuesta automática",
+    text: "Bienvenida, servicio y paso al equipo",
     icon: ICON_WHATSAPP,
   },
   {
-    title: "Valoraciones agendadas",
-    text: "Medición, experiencia y oportunidades de fidelización",
+    title: "Solicitud en el panel",
+    text: "El equipo ve el caso y confirma la hora",
     icon: ICON_CHART,
     end: true,
   },
@@ -266,46 +246,44 @@ const FUNNEL = [
 const PHASES = [
   {
     num: "01",
-    range: "1–15",
-    days: "Días 1–15",
-    title: "Estrategia y arquitectura",
-    text: "Diagnóstico, paciente ideal, posicionamiento, selección de tratamientos, arquitectura web y definición del embudo.",
-    deliver: "Estrategia, estructura web y mapa del sistema comercial.",
+    range: "1–10",
+    days: "Días 1–10",
+    title: "Estrategia y piezas",
+    text: "Diagnóstico, paciente ideal, posicionamiento, pilares, calendario y rutas hacia WhatsApp.",
+    deliver: "Mensaje, calendario y guiones listos para la pauta.",
   },
   {
     num: "02",
-    range: "16–45",
-    days: "Días 16–45",
-    title: "Construcción digital",
-    text: "Diseño y desarrollo de homepage y landings, configuración de CRM, automatizaciones, integraciones y agenda.",
-    deliver: "Infraestructura desarrollada para revisión y pruebas.",
+    range: "11–25",
+    days: "Días 11–25",
+    title: "Páginas",
+    text: "Homepage y las tres landings: Endolifting, Armonización facial y servicios odontológicos.",
+    deliver: "Páginas publicadas, cada una con su camino a WhatsApp.",
   },
   {
     num: "03",
-    range: "46–60",
-    days: "Días 46–60",
-    title: "Lanzamiento y activación",
-    text: "Publicación, pruebas, configuración inicial de campañas, instalación de medición y capacitación del equipo.",
-    deliver: "Ecosistema comercial operativo.",
+    range: "26–35",
+    days: "Días 26–35",
+    title: "WhatsApp, panel y pauta",
+    text: "Respuestas automáticas, panel de solicitudes y eventos conectados con quien maneja los anuncios.",
+    deliver: "El primer mensaje se contesta solo y cada solicitud queda registrada.",
   },
   {
     num: "04",
-    range: "61–90",
-    days: "Días 61–90",
-    title: "Acompañamiento y optimización",
-    text: "Monitoreo inicial, ajustes técnicos menores, revisión de datos, mejoras del recorrido y recomendaciones.",
-    deliver: "Reporte de resultados iniciales y plan de continuidad.",
+    range: "36–45",
+    days: "Días 36–45",
+    title: "Entrega",
+    text: "Capacitación del equipo, ajustes finales y sesión de cierre.",
+    deliver: "Sistema listo para recibir la pauta.",
   },
 ];
 
 const KPIS = [
-  "Solicitudes de información generadas",
-  "Valoraciones agendadas",
-  "Tasa de conversión de solicitudes a citas",
-  "Tiempo de respuesta y estado de seguimiento",
-  "Rendimiento de los canales de captación",
-  "Comportamiento de las páginas comerciales",
-  "Oportunidades de mejora identificadas durante el lanzamiento",
+  "Solicitudes de valoración recibidas",
+  "Servicio que pidió cada persona",
+  "Anuncio del que llegó cada solicitud",
+  "Citas que el equipo marcó como agendadas",
+  "Qué página convierte mejor",
 ];
 
 export default function PropuestaSandraCardenasPage() {
@@ -379,7 +357,7 @@ export default function PropuestaSandraCardenasPage() {
       <DentalEmojiField />
       <nav className={`sc-nav ${solid ? "is-solid" : ""}`} aria-label="Secciones">
         <div className="sc-wrap sc-nav-inner">
-          <a className="sc-btn sc-btn-gold" href={waUrl()} target="_blank" rel="noreferrer">
+          <a className="sc-btn sc-btn-gold" href="#inversion">
             Quiero avanzar
           </a>
           <button
@@ -420,20 +398,20 @@ export default function PropuestaSandraCardenasPage() {
             <img src={SANDRA_LOGO} alt="Sandra Cárdenas · Odontología Estética Especializada" />
           </a>
           <h1 className="sc-offer-title">
-            <span>Tu próximo paciente</span>
-            <em>puede estar viendo</em>
-            <span>tu Instagram.</span>
+            <span>Tu excelencia clínica</span>
+            <em>merece</em>
+            <span>un crecimiento exponencial.</span>
           </h1>
-          <p className="sc-offer-kicker">90 días · una valoración real</p>
+          <p className="sc-offer-kicker">45 días · una valoración real</p>
           <figure className="sc-offer-shot">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={HERO_OFFER} alt="Landings, página y CRM de la Dra. Sandra Cárdenas" />
           </figure>
-          <p className="sc-offer-caption">90 días para convertir ese interés en una cita.</p>
-          <a className="sc-btn sc-btn-gold sc-offer-cta" href={waUrl()} target="_blank" rel="noreferrer">
+          <p className="sc-offer-caption">Que esa excelencia se refleje en el crecimiento financiero.</p>
+          <a className="sc-btn sc-btn-gold sc-offer-cta" href="#inversion">
             Quiero avanzar
           </a>
-          <p className="sc-offer-note">PDM Clínica Growth 360 · USD 2.497</p>
+          <p className="sc-offer-note">PDM Clínica Growth 360 · $3.590.000</p>
         </div>
       </header>
 
@@ -458,24 +436,24 @@ export default function PropuestaSandraCardenasPage() {
               <span className="sc-eyebrow-num">01</span> Contexto
             </p>
             <h2>
-              El crecimiento
+              Tu excelencia
+              <br />
+              merece verse
+              <br />
+              en el crecimiento
               <br />
               de tu clínica
-              <br />
-              comienza antes
-              <br />
-              de la primera cita
             </h2>
           </div>
         </div>
         <div className="sc-wrap sc-quote-body sc-reveal">
           <p className="sc-lead">
-            Las pacientes investigan especialistas en Instagram, comparan resultados y perfiles antes de decidir a quién
-            confiar. Entre descubrir un perfil y agendar hay un recorrido que, si no está construido, se pierde.
+            Quien te busca compara especialistas, resultados y criterio. El tuyo ya está a esa altura. El recorrido
+            digital tiene que reflejar la misma excelencia, desde el primer vistazo hasta la valoración.
           </p>
           <p className="sc-lead" style={{ marginTop: "1rem" }}>
-            No se trata solo de una web bonita ni de publicar más. Se trata de que cada pieza digital cumpla una función
-            de crecimiento: atraer, informar, convertir y organizar la atención.
+            El contenido, la página y el WhatsApp trabajan con la precisión de tu consulta: atraen a quien corresponde,
+            filtran y convierten ese interés en crecimiento financiero.
           </p>
         </div>
       </section>
@@ -520,11 +498,11 @@ export default function PropuestaSandraCardenasPage() {
             </p>
             <h2>PDM Clínica Growth 360</h2>
             <p className="sc-lead">
-              Una marca que atrae. Un sistema que convierte. Una experiencia que fideliza.
+              Estrategia de contenido pensada para el algoritmo de Meta, para no gastar pauta de más. Páginas que filtran curiosos. Un WhatsApp que responde el primer mensaje.
             </p>
             <p className="sc-lead" style={{ marginTop: "0.85rem" }}>
-              Construimos una infraestructura comercial conectada alrededor de tus servicios y de la experiencia que
-              quieres que viva cada paciente.
+              Todo queda conectado con quien ya maneja tus anuncios, para que el algoritmo de Meta busque personas
+              parecidas a las que sí piden una valoración.
             </p>
           </div>
 
@@ -580,12 +558,11 @@ export default function PropuestaSandraCardenasPage() {
 
           <article className="sc-component sc-component--dark sc-reveal">
             <p className="sc-component-label">Componente 1</p>
-            <h3>Estrategia y posicionamiento de marca</h3>
+            <h3>Estrategia y contenido para la pauta</h3>
             <div>
                 <p className="sc-lead">
-                  Queremos que te reconozcan por tu experiencia, no solamente por los tratamientos que realizas.
-                  Construiremos una estrategia que comunique tu criterio clínico, tu filosofía de atención y el valor de
-                  una experiencia personalizada en odontología estética.
+                  Dejamos listos el mensaje, el contenido y los anuncios de Endolifting y Armonización facial, para que
+                  la pauta llegue a quien sí quiere una valoración.
                 </p>
                 <p className="sc-includes">Incluye</p>
                 <ul className="sc-list">
@@ -594,96 +571,58 @@ export default function PropuestaSandraCardenasPage() {
                   ))}
                 </ul>
                 <p className="sc-result">
-                  <strong>Resultado:</strong> una identidad estratégica clara que guíe las páginas, el contenido y los
-                  mensajes comerciales.
+                  <strong>Resultado:</strong> calendario, piezas y anuncios listos para publicarse y medirse.
                 </p>
               </div>
           </article>
 
           <article className="sc-component sc-reveal">
             <p className="sc-component-label">Componente 2</p>
-            <h3>Página web premium</h3>
+            <h3>Página web de la clínica</h3>
             <p className="sc-lead">
-              Tu nueva web será mucho más que una presentación de servicios: será el espacio donde las pacientes puedan
-              conocerte, comprender tu enfoque y dar el siguiente paso hacia una valoración.
+              Pensada para reflejar la excelencia y el profesionalismo de tu marca. Quien entra reconoce tu criterio
+              antes de pedir la valoración.
             </p>
-            <p className="sc-includes">Estructura de la homepage</p>
-            <div className="sc-table-wrap">
-              <table className="sc-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Sección</th>
-                    <th scope="col">Función</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {HOME_SECTIONS.map((row) => (
-                    <tr key={row.section}>
-                      <td>{row.section}</td>
-                      <td>{row.fn}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="sc-note">
-              Desarrollada para móvil y escritorio, con navegación intuitiva, CTAs estratégicos, configuración SEO básica
-              y medición de contactos.
-            </p>
+            <p className="sc-includes">Servicios</p>
+            <ul className="sc-list">
+              <li>Endolifting</li>
+              <li>Armonización facial</li>
+              <li>Servicios odontológicos</li>
+            </ul>
+            <p className="sc-note">El hosting de esta página queda incluido, gratuito de por vida.</p>
           </article>
 
           <article className="sc-component sc-component--dark sc-reveal">
             <p className="sc-component-label">Componente 3</p>
-            <h3>Dos landings comerciales especializadas</h3>
-            <p className="sc-lead">
-              No todas las pacientes buscan el mismo tratamiento ni tienen las mismas preguntas. Desarrollaremos dos
-              páginas independientes, enfocadas en los servicios de mayor prioridad comercial.
-            </p>
-            <div className="sc-landing-protos">
-              <article className="sc-landing-proto">
+            <h3>Tres landings que filtran interesados</h3>
+            <div className="sc-landing-proto">
+              <div className="sc-landing-shots">
                 <figure className="sc-landing-shot">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={MOCKUP_ENDO_LAPTOP} alt="Prototipo landing Endolifting en laptop" />
+                  <img src={MOCKUP_ENDO_LAPTOP} alt="Landing de Endolifting en computador" />
                 </figure>
-                <div className="sc-landing-body">
-                  <h4>Endolifting</h4>
-                  <p>
-                    Prototipo de landing con información del procedimiento, expectativas, recuperación y
-                    agendamiento.
-                  </p>
-                </div>
-              </article>
-
-              <article className="sc-landing-proto">
                 <figure className="sc-landing-shot sc-landing-shot--phone">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={MOCKUP_ARMO_PHONE} alt="Prototipo landing Armonización facial en móvil" />
+                  <img src={MOCKUP_ARMO_PHONE} alt="Landing de Armonización facial en celular" />
                 </figure>
-                <div className="sc-landing-body">
-                  <h4>Armonización facial</h4>
-                  <p>
-                    Prototipo de landing con alternativas, preguntas frecuentes y solicitud de valoración.
-                  </p>
-                </div>
-              </article>
+              </div>
             </div>
-            <p className="sc-note">
-              Los tratamientos propuestos son preliminares y dependen del diagnóstico comercial y de la validación
-              clínica. Cada landing incluye contenido visual, información del servicio, credenciales, prueba social y
-              CTA de valoración.
+            <p className="sc-landing-copy">
+              <em>Estructura pensada para la conversión y para filtrar clientes potenciales.</em>
+              <span>La homepage, pensada para reflejar la excelencia y el profesionalismo de tu marca.</span>
+              Endolifting, Armonización facial y servicios odontológicos. Cada anuncio llega a una página a la altura de
+              tu práctica: el curioso se queda y solo pasa quien ya quiere la valoración.
             </p>
           </article>
 
           <article className="sc-component sc-reveal">
             <p className="sc-component-label">Componente 4</p>
-            <h3>CRM, WhatsApp y automatizaciones</h3>
-            <p className="sc-lead">Que ninguna solicitud quede sin un proceso de atención.</p>
-            <p className="sc-lead" style={{ marginTop: "0.75rem" }}>
-              Integramos los canales principales de contacto en un recorrido comercial organizado para registrar,
-              clasificar y dar seguimiento a cada oportunidad.
+            <h3>Automatizaciones</h3>
+            <p className="sc-lead">
+              Un flujo pensado para filtrar y categorizar a un posible cliente interesado, antes de que llegue al equipo.
             </p>
-            <div className="sc-stack" aria-label="Stack de integración">
-              {CRM_STACK.map((item) => (
+            <div className="sc-stack sc-stack--flow" aria-label="Canales del flujo">
+              {CRM_STACK.filter((item) => item.name !== "Meta Ads").map((item) => (
                 <div key={item.name} className="sc-stack-item">
                   <span className="sc-stack-logo">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -696,61 +635,28 @@ export default function PropuestaSandraCardenasPage() {
                 </div>
               ))}
             </div>
-            <p className="sc-includes">Incluye</p>
             <ul className="sc-list">
-              {CRM_ITEMS.map((item) => (
+              {AUTO_ITEMS.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <div className="sc-example">
-              <h4>Ejemplo de recorrido</h4>
-              <ol>
-                <li>Una persona descubre un tratamiento en Instagram.</li>
-                <li>Ingresa a la landing y solicita información.</li>
-                <li>Sus datos quedan registrados en el CRM.</li>
-                <li>Recibe una respuesta inicial y se deriva al equipo.</li>
-                <li>Agenda su valoración a través del canal configurado.</li>
-                <li>Recibe una confirmación y un recordatorio.</li>
-              </ol>
-            </div>
-            <p className="sc-note">
-              La automatización atenderá tareas administrativas. La orientación médica, selección de tratamientos y
-              decisiones clínicas seguirán a cargo de la profesional.
-            </p>
-          </article>
-
-          <article className="sc-component sc-component--dark sc-reveal">
-            <p className="sc-component-label">Componente 5</p>
-            <h3>Laboratorio de contenido y estrategia de captación</h3>
-            <p className="sc-lead">
-              Desarrollaremos cinco pilares de comunicación para atraer y convertir con criterio.
-            </p>
-            <div className="sc-pillar-rows">
-              {PILLARS.map((pillar) => (
-                <article key={pillar.title} className="sc-pillar-row">
-                  <strong>{pillar.title}</strong>
-                  <p>{pillar.text}</p>
-                </article>
-              ))}
-            </div>
-            <p className="sc-includes">Entregables del laboratorio</p>
+            <p className="sc-includes">Pauta</p>
             <ul className="sc-list">
-              {CONTENT_LAB.map((item) => (
+              {META_ITEMS.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
             <p className="sc-note">
-              Este componente cubre estrategia y configuración. Producción audiovisual, edición, publicación recurrente,
-              inversión publicitaria y gestión diaria se cotizan por separado.
+              El hosting de las automatizaciones de Instagram queda incluido, gratuito de por vida.
             </p>
           </article>
 
           <article className="sc-component sc-reveal">
-            <p className="sc-component-label">Componente 6</p>
-            <h3>Dashboard de crecimiento comercial</h3>
+            <p className="sc-component-label">Componente 5</p>
+            <h3>CRM básico</h3>
             <p className="sc-lead">
-              Para entender qué ocurre después de que alguien ve tu contenido: solicitudes, citas y oportunidades
-              comerciales.
+              Cuando el flujo ya clasificó el interés, el equipo lo ve aquí: quién escribió, qué servicio busca y en qué
+              va la cita.
             </p>
             <div className="sc-dash">
               <div className="sc-dash-item">
@@ -759,25 +665,51 @@ export default function PropuestaSandraCardenasPage() {
               </div>
               <div className="sc-dash-item">
                 <span aria-hidden>☰</span>
-                <p>Valoraciones agendadas</p>
+                <p>En conversación</p>
               </div>
               <div className="sc-dash-item">
                 <span aria-hidden>◉</span>
-                <p>Seguimiento de contactos</p>
+                <p>Cita agendada</p>
               </div>
               <div className="sc-dash-item">
                 <span aria-hidden>↗</span>
-                <p>Conversión por canal</p>
+                <p>Servicio de origen</p>
               </div>
             </div>
-            <figure className="sc-crm-shot">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={MOCKUP_CRM} alt="CRM de la clínica: ficha de paciente, odontograma e historial" />
-            </figure>
-            <p className="sc-note">
-              El dashboard identifica dónde nacen las oportunidades y dónde mejorar el recorrido. Datos de asistencia y
-              tratamientos contratados dependen del registro interno de la clínica.
+            <ul className="sc-list">
+              {CRM_ITEMS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="sc-includes">Capacitación</p>
+            <ul className="sc-list">
+              {TRAIN_ITEMS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="sc-note">El panel no agenda solo. El equipo confirma la hora y marca el estado.</p>
+          </article>
+
+          <article className="sc-component sc-component--dark sc-promo sc-reveal">
+            <p className="sc-component-label">Promoción</p>
+            <h3>Hosting gratuito de por vida</h3>
+            <p className="sc-lead">
+              La página, las tres landings y las automatizaciones de Instagram quedan alojadas sin cobro mensual.
             </p>
+            <ul className="sc-list">
+              <li>Hosting de la página web y de las tres landings</li>
+              <li>Hosting de las automatizaciones de Instagram</li>
+            </ul>
+            <a
+              className="sc-btn sc-btn-gold sc-btn-pulse"
+              href={waUrl(
+                "Hola Partnersflux. Quiero la promoción de hosting gratuito de por vida de PDM Clínica Growth 360."
+              )}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Evita mensualidades innecesarias
+            </a>
           </article>
         </div>
       </section>
@@ -787,11 +719,11 @@ export default function PropuestaSandraCardenasPage() {
           <p className="sc-eyebrow">
             <span className="sc-eyebrow-num">05</span> Ejecución
           </p>
-          <h2>Nuestro plan de ejecución — 90 días</h2>
+          <h2>Nuestro plan de ejecución — 45 días</h2>
           <p className="sc-lead">
             Un mapa claro de fases, entregables y ventanas de tiempo para que sepas qué ocurre en cada tramo.
           </p>
-          <div className="sc-timeline" aria-label="Plan de 90 días">
+          <div className="sc-timeline" aria-label="Plan de 45 días">
             <div className="sc-timeline-track" aria-hidden>
               <span className="sc-timeline-line" />
             </div>
@@ -824,31 +756,14 @@ export default function PropuestaSandraCardenasPage() {
           <h2>Tu inversión</h2>
           <div className="sc-invest">
             <p className="sc-invest-tag">PDM Clínica Growth 360</p>
-            <p className="sc-invest-price">USD 2.497</p>
-            <p className="sc-lead">
-              Una inversión integral para desarrollar e implementar tu ecosistema estratégico y digital durante 90 días.
-            </p>
-            <p className="sc-note" style={{ marginTop: "1rem" }}>
-              Puedes dividir tu inversión en tres pagos
-            </p>
-            <div className="sc-payments">
-              <div className="sc-pay">
-                <span>Pago 1</span>
-                <strong>USD 999</strong>
-                <p>Inicio</p>
-              </div>
-              <div className="sc-pay">
-                <span>Pago 2</span>
-                <strong>USD 749</strong>
-                <p>Diseño aprobado</p>
-              </div>
-              <div className="sc-pay">
-                <span>Pago 3</span>
-                <strong>USD 749</strong>
-                <p>Sistema entregado</p>
-              </div>
-            </div>
-            <p className="sc-note">Implementación: 60 días · Optimización incluida: 30 días</p>
+            <p className="sc-invest-price">$3.590.000</p>
+            <p className="sc-includes">Entregables</p>
+            <ul className="sc-list">
+              {DELIVERABLES.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p className="sc-note">Entrega en 45 días. Se inicia con el 50%: $1.795.000.</p>
             <div className="sc-cta-row">
               <a className="sc-btn sc-btn-gold" href={waUrl()} target="_blank" rel="noreferrer">
                 Confirmar y arrancar
@@ -864,8 +779,9 @@ export default function PropuestaSandraCardenasPage() {
             </div>
           </div>
           <p className="sc-note">
-            La inversión cubre el alcance descrito. No incluye pauta publicitaria, producción audiovisual, community
-            management, licencias de software, hosting, dominios, costos de mensajería ni desarrollos adicionales.
+            La inversión cubre el alcance descrito, incluido el hosting de la web y de las automatizaciones de Instagram.
+            No incluye pauta publicitaria, producción audiovisual, community management, dominios, costos de mensajería de
+            Meta ni desarrollos adicionales.
           </p>
         </div>
       </section>
@@ -877,12 +793,14 @@ export default function PropuestaSandraCardenasPage() {
           </p>
           <h2>¿Qué sucede después del lanzamiento?</h2>
           <p className="sc-lead">
-            Al cabo de 90 días, tu clínica tendrá infraestructura digital para recibir y organizar solicitudes de
-            valoración. Partnersflux entrega el sistema y la capacitación acordada.
+            Al completar la instalación, eres dueña del código implementado: las páginas y el CRM.
           </p>
           <p className="sc-lead" style={{ marginTop: "0.85rem" }}>
-            Si quieres acompañamiento continuo, dirección estratégica u optimización de campañas, podemos construir un
-            plan mensual. Continuar el contrato es independiente y opcional.
+            El primer mes incluye soporte gratuito para dudas, ajustes de uso y acompañamiento del equipo.
+          </p>
+          <p className="sc-lead" style={{ marginTop: "0.85rem" }}>
+            Si después quieres acompañamiento continuo, dirección estratégica u optimización de campañas, podemos
+            construir un plan mensual. Continuar el contrato es independiente y opcional.
           </p>
         </div>
       </section>
@@ -922,28 +840,10 @@ export default function PropuestaSandraCardenasPage() {
             <span className="sc-eyebrow-num">09</span> Cierre
           </p>
           <h2>Comencemos a construir el siguiente nivel de tu clínica</h2>
-          <p className="sc-lead">Tu presencia digital puede hacer mucho más que mostrar lo que haces.</p>
-          <p className="sc-lead" style={{ marginTop: "0.85rem" }}>
-            Construimos confianza, facilitamos la experiencia de la paciente y generamos oportunidades de crecimiento.
-            Partnersflux combina estrategia, desarrollo y automatización para una infraestructura comercial conectada.
-          </p>
-          <p className="sc-lead" style={{ marginTop: "0.85rem" }}>
-            Tu próximo paciente puede estar viendo tu Instagram. Construyamos el camino para que llegue a tu consulta.
-          </p>
           <div className="sc-cta-row">
             <a className="sc-btn sc-btn-gold" href={waUrl()} target="_blank" rel="noreferrer">
               Quiero PDM Clínica Growth 360
             </a>
-          </div>
-
-          <div className="sc-conditions">
-            <h4>Condiciones de implementación</h4>
-            <ul>
-              <li>El cronograma inicia tras el pago inicial y la recepción de materiales y accesos.</li>
-              <li>La cliente es responsable de credenciales profesionales y consentimientos de pacientes para testimonios.</li>
-              <li>Publicidad y captación de datos deben cumplir la normativa vigente en Colombia.</li>
-              <li>La propuesta incluye una ronda de aprobación de arquitectura y hasta dos rondas de ajustes de diseño por página.</li>
-            </ul>
           </div>
         </div>
       </section>

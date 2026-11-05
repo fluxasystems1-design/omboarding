@@ -29,7 +29,7 @@ const display = Archivo_Black({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
 const title = "PDM Clínica Growth 360 | Dra. Sandra Cárdenas · Odontología Estética";
 const description =
-  "Propuesta comercial Partnersflux × Dra. Sandra Cárdenas. Odontología estética especializada: web, landings, CRM y captación en 90 días. Inversión USD 2.497.";
+  "Propuesta comercial Partnersflux × Dra. Sandra Cárdenas. Contenido para la pauta, página web, tres landings y WhatsApp. Inversión $3.590.000. Se inicia con el 50%. 45 días.";
 const ogImage = "/og/fluxa-logo.jpg";
 
 export const metadata = {
@@ -38,6 +38,10 @@ export const metadata = {
   description,
   alternates: { canonical: "/propuesta-sandra-cardenas" },
   robots: { index: false, follow: false },
+  icons: {
+    icon: [{ url: "/og/fluxa-logo.jpg", type: "image/jpeg" }],
+    apple: "/og/fluxa-logo.jpg",
+  },
   openGraph: {
     title,
     description,

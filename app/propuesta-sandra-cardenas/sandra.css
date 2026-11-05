@@ -1965,6 +1965,32 @@
   padding-top: 1.75rem;
 }
 
+.sc-promo .sc-btn-pulse {
+  margin-top: 1.15rem;
+  background: linear-gradient(135deg, #ebc98a, #b8924a);
+  color: #12100c;
+  box-shadow: 0 0 0 0 rgba(232, 201, 150, 0.55);
+  animation: sc-promo-pulse 1.8s ease-out infinite;
+}
+
+.sc-promo .sc-btn-pulse:hover {
+  background: linear-gradient(135deg, #f0d59a, #d4b06a);
+  color: #12100c;
+  animation-play-state: paused;
+}
+
+@keyframes sc-promo-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 201, 150, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(232, 201, 150, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 201, 150, 0);
+  }
+}
+
 .sc-component--dark .sc-component-label {
   color: var(--sc-gold-bright);
 }
@@ -2125,7 +2151,7 @@
 
 @media (min-width: 960px) {
   .sc-landing-protos {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.35rem;
     align-items: stretch;
   }
@@ -2137,6 +2163,10 @@
   border-radius: 1.35rem;
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+.sc-landing-proto + .sc-lead {
+  margin-top: 1.2rem;
 }
 
 .sc-landing-shots {
@@ -2326,6 +2356,11 @@
   .sc-stack {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
+  .sc-stack--flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 42rem;
+  }
 }
 
 .sc-stack-item {
@@ -2451,6 +2486,7 @@
   border-radius: 1.25rem;
   padding: clamp(1.35rem, 4vw, 2rem);
   margin-top: 1.5rem;
+  container-type: inline-size;
 }
 
 .sc-invest-tag {
@@ -2464,7 +2500,7 @@
 
 .sc-invest-price {
   font-family: var(--font-sc-display), Impact, sans-serif;
-  font-size: clamp(2.4rem, 6.5vw, 3.6rem);
+  font-size: clamp(1.55rem, 11cqi, 3.6rem);
   margin: 0 0 0.5rem;
   line-height: 1;
   letter-spacing: -0.04em;
@@ -2581,7 +2617,8 @@
 @media (prefers-reduced-motion: reduce) {
   .sc-marquee-track,
   .sc-band-marquee-track,
-  .sc-hero-phone {
+  .sc-hero-phone,
+  .sc-btn-pulse {
     animation: none !important;
   }
 }
@@ -2692,6 +2729,40 @@
 .sc-component--dark .sc-landing-body h4,
 .sc-component--dark .sc-pillar-row strong {
   color: #f2eee6 !important;
+}
+
+.sc-component--dark .sc-landing-copy {
+  margin: 1.6rem 0 0.2rem;
+  max-width: 44rem;
+  color: rgba(247, 241, 230, 0.9) !important;
+  font-family: var(--font-sc-sans), "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.7;
+}
+
+.sc-component--dark .sc-landing-copy em {
+  display: block;
+  margin: 0 0 0.7rem;
+  color: #f4e7cb !important;
+  font-family: var(--font-sc-script), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.65rem, 2.6vw, 2.05rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.sc-component--dark .sc-landing-copy span {
+  display: block;
+  margin: 0 0 0.55rem;
+  color: #f7f1e6 !important;
+  font-family: var(--font-sc-sans), "Plus Jakarta Sans", sans-serif;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
 }
 
 .sc-section--dark .sc-arrow {
