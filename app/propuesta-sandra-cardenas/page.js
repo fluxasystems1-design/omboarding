@@ -250,7 +250,6 @@ const PHASES = [
     days: "Días 1–10",
     title: "Estrategia y piezas",
     text: "Diagnóstico, paciente ideal, posicionamiento, pilares, calendario y rutas hacia WhatsApp.",
-    deliver: "Mensaje, calendario y guiones listos para la pauta.",
   },
   {
     num: "02",
@@ -258,7 +257,6 @@ const PHASES = [
     days: "Días 11–25",
     title: "Páginas",
     text: "Homepage y las tres landings: Endolifting, Armonización facial y servicios odontológicos.",
-    deliver: "Páginas publicadas, cada una con su camino a WhatsApp.",
   },
   {
     num: "03",
@@ -266,7 +264,6 @@ const PHASES = [
     days: "Días 26–35",
     title: "WhatsApp, panel y pauta",
     text: "Respuestas automáticas, panel de solicitudes y eventos conectados con quien maneja los anuncios.",
-    deliver: "El primer mensaje se contesta solo y cada solicitud queda registrada.",
   },
   {
     num: "04",
@@ -274,7 +271,6 @@ const PHASES = [
     days: "Días 36–45",
     title: "Entrega",
     text: "Capacitación del equipo, ajustes finales y sesión de cierre.",
-    deliver: "Sistema listo para recibir la pauta.",
   },
 ];
 
@@ -558,11 +554,11 @@ export default function PropuestaSandraCardenasPage() {
 
           <article className="sc-component sc-component--dark sc-reveal">
             <p className="sc-component-label">Componente 1</p>
-            <h3>Estrategia y contenido para la pauta</h3>
+            <h3>Estrategia y contenido</h3>
             <div>
                 <p className="sc-lead">
                   Dejamos listos el mensaje, el contenido y los anuncios de Endolifting y Armonización facial, para que
-                  la pauta llegue a quien sí quiere una valoración.
+                  lleguen a quien sí quiere una valoración.
                 </p>
                 <p className="sc-includes">Incluye</p>
                 <ul className="sc-list">
@@ -737,9 +733,6 @@ export default function PropuestaSandraCardenasPage() {
                   <div className="sc-timeline-card">
                     <strong>{phase.title}</strong>
                     <p>{phase.text}</p>
-                    <p className="sc-phase-deliver">
-                      <em>Entregamos:</em> {phase.deliver}
-                    </p>
                   </div>
                 </article>
               ))}
