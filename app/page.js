@@ -175,6 +175,12 @@ const landings = [
       "Oferta, landing de registro, DM automatizado, contenido y Meta Ads · $2.000.000 COP · @jebusitor",
   },
   {
+    name: "AR Pilates Estudio",
+    path: "/propuesta-ar-pilates",
+    description:
+      "Web, reservas y pagos · AR Digital $2.697.000 · AR + Estrategia $3.497.000 · @arpilates.estudio · Partnersflux",
+  },
+  {
     name: "Almak — Ecommerce estratégico",
     path: "/propuesta-alma-k",
     description:
