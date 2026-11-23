@@ -11,7 +11,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.ve
 const title = "Propuesta comercial | Los Expatriados · Partnersflux";
 const description =
   "Tienda digital, eventos y ruta de contenido para Tortillas de Los Expatriados. Tienda $2.697.000 · Tienda + Crecimiento $3.497.000. @losexpatriadosbog";
-const ogImage = "/imagenes/los-expatriados/logo.png";
+const ogImagePath = "/imagenes/los-expatriados/og.jpg";
+const ogImageAbsolute = `${siteUrl}${ogImagePath}`;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -20,23 +21,32 @@ export const metadata = {
   alternates: { canonical: "/propuesta-los-expatriados" },
   robots: { index: false, follow: false },
   icons: {
-    icon: [{ url: ogImage, type: "image/png" }],
-    apple: ogImage,
+    icon: [{ url: ogImagePath, type: "image/jpeg" }],
+    apple: ogImagePath,
   },
   openGraph: {
     title,
     description,
     type: "website",
-    url: "/propuesta-los-expatriados",
+    url: `${siteUrl}/propuesta-los-expatriados`,
     siteName: "Partnersflux",
     locale: "es_CO",
-    images: [{ url: ogImage, width: 800, height: 800, alt: "Los Expatriados" }],
+    images: [
+      {
+        url: ogImageAbsolute,
+        secureUrl: ogImageAbsolute,
+        width: 800,
+        height: 800,
+        type: "image/jpeg",
+        alt: "Los Expatriados",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: [ogImage],
+    images: [ogImageAbsolute],
   },
 };
 
