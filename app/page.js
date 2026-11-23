@@ -181,6 +181,12 @@ const landings = [
       "Web, reservas y pagos · AR Digital $2.697.000 · AR + Estrategia $3.497.000 · @arpilates.estudio · Partnersflux",
   },
   {
+    name: "Los Expatriados",
+    path: "/propuesta-los-expatriados",
+    description:
+      "Tortillas españolas con sabor colombiano · Tienda $2.697.000 · Tienda + Crecimiento $3.497.000 · @losexpatriadosbog · Partnersflux",
+  },
+  {
     name: "Almak — Ecommerce estratégico",
     path: "/propuesta-alma-k",
     description:
