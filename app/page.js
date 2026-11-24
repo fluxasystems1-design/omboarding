@@ -17,6 +17,11 @@ const landings = [
     description: "Método PDP Wellness™ · GAL'S DIGITAL $947 y GAL'S PRO $1,497 · @galstudio___",
   },
   {
+    name: "GAL'S Studio — Plan web 2027",
+    path: "/propuesta-gals-plan",
+    description: "Ajustes de la web actual + GALS Space, Academy y Digital · $1.100.000 · Partnersflux",
+  },
+  {
     name: "Natalia Galvis — PDM Marca Personal",
     path: "/propuesta-marca-personal",
     description: "PDM Magnética y Monetizable · Fase Magnética $297 · alianza 35/65 · Partnersflux",
@@ -179,6 +184,11 @@ const landings = [
     path: "/propuesta-ar-pilates",
     description:
       "Web, reservas y pagos · AR Digital $2.697.000 · AR + Estrategia $3.497.000 · @arpilates.estudio · Partnersflux",
+  },
+  {
+    name: "AR Pilates — Brief de implementación",
+    path: "/propuesta-ar-pilates/brief",
+    description: "Cuestionario de clases, reservas, paquetes y lanzamiento · @arpilates.estudio · Partnersflux",
   },
   {
     name: "Los Expatriados",

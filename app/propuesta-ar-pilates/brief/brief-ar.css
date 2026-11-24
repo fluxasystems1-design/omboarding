@@ -1,0 +1,593 @@
+.ar-brief-root {
+  --ink: #141210;
+  --muted: #6f655c;
+  --cream: #f3ece4;
+  --paper: #faf7f3;
+  --line: rgba(20, 18, 16, 0.1);
+  --taupe: #b7a089;
+  --taupe-dark: #8f7a66;
+  --dark: #11100e;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ar-brief-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.ar-brief-ambient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(183, 160, 137, 0.3), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 90% 20%, rgba(250, 247, 243, 0.95), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(183, 160, 137, 0.22), transparent 55%);
+}
+
+.ar-brief-ambient::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background:
+    conic-gradient(from 140deg at 32% 42%, rgba(183, 160, 137, 0.14), transparent 34%, rgba(255, 252, 248, 0.4) 55%, transparent 72%),
+    radial-gradient(circle at 72% 58%, rgba(183, 160, 137, 0.2), transparent 42%);
+  animation: arBriefMesh 20s ease-in-out infinite alternate;
+}
+
+.ar-brief-ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: soft-light;
+  animation: arBriefGrain 7s steps(5) infinite;
+}
+
+.ar-brief-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(58px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.ar-brief-orb--1 {
+  top: -8%;
+  left: -8%;
+  width: 340px;
+  height: 340px;
+  background: rgba(183, 160, 137, 0.58);
+  animation: arBriefOrbA 13s ease-in-out infinite;
+}
+
+.ar-brief-orb--2 {
+  top: 26%;
+  right: -12%;
+  width: 380px;
+  height: 380px;
+  background: rgba(255, 252, 248, 0.98);
+  animation: arBriefOrbB 17s ease-in-out infinite;
+}
+
+.ar-brief-orb--3 {
+  bottom: -14%;
+  left: 16%;
+  width: 300px;
+  height: 300px;
+  background: rgba(183, 160, 137, 0.4);
+  animation: arBriefOrbC 15s ease-in-out infinite;
+}
+
+.ar-brief-orb--4 {
+  top: 52%;
+  left: 52%;
+  width: 200px;
+  height: 200px;
+  background: rgba(143, 122, 102, 0.24);
+  animation: arBriefOrbD 11s ease-in-out infinite;
+}
+
+.ar-brief-ring {
+  position: absolute;
+  border: 1px solid rgba(183, 160, 137, 0.3);
+  border-radius: 50%;
+}
+
+.ar-brief-ring--1 {
+  top: 12%;
+  right: 8%;
+  width: 150px;
+  height: 150px;
+  animation: arBriefRing 18s linear infinite;
+}
+
+.ar-brief-ring--2 {
+  bottom: 16%;
+  left: 5%;
+  width: 96px;
+  height: 96px;
+  animation: arBriefRing 13s linear infinite reverse;
+}
+
+.ar-brief-beam {
+  position: absolute;
+  width: 44%;
+  height: 180%;
+  top: -40%;
+  left: 26%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.26), transparent);
+  animation: arBriefBeam 9s ease-in-out infinite;
+}
+
+@keyframes arBriefMesh {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    transform: translate(5%, -4%) rotate(10deg) scale(1.1);
+  }
+}
+
+@keyframes arBriefGrain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-1.5%, 1%);
+  }
+}
+
+@keyframes arBriefOrbA {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(14%, 10%) scale(1.2);
+  }
+}
+
+@keyframes arBriefOrbB {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate(-12%, -14%) scale(0.9);
+  }
+}
+
+@keyframes arBriefOrbC {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(10%, -16%) scale(1.18);
+  }
+}
+
+@keyframes arBriefOrbD {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(0.88);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-18%, 12%) scale(1.28);
+    opacity: 0.62;
+  }
+}
+
+@keyframes arBriefRing {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: rotate(360deg) scale(1.1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes arBriefBeam {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translateX(-10%) rotate(18deg);
+  }
+  50% {
+    opacity: 0.42;
+    transform: translateX(12%) rotate(24deg);
+  }
+}
+
+.ar-brief-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.ar-brief-partners {
+  display: flex;
+  width: 100%;
+  max-width: 28rem;
+  align-items: center;
+  justify-content: center;
+  animation: arBriefLogoIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ar-brief-logo-wrap {
+  position: relative;
+  height: 3.4rem;
+  width: min(42%, 9.5rem);
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(20, 18, 16, 0.08);
+  box-shadow: 0 10px 28px rgba(143, 122, 102, 0.12);
+}
+
+.ar-brief-logo-wrap--solo {
+  width: min(62%, 12rem);
+  height: 4rem;
+}
+
+.ar-brief-logo-img {
+  object-fit: contain;
+  padding: 0.4rem;
+}
+
+.ar-brief-hero-copy {
+  animation: arBriefRise 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ar-brief-progress-card {
+  border: 1px solid rgba(20, 18, 16, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 1.15rem 1.2rem 1.25rem;
+  box-shadow: 0 14px 40px rgba(143, 122, 102, 0.12);
+  backdrop-filter: blur(12px);
+  animation: arBriefRise 0.7s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ar-brief-progress-track {
+  position: relative;
+  height: 0.42rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(20, 18, 16, 0.08);
+}
+
+.ar-brief-progress-fill {
+  position: relative;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c4ae96, #8f7a66 55%, #6f5d4d);
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ar-brief-progress-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: arBriefShimmer 1.8s ease-in-out infinite;
+}
+
+.ar-brief-field {
+  border: 1px solid rgba(20, 18, 16, 0.08);
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.78);
+  padding: 1.05rem 1.05rem 1.15rem;
+  box-shadow: 0 8px 24px rgba(143, 122, 102, 0.06);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  animation: arBriefField 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--field-i, 0) * 55ms);
+}
+
+.ar-brief-field:hover {
+  border-color: rgba(183, 160, 137, 0.45);
+  box-shadow: 0 12px 30px rgba(143, 122, 102, 0.1);
+}
+
+.ar-brief-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.ar-brief-hint {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.ar-brief-input {
+  width: 100%;
+  border: 1px solid rgba(20, 18, 16, 0.12);
+  border-radius: 0.9rem;
+  background: #fff;
+  padding: 0.82rem 0.95rem;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.ar-brief-input::placeholder {
+  color: #9a9086;
+}
+
+.ar-brief-input:hover {
+  border-color: rgba(183, 160, 137, 0.55);
+}
+
+.ar-brief-input:focus {
+  border-color: var(--taupe-dark);
+  box-shadow: 0 0 0 4px rgba(183, 160, 137, 0.2);
+  transform: translateY(-1px);
+}
+
+.ar-brief-input--error {
+  border-color: #c45c5c;
+  box-shadow: 0 0 0 3px rgba(196, 92, 92, 0.12);
+}
+
+textarea.ar-brief-input {
+  resize: vertical;
+  min-height: 5.2rem;
+  line-height: 1.55;
+}
+
+.ar-brief-options {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ar-brief-radio,
+.ar-brief-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  border: 1px solid rgba(20, 18, 16, 0.1);
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.8rem 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ar-brief-radio:hover,
+.ar-brief-check:hover {
+  border-color: rgba(183, 160, 137, 0.55);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(143, 122, 102, 0.08);
+}
+
+.ar-brief-radio:has(input:checked),
+.ar-brief-check:has(input:checked) {
+  border-color: var(--taupe-dark);
+  background: linear-gradient(160deg, rgba(183, 160, 137, 0.18), rgba(255, 255, 255, 0.95));
+  box-shadow: 0 0 0 3px rgba(183, 160, 137, 0.12);
+}
+
+.ar-brief-radio span,
+.ar-brief-check span {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.ar-brief-btn-primary {
+  border: 0;
+  border-radius: 999px;
+  background: var(--dark);
+  color: #fffdfb;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  box-shadow: 0 10px 24px rgba(17, 16, 14, 0.18);
+}
+
+.ar-brief-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #1c1a17;
+  box-shadow: 0 14px 28px rgba(17, 16, 14, 0.22);
+}
+
+.ar-brief-btn-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ar-brief-btn-ghost {
+  border: 1px solid rgba(20, 18, 16, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.ar-brief-btn-ghost:hover:not(:disabled) {
+  border-color: rgba(183, 160, 137, 0.55);
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.ar-brief-btn-ghost:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ar-brief-btn-add {
+  border: 1px dashed rgba(143, 122, 102, 0.45);
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--taupe-dark);
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.ar-brief-btn-add:hover {
+  border-color: var(--taupe-dark);
+  background: rgba(183, 160, 137, 0.12);
+  transform: translateY(-1px);
+}
+
+.ar-brief-card {
+  border: 1px solid rgba(20, 18, 16, 0.1);
+  border-radius: 1.05rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(250, 247, 243, 0.9));
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.ar-brief-step {
+  animation: arBriefIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ar-brief-step--back {
+  animation-name: arBriefInBack;
+}
+
+.ar-brief-nav-row {
+  animation: arBriefRise 0.55s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes arBriefLogoIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arBriefRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arBriefIn {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arBriefInBack {
+  from {
+    opacity: 0;
+    transform: translateX(-22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arBriefField {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes arBriefShimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+.ar-brief-check-draw {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: arBriefCheck 0.55s 0.15s ease forwards;
+}
+
+@keyframes arBriefCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ar-brief-pulse-dot {
+  animation: arBriefPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes arBriefPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ar-brief-ambient::before,
+  .ar-brief-ambient::after,
+  .ar-brief-orb,
+  .ar-brief-ring,
+  .ar-brief-beam,
+  .ar-brief-progress-fill::after,
+  .ar-brief-pulse-dot,
+  .ar-brief-partners,
+  .ar-brief-hero-copy,
+  .ar-brief-progress-card,
+  .ar-brief-step,
+  .ar-brief-field,
+  .ar-brief-nav-row {
+    animation: none !important;
+  }
+}
