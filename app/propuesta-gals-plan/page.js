@@ -45,8 +45,6 @@ const FASE2 = [
   { priority: "Alta", title: "Celebra tu cumpleaños", text: "Venta de experiencias privadas de 60 y 90 minutos." },
   { priority: "Media", title: "Lanza tu marca", text: "Captar marcas para activaciones y lanzamientos." },
   { priority: "Media", title: "Alquiler GALS Space", text: "Bloques disponibles, solicitudes y pagos. Distinto de la experiencia guiada." },
-  { priority: "Media", title: "Landing GALS Academy", text: "Workshops y bootcamps de Natalia y Partnersflux." },
-  { priority: "Media", title: "Venta de cada workshop", text: "Temario, profesores, fechas, precio, registro y pago." },
   { priority: "Alta", title: "Core de Sirena Digital", text: "Captar interesadas y convertir a la compra del programa. Según lanzamiento." },
   { priority: "Media", title: "Catálogo GALS Digital", text: "Core de Sirena y los programas que sigan." },
   { priority: "Campaña", title: "Experiencias temáticas", text: "Entradas a Sessions o eventos con fecha confirmada." },
@@ -55,7 +53,6 @@ const FASE2 = [
 const FLOWS = [
   { title: "Eventos privados", text: "Formulario → CRM → cotización → seguimiento → anticipo → confirmación." },
   { title: "Alumnas del estudio", text: "Primera clase → membresía → seguimiento → renovación." },
-  { title: "Academy", text: "Interés → invitación al workshop → compra → bienvenida." },
   { title: "Digital", text: "Lista prioritaria → lanzamiento → pago → acceso al programa." },
   { title: "Reportes", text: "Ventas, reservas, cotizaciones y renovaciones por línea." },
 ];
@@ -78,8 +75,8 @@ const ORDER = [
   },
   {
     num: "04",
-    title: "Escalamos Academy y Digital",
-    text: "Workshops, Core de Sirena, catálogo de programas y landings de campaña.",
+    title: "Escalamos lo digital",
+    text: "Core de Sirena, catálogo de programas y landings de campaña cuando haya fecha de lanzamiento.",
   },
 ];
 
@@ -155,8 +152,8 @@ export default function PropuestaGalsPlanPage() {
           <p className="gp-kicker">Partnersflux × GAL&apos;S Studio</p>
           <h1>Plan de desarrollo web 2027</h1>
           <p className="gp-lead">
-            Natalia, este plan lleva tu estudio de lo que ya funciona a la visión completa de la marca: web que convierte,
-            GALS Space, Academy y digital — en un solo sistema.
+            Natalia, este plan lleva tu estudio de lo que ya funciona a la visión de la marca: web que convierte,
+            GALS Space y digital — en un solo sistema.
           </p>
           <div className="gp-stats">
             <article>
@@ -165,7 +162,7 @@ export default function PropuestaGalsPlanPage() {
             </article>
             <article>
               <strong>Fase 2</strong>
-              <span>11 componentes nuevos</span>
+              <span>9 componentes nuevos</span>
             </article>
             <article>
               <strong>$1.1M</strong>
@@ -202,9 +199,9 @@ export default function PropuestaGalsPlanPage() {
           <div className="gp-wrap">
             <header className="gp-head">
               <p className="gp-eyebrow">Fase 2 · Nuevos desarrollos</p>
-              <h2>Once piezas nuevas para abrir GALS Space, Academy y Digital.</h2>
+              <h2>Nueve piezas nuevas para abrir GALS Space y Digital.</h2>
               <p className="gp-lead gp-lead--left">
-                Comparten plantilla, formularios y un mismo CRM. No son once sitios sueltos: es un ecosistema que crece
+                Comparten plantilla, formularios y un mismo CRM. No son nueve sitios sueltos: es un ecosistema que crece
                 contigo.
               </p>
             </header>

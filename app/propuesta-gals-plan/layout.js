@@ -10,7 +10,7 @@ const poppins = Poppins({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://omboarding-alpha.vercel.app";
 const title = "Plan de desarrollo web 2027 | GAL'S Studio · Partnersflux";
 const description =
-  "Actualizar la web actual de GAL'S Studio y abrir GALS Space, Academy y Digital. Ajustes $300.000 + desarrollos con descuento $800.000. Total $1.100.000.";
+  "Actualizar la web actual de GAL'S Studio y abrir GALS Space y Digital. Ajustes $300.000 + desarrollos con descuento $800.000. Total $1.100.000.";
 const ogImage = "/imagenes/gals-studio-logo.png";
 
 export const metadata = {

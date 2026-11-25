@@ -19,7 +19,7 @@ const landings = [
   {
     name: "GAL'S Studio — Plan web 2027",
     path: "/propuesta-gals-plan",
-    description: "Ajustes de la web actual + GALS Space, Academy y Digital · $1.100.000 · Partnersflux",
+    description: "Ajustes de la web actual + GALS Space y Digital · $1.100.000 · Partnersflux",
   },
   {
     name: "Natalia Galvis — PDM Marca Personal",
